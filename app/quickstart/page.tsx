@@ -134,7 +134,7 @@ export default function Quickstart() {
             </div>
             <div className="ml-16 space-y-6">
               <p className="text-lg text-slate-300 leading-relaxed">
-                Once you're satisfied with your artifact, publish it to the registry:
+                Once you are satisfied with your artifact, publish it to the registry:
               </p>
               <div className="bg-slate-950 border border-slate-800 rounded-lg p-6 overflow-x-auto">
                 <code className="text-slate-300 font-mono">
