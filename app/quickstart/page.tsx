@@ -1,5 +1,7 @@
 "use client";
 
+import { DiscordLink, GithubRepoLink } from "@/lib/links";
+
 export default function Quickstart() {
   return (
     <>
@@ -183,7 +185,7 @@ export default function Quickstart() {
             </p>
             <div className="flex gap-6 justify-center flex-wrap">
               <a
-                href="#"
+                href={DiscordLink}
                 className="inline-flex items-center gap-3 bg-[#5865F2] hover:bg-[#4752C4] text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all hover:shadow-xl hover:-translate-y-1"
               >
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -192,7 +194,7 @@ export default function Quickstart() {
                 Join Discord
               </a>
               <a
-                href="#"
+                href={GithubRepoLink}
                 className="inline-flex items-center gap-3 bg-slate-800 hover:bg-slate-700 text-white px-8 py-4 rounded-lg font-semibold text-lg border-2 border-slate-700 transition-all hover:shadow-xl hover:-translate-y-1"
               >
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">

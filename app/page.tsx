@@ -6,6 +6,7 @@ import KagentLogo from "@/components/icons/Kagent";
 import McpIcon from "@/components/icons/Mcp";
 import { Anthropic } from "@/components/icons/Anthropic";
 import { OpenAI } from "@/components/icons/OpenAI";
+import { DiscordLink, GithubRepoLink } from "@/lib/links";
 
 export default function Home() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -46,7 +47,7 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-[#8023C3]/20 text-white text-center px-8 py-32 relative overflow-hidden">
+      <section className="bg-gradient-to-br from-[#151927] via-[#1a1f30] to-[#8023C3]/20 text-white text-center px-8 py-32 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-tr from-[#8023C3]/10 via-transparent to-purple-500/5 pointer-events-none"></div>
         <div className="relative z-10 max-w-5xl mx-auto">
           <h1 className="text-6xl md:text-7xl font-bold mb-6 tracking-tight leading-tight">
@@ -66,7 +67,8 @@ export default function Home() {
               Get Started
             </Link>
             <a
-              href="#"
+              href={GithubRepoLink}
+              target="_blank"
               className="inline-block bg-transparent text-white px-10 py-4 rounded-lg font-semibold text-lg border-2 border-white transition-all hover:bg-white/10"
             >
               View on GitHub
@@ -76,13 +78,13 @@ export default function Home() {
       </section>
 
       {/* Diagrams Section */}
-      <section className="py-20 px-8 bg-slate-900">
+      <section className="py-20 px-8 bg-[#151927]">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12">
             {/* Organization Card */}
-            <div className="bg-slate-800 rounded-2xl overflow-hidden shadow-xl hover:-translate-y-2 transition-transform">
+            <div className="bg-[#1a1f30] rounded-2xl overflow-hidden shadow-xl hover:-translate-y-2 transition-transform">
               <div className="px-8 pt-8 pb-4">
-                <div className="inline-block bg-slate-700/50 text-slate-300 text-sm font-semibold px-4 py-2 rounded-full mb-4 uppercase tracking-wider">
+                <div className="inline-block bg-[#202535]/50 text-slate-300 text-sm font-semibold px-4 py-2 rounded-full mb-4 uppercase tracking-wider">
                   For Organizations
                 </div>
                 <h3 className="text-3xl text-white mb-2">Curate & Deploy</h3>
@@ -91,7 +93,7 @@ export default function Home() {
                 </p>
               </div>
               <div
-                className="bg-gradient-to-br from-slate-700 to-slate-800 border-t border-b border-slate-700 cursor-pointer hover:from-slate-600 hover:to-slate-700 transition-all relative overflow-hidden group"
+                className="bg-gradient-to-br from-[#202535] to-[#1a1f30] border-t border-b border-[#202535] cursor-pointer hover:from-[#252a3f] hover:to-[#202535] transition-all relative overflow-hidden group"
                 onClick={() => openLightbox("org-diagram")}
               >
                 <img
@@ -99,19 +101,19 @@ export default function Home() {
                   alt="Organization workflow diagram"
                   className="w-full h-90 object-contain"
                 />
-                <div className="absolute bottom-6 right-6 bg-[#8023C3]/90 text-slate-900 px-4 py-2 rounded-md text-sm font-semibold group-hover:bg-[#8023C3] transition-colors">
+                <div className="absolute bottom-6 right-6 bg-[#8023C3]/90 text-slate-200 px-4 py-2 rounded-md text-sm font-semibold group-hover:bg-[#8023C3] transition-colors">
                   Click to expand ↗
                 </div>
               </div>
               <div className="p-8">
                 <ul className="space-y-4">
-                  <li className="pb-4 border-b border-slate-700 text-slate-300 leading-relaxed">
+                  <li className="pb-4 border-b border-[#202535] text-slate-300 leading-relaxed">
                     <strong className="text-white font-semibold">Centralized Control</strong> – Package and collect AI artifacts from any source into a single registry
                   </li>
-                  <li className="pb-4 border-b border-slate-700 text-slate-300 leading-relaxed">
+                  <li className="pb-4 border-b border-[#202535] text-slate-300 leading-relaxed">
                     <strong className="text-white font-semibold">Security & Governance</strong> – Curate and approve agents, servers, and skills before company-wide deployment
                   </li>
-                  <li className="pb-4 border-b border-slate-700 text-slate-300 leading-relaxed">
+                  <li className="pb-4 border-b border-[#202535] text-slate-300 leading-relaxed">
                     <strong className="text-white font-semibold">Managed Hosting</strong> – Deploy and host artifacts for seamless consumption across teams
                   </li>
                   <li className="text-slate-300 leading-relaxed">
@@ -121,9 +123,9 @@ export default function Home() {
             </div>
 
             {/* Developer Card */}
-            <div className="bg-slate-800 rounded-2xl overflow-hidden shadow-xl hover:-translate-y-2 transition-transform">
+            <div className="bg-[#1a1f30] rounded-2xl overflow-hidden shadow-xl hover:-translate-y-2 transition-transform">
               <div className="px-8 pt-8 pb-4">
-                <div className="inline-block bg-slate-700/50 text-slate-300 text-sm font-semibold px-4 py-2 rounded-full mb-4 uppercase tracking-wider">
+                <div className="inline-block bg-[#202535]/50 text-slate-300 text-sm font-semibold px-4 py-2 rounded-full mb-4 uppercase tracking-wider">
                   For Developers
                 </div>
                 <h3 className="text-3xl text-white mb-2">Build & Publish</h3>
@@ -132,7 +134,7 @@ export default function Home() {
                 </p>
               </div>
               <div
-                className="bg-gradient-to-br from-slate-700 to-slate-800 border-t border-b border-slate-700 cursor-pointer hover:from-slate-600 hover:to-slate-700 transition-all relative overflow-hidden group"
+                className="bg-gradient-to-br from-[#202535] to-[#1a1f30] border-t border-b border-[#202535] cursor-pointer hover:from-[#252a3f] hover:to-[#202535] transition-all relative overflow-hidden group"
                 onClick={() => openLightbox("dev-diagram")}
               >
                 <img
@@ -146,13 +148,13 @@ export default function Home() {
               </div>
               <div className="p-8">
                 <ul className="space-y-4">
-                  <li className="pb-4 border-b border-slate-700 text-slate-300 leading-relaxed">
+                  <li className="pb-4 border-b border-[#202535] text-slate-300 leading-relaxed">
                     <strong className="text-white font-semibold">Local Development</strong> – Create and test agents, skills, and MCP servers locally
                   </li>
-                  <li className="pb-4 border-b border-slate-700 text-slate-300 leading-relaxed">
+                  <li className="pb-4 border-b border-[#202535] text-slate-300 leading-relaxed">
                     <strong className="text-white font-semibold">Easy Publishing</strong> – Publish your artifacts to a registry with a single command
                   </li>
-                  <li className="pb-4 border-b border-slate-700 text-slate-300 leading-relaxed">
+                  <li className="pb-4 border-b border-[#202535] text-slate-300 leading-relaxed">
                     <strong className="text-white font-semibold">Pull & Run Anywhere</strong> – Pull artifacts from the registry and run them in any environment instantly
                   </li>
                   <li className="text-slate-300 leading-relaxed">
@@ -166,27 +168,27 @@ export default function Home() {
       </section>
 
       {/* Centralized Registry Section */}
-      <section className="py-20 px-8 bg-gradient-to-br from-slate-800 to-purple-900/30">
+      <section className="py-20 px-8 bg-gradient-to-br from-[#1a1f30] to-purple-900/30">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-4xl font-bold text-center text-white mb-2">
             A Centralized Registry for AI Artifacts
           </h2>
           <div className="grid md:grid-cols-3 gap-12 mt-12">
-            <div className="bg-slate-800 p-10 rounded-xl shadow-lg text-center">
+            <div className="bg-[#1a1f30] p-10 rounded-xl shadow-lg text-center">
               <div className="text-6xl mb-6">✨</div>
               <h3 className="text-2xl text-white mb-4">Enriched Data</h3>
               <p className="text-slate-300 leading-relaxed text-lg">
                 Import AI artifacts from any registry into agentregistry, where automatic scoring and validation enrich datasets to provide additional insights to registry operators.
               </p>
             </div>
-            <div className="bg-slate-800 p-10 rounded-xl shadow-lg text-center">
+            <div className="bg-[#1a1f30] p-10 rounded-xl shadow-lg text-center">
               <div className="text-6xl mb-6">🔒</div>
               <h3 className="text-2xl text-white mb-4">Controlled Curation</h3>
               <p className="text-slate-300 leading-relaxed text-lg">
                 Operators can curate a custom collection of AI artifacts within agentregistry and selectively publish and deploy artifacts to maintain audit control and security of assets.
               </p>
             </div>
-            <div className="bg-slate-800 p-10 rounded-xl shadow-lg text-center">
+            <div className="bg-[#1a1f30] p-10 rounded-xl shadow-lg text-center">
               <div className="text-6xl mb-6">⚡</div>
               <h3 className="text-2xl text-white mb-4">Build Fast</h3>
               <p className="text-slate-300 leading-relaxed text-lg">
@@ -198,7 +200,7 @@ export default function Home() {
       </section>
 
       {/* How It Works Section */}
-      <section className="py-20 px-8 bg-slate-900">
+      <section className="py-20 px-8 bg-[#151927]">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-4xl font-bold text-center text-white mb-4">
             How It Works
@@ -210,7 +212,7 @@ export default function Home() {
           {/* Timeline Flow */}
           <div className="relative">
             {/* Connecting Line */}
-            <div className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-slate-700 -translate-y-1/2"></div>
+            <div className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-[#202535] -translate-y-1/2"></div>
             
             <div className="grid md:grid-cols-4 gap-8 relative">
               <div className="text-center group cursor-pointer">
@@ -274,7 +276,7 @@ export default function Home() {
       </section>
 
       {/* What You Can Build Section */}
-      <section className="py-20 px-8 bg-slate-950">
+      <section className="py-20 px-8 bg-[#0f1219]">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-4xl font-bold text-center text-white mb-2">
             What You Can Build
@@ -283,7 +285,7 @@ export default function Home() {
             agentregistry supports all your AI artifact types
           </p>
           <div className="grid md:grid-cols-4 gap-8">
-            <div className="bg-slate-800/50 p-10 rounded-xl text-center border border-slate-700 hover:bg-slate-800 transition-colors">
+            <div className="bg-[#1a1f30]/50 p-10 rounded-xl text-center border border-[#202535] hover:bg-[#1a1f30] transition-colors">
               <div className="flex justify-center mb-6">
                 <KagentLogo className="w-20 h-20 text-slate-300" />
               </div>
@@ -292,7 +294,7 @@ export default function Home() {
                 Autonomous agents that can reason, plan, and execute tasks
               </p>
             </div>
-            <div className="bg-slate-800/50 p-10 rounded-xl text-center border border-slate-700 hover:bg-slate-800 transition-colors">
+            <div className="bg-[#1a1f30]/50 p-10 rounded-xl text-center border border-[#202535] hover:bg-[#1a1f30] transition-colors">
               <div className="flex justify-center mb-6">
                 <McpIcon className="w-20 h-20 text-slate-300" />
               </div>
@@ -301,7 +303,7 @@ export default function Home() {
                 Model Context Protocol servers for extended AI capabilities
               </p>
             </div>
-            <div className="bg-slate-800/50 p-10 rounded-xl text-center border border-slate-700 hover:bg-slate-800 transition-colors">
+            <div className="bg-[#1a1f30]/50 p-10 rounded-xl text-center border border-[#202535] hover:bg-[#1a1f30] transition-colors">
               <div className="flex justify-center mb-6">
                 <Anthropic className="w-20 h-20 text-slate-300" />
               </div>
@@ -310,7 +312,7 @@ export default function Home() {
                 Reusable capabilities and functions for your AI applications
               </p>
             </div>
-            <div className="bg-slate-800/50 p-10 rounded-xl text-center border border-slate-700 hover:bg-slate-800 transition-colors">
+            <div className="bg-[#1a1f30]/50 p-10 rounded-xl text-center border border-[#202535] hover:bg-[#1a1f30] transition-colors">
               <div className="flex justify-center mb-6">
                 <OpenAI className="w-20 h-20 text-slate-300" />
               </div>
@@ -324,7 +326,7 @@ export default function Home() {
       </section>
 
       {/* Community Section */}
-      <section className="py-20 px-8 bg-slate-900">
+      <section className="py-20 px-8 bg-[#151927]">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold text-white mb-6">
             Join the agentregistry community
@@ -334,7 +336,8 @@ export default function Home() {
           </p>
           <div className="flex gap-6 justify-center flex-wrap">
             <a
-              href="#"
+              href={DiscordLink}
+              target="_blank"
               className="inline-flex items-center gap-3 bg-[#5865F2] hover:bg-[#4752C4] text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all hover:shadow-xl hover:-translate-y-1"
             >
               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -343,8 +346,9 @@ export default function Home() {
               Discord
             </a>
             <a
-              href="#"
-              className="inline-flex items-center gap-3 bg-slate-800 hover:bg-slate-700 text-white px-8 py-4 rounded-lg font-semibold text-lg border-2 border-slate-700 transition-all hover:shadow-xl hover:-translate-y-1"
+              href={GithubRepoLink}
+              target="_blank"
+              className="inline-flex items-center gap-3 bg-[#1a1f30] hover:bg-[#202535] text-white px-8 py-4 rounded-lg font-semibold text-lg border-2 border-[#202535] transition-all hover:shadow-xl hover:-translate-y-1"
             >
               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
