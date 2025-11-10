@@ -14,12 +14,12 @@ export default function Home() {
   const openLightbox = (diagramId: string) => {
     if (diagramId === "org-diagram") {
       setLightboxImage({
-        src: "/img/operator-scenario.png",
+        src: "/img/operator-scenario.svg",
         alt: "Organization Workflow Diagram",
       });
     } else if (diagramId === "dev-diagram") {
       setLightboxImage({
-        src: "/img/dev-scenario.png",
+        src: "/img/dev-scenario.svg",
         alt: "Developer Workflow Diagram",
       });
     }
@@ -95,9 +95,9 @@ export default function Home() {
                 onClick={() => openLightbox("org-diagram")}
               >
                 <img
-                  src="/img/operator-scenario.png"
+                  src="/img/operator-scenario.svg"
                   alt="Organization workflow diagram"
-                  className="w-full h-auto object-contain"
+                  className="w-full h-90 object-contain"
                 />
                 <div className="absolute bottom-6 right-6 bg-[#8023C3]/90 text-slate-900 px-4 py-2 rounded-md text-sm font-semibold group-hover:bg-[#8023C3] transition-colors">
                   Click to expand ↗
@@ -136,9 +136,9 @@ export default function Home() {
                 onClick={() => openLightbox("dev-diagram")}
               >
                 <img
-                  src="/img/dev-scenario.png"
+                  src="/img/dev-scenario.svg"
                   alt="Developer workflow diagram"
-                  className="w-full h-auto object-contain"
+                  className="w-full h-90 object-contain"
                 />
                 <div className="absolute bottom-6 right-6 bg-[#8023C3]/90 text-slate-900 px-4 py-2 rounded-md text-sm font-semibold group-hover:bg-[#8023C3] transition-colors">
                   Click to expand ↗
