@@ -164,6 +164,35 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Video Tutorial Section */}
+      <section className="py-20 px-8 bg-[#0f1219]">
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 className="text-4xl font-bold text-white mb-4">
+            See It In Action
+          </h2>
+          <p className="text-xl text-slate-300 mb-10 leading-relaxed">
+            Learn how to create an Anthropic Skill, publish it to agentregistry, and use it in Claude Code
+          </p>
+          <div className="bg-[#1a1f30] rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative pb-[56.25%] h-0">
+              <iframe
+                className="absolute top-0 left-0 w-full h-full"
+                src="https://www.youtube.com/embed/pWRMoypForM"
+                title="agentregistry Tutorial: Create and Publish an Anthropic Skill"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+            <div className="p-8 text-left">
+              <p className="text-slate-300 text-lg leading-relaxed">
+                In this video, you'll learn how to use agentregistry to create an Anthropic Skill, push and publish it to the agentregistry and then pull it and use it in Claude Code.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Centralized Registry Section */}
       <section className="py-20 px-8 bg-gradient-to-br from-[#1a1f30] to-purple-900/30">
         <div className="max-w-7xl mx-auto">
