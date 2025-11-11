@@ -51,10 +51,10 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-tr from-[#8023C3]/10 via-transparent to-purple-500/5 pointer-events-none"></div>
         <div className="relative z-10 max-w-5xl mx-auto">
           <h1 className="text-6xl md:text-7xl font-bold mb-6 tracking-tight leading-tight">
-            From registry to runtime.
+            Fast-track AI innovation
           </h1>
           <p className="text-2xl md:text-3xl text-slate-300 font-light mb-12 tracking-wide">
-            Fast development, curated artifacts.
+            With a centralized, trusted, curated registry
           </p>
           
 
@@ -113,9 +113,6 @@ export default function Home() {
                   <li className="pb-4 border-b border-[#202535] text-slate-300 leading-relaxed">
                     <strong className="text-white font-semibold">Security & Governance</strong> – Curate and approve agents, servers, and skills before company-wide deployment
                   </li>
-                  <li className="pb-4 border-b border-[#202535] text-slate-300 leading-relaxed">
-                    <strong className="text-white font-semibold">Managed Hosting</strong> – Deploy and host artifacts for seamless consumption across teams
-                  </li>
                   <li className="text-slate-300 leading-relaxed">
                     <strong className="text-white font-semibold">Enriched Metadata</strong> – Add context to help assess trustworthiness and security</li>
                 </ul>
@@ -142,7 +139,7 @@ export default function Home() {
                   alt="Developer workflow diagram"
                   className="w-full h-90 object-contain"
                 />
-                <div className="absolute bottom-6 right-6 bg-[#8023C3]/90 text-slate-900 px-4 py-2 rounded-md text-sm font-semibold group-hover:bg-[#8023C3] transition-colors">
+                <div className="absolute bottom-6 right-6 bg-[#8023C3]/90 text-slate-200 px-4 py-2 rounded-md text-sm font-semibold group-hover:bg-[#8023C3] transition-colors">
                   Click to expand ↗
                 </div>
               </div>
@@ -158,7 +155,7 @@ export default function Home() {
                     <strong className="text-white font-semibold">Pull & Run Anywhere</strong> – Pull artifacts from the registry and run them in any environment instantly
                   </li>
                   <li className="text-slate-300 leading-relaxed">
-                    <strong className="text-white font-semibold">Collaboration</strong> – Share your work with other developers and build on their artifacts
+                    <strong className="text-white font-semibold">Discover & Consume</strong> – Find new artifacts to add to registry or optimize existing artifacts
                   </li>
                 </ul>
               </div>
@@ -171,28 +168,28 @@ export default function Home() {
       <section className="py-20 px-8 bg-gradient-to-br from-[#1a1f30] to-purple-900/30">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-4xl font-bold text-center text-white mb-2">
-            A Centralized Registry for AI Artifacts
+            Bring control and velocity to your AI infrastructure
           </h2>
           <div className="grid md:grid-cols-3 gap-12 mt-12">
             <div className="bg-[#1a1f30] p-10 rounded-xl shadow-lg text-center">
               <div className="text-6xl mb-6">✨</div>
               <h3 className="text-2xl text-white mb-4">Enriched Data</h3>
               <p className="text-slate-300 leading-relaxed text-lg">
-                Import AI artifacts from any registry into agentregistry, where automatic scoring and validation enrich datasets to provide additional insights to registry operators.
+              Import AI artifacts from any registry into Agentregistry, where automatic scoring and validation enriches datasets and delivers deeper insights for operators.
               </p>
             </div>
             <div className="bg-[#1a1f30] p-10 rounded-xl shadow-lg text-center">
               <div className="text-6xl mb-6">🔒</div>
               <h3 className="text-2xl text-white mb-4">Controlled Curation</h3>
               <p className="text-slate-300 leading-relaxed text-lg">
-                Operators can curate a custom collection of AI artifacts within agentregistry and selectively publish and deploy artifacts to maintain audit control and security of assets.
+              Build curated artifact collections within agentregistry. Publish items selectively, and maintain end-to-end audit and control from a centralized registry.
               </p>
             </div>
             <div className="bg-[#1a1f30] p-10 rounded-xl shadow-lg text-center">
               <div className="text-6xl mb-6">⚡</div>
               <h3 className="text-2xl text-white mb-4">Build Fast</h3>
               <p className="text-slate-300 leading-relaxed text-lg">
-                Drive developer velocity and build AI applications fast by enabling developers to create, run, publish, and deploy agents, MCP servers, and skills.
+              Accelerate applications to production by empowering developers to create, run, and deploy agents, MCP servers, and skills from agent registry with confidence
               </p>
             </div>
           </div>
