@@ -4,6 +4,7 @@ import Link from "next/link";
 import AgentRegistryLogo from "@/components/icons/AgentRegistry";
 import "./globals.css";
 import { DiscordLink, GithubRepoLink } from "@/lib/links";
+import { GoogleTagManager } from "@next/third-parties/google";
 
 const openSans = Open_Sans({
   subsets: ["latin"],
@@ -23,6 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
+      <GoogleTagManager gtmId="GTM-M9B72GP2" />
       <body className={`${openSans.variable} font-sans antialiased`}>
         {/* Header */}
         <header className="bg-slate-900 px-8 py-2 shadow-sm sticky top-0 z-50 border-b border-slate-800">
