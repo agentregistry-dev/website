@@ -43,18 +43,20 @@ In this demo you'll run an MCP server from a registry, locally on your computer.
 If you try to list the MCP servers from the registry, you'll get an empty list because we haven't published any servers yet:
 
 ```
-arctl list mcp -A
+arctl mcp list -a
 ```
 
 **Let's publish an MCP server using the UI:**
 
 1. Go to the UI and search for "io.github.Asthanaji05/pokeapi-mcp-server"
-2. Open the server details and click on the **Publish** button to publish the server and make it available in the registry
+2. Open the server details by clicking on the pokeapi-mcp-server card
+3. Make sure 1.12.0 is selected as the version
+4. Click on the **Publish** button to publish the server and make it available in the registry
 
-Back in the CLI, you can now run `arctl list mcp -A` to see the server we published. Let's pull the server from the registry and run it locally:
+Back in the CLI, you can now run `arctl mcp list -a` to see the server we published. Let's pull the server from the registry and run it locally:
 
 ```
-arctl run mcp io.github.Asthanaji05/pokeapi-mcp-server --version 1.12.0 --inspector
+arctl mcp run io.github.Asthanaji05/pokeapi-mcp-server --version 1.12.0 --inspector
 ```
 
 You'll get prompted whether to run the latest version - press enter to continue. The server will start locally and the MCP inspector will automatically launch. You can connect to the server (select the "Streamable HTTP" transport type), list the tools and invoke them.
@@ -91,7 +93,7 @@ In this section we'll use the UI to add an MCP server to the registry. We will u
    - Version: 2025.9.25
 5. Click **Create Server**
 
-The server will be added to your registry – you can find it in the list and click **Publish** to publish it. You'll see it in the "Published" tab in the UI or by running the `arctl list mcp -A` command.
+The server will be added to your registry – you can find it in the list and click **Publish** to publish it. You'll see it in the "Published" tab in the UI or by running the `arctl mcp list -a` command.
 
 </ScenarioContent>
 
@@ -138,11 +140,14 @@ Next, we'll deploy an existing skill to the agentregistry from the UI. We'll dep
    - Version: "latest"
    - Docker image: "docker.io/pj3677/internal-comms"
 3. Click **Add Skill**
+4. Switch to the "Skills" list in the UI
+5. Open the "my-internal-comms-skill" details page 
+6. Click on "Publish"
 
 From the CLI you can check that the skill now shows up:
 
 ```
-arctl list skill -A
+arctl skill list -a
 ```
 
 Let's pull the skill:
