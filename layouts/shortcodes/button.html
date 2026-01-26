@@ -1,0 +1,49 @@
+{{ if eq .Params.style "primary" }}
+  <a href="{{ .Params.href }}" class="text-primary-text bg-tertiary-text h-10 px-8 rounded-md inline-flex items-center justify-center gap-2 font-semibold">
+    {{ if ne .Params.iconRight "true" }}
+      {{ if .Params.icon }}
+        {{- if eq .Params.icon "github" -}}
+          <span class="dark:hidden">{{ partial "utils/icon.html" (dict "name" "github" "attributes" "class='w-5'") }}</span>
+          <span class="hidden dark:inline-block">{{ partial "utils/icon.html" (dict "name" "github-white" "attributes" "class='w-5'") }}</span>
+        {{- else -}}
+          {{ partial "utils/icon.html" (dict "name" .Params.icon "attributes" "class='w-5'") }}
+        {{- end -}}
+      {{ end }}
+    {{ end}}
+    {{ .Params.text }}
+    {{ if eq .Params.iconRight "true"}}
+      {{ if .Params.icon }}
+        {{- if eq .Params.icon "github" -}}
+          <span class="dark:hidden">{{ partial "utils/icon.html" (dict "name" "github" "attributes" "class='w-5'") }}</span>
+          <span class="hidden dark:inline-block">{{ partial "utils/icon.html" (dict "name" "github-white" "attributes" "class='w-5'") }}</span>
+        {{- else -}}
+          {{ partial "utils/icon.html" (dict "name" .Params.icon "attributes" "class='w-5'") }}
+        {{- end -}}
+      {{ end }}
+    {{ end }}
+  </a>
+{{ else }}
+  <a href="{{ .Params.href }}" class="text-primary-text h-10 px-8 rounded-md inline-flex items-center justify-center gap-2 border-secondary-border border-[1px] font-semibold">
+    {{ if ne .Params.iconRight "true" }}
+      {{ if .Params.icon }}
+        {{- if eq .Params.icon "github" -}}
+          <span class="dark:hidden">{{ partial "utils/icon.html" (dict "name" "github" "attributes" "class='w-5'") }}</span>
+          <span class="hidden dark:inline-block">{{ partial "utils/icon.html" (dict "name" "github-white" "attributes" "class='w-5'") }}</span>
+        {{- else -}}
+          {{ partial "utils/icon.html" (dict "name" .Params.icon "attributes" "class='w-5'") }}
+        {{- end -}}
+      {{ end }}
+    {{ end}}
+    {{ .Params.text }}
+    {{ if eq .Params.iconRight "true"}}
+      {{ if .Params.icon }}
+        {{- if eq .Params.icon "github" -}}
+          <span class="dark:hidden">{{ partial "utils/icon.html" (dict "name" "github" "attributes" "class='w-5'") }}</span>
+          <span class="hidden dark:inline-block">{{ partial "utils/icon.html" (dict "name" "github-white" "attributes" "class='w-5'") }}</span>
+        {{- else -}}
+          {{ partial "utils/icon.html" (dict "name" .Params.icon "attributes" "class='w-5'") }}
+        {{- end -}}
+      {{ end }}
+    {{ end }}
+  </a>
+{{ end }}

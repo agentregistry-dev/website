@@ -1,0 +1,13 @@
+/* Custom CSS to force logo left alignment */
+.hextra-navbar-logo {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+.hextra-navbar {
+  justify-content: flex-start !important;
+}
+
+.hextra-navbar > div:first-child {
+  margin-right: auto !important;
+}
