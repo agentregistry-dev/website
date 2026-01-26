@@ -1,3 +1,7 @@
+# Installation
+
+In this installation guide, you'll install the `arctl` command-line (CLI) tool and check to ensure that it was installed as expected.
+
 ## Mac/Linux
 
 1. Use the following `curl` command to get the latest release of agentregistry.
