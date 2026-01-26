@@ -2,12 +2,61 @@
 .hextra-navbar-logo {
   margin-left: 0 !important;
   margin-right: auto !important;
+  padding-left: 1rem !important;
+  padding-right: 3rem !important;
 }
 
 .hextra-navbar {
   justify-content: flex-start !important;
+  padding-right: 4rem !important;
 }
 
 .hextra-navbar > div:first-child {
   margin-right: auto !important;
+}
+
+/* Add padding to the right side menu items */
+.hextra-navbar > div:last-child,
+.hextra-navbar > nav:last-child,
+.hextra-navbar [class*="menu"]:last-child {
+  padding-right: 2rem !important;
+}
+
+/* Ensure dark mode image visibility works correctly */
+.reuse-image-dark-wrapper {
+  display: none !important;
+}
+
+html.dark .reuse-image-dark-wrapper,
+html[data-theme="dark"] .reuse-image-dark-wrapper,
+.dark .reuse-image-dark-wrapper {
+  display: block !important;
+}
+
+/* Ensure light mode image visibility works correctly */
+.reuse-image-wrapper {
+  display: block !important;
+}
+
+html.dark .reuse-image-wrapper,
+html[data-theme="dark"] .reuse-image-wrapper,
+.dark .reuse-image-wrapper {
+  display: none !important;
+}
+
+/* Add more padding to the left of the sidebar */
+.hextra-sidebar-container {
+  padding-left: 4rem !important;
+}
+
+/* Also target the TOC sidebar if it exists */
+.hextra-toc {
+  padding-left: 4rem !important;
+}
+
+/* Target any sidebar navigation elements */
+aside[class*="sidebar"],
+nav[class*="sidebar"],
+[role="complementary"] {
+  padding-left: 2rem !important;
 }
