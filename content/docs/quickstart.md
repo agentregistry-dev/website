@@ -4,25 +4,46 @@ weight: 10
 description:
 ---
 
-1. This is a test
+Agentregistry is an open-source orchestrator and registry designed to provide a deployment mechanism for Agents, Agent Skills, and MCP Servers. You can use agentregistry to deploy agents that are written in any framework (CrewAI, Agentic Development Kit, Kagent) to agentic platforms and Kubernetes. Before deploying to agentic platforms, you can select the MCP servers, tools, and agent skills that you want to attach to your agent.
 
+## Before You Begin
 
-{{< tabs items="tab1,tab2" >}}
+Before starting, you will need a Docker Engine running locally on your machine. The easiest/most universal approach is most likely going to be [Dockerhub](https://hub.docker.com/welcome). 
 
-{{% tab %}}
+## Setup
 
-This is tab 1
-{{% /tab %}}
-{{% tab %}}
+1. Install the agentregistry `arctl` binary on your local machine.
+   ```
+   curl -fsSL https://raw.githubusercontent.com/agentregistry-dev/agentregistry/main/scripts/get-arctl | bash
+   ```
 
-This is tab 2
-{{% /tab %}}
-{{< /tabs >}}
+2. Start the agentregistry daemon by running any `arctl` command, such as `arctl version`. 
+   ```sh
+   arctl version
+   ```
 
-Ok great this seems to work
+   Example output when the agentregistry daemon starts: 
+   ```console
+   Starting agentregistry daemon...
+   ✓ agentregistry daemon started successfully
+   ```
 
-## This is a test heading
+   Example output when the agentregistry daemon already runs:
+   ```console
+   arctl version 0.1.13
+   Git commit: f193977
+   Build date: 2026-01-26
+   Server version: 0.1.13
+   Server git commit: f193977
+   Server build date: 2026-01-25
+   Server or local version is not a valid semantic version, not sure if update require: 0.1.13 or 0.1.13
+   ```
 
-## And another one
+## Access agentregistry
 
-### nested
+[Open the agentregistry UI](http://localhost:12121/) in your browser. 
+
+When you started the agentregistry daemon, the UI is automatically forwarded on port 12121. 
+{{< reuse-image src="img/ar-local.png"  >}}
+{{< reuse-image-dark srcDark="img/ar-local.png" >}}
+  
