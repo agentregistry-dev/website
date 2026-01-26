@@ -1,6 +1,6 @@
 # Getting Started With Agentregistry
 
-Agentregistry is an open-source orchestrator and registry designed to provide a deployed mechanism for Agents, Agent Skills, and MCP Servers. From Agentregistry, you can deploy to Agentic frameworks ranging from AWS AgentCore to GCP Cloud Run. Before deploying to the Agentic frameworks, you can choose which MCP Servers, MCP Server tools, and Agent Skills you want attached to your Agent that exist within agentregistry. 
+Agentregistry is an open-source orchestrator and registry designed to provide a deployment mechanism for Agents, Agent Skills, and MCP Servers. From Agentregistry, you can deploy your Agents written in any framework (CrewAI, Agentic Development Kit, Kagent) to Agentic platforms ranging from AWS AgentCore to GCP Cloud Run. Before deploying to the Agentic platforms, you can choose which MCP Servers, MCP Server tools, and Agent Skills you want attached to your Agent that exist within agentregistry. 
 
 ## Before You Begin
 
