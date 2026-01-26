@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/agentregistry-dev/agentregistry/cmd/arctl/cmd" // Adjust this to point to your root cmd
+	"github.com/agentregistry-dev/agentregistry" // Adjust this to point to your root cmd
 	"github.com/spf13/cobra/doc"
 )
 
