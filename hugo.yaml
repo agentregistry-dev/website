@@ -1,0 +1,87 @@
+baseURL: https://agentregistry.dev/
+languageCode: en-us
+title: agentregistry
+
+# Enable dark mode by default
+params:
+  theme:
+    default: dark
+  
+  navbar:
+    displayTitle: false
+    displayLogo: true
+    width: wide
+    logo:
+      path: img/agentregistry-logo.svg
+      dark: img/agentregistry-logo-dark.svg
+      width: 160
+      height: 120
+    
+  page:
+    width: full
+  
+  footer:
+    displayCopyright: true
+    displayPoweredBy: false
+  
+  # External links
+  editURL:
+    enable: true
+    base: https://github.com/agentregistry-dev/agentregistry
+  
+  # Custom params
+  github: https://github.com/agentregistry-dev/agentregistry
+  discord: https://discord.gg/Af8bX99dbX
+  
+  # Search
+  search:
+    enable: true
+    type: flexsearch
+    flexsearch:
+      index: summary
+
+# Enable emoji in markdown
+enableEmoji: true
+
+# Enable GitInfo
+enableGitInfo: true
+
+# Menu configuration
+menu:
+  main:
+    - name: Community
+      url: https://discord.gg/Af8bX99dbX
+      weight: 1
+    - name: Get Started
+      pageRef: /quickstart
+      weight: 2
+    - name: Search
+      weight: 7
+      params:
+        type: search
+    - name: GitHub
+      weight: 10
+      url: https://github.com/agentregistry-dev/agentregistry
+      params:
+        icon: github
+
+# Module imports
+module:
+  imports:
+    - path: github.com/imfing/hextra
+  mounts:
+    - source: assets
+      target: assets
+
+# Markup configuration
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    noClasses: false
+
+# Build configuration
+build:
+  writeStats: true
+
