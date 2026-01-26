@@ -25,7 +25,7 @@ Starting agentregistry daemon...
 ✓ agentregistry daemon started successfully
 ```
 
-![](img/registry-in-dockerhub.png)
+![](../img/registry-in-dockerhub.png)
 
 Open Dockerhub (or another Docker engine)
 
@@ -38,4 +38,4 @@ http://localhost:12121/
 
 You will see agentregistry running successfully on your local machine.
 
-![](img/ar-local.png)
+![](..img/ar-local.png)
