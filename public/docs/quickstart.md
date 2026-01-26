@@ -38,4 +38,4 @@ http://localhost:12121/
 
 You will see agentregistry running successfully on your local machine.
 
-![](..img/ar-local.png)
+![](../img/ar-local.png)
