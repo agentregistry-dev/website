@@ -15,10 +15,10 @@ toc: false
     </p>
     
     <div class="flex gap-4 justify-center flex-wrap">
-      <a href="/quickstart" class="inline-block bg-white text-[#8023C3] px-10 py-4 rounded-lg font-semibold text-lg transition-transform hover:-translate-y-1 hover:shadow-2xl">
+      <a href="/docs/quickstart" class="inline-block bg-white text-[#8023C3] px-10 py-4 rounded-lg font-semibold text-lg transition-transform hover:-translate-y-1 hover:shadow-2xl">
         Get Started
       </a>
-      <a href="https://github.com/agentregistry-dev/agentregistry" target="_blank" rel="noopener noreferrer" class="inline-block bg-transparent text-white px-10 py-4 rounded-lg font-semibold text-lg border-2 border-white transition-all hover:bg-white/10">
+      <a href="https://github.com/agentregistry-dev/agentregistry/" target="_blank" rel="noopener noreferrer" class="inline-block bg-transparent text-white px-10 py-4 rounded-lg font-semibold text-lg border-2 border-white transition-all hover:bg-white/10">
         View on GitHub
       </a>
     </div>
