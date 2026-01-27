@@ -29,15 +29,20 @@ If you want to test this capability in a local Kubernetes environment, such as `
 If you plan to deploy your agent to a Kubernetes cluster in a cloud provider environment, such as Google Cloud Platform, you can skip this step and continue with [Deploy the agent](#deploy). 
 {{< /callout >}}
 
-1. Edit the kubeconfig file on your local machine. Typically, this file is stored in the `~/.kube` folder and named `config`. However, your kubeconfig file might be named `config.docker` or similar. Adjust the command to point to your kubeconfig file location.
+1. Load the `myagent` image to your kind or minikube cluster. The following command assumes that you. use kind and that your cluster is named `agentregistry`. 
+   ```sh
+   kind load docker-image ghcr.io/myagent:latest --name agentregistry
+   ```
+
+2. Edit the kubeconfig file on your local machine. Typically, this file is stored in the `~/.kube` folder and named `config`. However, your kubeconfig file might be named `config.docker` or similar. Adjust the command to point to your kubeconfig file location.
    ```sh
    nano ~/.kube/config
    ```
 
-2. Find the kubeconfig entry for the cluster that you are interested in. For example, if you used `kind` and named your cluster `agentregistry`, look for a `kind-agentregistry` entry. Then update the server address from `127.0.0.1` to `host.docker.internal` as shown in the following snippet. Make sure to keep the port that your kubeconfig pointed to before. 
+3. Find the kubeconfig entry for the cluster that you are interested in. For example, if you used `kind` and named your cluster `agentregistry`, look for a `kind-agentregistry` entry. Then update the server address from `127.0.0.1` to `host.docker.internal` and replace the `certificate-authority-data` section with `insecure-skip-tls-verify: true` as shown in the following snippet. Make sure to keep the port that your kubeconfig pointed to before. 
    ```yaml
    - cluster:
-       certificate-authority-data: <cert-data>
+       insecure-skip-tls-verify: true
        server: https://host.docker.internal:51595
     name: kind-agentregistry
    ```
@@ -46,7 +51,6 @@ If you plan to deploy your agent to a Kubernetes cluster in a cloud provider env
 
 {{< tabs items="CLI, UI" >}}
 {{% tab %}}
-
 
 1. Deploy the agent to your cluster. 
    ```sh
@@ -58,13 +62,18 @@ If you plan to deploy your agent to a Kubernetes cluster in a cloud provider env
    Agent 'myagent' version 'latest' deployed to kubernetes runtime in namespace 'default'
    ```
 
-2. **Local test setups only**: Revert the changes that you previsouly made to your kubeconfig file. 
+2. **Local test setups only**: Revert the changes that you previously made to your kubeconfig file. 
 
 3. Verify that the agent is up and running. 
    ```sh
    kubectl get pod -l "app.kubernetes.io/name=myagent-latest"
    ```
 
+   Example output: 
+   ```console
+   NAME                              READY   STATUS    RESTARTS   AGE
+   myagent-latest-687c4c88b9-xwjzx   1/1     Running   0          10s
+   ``` 
 
 {{% /tab %}}
 {{% tab %}}
@@ -84,9 +93,11 @@ If you plan to deploy your agent to a Kubernetes cluster in a cloud provider env
 
    Example output: 
    ```console
-   ```
+   NAME                              READY   STATUS    RESTARTS   AGE
+   myagent-latest-687c4c88b9-xwjzx   1/1     Running   0          10s
+   ``` 
 
-5. In the agentregistry UI, go to the **Deployed** view and verif that you see your `myagent` deployment. 
+5. In the agentregistry UI, go to the **Deployed** view and verify that you see your `myagent` deployment. 
    {{< reuse-image src="img/ar-deploy-agent-verify.png"  >}}
    {{< reuse-image-dark srcDark="img/ar-deploy-agent-verify.png" >}}
    
