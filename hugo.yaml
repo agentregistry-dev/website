@@ -53,7 +53,7 @@ menu:
       url: https://discord.gg/Af8bX99dbX
       weight: 1
     - name: Get Started
-      pageRef: /quickstart
+      pageRef: /docs/quickstart
       weight: 2
     - name: Search
       weight: 7

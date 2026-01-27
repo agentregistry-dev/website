@@ -1,5 +1,5 @@
 ---
-title: Deploy an agent
+title: Deploy
 weight: 40
 description:
 ---

@@ -4,13 +4,14 @@ weight: 5
 description:
 ---
 
-Agentregistry is an open-source orchestrator and registry designed to provide a deployment mechanism for Agents, Agent Skills, and MCP Servers. You can use agentregistry to deploy agents that are written in any framework (CrewAI, Agentic Development Kit, Kagent) to agentic platforms and Kubernetes. Before deploying to agentic platforms, you can select the MCP servers, tools, and agent skills that you want to attach to your agent.
+Agentregistry is an open source, secure, and centralized AI artifact registry that helps you build, package, publish, discover, and govern AI artifacts, including agents, skills, and MCP servers. With agentregistry, you can seamlessly deploy AI artifacts to any environment and share them among teams. 
+
+Want to learn more about agentregistry? Check out the [About](/docs/about/) section. 
 
 ## Before you begin
 
-Set up a Docker Engine on your local machine. For example, you can use [Docker Desktop](https://docs.docker.com/desktop/). The engine is required to run agentregistry locally. 
-
-Before starting, you will need a Docker Engine running locally on your machine. The easiest/most universal approach is most likely going to be [Dockerhub](https://hub.docker.com/welcome). 
+1. Set up a Docker Engine on your local machine, such as [Docker Desktop](https://docs.docker.com/desktop/). 
+2. Start the Docker Engine. 
 
 ## Setup
 
@@ -41,18 +42,16 @@ Before starting, you will need a Docker Engine running locally on your machine. 
    Server or local version is not a valid semantic version, not sure if update require: 0.1.13 or 0.1.13
    ```
 
-## Access agentregistry
+3. [Open the agentregistry UI](http://localhost:12121/) in your browser. The UI is automatically exposed on port 12121 on your local machine when you start the agentregistry daemon. 
 
-[Open the agentregistry UI](http://localhost:12121/) in your browser. 
-
-When you started the agentregistry daemon, the UI is automatically forwarded on port 12121. 
-{{< reuse-image src="img/ar-local.png"  >}}
-{{< reuse-image-dark srcDark="img/ar-local.png" >}}
+   {{< reuse-image src="img/ar-local.png" width="800px" >}}
+   {{< reuse-image-dark srcDark="img/ar-local.png" width="800px" >}}
 
 ## Next
 
-Check out the following guides to push an agent to your registry. 
+With our agentregistry up and running, you can explore how to build, publish,deploy, and curate agents, MCP servers, skills, and LLMs. Check out the following guides: 
 
-* [Create and push an agent to agentregistry](/docs/agents/push/)
+* [Build and run an agent on your local machine](/docs/agents/build/)
+* [Publish an agent image to agentregistry](/docs/agents/publish/)
 * [Deploy an agent to your environment](/docs/agents/deploy)
   
