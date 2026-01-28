@@ -1,4 +1,4 @@
 ---
 title: Add MCP servers
-weight: 16
+weight: 50
 ---

@@ -61,7 +61,7 @@ menu:
         type: search
     - name: GitHub
       weight: 10
-      url: https://github.com/agentregistry-dev/agentregistry
+      url: https://github.com/agentregistry-dev/website
       params:
         icon: github
 

@@ -3,3 +3,43 @@ title: Publish
 weight: 20
 description:
 ---
+
+Build your MCP server image and push it to agentregistry so that you can start sharing the MCP server with other teams and deploying it to any environment. 
+
+## Before you begin
+
+1. Follow the [Get started](/docs/quickstart/) guide to set up agentregistry and start the agentregistry daemon. 
+2. [Build an MCP server](/docs/mcp/build/). 
+
+## Publish the server
+
+1. Build the MCP server image and push it to agentregistry. The following command uses the Dockerfile that is included in your `my-mcp-server` scaffold to build the MCP server image and automatically pushes the image to agentregistry that is running in the background. If no `--version` option is provided, the image is automatically tagged as `latest`. You can optionally first build the MCP server image on your local machine by using the `arctl agent build myagent` command. 
+
+   --platform linux/amd64 --push explain separately 
+
+   ```sh
+   arctl mcp publish my-mcp-server --docker-url ghcr.io/user
+   ```
+
+   agentregistry just has reference to all the images in registries, such as ghcr.io or docker.io
+   kind of like a catalog
+
+   Example output: 
+   ```
+   Agent 'myagent' version latest published successfully
+   ```
+
+2. List the agent images in your registry. Verify that you see the `myagent` agent image that you just published. 
+   ```sh
+   arctl mcp list
+   ```
+
+   Example output:
+   ```
+   NAME      VERSION   FRAMEWORK   LANGUAGE   PROVIDER   MODEL              DEPLOYED   PUBLISHED
+   myagent   latest    adk         python     gemini     gemini-2.0-flash   False      True
+   ```
+
+3. Optional: Open the [agentregistry UI](http://localhost:12121) and go to the **Agents** view. Verify that you can see your agent image. 
+   {{< reuse-image src="img/ar-list-agent.png" >}}
+   {{< reuse-image-dark srcDark="img/ar-list-agent.png" >}}

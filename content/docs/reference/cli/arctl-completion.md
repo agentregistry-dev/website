@@ -1,27 +1,29 @@
 ---
-title: arctl version
+title: arctl completion
 weight: 10
 ---
 
-Displays the version of arctl.
+Generate shell autocompletion scripts.
 
 ## Usage
 
 ```sh
-arctl version [flags]
+arctl completion [bash|zsh|fish|powershell]
 ```
 
 Example: 
 ```sh
-arctl version
+arctl completion bash
 ```
 
 ## Command-specific flags
 
-No command-specific flags.
+No command-specific flags. 
 
 ## Global flags
 ```sh
 -v, --verbose: Enable verbose output.
 -h, --help: Display help information for the command.
 ```
+
+

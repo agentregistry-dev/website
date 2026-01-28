@@ -1,24 +1,24 @@
 ---
-title: arctl version
+title: arctl mcp list
 weight: 10
 ---
 
-Displays the version of arctl.
+Lists all Model Context Protocol (MCP) servers that are published in agentregistry. 
 
 ## Usage
 
 ```sh
-arctl version [flags]
+arctl mcp list
 ```
 
 Example: 
-```sh
-arctl version
+```
+arctl mcp list
 ```
 
 ## Command-specific flags
 
-No command-specific flags.
+No command-specific flags. 
 
 ## Global flags
 ```sh
