@@ -1,24 +1,24 @@
 ---
-title: arctl version
+title: arctl skill remove
 weight: 10
 ---
 
-Displays the version of arctl.
+Remove a skill.
 
 ## Usage
 
 ```sh
-arctl version [flags]
+arctl skill remove <skill-name> [flags]
 ```
 
 Example: 
 ```sh
-arctl version
+arctl skill remove my-skill
 ```
 
 ## Command-specific flags
 
-No command-specific flags.
+No specific flags are currently required for removal beyond the positional arguments.
 
 ## Global flags
 ```sh

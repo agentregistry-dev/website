@@ -4,6 +4,8 @@ weight: 80
 description:
 ---
 
+Use the agentregistry UI to view AI artifact images, share them with your teams, and deploy them to your environment. 
+
 ## Access the UI
 
 The agentregistry UI is automatically exposed on port 12121 when you start the agentregistry daemon. 
