@@ -1,0 +1,43 @@
+<style>
+/* Force navbar/header to full width */
+header,
+.hextra-navbar-container,
+.hextra-navbar,
+nav[class*="navbar"],
+[role="navigation"] {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* Ensure navbar container spans full viewport with padding */
+.hextra-navbar-container {
+  position: relative;
+  width: 100vw !important;
+  margin-left: calc(50% - 50vw) !important;
+  margin-right: calc(50% - 50vw) !important;
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
+}
+
+/* Add padding to navbar content */
+.hextra-navbar,
+nav[class*="navbar"],
+header nav {
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
+}
+
+/* Remove any max-width constraints */
+.hextra-max-navbar-width {
+  max-width: 100% !important;
+}
+</style>
+
+{{ if .IsHome }}
+  {{ with (templates.Defer (dict "key" "global")) }}
+    {{ partial "css.html" . }}
+  {{ end }}
+{{ end }}
+

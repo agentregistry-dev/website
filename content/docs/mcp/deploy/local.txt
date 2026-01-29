@@ -1,0 +1,78 @@
+---
+title: Local
+weight: 10
+description: Deploy an agent from agentregistry to your local environment. 
+---
+
+Deploy an MCP server from agentregistry to your local environment. 
+
+Local deployments spin up Docker containers on your local machine from images that exist on your machine or that can be pulled from the image location reference that agentregistry points to.
+
+## Before you begin
+
+1. Follow the [Get started](/docs/quickstart/) guide to set up agentregistry and start the agentregistry daemon. 
+2. [Publish an MCP server](/docs/mcp/publish/).
+
+## Deploy the MCP server
+
+{{< tabs items="CLI,UI" >}}
+
+{{% tab %}}
+
+1. List the MCP servers that are published to agentregistry. 
+   ```sh
+   arctl mcp list
+   ```
+
+   Example output:
+   ```
+   NAME                 VERSION   TYPE   PUBLISHED   DEPLOYED   UPDATED
+   user/my-mcp-server   0.1.0     oci    True        False      5h
+   ```
+
+2. Deploy the MCP server to your local environment. The following command spins up a Docker container from the `user/my-mcp-server` artifact reference that is published in agentregistry.
+   ```sh
+   arctl mcp deploy user/my-mcp-server --runtime local --version 0.1.0
+   ```
+
+   Example output: 
+   ```console
+   ✓ Deployed user/my-mcp-server (v0.1.0) to local runtime
+
+   Server deployment recorded. The registry will reconcile containers automatically.
+   Agent Gateway endpoint: http://localhost:21212/mcp
+   ```
+
+{{% /tab %}}
+{{% tab %}}
+
+1. Open the [agentregistry UI](http://localhost:12121). 
+2. Go into the **Published** view. 
+3. Select the agent image that you published and click **Deploy**. 
+   {{< reuse-image src="img/ar-publish-agent.png" >}}
+   {{< reuse-image-dark srcDark="img/ar-publish-agent.png" >}}
+4. From the **Deployment destination** drop down, select **Local (Docker Compose)** and click **Deploy**. 
+   {{< reuse-image src="img/ar-deploy-agent-local.png" width="300px" >}}
+   {{< reuse-image-dark srcDark="img/ar-deploy-agent-local.png" width="300px" >}}
+5. Switch to the **Deployed** and verify that you see the deployed agent. 
+   {{< reuse-image src="img/ar-deploy-agent.png"  >}}
+   {{< reuse-image-dark srcDark="img/ar-deploy-agent.png"  >}}
+6. List the containers in your environment. Verify that you see a container with the `ghcr.io/myagent:latest` image. 
+   ```sh
+   docker ps
+   ```
+   
+   Example output: 
+   ```console
+   CONTAINER ID   IMAGE                    COMMAND                  CREATED              STATUS                  PORTS                                                                                                                                                                                                                                                                                                                                                                                                                                 NAMES
+   816ad44cba11   ghcr.io/myagent:latest   "kagent-adk run --ho…"   About a minute ago   Up About a minute       0.0.0.0:40529->40529/tcp, [::]:40529->40529/tcp                                                                                            
+   ```
+{{% /tab %}}
+{{< /tabs >}}
+
+## Cleanup
+
+1. [Open the agentregistry UI](http://localhost:12121) and navigate to the **Deployed** view. 
+2. Find the MCP server deployment that you want to remove. Then, click **Remove**. 
+
+
