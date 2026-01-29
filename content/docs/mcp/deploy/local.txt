@@ -36,22 +36,11 @@ Local deployments spin up Docker containers on your local machine from images th
    ```
 
    Example output: 
-   ```
+   ```console
    ✓ Deployed user/my-mcp-server (v0.1.0) to local runtime
 
    Server deployment recorded. The registry will reconcile containers automatically.
    Agent Gateway endpoint: http://localhost:21212/mcp
-   ```
-
-3. List the containers in your environment. Verify that you see a container with the `ghcr.io/myagent:latest` image. 
-   ```sh
-   docker ps
-   ```
-   
-   Example output: 
-   ```console
-   CONTAINER ID   IMAGE                    COMMAND                  CREATED              STATUS                  PORTS                                                                                                                                                                                                                                                                                                                                                                                                                                 NAMES
-   816ad44cba11   ghcr.io/myagent:latest   "kagent-adk run --ho…"   About a minute ago   Up About a minute       0.0.0.0:40529->40529/tcp, [::]:40529->40529/tcp                                                                                            
    ```
 
 {{% /tab %}}
