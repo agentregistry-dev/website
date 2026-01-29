@@ -1,21 +1,21 @@
 ---
-title: agentregistry
 toc: false
 ---
+
+<div class="w-screen max-w-none relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] not-prose -mt-4 -mb-8">
 
 <!-- Hero Section -->
 <section class="bg-gradient-to-br from-[#151927] via-[#1a1f30] to-[#8023C3]/20 text-white text-center px-8 py-32 relative overflow-hidden">
   <div class="absolute inset-0 bg-gradient-to-tr from-[#8023C3]/10 via-transparent to-purple-500/5 pointer-events-none"></div>
   <div class="relative z-10 max-w-5xl mx-auto">
-    <h1 class="text-6xl md:text-7xl font-bold mb-6 tracking-tight leading-tight">
+    <h1 class="text-6xl md:text-7xl font-bold mb-6 tracking-tight leading-tight text-white">
       Fast-track AI innovation
     </h1>
     <p class="text-2xl md:text-3xl text-slate-300 font-light mb-12 tracking-wide">
       With a centralized, trusted, curated registry
     </p>
-    
     <div class="flex gap-4 justify-center flex-wrap">
-      <a href="/docs/quickstart" class="inline-block bg-white text-[#8023C3] px-10 py-4 rounded-lg font-semibold text-lg transition-transform hover:-translate-y-1 hover:shadow-2xl">
+      <a href="/docs/quickstart" class="inline-block<h bg-white text-[#8023C3] px-10 py-4 rounded-lg font-semibold text-lg transition-transform hover:-translate-y-1 hover:shadow-2xl">
         Get Started
       </a>
       <a href="https://github.com/agentregistry-dev/agentregistry/" target="_blank" rel="noopener noreferrer" class="inline-block bg-transparent text-white px-10 py-4 rounded-lg font-semibold text-lg border-2 border-white transition-all hover:bg-white/10">
@@ -60,7 +60,6 @@ toc: false
           </ul>
         </div>
       </div>
-
       <!-- Developer Card -->
       <div class="bg-[#1a1f30] rounded-2xl overflow-hidden shadow-xl hover:-translate-y-2 transition-transform">
         <div class="px-8 pt-8 pb-4">
@@ -169,12 +168,10 @@ toc: false
     <p class="text-center text-xl text-slate-300 mb-16">
       A complete lifecycle for AI artifacts
     </p>
-    
     <!-- Timeline Flow -->
     <div class="relative">
       <!-- Connecting Line -->
       <div class="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-[#202535] -translate-y-1/2"></div>
-      
       <div class="grid md:grid-cols-4 gap-8 relative">
         <div class="text-center group cursor-pointer">
           <div class="relative inline-block mb-6">
@@ -189,7 +186,6 @@ toc: false
             Collect AI artifacts from any source
           </p>
         </div>
-        
         <div class="text-center group cursor-pointer">
           <div class="relative inline-block mb-6">
             <!-- Glow effect on hover -->
@@ -203,7 +199,6 @@ toc: false
             Review curated artifacts and publish to the registry
           </p>
         </div>
-        
         <div class="text-center group cursor-pointer">
           <div class="relative inline-block mb-6">
             <!-- Glow effect on hover -->
@@ -217,7 +212,6 @@ toc: false
             Deploy approved artifacts on managed infrastructure
           </p>
         </div>
-        
         <div class="text-center group cursor-pointer">
           <div class="relative inline-block mb-6">
             <!-- Glow effect on hover -->
@@ -364,3 +358,5 @@ document.addEventListener('keydown', function(e) {
   }
 });
 </script>
+
+</div>

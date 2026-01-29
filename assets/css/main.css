@@ -1,3 +1,57 @@
+@import "tailwindcss";
+@source "hugo_stats.json";
+
+@keyframes cyber-glow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.4), 0 0 30px rgba(0, 255, 255, 0.1), inset 0 0 20px rgba(0, 255, 255, 0.05);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.6), 0 0 50px rgba(0, 255, 255, 0.2), inset 0 0 30px rgba(0, 255, 255, 0.1);
+  }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes flicker {
+  0%, 95%, 100% { opacity: 1; }
+  96% { opacity: 0.8; }
+  97% { opacity: 1; }
+  98% { opacity: 0.6; }
+}
+
+@layer base {
+  :root {
+    --background: 227 30% 12%;
+    --foreground: 210 40% 98%;
+    --card: 227 30% 12%;
+    --card-foreground: 210 40% 98%;
+    --popover: 227 30% 12%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 277 70% 45%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 227 30% 18%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 227 30% 18%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 227 30% 18%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 227 30% 18%;
+    --input: 227 30% 18%;
+    --ring: 277 70% 45%;
+    --radius: 0.5rem;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
 /* Custom CSS to force logo left alignment */
 .hextra-navbar-logo {
   margin-left: 0 !important;
