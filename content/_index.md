@@ -3,6 +3,7 @@ toc: false
 ---
 
 <div class="w-screen max-w-none relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] not-prose -mt-4 -mb-8">
+{{< hackathon-banner >}}
 
 <!-- Hero Section -->
 <section class="bg-gradient-to-br from-[#151927] via-[#1a1f30] to-[#8023C3]/20 text-white text-center px-8 py-32 relative overflow-hidden">
