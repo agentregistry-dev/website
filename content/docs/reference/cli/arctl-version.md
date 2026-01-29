@@ -3,7 +3,7 @@ title: arctl version
 weight: 10
 ---
 
-Displays the version of arctl.
+Displays the version of `arctl`.
 
 ## Usage
 

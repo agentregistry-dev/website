@@ -6,7 +6,7 @@ weight: 10
 Initialize a new MCP server project with dynamic tool loading.
 
 This command provides subcommands to initialize a new MCP server project
-using one of the supported frameworks.
+by using one of the supported frameworks.
 
 ## Usage
 

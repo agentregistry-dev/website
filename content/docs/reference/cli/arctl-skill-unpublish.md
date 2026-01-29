@@ -3,12 +3,9 @@ title: arctl skill unpublish
 weight: 10
 ---
 
-Unpublish a skill from the registry.
+Unpublish a skill from agentregistry. The command marks the skill as unpublished and hides it from public listings. The skill data is not deleted and can be re-published later.
 
-This marks the skill as unpublished, hiding it from public listings.
-The skill data is not deleted and can be re-published later.
-
-Use --all to unpublish all versions of the skill.
+Use the `--all` option to unpublish all versions of the skill.
 
 ## Usage
 

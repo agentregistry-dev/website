@@ -61,7 +61,6 @@ description:
 {{< card link="arctl-skill-list" title="arctl skill list" >}}
 {{< card link="arctl-skill-show" title="arctl skill show" >}}
 {{< card link="arctl-skill-init" title="arctl skill init" >}}
-{{< card link="arctl-skill-build" title="arctl skill build" >}}
 {{< card link="arctl-skill-publish" title="arctl skill publish" >}}
 {{< card link="arctl-skill-pull" title="arctl skill pull" >}}
 {{< card link="arctl-skill-remove" title="arctl skill remove" >}}

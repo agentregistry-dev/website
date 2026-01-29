@@ -3,7 +3,7 @@ title: arctl agent init
 weight: 10
 ---
 
-Bootstrap a new agent project. You must specify the ADK (Agent Development Kit), the programming language, and the name of the directory you want to create.
+Bootstrap a new agent project. You must specify the ADK (Agent Development Kit) framework, the programming language, and the name of the directory you want to create.
 
 ## Usage
 
@@ -17,7 +17,7 @@ arctl agent init adk python myagent
 ```
 
 ## Command-specific flags
-No specific flags are currently required for initialization beyond the positional arguments.
+No command-specific flags.
 
 ## Global flags
 ```sh

@@ -3,7 +3,7 @@ title: arctl mcp deploy
 weight: 10
 ---
 
-Deploy an MCP server to the runtime.
+Deploy an MCP server to the specified runtime.
 
 ## Usage
 
@@ -24,7 +24,7 @@ arctl mcp deploy my-server -e KEY=VALUE -a ARG=value
 -a, --arg stringArray: Runtime arguments (KEY=VALUE)
 -e, --env stringArray: Environment variables (KEY=VALUE)
 --header stringArray: HTTP headers for remote servers (KEY=VALUE)
---namespace string: Kubernetes namespace for deployment (only used with --runtime kubernetes) (default "default")
+--namespace string: Kubernetes namespace to use for deployment (only used with --runtime kubernetes) (default "default")
 --prefer-remote: Prefer remote deployment over local
 --runtime string: Deployment runtime target (local, kubernetes) (default "local")
 --version string: Version to deploy (default "latest")

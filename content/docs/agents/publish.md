@@ -10,7 +10,7 @@ Build and publish your agent image in agentregistry by using the `arctl agent bu
 
 Agentregistry serves as a catalog for your AI artifacts, including agents, skills, and MCP servers. To control which images you want to make available to your teams, you can use the publishing capability in agentregistry. If an image is published, a reference to its container image location is stored in agentregistry. This allows teams to quickly discover approved agents and deploy them to their environments. 
 
-Before you can publish an image reference, you must first build the image. Agentregistry provides the following options for building you agent images: 
+Before you can publish an image reference, you must first build the image. Agentregistry provides the following options for building your agent images: 
 
 * **Build the image locally**. This option assumes that you want to build the agent image on your local machine only, such as for local test setups. The image is not pushed to your container registry. While you can still create a catalog entry for the agent image in agentregistry by using the `arctl agent publish` command, you cannot deploy the image to a Kubernetes cluster, unless you manually load the image to your cluster.  
 * **Build and push**: This process allows you to build the agent image on your local machine and push it to your container registry. Note that this option requires you to be logged into the container registry that you want to use and that the `agent.yaml` file includes the correct container registry and image tag details.  
@@ -20,7 +20,7 @@ For testing purposes, the instructions in this guide assume that you do not want
 ## Before you begin
 
 1. Follow the [Get started](/docs/quickstart/) guide to set up agentregistry and start the agentregistry daemon. 
-2. [Build an agent](/docs/agents/build/). 
+2. [Create an agent](/docs/agents/create/). 
 
 ## Publish the agent image
 
@@ -41,7 +41,7 @@ For testing purposes, the instructions in this guide assume that you do not want
    ```
 
    {{< callout type="tip" >}}
-   To also use agentregistry to push the image to your container registry, include the `--push` option. You can also set the platform, for which you want to build the image, such as `linux/amd64`. For more information, see the [arctl agent build](/docs/reference/cli/arctl-agent-build/) command. Make sure that you are logged in to your container registry before you run the command.
+   To also use agentregistry to push the image to your container registry, include the `--push` option. You can also set the platform, for which you want to build the image, such as `linux/amd64` by using the `--platform` option. For more information, see the [arctl agent build](/docs/reference/cli/arctl-agent-build/) command. Make sure that you are logged in to your container registry before you run the command.
    {{< /callout >}}
 
 2. Verify that the image is built. 

@@ -3,9 +3,9 @@ title: arctl skill pull
 weight: 10
 ---
 
-Pull a skill's Docker image from the registry and extract its contents to a local directory.
+Pull a skill's Docker image from agentregistry and extract its contents to a local directory.
 
-If output-directory is not specified, it will be extracted to ./skills/<skill-name>
+If no output directory is specified, the skill is automatically extracted to `./skills/<skill-name>`.
 
 ## Usage
 

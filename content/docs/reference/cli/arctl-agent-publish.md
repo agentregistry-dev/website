@@ -3,12 +3,12 @@ title: arctl agent publish
 weight: 10
 ---
 
-Publish an agent project to the registry.
+Publish an agent to agentregistry.
 
-This command supports two forms:
+This command supports two options:
 
-- 'arctl agent publish ./my-agent' publishes the agent defined by agent.yaml in the given folder.
-- 'arctl agent publish my-agent --version 1.2.3' publishes an agent that already exists in the registry by name and version.
+- 'arctl agent publish my-agent' publishes the agent as defined by the `agent.yaml` file in the given folder.
+- 'arctl agent publish my-agent --version 1.2.3' publishes an agent that already exists in agentregistry under a different version.
 
 ## Usage
 

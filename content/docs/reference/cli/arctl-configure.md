@@ -3,7 +3,7 @@ title: arctl configure
 weight: 10
 ---
 
-Creates the .json configuration for each client, so it can connect to arctl.
+Creates the .json configuration for each client, so it can connect to `arctl`.
 
 ## Usage
 

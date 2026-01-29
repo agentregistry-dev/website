@@ -3,7 +3,7 @@ title: arctl agent deploy
 weight: 10
 ---
 
-Deploy an agent from the registry.
+Deploy an agent from the registry. You can choose between deploying the agent to your local environment or to a Kubernetes cluster. 
 
 ## Usage
 
@@ -21,7 +21,7 @@ arctl agent deploy my-agent --version latest --runtime kubernetes --namespace my
 ## Command-specific flags
 
 ```sh
---namespace string: Kubernetes namespace for agent deployment
+--namespace string: Kubernetes namespace to use for the agent deployment
 --prefer-remote: Prefer using a remote source when available
 --runtime string: Deployment runtime target (local, kubernetes) (default "local")
 --version string: Agent version to deploy (default "latest")

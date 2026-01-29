@@ -5,11 +5,11 @@ weight: 10
 
 Run an MCP server locally.
 
-You can run either:
-  - A server from the registry by name (e.g., 'arctl mcp run @modelcontextprotocol/server-everything')
-  - A local MCP project by path (e.g., 'arctl mcp run .' or 'arctl mcp run ./my-mcp-server')
+You can run:
+  - A server from agentregistry by specifying the server name, such as 'arctl mcp run @modelcontextprotocol/server-everything'. 
+  - A local MCP project by specifying the project path, such as 'arctl mcp run .' or 'arctl mcp run ./my-mcp-server'. 
 
-For local projects, the server must be built first using 'arctl mcp build'.
+For local projects, the server must be built first by using the 'arctl mcp build' command.
 
 ## Usage
 

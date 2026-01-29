@@ -3,9 +3,8 @@ title: arctl agent run
 weight: 10
 ---
 
-Run an agent project locally via docker compose. If the argument is a directory,
-arctl uses the local files; otherwise it fetches the agent by name from the registry and
-launches the same chat interface.
+Run an agent project locally by using Docker compose. If the command includes a directory,
+`arctl` uses the local files in that directory. In all other cases, the command tries to fetch the agent from the registry by using its name. 
 
 ## Usage
 

@@ -10,7 +10,6 @@ Add tools to your MCP server.
 
 1. Follow the [Get started](/docs/quickstart/) guide to set up agentregistry and start the agentregistry daemon. 
 2. Install [`uv`](https://docs.astral.sh/uv/getting-started/installation/). 
-3. [Build and run](/docs/mcp/build/) your first MCP server. 
 
 ## Add tools
 
@@ -58,7 +57,7 @@ Add tools to your MCP server.
    arctl mcp build my-mcp-server
    ```
 
-6. Run the MCP server on your local machine and note the MCP server URL that the server is exposed on. Note that you might need to stop any previously created Docker containers by using the `docker stop <container>` and `docker rm <container>` commands. 
+6. Run the MCP server on your local machine and note the MCP server URL that the server is exposed on. 
    ```sh
    arctl mcp run my-mcp-server
    ```

@@ -3,8 +3,7 @@ title: arctl mcp delete
 weight: 10
 ---
 
-Delete an MCP server from the registry.
-The server must not be published or deployed unless --force is used.
+Delete an MCP server from agentregistry. If the server is published or deployed, you must use the `--force` option. 
 
 ## Usage
 
@@ -21,7 +20,7 @@ arctl mcp delete my-server --version 1.0.0 --force
 ## Command-specific flags
 
 ```sh
---force: Force delete even if published or deployed
+--force: Force deletion, even if the MCP server is published or deployed
 --version string: Specify the version to delete (required)
 ```
 

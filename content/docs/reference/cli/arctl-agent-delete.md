@@ -3,8 +3,7 @@ title: arctl agent delete
 weight: 10
 ---
 
-Delete an agent from the registry.
-The agent must not be published or deployed unless --force is used.
+Delete an agent from the registry. To delete an agent that is published or deployed, you must use the `--force` option. 
 
 ## Usage
 
@@ -21,7 +20,7 @@ arctl agent delete my-agent --version 1.0.0 --force
 ## Command-specific flags
 
 ```sh
---force: Force delete even if published or deployed
+--force: Force deletion, even if the agent is published or deployed
 --version string: Specify the version to delete (required)
 ```
 

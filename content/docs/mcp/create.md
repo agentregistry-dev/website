@@ -1,17 +1,17 @@
 ---
-title: Build and run
+title: Create and run
 weight: 10
 description:
 ---
 
-Quickly build and run MCP servers on your local machine
+Quickly build and run MCP servers on your local machine.
 
 ## Before you begin
 
 1. Follow the [Get started](/docs/quickstart/) guide to set up agentregistry and start the agentregistry daemon. 
 2. Install [`uv`](https://docs.astral.sh/uv/getting-started/installation/). 
 
-## Build an MCP server
+## Create an MCP server
 
 Agentregistry comes with built-in MCP server templates that you can use to quickly spin up MCP servers or customize them to your needs. 
 

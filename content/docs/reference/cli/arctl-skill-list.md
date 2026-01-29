@@ -3,7 +3,7 @@ title: arctl skill list
 weight: 10
 ---
 
-List skills from connected registries.
+List available skills in agentregistry.
 
 ## Usage
 

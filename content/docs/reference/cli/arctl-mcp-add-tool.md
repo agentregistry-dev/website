@@ -3,13 +3,13 @@ title: arctl mcp add-tool
 weight: 10
 ---
 
-Generate a new MCP tool that will be automatically loaded by the server.
+Generate an MCP tool scaffold. 
 
-This command creates a new tool file in src/tools/ with a generic template.
-The tool will be automatically discovered and loaded when the server starts.
+This command creates a new tool file in `src/tools/` directory with a generic template.
+The tool is automatically discovered and loaded when the MCP server starts.
 
-Each tool is a Python file containing a function decorated with @mcp.tool().
-The function should use the @mcp.tool() decorator from FastMCP.
+Each tool is a Python file containing a function decorated with `@mcp.tool()`.
+The function uses the `@mcp.tool()` decorator from FastMCP.
 
 ## Usage
 

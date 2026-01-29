@@ -3,7 +3,7 @@ title: arctl embeddings
 weight: 10
 ---
 
-Manage semantic embeddings stored in the registry database.
+Manage semantic embeddings stored in agentregistry.
 
 ## Usage
 

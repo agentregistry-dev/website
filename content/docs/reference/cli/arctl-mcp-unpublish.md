@@ -3,12 +3,9 @@ title: arctl mcp unpublish
 weight: 10
 ---
 
-Unpublish an MCP server from the registry.
+Unpublish an MCP server from the registry. This command marks an MCP server as unpublished and hides it from public listings. The server data is not deleted and can be re-published later.
 
-This marks the server as unpublished, hiding it from public listings.
-The server data is not deleted and can be re-published later.
-
-Use --all to unpublish all versions of the server.
+Use the `--all` option to unpublish all versions of the server.
 
 ## Usage
 

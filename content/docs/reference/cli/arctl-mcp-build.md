@@ -5,8 +5,7 @@ weight: 10
 
 Build an MCP server from the current project.
 
-This command will detect the project type and build the appropriate
-MCP server Docker image.
+This command detects the project type and build the appropriate MCP server Docker image.
 
 ## Usage
 

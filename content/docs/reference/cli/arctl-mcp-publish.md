@@ -3,11 +3,7 @@ title: arctl mcp publish
 weight: 10
 ---
 
-Publish an MCP Server to the registry.
-
-This command supports two modes:
-1. Build and publish from local folder: Provide a path to a folder containing mcp.yaml
-2. Re-publish existing server: Provide a server name from the registry to change its status to published
+Publish an MCP Server to agentregistry.
 
 ## Usage
 

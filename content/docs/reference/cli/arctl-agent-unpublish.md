@@ -3,10 +3,7 @@ title: arctl agent unpublish
 weight: 10
 ---
 
-Unpublish an agent from the registry by marking it as unpublished.
-
-This command operates only on agents that already exist in the registry.
-It sets the published flag to false, hiding the agent from public listings.
+Unpublish an agent from the registry. Note that this command can only be used if an agent was published to agentregistry. The command sets the published flag to false and hides the agent from public listings.
 
 ## Usage
 

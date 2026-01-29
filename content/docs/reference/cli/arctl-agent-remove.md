@@ -18,7 +18,7 @@ arctl agent remove my-agent
 
 ## Command-specific flags
 
-No specific flags are currently required for removal beyond the positional arguments.
+No command-specific flags.
 
 ## Global flags
 ```sh

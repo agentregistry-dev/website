@@ -3,10 +3,10 @@ title: arctl mcp init python
 weight: 10
 ---
 
-Initialize a new MCP server project using the fastmcp-python framework.
+Initialize a new MCP server project by using the `fastmcp-python` framework.
 
-This command will create a new directory with a basic fastmcp-python project structure,
-including a pyproject.toml file, a main.py file, and an example tool.
+This command creates a new directory with a basic `fastmcp-python` project structure,
+including a `pyproject.toml` file, a `main.py` file, and an example tool.
 
 ## Usage
 

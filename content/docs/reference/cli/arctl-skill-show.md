@@ -3,7 +3,7 @@ title: arctl skill show
 weight: 10
 ---
 
-Shows detailed information about a skill from the registry.
+Shows detailed information about a skill.
 
 ## Usage
 

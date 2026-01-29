@@ -3,10 +3,10 @@ title: arctl mcp init go
 weight: 10
 ---
 
-Initialize a new MCP server project using the mcp-go framework.
+Initialize a new MCP server project using the `mcp-go` framework.
 
-This command will create a new directory with a basic mcp-go project structure,
-including a go.mod file, a main.go file, and an example tool.
+This command creates a new directory with a basic `mcp-go` project structure,
+including a `go.mod` file, a `main.go` file, and an example tool.
 
 You must provide a valid Go module name for the project.
 

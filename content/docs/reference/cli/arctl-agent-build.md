@@ -3,10 +3,9 @@ title: arctl agent build
 weight: 10
 ---
 
-Build Docker images for an agent project created with the init command.
+Build Docker images for an agent project that you created with the `arctl agent init` command.
 
-This command looks for agent.yaml in the specified directory, regenerates template artifacts,
-and invokes docker build (plus optional push) for both the agent and any command-type MCP servers.
+This command looks for an `agent.yaml` file in the specified directory. It uses the file to generate template artifacts and to invoke the `docker build` command for both the agent and referenced MCP servers. You can optionally use the `--push` option to push the image to your container registry. 
 
 ## Usage
 

@@ -3,8 +3,7 @@ title: arctl skill delete
 weight: 10
 ---
 
-Delete a skill from the registry.
-The skill must not be published or deployed unless --force is used.
+Delete a skill from agentregistry. If the skill is published, use the `--force` option. 
 
 ## Usage
 
@@ -21,7 +20,7 @@ arctl skill delete my-skill --version 1.0.0 --force
 ## Command-specific flags
 
 ```sh
---force: Force delete even if published or deployed
+--force: Force deletion, even if the skill is published 
 --version string: Specify the version to delete (required)
 ```
 
