@@ -12,8 +12,8 @@ params:
     displayLogo: true
     width: wide
     logo:
-      path: img/agentregistry-logo.svg
-      dark: img/agentregistry-logo-dark.svg
+      path: img/agent-registry-logo.svg
+      dark: img/agent-registry-logo-dark.svg
       width: 160
       height: 120
     
