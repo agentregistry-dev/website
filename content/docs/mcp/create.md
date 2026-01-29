@@ -47,8 +47,8 @@ Agentregistry comes with built-in MCP server templates that you can use to quick
    | File | Description | 
    | -- | -- | 
    | `Dockerfile` | The Dockerfile to spin up and run your MCP server in a containerized environment. | 
-   | `mcp.yaml` |   | 
-   | `pyproject.toml` | | 
+   | `mcp.yaml` | The MCP server configuration file that defines server metadata, transport settings, version, and other server-specific configuration. | 
+   | `pyproject.toml` | The Python project configuration file that defines project dependencies, build settings, and metadata for the MCP server. | 
    | `README.md` | An introduction to the MCP server that you created with instructions for how to further customize it. | 
    | `src` | A directory that contains the details of the MCP server, such as supported tools and the Python script to bootstrap and run the server.  | 
    | `tests` | A directory that contains generated tests. | 

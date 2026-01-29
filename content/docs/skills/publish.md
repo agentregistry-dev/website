@@ -36,12 +36,12 @@ For testing purposes, the instructions in this guide assume that you do not want
 
    | File | Description | 
    | -- | -- | 
-   | `assets` |  | 
+   | `assets` | Directory containing static assets such as images, files, or other resources used by the skill. | 
    | `Dockerfile` | The Dockerfile to spin up and run your skill in a containerized environment. | 
-   | `LICENSE.txt` |   | 
-   | `references` |   | 
-   | `scripts` |   | 
-   | `SKILL.md` | | 
+   | `LICENSE.txt` | License file containing the license information for your skill. | 
+   | `references` | Directory containing reference documentation, links, or additional resources related to the skill. | 
+   | `scripts` | Directory containing helper scripts for building, testing, or running the skill. | 
+   | `SKILL.md` | The skill definition file with YAML frontmatter that describes the skill, its capabilities, and metadata. This file is required for publishing the skill to agentregistry. | 
 
 
 ## Publish the skill
