@@ -6,147 +6,67 @@ description:
 
 Agentregistry is an open source, secure, and centralized AI artifact catalog that helps you build, package, publish, discover, and govern Docker images for AI artifacts, including agents, skills, and MCP servers that are spread across multiple container registries and GitHub repositories. It provides a centralized view of the images you allow your teams to share and deploy into their environments.
 
-## About A2A
+## Challenges with AI Artifacts
 
-The Agent-to-Agent (A2A) protocol is emerging as the de-facto standard for how autonomous AI agents communicate with each other. A2A provides a foundation for agent interoperability, enabling agents built with different frameworks and running on different platforms to discover, connect, and collaborate effectively. While much of the initial focus around A2A has centered on stateful messaging between agents, one of its most powerful and transformative ideas remains largely unexplored: discovery, naming, and resolution of AI artifacts.
+As organizations build AI applications, they face significant challenges in discovering, managing, and governing AI artifacts across different environments and teams. These challenges apply broadly to all types of AI artifacts—agents, MCP servers, skills, and other AI components—regardless of the protocols or frameworks they use.
 
-The A2A specification introduces Agent Cards as a critical first step toward agent discovery, providing a standardized way to describe agent capabilities and metadata. However, building truly dynamic and scalable agent ecosystems requires additional infrastructure components that the specification intentionally leaves as implementation details, allowing flexibility for different use cases and deployment scenarios.
+### Discovery across environments
 
-## Challenges with A2A
+One of the most pressing challenges is discovering which AI artifacts are available and where they can be found. AI artifacts are often scattered across multiple container registries, GitHub repositories, internal development environments, and third-party sources. This fragmentation makes it difficult for teams to:
 
-While the A2A specification provides the foundational concepts for agent discovery, it does not provide a complete solution for managing AI artifacts at scale. Specifically, the specification does not address:
+- **Find available artifacts**: Artifacts might exist in different environments, repositories, container registries. Without a centralized catalog, developers struggle to discover what agents, MCP servers, or skills already exist in the environment and are approved to use. This can lead to duplicate work and inconsistent implementations.
 
-- **Artifact Registry Infrastructure**: There's no standardized way to store, version, and distribute AI artifacts (agents, MCP servers, skills) across organizations and teams.
+- **Search and Filter**: Without proper metadata and search capabilities, finding the right artifact for a specific use case becomes a time-consuming manual process.
 
-- **Naming and Resolution**: The specification doesn't define how to resolve artifact names to their actual locations, versions, or deployment endpoints.
+### Governance and approval
 
-- **Governance and Curation**: There's no built-in mechanism for organizations to curate, approve, validate, or control which artifacts are available to their teams.
+Organizations need to ensure that only approved, secure, and validated AI artifacts are used in production environments. However, the current landscape lacks mechanisms for:
 
-- **Lifecycle Management**: The specification doesn't address how to manage the complete lifecycle of artifacts from creation through deployment, updates, and deprecation.
+- **Approval workflows and cross-environment governance**: There's no standardized way to review, approve, and control which artifacts are available to teams. With artifacts being spread across multiple environments, repositories, and registries, it can become challenging to enforce the same security policies, quality standards, and compliance requirements.
 
-- **Metadata Enrichment**: While Agent Cards provide basic metadata, there's no system for automatically enriching artifacts with validation scores, security assessments, or usage analytics.
+- **Visibility into artifact status**: Teams often don't know which artifacts are approved for use. This lack of visibility can lead to security risks and compliance violations.
 
-- **Discovery Mechanisms**: While Agent Cards describe agents, there's no centralized or distributed system for discovering available artifacts, searching by capabilities, or understanding relationships between artifacts.
+- **Audit and compliance**: Maintaining audit trails that show who approved an artifact and when becomes crucial to meet legal and compliance requirements.  
 
-These gaps make it challenging for organizations to build production-ready agent ecosystems where teams can confidently discover, deploy, and manage AI artifacts at scale.
+### Artifact registry infrastructure
+
+The infrastructure for managing AI artifacts at scale is fragmented and incomplete:
+
+- **No standardized storage**: There's no unified way to store, version, and distribute AI artifacts across organizations and teams. Artifacts end up in different container registries, code repositories, or internal systems.
+
+- **Naming and resolution**: Without a centralized naming and resolution system, it's unclear how to resolve artifact names to their actual locations, versions, or deployment endpoints across different environments.
+
+- **Lifecycle management**: Managing the complete lifecycle of artifacts—from creation through deployment, updates, and deprecation—requires bundling together multiple tools and processes.
+
+- **Metadata enrichment**: While some artifacts have basic metadata, there's no systematic way to enrich artifacts with validation scores, security assessments, usage analytics, or other contextual information that helps teams make informed decisions.
+
+These challenges make it difficult for organizations to build production-ready AI applications where teams can confidently discover, deploy, and manage AI artifacts at scale. Without proper discovery and governance mechanisms, organizations risk security vulnerabilities, compliance issues, duplicated effort, and inconsistent implementations.
 
 ## How agentregistry fills the gaps
 
+Learn how agentregistry allows you to overcome the challenge of managing AI artifacts across an organization. 
+
 ### Build, package, and deploy
 
-Agentregistry enables you to quickly build and deploy AI applications with confidence by providing a unified platform for the entire development lifecycle. The platform unifies AI infrastructure, allowing you to deploy and access artifacts anywhere while maintaining consistency and control.
+Agentregistry comes with built-in tools to help developers manage the entire development cycle of AI artifacts, including agents, skills, and MCP servers. With agentregistry, you can quickly create, build, and package AI artifacts as Docker images. Then, run these images locally to verify that everything works and publish them to agentregistry to allow other developers to discover your artifacts. 
 
-With agentregistry, you can package, discover, and curate AI artifacts from a central source, then deploy them seamlessly to any environment—whether that's local development machines, agentic platforms, or Kubernetes clusters. This flexibility means you can use agentregistry to deploy agents written in any framework, including CrewAI, Agentic Development Kit (ADK), Kagent, and others, to your preferred runtime environment.
+Publishing artifacts to the registry is simple—developers can publish with a single command, eliminating complex deployment processes and reducing time-to-production. Once published, artifacts can be pulled from the registry and run in any environment instantly, whether that's a developer's local machine, a CI/CD pipeline, or a production cluster. This developer-focused workflow accelerates artifact and application development by providing access to a curated library of proven components while maintaining the flexibility to build custom solutions when needed.
 
-Agentregistry supports the creation and management of multiple types of AI artifacts:
+Before deploying agents to agentic platforms, developers can use agentregistry to select the specific MCP servers, tools, and agent skills that they want to attach to their agent. This composition approach allows developers to build powerful, customized agents by combining proven, tested components from the registry.
 
-- **Autonomous Agents**: Create sophisticated agents that can reason, plan, and execute complex tasks autonomously. These agents can leverage multiple tools, skills, and MCP servers to accomplish their objectives.
+### Centralized governance and curation
 
-- **MCP Servers**: Build and deploy Model Context Protocol (MCP) servers that extend AI capabilities by providing access to external tools, data sources, and services. MCP servers enable agents to interact with databases, APIs, file systems, and other resources.
+Agentregistry enables organizations to establish comprehensive governance, maintain security standards, and ensure quality across all AI artifacts that are used within the company. Organizations can package and collect AI artifacts from any source—whether developed internally, sourced from open-source repositories, or obtained from third-party vendors—into a single, unified registry that the organization controls. This centralized approach eliminates fragmentation and provides a single source of truth for all AI artifacts.
 
-- **Skills**: Develop reusable capabilities and functions that can be shared across multiple agents and applications. Skills encapsulate specific capabilities that agents can invoke, promoting code reuse and consistency.
+You can also use agentregistry to implement review and approval workflows for artifacts before they become available to teams. These worklows help to maintain quality and security standards throughout the curation process, and ensure that agents, servers, and skills meet security, quality, and compliance requirements. Only artifacts that were approved and published to agentregistry can be deployed into environments, preventing untested or potentially insecure artifacts from reaching production environments.
 
-- **LLMs**: Integrate large language models for easy consumption by agents, providing a standardized way to access and configure language model capabilities.
-
-Before deploying agents to agentic platforms, you can use agentregistry to select the specific MCP servers, tools, and agent skills that you want to attach to your agent. This composition approach allows you to build powerful, customized agents by combining proven, tested components.
-
-The platform accelerates applications to production by empowering developers to create, run, and deploy agents, MCP servers, and skills from the registry with confidence. The registry ensures that all artifacts are properly packaged, versioned, and ready for deployment, reducing the time from development to production.
-
-### AI artifact governance
-
-Agentregistry provides comprehensive governance capabilities that allow organizations to selectively control and manage custom collections of artifacts. This governance layer ensures that only approved, validated, and secure artifacts are available to your teams.
-
-Through agentregistry's governance features, you can:
-
-- **Access Control**: Define who can publish, modify, or deploy specific artifacts, ensuring that only authorized personnel can make changes to production-ready components.
-
-- **Approval Workflows**: Implement review and approval processes for artifacts before they become available to your organization, maintaining quality and security standards.
-
-- **Policy Enforcement**: Apply organizational policies automatically, such as requiring security scans, documentation, or specific metadata before artifacts can be published or deployed.
-
-- **Audit Trails**: Maintain complete visibility into who created, modified, or deployed artifacts, when these actions occurred, and what changes were made, supporting compliance and troubleshooting.
-
-### Curation
-
-Build curated artifact collections within agentregistry to ensure your teams have access to high-quality, approved AI components. The curation process allows you to publish items selectively and maintain end-to-end audit and control from a centralized registry.
-
-Agentregistry enables you to package, collect, and enrich AI artifacts from any source into a single centralized registry. This centralization provides several key benefits:
-
-- **Centralized Control**: Package and collect AI artifacts from any source—whether they're developed internally, sourced from open-source repositories, or obtained from third-party vendors—into a single, unified registry that your organization controls.
-
-- **Security & Governance**: Curate and approve agents, servers, and skills before company-wide deployment, ensuring that all artifacts meet your security, quality, and compliance requirements. This approval process prevents untested or potentially insecure artifacts from being deployed to production environments.
-
-- **Quality Assurance**: Maintain quality standards by reviewing artifacts for functionality, performance, security, and documentation before making them available to your teams.
-
-- **Version Management**: Track and manage multiple versions of artifacts, allowing teams to use stable versions while new versions are being tested and approved.
+Agentregistry also tracks and manages multiple versions of artifacts, allowing teams to use stable versions while new versions are being tested and approved. 
 
 ### Discovery
 
-Agentregistry makes it easy to discover and share AI artifacts, including MCP servers, agents, and skills, across your organization. The discovery features help teams find the right components for their needs quickly and efficiently.
-
-The discovery capabilities include:
-
-- **Search and Filter**: Search for artifacts by name, description, capabilities, tags, or metadata, making it easy to find relevant components.
-
-- **Browse Collections**: Explore curated collections of artifacts organized by category, use case, or team, helping you discover new capabilities.
-
-- **Dependency Tracking**: Understand relationships between artifacts, such as which agents use which MCP servers or skills, enabling better decision-making about updates and changes.
-
-- **Recommendations**: Get suggestions for artifacts that might be useful based on what you're building or what other teams are using.
+Agentregistry makes it easy for developers to discover, pull, and share AI artifacts, including MCP servers, agents, and skills, across the organization. Artifacts can be searched by name, description, tags, or metadata, making it easy for developers to find relevant artifacts for their projects. You can also track dependencies between artifacts, such as what agent uses which MCP server or skill. 
 
 ### Data enrichment
 
-Agentregistry automatically validates and scores ingested data to provide deeper insights for operators and developers. When you import AI artifacts from any registry into agentregistry, the platform performs automatic scoring and validation that enriches datasets and delivers actionable insights.
+Agentregistry automatically validates and scores ingested data to provide deeper insights for both organizations and developers. When AI artifacts are imported from any registry into agentregistry, the platform performs scoring and validation that enriches datasets.
 
-The data enrichment capabilities include:
-
-- **Automatic Validation**: Validate artifacts for correctness, completeness, and adherence to standards, catching issues before they reach production.
-
-- **Scoring Systems**: Generate quality scores based on multiple factors, including code quality, documentation completeness, test coverage, security posture, and usage statistics.
-
-- **Enriched Metadata**: Add contextual metadata to help assess trustworthiness and security of artifacts. This metadata might include security scan results, performance benchmarks, compatibility information, and usage analytics.
-
-- **Insights and Analytics**: Provide operators with insights into artifact usage, performance, and dependencies, helping them make informed decisions about which artifacts to promote, update, or deprecate.
-
-## AI artifact lifecycle
-
-Agentregistry supports the complete lifecycle of AI artifacts through four key stages:
-
-1. **Import**: Bring AI artifacts into the registry from various sources, including local development environments, other registries, or third-party providers. During import, artifacts are automatically validated and enriched with metadata.
-
-2. **Curate**: Review, approve, and organize artifacts according to your organization's standards. This stage includes quality assurance, security reviews, documentation verification, and categorization into collections.
-
-3. **Deploy**: Make artifacts available for deployment to various environments, including local development, staging, and production. Deployment can be automated or require manual approval depending on your governance policies.
-
-4. **Consume**: Teams discover and use artifacts in their applications and agents. Usage is tracked, providing feedback for future curation and improvement decisions.
-
-This lifecycle management ensures that artifacts progress through proper validation and approval processes while maintaining visibility and control at every stage.
-
-## Personas
-
-Agentregistry serves different user personas, each with specific needs and workflows:
-
-### Organizations (Curation)
-
-Organizations use agentregistry to establish governance, maintain security standards, and ensure quality across all AI artifacts used within the company. They focus on curation, approval workflows, and maintaining centralized control over what artifacts are available to their teams.
-
-Organizations benefit from:
-- Centralized governance and policy enforcement
-- Security and compliance oversight
-- Quality assurance and approval workflows
-- Audit trails and compliance reporting
-
-### Developers (Build and Deploy)
-
-Developers use agentregistry to build, test, publish, and deploy AI artifacts with minimal dependencies and friction. They need tools that integrate seamlessly into their development workflow while providing access to a rich ecosystem of reusable components.
-
-Developers benefit from:
-- **Local Development**: Create and test agents, skills, and MCP servers locally before publishing, ensuring everything works correctly in your development environment.
-
-- **Easy Publishing**: Publish your artifacts to the registry with a single command, eliminating complex deployment processes and reducing time-to-production.
-
-- **Pull & Run Anywhere**: Pull artifacts from the registry and run them in any environment instantly, whether that's your local machine, a CI/CD pipeline, or a production cluster.
-
-- **Discover & Consume**: Find new artifacts to add to your registry or optimize existing artifacts by discovering what others have built and learning from their implementations.
-
-This developer-focused workflow accelerates application development by providing access to a curated library of proven components while maintaining the flexibility to build custom solutions when needed.

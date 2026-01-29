@@ -17,7 +17,7 @@ Agentregistry comes with built-in agent templates that you can use to quickly sp
 
 1. Create an agent. 
 
-   The following command creates a `myagent` Python agent with the Google ADK agent famework that is configured to use the Gemini provider. When you run the command, a `myagent` directory is created on your local machine that contains the scaffold for your agent.  
+   The following command creates a `myagent` Python agent with the Google ADK agent framework that is configured to use the Gemini provider. When you run the command, a `myagent` directory is created on your local machine that contains the scaffold for your agent.  
    ```sh
    arctl agent init adk python myagent
    ```

@@ -31,7 +31,7 @@ Add tools to your MCP server.
    ```
    
 4. Add the following code snippet to create the `add_number` tool. The code takes two integer numbers and returns the sum of both integers to the user. 
-   ```yaml
+   ```python
    @mcp.tool()
    def add_numbers(a: float, b: float) -> str:
     """Add two numbers together and return the result.

@@ -12,7 +12,7 @@ Agentregistry serves as a catalog for your AI artifacts, including agents, skill
 
 Before you can publish an image reference, you must first build the image. Agentregistry provides the following options for building your MCP server images: 
 
-* **Build the image locally**. This option assumes that you want to build the MCP server image on your local machine only, such as for local test setups. The image is not pushed to your container registry. While you can still create a catalog entry for the skill image in agentregistry by using the `arctl mcp publish` command, you cannot deploy the image to a Kubernetes cluster, unless you manually load the image to your cluster.  
+* **Build the image locally**. This option assumes that you want to build the MCP server image on your local machine only, such as for local test setups. The image is not pushed to your container registry. While you can still create a catalog entry for the MCP server image in agentregistry by using the `arctl mcp publish` command, you cannot deploy the image to a Kubernetes cluster, unless you manually load the image to your cluster.  
 * **Build and push**: This process allows you to build the MCP server image on your local machine and push it to your container registry. Note that this option requires you to be logged into the container registry that you want to use.  
 
 For testing purposes, the instructions in this guide assume that you do not want to use agentregistry to push the image to your container registry. 
@@ -55,7 +55,7 @@ For testing purposes, the instructions in this guide assume that you do not want
    ```
 
    {{< callout type="tip" >}}
-   To also use agentregistry to push the image to your container registry, include the `--push` option and set the `--docker-url` to your container registry address. You can also set the platform, for which you want to build the image, such as `linux/amd64` by using the `--platform` option. For more information, see the [arctl skill publish](/docs/reference/cli/arctl-skill-publish/) command. Make sure that you are logged in to your container registry before you run the command.
+   To also use agentregistry to push the image to your container registry, include the `--push` option and set the `--docker-url` to your container registry address. You can also set the platform, for which you want to build the image, such as `linux/amd64` by using the `--platform` option. For more information, see the [arctl mcp publish](/docs/reference/cli/arctl-mcp-publish/) command. Make sure that you are logged in to your container registry before you run the command.
    {{< /callout >}}
 
 
@@ -93,10 +93,11 @@ For testing purposes, the instructions in this guide assume that you do not want
    {{< reuse-image src="img/ar-list-server.png" >}}
    {{< reuse-image-dark srcDark="img/ar-list-server.png" >}}
 
-
+<!--
 ## Next
 
 Now that you published the MCP server image, you can [deploy the server to your environment](/docs/mcp/deploy/). 
+-->
 
 
 ## Cleanup

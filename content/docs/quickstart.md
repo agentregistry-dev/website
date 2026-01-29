@@ -54,7 +54,7 @@ Want to learn more about agentregistry? Check out the [About](/docs/about/) sect
 
 With agentregistry up and running, you can explore how to build, publish, and deploy AI artifacts. Check out the following guides for more information: 
 
-* [**Agents**](/docs/agents/): Explort how to build, run, and publish Docker images for agents. 
+* [**Agents**](/docs/agents/): Explore how to build, run, and publish Docker images for agents. 
 * [**MCP servers**](/docs/mcp/): Create and run MCP tool servers, add tools, and publish them as Docker images in agentregistry. 
 * [**Skills**](/docs/skills/): Build and publish skills that you can add to your agents. 
   
