@@ -33,6 +33,25 @@ header nav {
 .hextra-max-navbar-width {
   max-width: 100% !important;
 }
+
+/* Light-only content: visible by default, hidden in dark mode */
+.light-only {
+  display: block !important;
+}
+
+/* Dark-only content: hidden by default, visible in dark mode */
+.dark-only {
+  display: none !important;
+}
+
+/* When dark class is on html element (Hextra theme) */
+html.dark .light-only {
+  display: none !important;
+}
+
+html.dark .dark-only {
+  display: block !important;
+}
 </style>
 
 {{ if .IsHome }}

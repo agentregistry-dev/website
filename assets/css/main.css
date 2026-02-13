@@ -76,28 +76,6 @@
   padding-right: 2rem !important;
 }
 
-/* Ensure dark mode image visibility works correctly */
-.reuse-image-dark-wrapper {
-  display: none !important;
-}
-
-html.dark .reuse-image-dark-wrapper,
-html[data-theme="dark"] .reuse-image-dark-wrapper,
-.dark .reuse-image-dark-wrapper {
-  display: block !important;
-}
-
-/* Ensure light mode image visibility works correctly */
-.reuse-image-wrapper {
-  display: block !important;
-}
-
-html.dark .reuse-image-wrapper,
-html[data-theme="dark"] .reuse-image-wrapper,
-.dark .reuse-image-wrapper {
-  display: none !important;
-}
-
 /* Add more padding to the left of the sidebar */
 .hextra-sidebar-container {
   padding-left: 4rem !important;
@@ -113,4 +91,23 @@ aside[class*="sidebar"],
 nav[class*="sidebar"],
 [role="complementary"] {
   padding-left: 2rem !important;
+}
+
+/* Light-only content: visible by default, hidden in dark mode */
+.light-only {
+  display: block !important;
+}
+
+/* Dark-only content: hidden by default, visible in dark mode */
+.dark-only {
+  display: none !important;
+}
+
+/* When dark class is on html element (Hextra theme) */
+html.dark .light-only {
+  display: none !important;
+}
+
+html.dark .dark-only {
+  display: block !important;
 }
