@@ -31,6 +31,7 @@ description:
 {{< card link="arctl-agent-remove" title="arctl agent remove" >}}
 {{< card link="arctl-agent-unpublish" title="arctl agent unpublish" >}}
 {{< card link="arctl-agent-add-mcp" title="arctl agent add-mcp" >}}
+{{< card link="arctl-agent-add-prompt" title="arctl agent add-prompt" >}}
 
 {{< /cards >}}
 
@@ -66,5 +67,16 @@ description:
 {{< card link="arctl-skill-remove" title="arctl skill remove" >}}
 {{< card link="arctl-skill-delete" title="arctl skill delete" >}}
 {{< card link="arctl-skill-unpublish" title="arctl skill unpublish" >}}
+
+{{< /cards >}}
+
+## Prompt Commands
+
+{{< cards >}}
+
+{{< card link="arctl-prompt-list" title="arctl prompt list" >}}
+{{< card link="arctl-prompt-show" title="arctl prompt show" >}}
+{{< card link="arctl-prompt-publish" title="arctl prompt publish" >}}
+{{< card link="arctl-prompt-delete" title="arctl prompt delete" >}}
 
 {{< /cards >}}
