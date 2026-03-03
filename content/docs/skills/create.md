@@ -8,7 +8,7 @@ Quickly create an agent skill using the built-in skill scaffold.
 
 ## Before you begin
 
-1. Follow the [Get started](/docs/quickstart/) guide to set up agentregistry and start the agentregistry daemon.
+Follow the [Get started](/docs/quickstart/) guide to set up agentregistry and start the agentregistry daemon.
 
 ## Create a skill
 
