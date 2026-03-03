@@ -3,7 +3,7 @@ title: arctl prompt show
 weight: 10
 ---
 
-Show details of a prompt published to agentregistry.
+Show details of a prompt that is published to agentregistry.
 
 ## Usage
 
