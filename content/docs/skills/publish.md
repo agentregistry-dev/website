@@ -15,7 +15,7 @@ Agentregistry supports two publishing modes:
 * **From a local skill folder**: Reads metadata from a local `SKILL.md` file and publishes the skill as either a Docker image or a GitHub repository reference.
 * **Direct registration**: Registers a skill by name from a GitHub repository without needing any local files.
 
-Within folder mode, you can choose between two packaging options:
+When you publish the skill from a local skill folder, you can choose between two packaging options:
 
 * **Docker image** (`--docker-url`): Builds a container image from the skill folder and registers it. Use `--push` to also push the image to your container registry.
 * **GitHub repository** (`--github`): Registers a GitHub repository URL as the skill source. No Docker build is performed.
@@ -27,33 +27,35 @@ Within folder mode, you can choose between two packaging options:
 
 ## Publish the skill
 
+Review the different ways how you can publish a skill. 
+
 ### Option 1: Publish as a Docker image
 
 Use this option to build a Docker image from your skill folder and register it in agentregistry.
 
-1. Publish the skill to agentregistry. The following command builds and tags the skill image as `docker.io/user/hello-world-template:latest` and creates a catalog entry for the skill in agentregistry. Note that `docker.io/user` is a dummy container registry address that is used for testing purposes.
+The following command builds and tags the skill image as `docker.io/user/hello-world-template:latest` and creates a catalog entry for the skill in agentregistry. Note that `docker.io/user` is a dummy container registry address that is used for testing purposes.
 
-   ```sh
-   arctl skill publish myskill --docker-url docker.io/user
-   ```
+```sh
+arctl skill publish myskill --docker-url docker.io/user
+```
 
-   Example output:
-   ```console
-   Found 1 skill(s) to publish
-   Processing skill: /Users/myuser/Downloads/myskill
-   Building Docker image (Dockerfile via stdin): docker build -t docker.io/user/hello-world-template:latest -f - /Users/myuser/Downloads/myskill
-   [+] Building 0.2s (5/5) FINISHED
-   ...
-   ✓ Skill publishing complete!
-   ```
+Example output:
+```console
+Found 1 skill(s) to publish
+Processing skill: /Users/myuser/Downloads/myskill
+Building Docker image (Dockerfile via stdin): docker build -t docker.io/user/hello-world-template:latest -f - /Users/myuser/Downloads/myskill
+[+] Building 0.2s (5/5) FINISHED
+...
+✓ Skill publishing complete!
+```
 
-   {{< callout type="tip" >}}
-   To also push the image to your container registry, include the `--push` option. You can set the target platform with `--platform` (e.g., `linux/amd64`) and the image tag with `--tag`. Make sure that you are logged in to your container registry before you run the command.
-   {{< /callout >}}
+{{< callout type="tip" >}}
+To also push the image to your container registry, include the `--push` option. You can set the target platform with `--platform` (e.g., `linux/amd64`) and the image tag with `--tag`. Make sure that you are logged in to your container registry before you run the command. To preview the registry entry without creating it, use the `--dry-run` flag. 
+{{< /callout >}}
 
 ### Option 2: Publish from a GitHub repository (with local folder)
 
-Use this option when you have the skill files locally but want to register a GitHub repository as the source instead of building a Docker image. The skill metadata (name, description) is read from the local `SKILL.md` file.
+Use this option when you have the skill files locally but want to register a GitHub repository as the source instead of building a Docker image. The skill metadata, such as the name and description, is read from the local `SKILL.md` file.
 
 ```sh
 arctl skill publish ./myskill \
@@ -61,13 +63,18 @@ arctl skill publish ./myskill \
   --version 1.0.0
 ```
 
-The `--github` flag accepts full GitHub tree URLs that include a branch and subdirectory path. This tells the registry exactly where to find the skill within the repository:
+The `--github` flag accepts full GitHub tree URLs that include a branch and subdirectory path. This path tells the registry exactly where to find the skill within the repository:
 
 | URL format | Example |
 | -- | -- |
 | Repository root | `https://github.com/myorg/my-skills` |
 | Specific branch | `https://github.com/myorg/my-skills/tree/main` |
 | Branch and subdirectory | `https://github.com/myorg/my-skills/tree/main/skills/myskill` |
+
+{{< callout type="tip" >}}
+To preview the registry entry without creating it, use the `--dry-run` flag. 
+{{< /callout >}}
+
 
 ### Option 3: Direct registration (no local files needed)
 
@@ -82,11 +89,11 @@ arctl skill publish my-remote-skill \
 
 In direct mode:
 - The first argument is the **skill name** (not a folder path).
-- `--github` and `--version` are **required**.
+- `--github` and `--version` are **required** and represent the source GitHub repository and the version you want to use for your skill.
 - `--description` is optional.
 
 {{< callout type="tip" >}}
-Use `--dry-run` with any publish option to preview what would be published without actually creating the registry entry.
+To preview the registry entry without creating it, use the `--dry-run` flag. 
 {{< /callout >}}
 
 ## Verify the published skill
