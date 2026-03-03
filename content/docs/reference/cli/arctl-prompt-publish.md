@@ -27,7 +27,7 @@ arctl prompt publish prompt.yaml --version 2.0.0
 --name string: Prompt name (required for text files)
 --version string: Prompt version (required for text files)
 --description string: Prompt description
---dry-run: Show what would be done without actually doing it
+--dry-run: Preview what will be published without publishing the prompt
 ```
 
 ## Global flags
