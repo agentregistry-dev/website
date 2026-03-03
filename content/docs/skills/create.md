@@ -64,5 +64,5 @@ The frontmatter fields:
 
 ## Next steps
 
-- [Publish the skill](/docs/skills/publish/) to the agentregistry so others can discover and use it.
+- [Publish the skill](/docs/skills/publish/) to agentregistry so others can discover and use it.
 - [Pull a skill](/docs/skills/pull/) from the registry to use it locally.
