@@ -3,12 +3,12 @@ title: arctl skill publish
 weight: 10
 ---
 
-Publish a skill to the agent registry.
+Publish a skill to agentregistry.
 
 This command supports two modes:
 
 1. **From a local skill folder** (with `SKILL.md`): Reads metadata from the local file and publishes as a Docker image or GitHub repository reference.
-2. **Direct registration** (without `SKILL.md`): Registers a skill by name using `--github` and `--version` flags.
+2. **Direct registration** (without `SKILL.md`): Registers a skill by name by using `--github` and `--version` flags.
 
 ## Usage
 
@@ -24,13 +24,13 @@ arctl skill publish ./my-skill --docker-url docker.io/myorg --push
 # Publish from a local folder with a GitHub repository reference
 arctl skill publish ./my-skill --github https://github.com/myorg/repo --version 1.0.0
 
-# Direct registration (no local files needed)
+# Register directly from a GitHub repository (no local files needed)
 arctl skill publish my-skill \
   --github https://github.com/myorg/repo/tree/main/skills/my-skill \
   --version 1.0.0 \
   --description "My remote skill"
 
-# Preview what would be published
+# Preview what will be published without publishing the skill
 arctl skill publish ./my-skill --docker-url docker.io/myorg --dry-run
 ```
 
