@@ -12,6 +12,10 @@ Prompts are reusable, versioned text strings that serve as system instructions f
 
 Prompts are plain text. You write the instruction content in a `.txt` file (or any text file) and publish it with a name and version. You can also use a YAML file for structured definitions.
 
+## Before you begin
+
+Follow the [Get started](/docs/quickstart/) guide to set up agentregistry and start the agentregistry daemon.
+
 ## Create a prompt
 
 1. Write your prompt content to a text file.
