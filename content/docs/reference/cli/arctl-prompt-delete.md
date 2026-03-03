@@ -8,7 +8,7 @@ Delete a prompt version from agentregistry.
 ## Usage
 
 ```sh
-arctl prompt delete <prompt-name> [flags]
+arctl prompt delete <prompt-name> --version <version>
 ```
 
 Example:
