@@ -64,5 +64,6 @@ The frontmatter fields:
 
 ## Next steps
 
+- [Build the skill](/docs/reference/cli/arctl-skill-build/) as a Docker image using `arctl skill build`.
 - [Publish the skill](/docs/skills/publish/) to agentregistry so others can discover and use it.
 - [Pull a skill](/docs/skills/pull/) from the registry to use it locally.
