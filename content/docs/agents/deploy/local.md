@@ -26,18 +26,18 @@ Local deployments spin up Docker containers on your local machine from images th
 
 2. Deploy the agent to your local environment. The following command spins up a Docker container by using Docker compose. 
    ```sh
-   arctl agent deploy myagent --runtime local
+   arctl deployments create myagent --type agent
    ```
 
 3. List the containers in your environment. Verify that you see a container with the `ghcr.io/myagent:latest` image. 
    ```sh
-   docker ps
+   arctl deployments list
    ```
    
    Example output: 
    ```console
-   CONTAINER ID   IMAGE                    COMMAND                  CREATED              STATUS                  PORTS                                                                                                                                                                                                                                                                                                                                                                                                                                 NAMES
-   816ad44cba11   ghcr.io/myagent:latest   "kagent-adk run --ho…"   About a minute ago   Up About a minute       0.0.0.0:40529->40529/tcp, [::]:40529->40529/tcp                                                                                            
+   ID         NAME      VERSION   TYPE    PROVIDER   STATUS     AGE
+   e817f070   myagent   0.1.0     agent   local      deployed   5s
    ```
 
 {{% /tab %}}

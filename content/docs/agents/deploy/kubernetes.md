@@ -54,12 +54,13 @@ If you plan to deploy your agent to a Kubernetes cluster in a cloud provider env
 
 1. Deploy the agent to your cluster. 
    ```sh
-   arctl agent deploy myagent --runtime kubernetes --namespace default
+   arctl deployments create myagent --type agent --provider-id kubernetes-default --namespace default
    ```
 
    Example output: 
    ```console
-   Agent 'myagent' version 'latest' deployed to kubernetes runtime in namespace 'default'
+   Waiting for agent 'myagent' to become ready...
+   Agent 'myagent' version 'latest' deployed to providerId=kubernetes-default in namespace 'default'
    ```
 
 2. **Local test setups only**: Revert the changes that you previously made to your kubeconfig file. 

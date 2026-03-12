@@ -32,7 +32,7 @@ Local deployments spin up Docker containers on your local machine from images th
 
 2. Deploy the MCP server to your local environment. The following command spins up a Docker container from the `user/my-mcp-server` artifact reference that is published in agentregistry.
    ```sh
-   arctl mcp deploy user/my-mcp-server --runtime local --version 0.1.0
+   arctl deployments create user/my-mcp-server --type mcp --version 0.1.0
    ```
 
    Example output: 
