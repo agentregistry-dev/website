@@ -104,7 +104,7 @@ The agent can then load and use the skills from the `/skills` folder at runtime.
 When you deploy an agent that references skills to Kubernetes, agentregistry resolves the skills and adds them to the Agent custom resource (CR). The kagent operator then handles pulling the skills into the agent pod.
 
 ```sh
-arctl agent deploy myagent --provider-id kubernetes-default
+arctl deployments create myagent --type agent --provider-id kubernetes-default
 ```
 
 During deployment, arctl:
