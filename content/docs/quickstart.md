@@ -48,7 +48,7 @@ Want to learn more about agentregistry? Check out the [About](/docs/about/) sect
 3. [Open the agentregistry UI](http://localhost:12121/) in your browser. The UI is automatically exposed on port 12121 on your local machine when you start the agentregistry daemon. 
 
    {{< reuse-image src="img/ar-local.png" width="800px" >}}
-   {{< reuse-image-dark srcDark="img/ar-local.png" width="800px" >}}
+   {{< reuse-image-dark srcDark="img/ar-local-dark.png" width="800px" >}}
 
 ## Next
 

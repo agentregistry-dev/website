@@ -27,7 +27,7 @@ For testing purposes, the instructions in this guide assume that you do not want
 
 1. If you have not done so yet, build the MCP server image on your local machine. 
    ```sh
-   arctl mcp build my-mcp-server
+   arctl mcp build my-mcp-server --image my-mcp-server  
    ```
 
    Example output: 
@@ -51,7 +51,9 @@ For testing purposes, the instructions in this guide assume that you do not want
 
 2. Publish the image to agentregistry. The following command builds and tags the MCP server image as `docker.io/user/my-mcp-server:0.1.0t` and creates a catalog entry for the server in agentregistry. The catalog entry assumes that the image is located in the `docker.io/user` image registry. Note that `docker.io/user` is a dummy container registry address that is used for testing purposes only. 
    ```sh
-   arctl mcp publish my-mcp-server --docker-url docker.io/user
+   arctl mcp publish my-mcp-server \
+    --type oci \
+    --package-id my-mcp-server
    ```
 
    {{< callout type="tip" >}}
@@ -85,13 +87,13 @@ For testing purposes, the instructions in this guide assume that you do not want
 
    Example output:
    ```
-   NAME                VERSION   TYPE   PUBLISHED   DEPLOYED   UPDATED
-   user/my-mcp-server  0.1.0     oci    True        False      7s
+   NAME                 VERSION   TYPE   DEPLOYED   UPDATED
+   user/my-mcp-server   0.1.0     oci    False      37s
    ```
 
 3. Optional: Open the [agentregistry UI](http://localhost:12121) and go to the **Servers** view. Verify that you can see your MCP server image. 
    {{< reuse-image src="img/ar-list-server.png" >}}
-   {{< reuse-image-dark srcDark="img/ar-list-server.png" >}}
+   {{< reuse-image-dark srcDark="img/ar-list-server-dark.png" >}}
 
 <!--
 ## Next
@@ -102,8 +104,8 @@ Now that you published the MCP server image, you can [deploy the server to your 
 
 ## Cleanup
 
-To unpublish an image from agentregistry, use the `arctl mcp unpublish` command. 
+To unpublish an image from agentregistry, use the `arctl mcp delete` command. 
 
 ```sh
-arctl mcp unpublish user/my-mcp-server --version 0.1.0 
+arctl mcp delete user/my-mcp-server --version 0.1.0 
 ```

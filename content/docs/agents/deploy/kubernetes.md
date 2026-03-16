@@ -49,8 +49,6 @@ If you plan to deploy your agent to a Kubernetes cluster in a cloud provider env
 
 ## Deploy the agent {#deploy}
 
-{{< tabs items="CLI, UI" >}}
-{{% tab %}}
 
 1. Deploy the agent to your cluster. 
    ```sh
@@ -76,8 +74,7 @@ If you plan to deploy your agent to a Kubernetes cluster in a cloud provider env
    myagent-latest-687c4c88b9-xwjzx   1/1     Running   0          10s
    ``` 
 
-{{% /tab %}}
-{{% tab %}}
+<!-- UI INSTRUCTIONS
 
 1. [Open the agentregistry UI](http://localhost:12121). 
 2. Navigate to the **Published** view. Find the agent image that you want to deploy and click **Deploy**. 
@@ -102,8 +99,7 @@ If you plan to deploy your agent to a Kubernetes cluster in a cloud provider env
    {{< reuse-image src="img/ar-deploy-agent-verify.png"  >}}
    {{< reuse-image-dark srcDark="img/ar-deploy-agent-verify.png" >}}
    
-{{% /tab %}}
-{{< /tabs >}}
+-->
 
 ## Chat with the agent
 

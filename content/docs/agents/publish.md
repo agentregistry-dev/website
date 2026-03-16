@@ -77,7 +77,9 @@ For testing purposes, the instructions in this guide assume that you do not want
 
 5. Optional: Open the [agentregistry UI](http://localhost:12121) and go to the **Agents** view. Verify that you can see your agent image reference. 
    {{< reuse-image src="img/ar-list-agent.png" >}}
-   {{< reuse-image-dark srcDark="img/ar-list-agent.png" >}}
+   {{< reuse-image-dark srcDark="img/ar-list-agent-dark.png" >}}
+
+   You can also select the agent to view the agent details, such as the agent YAML definition and image tag. 
 
 ## Next
 
@@ -86,8 +88,8 @@ Now that you published the agent image, you can [deploy the agent to your enviro
 
 ## Cleanup
 
-To unpublish an agent image from agentregistry, use the `arctl agent unpublish` command. 
+To remove an agent image from agentregistry, use the `arctl agent delete` command. 
 
 ```sh
-arctl agent unpublish myagent
+arctl agent delete myagent --version latest
 ```

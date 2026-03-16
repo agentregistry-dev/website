@@ -135,7 +135,7 @@ To preview the registry entry without creating it, use the `--dry-run` flag.
 
 2. Optional: Open the [agentregistry UI](http://localhost:12121) and go to the **Skills** view. Verify that you can see your skill.
    {{< reuse-image src="img/ar-publish-skill.png" >}}
-   {{< reuse-image-dark srcDark="img/ar-publish-skill.png" >}}
+   {{< reuse-image-dark srcDark="img/ar-publish-skill-dark.png" >}}
 
 ## Next steps
 
