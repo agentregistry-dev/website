@@ -6,6 +6,7 @@ title: agentregistry
 params:
   theme:
     default: dark
+    displayToggle: true
   
   navbar:
     displayTitle: false
@@ -64,6 +65,10 @@ menu:
       url: https://github.com/agentregistry-dev/agentregistry
       params:
         icon: github
+    - name: Theme
+      weight: 11
+      params:
+        type: theme-toggle
 
 # Module imports
 module:
