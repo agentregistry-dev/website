@@ -11,19 +11,21 @@ Initialize a new agentic skill project.
 arctl skill init [skill-name] [flags]
 ```
 
-Example: 
+Examples:
 ```sh
 arctl skill init my-skill
 arctl skill init my-skill --empty --force
+arctl skill init my-skill --output-dir ./skills
 ```
 
 ## Command-specific flags
 
 ```sh
---empty: Create an empty skill project
---force: Overwrite existing directory
---no-git: Skip git initialization
---verbose: Enable verbose output during initialization
+--empty               Create an empty skill project
+--force               Overwrite existing directory
+--no-git              Skip git initialization
+--output-dir string   Output directory for the skill project (default: current directory under the skill name)
+--verbose             Enable verbose output during initialization
 ```
 
 ## Global flags

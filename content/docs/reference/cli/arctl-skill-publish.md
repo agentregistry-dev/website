@@ -3,13 +3,13 @@ title: arctl skill publish
 weight: 10
 ---
 
-Publish a skill to agentregistry.
+Publish a skill to the registry.
 
 This command supports multiple modes:
 
-1. **From a local skill folder** (with `SKILL.md`): Reads metadata from the local file and publishes with a GitHub repository reference or a pre-built Docker image reference.
-2. **Direct registration with GitHub** (without `SKILL.md`): Registers a skill by name by using `--github` and `--version` flags.
-3. **Direct registration with Docker** (without `SKILL.md`): Registers a skill by name by using `--docker-image` and `--version` flags.
+1. **From a local skill folder** (with `SKILL.md`): Reads metadata from the local file and publishes with a Git repository reference or a pre-built Docker image reference.
+2. **Direct registration with Git** (without `SKILL.md`): Registers a skill by name using `--git` and `--version` flags.
+3. **Direct registration with Docker** (without `SKILL.md`): Registers a skill by name using `--docker-image` and `--version` flags.
 
 ## Usage
 
@@ -19,15 +19,15 @@ arctl skill publish <skill-name|skill-folder-path> [flags]
 
 Examples:
 ```sh
-# Publish from a local folder with a GitHub repository reference
-arctl skill publish ./my-skill --github https://github.com/myorg/repo --version 1.0.0
+# Publish from a local folder with a Git repository reference
+arctl skill publish ./my-skill --git https://github.com/myorg/repo --version 1.0.0
 
 # Publish from a local folder with a pre-built Docker image
 arctl skill publish ./my-skill --docker-image docker.io/myorg/my-skill:v1.0.0 --version 1.0.0
 
-# Register directly from a GitHub repository (no local files needed)
+# Register directly from a Git repository (no local files needed)
 arctl skill publish my-skill \
-  --github https://github.com/myorg/repo/tree/main/skills/my-skill \
+  --git https://github.com/myorg/repo/tree/main/skills/my-skill \
   --version 1.0.0 \
   --description "My remote skill"
 
@@ -38,22 +38,21 @@ arctl skill publish my-skill \
   --description "My Docker skill"
 
 # Preview what will be published without publishing the skill
-arctl skill publish ./my-skill --github https://github.com/myorg/repo --version 1.0.0 --dry-run
+arctl skill publish ./my-skill --git https://github.com/myorg/repo --version 1.0.0 --dry-run
 ```
 
 ## Command-specific flags
 
 ```sh
---github string        GitHub repository URL.
-                       Supports tree URLs: https://github.com/owner/repo/tree/branch/path
---docker-image string  Pre-built Docker image reference (e.g., docker.io/myorg/my-skill:v1.0.0)
---version string       Version to publish (required)
---description string   Skill description (used with direct registration, i.e. without SKILL.md)
---dry-run              Show what would be done without actually doing it
+--description string    Skill description (optional, used with direct registration)
+--docker-image string   Docker image URL (e.g., docker.io/myorg/my-skill:v1.0.0)
+--dry-run               Show what would be done without actually doing it
+--git string            Git repository URL. Supports tree URLs: https://github.com/owner/repo/tree/branch/path
+--version string        Version to publish (required for --git or --docker-image)
 ```
 
 {{< callout type="info" >}}
-The `--github` and `--docker-image` flags are mutually exclusive. One of them is required.
+The `--git` and `--docker-image` flags are mutually exclusive. One of them is required.
 {{< /callout >}}
 
 {{< callout type="tip" >}}

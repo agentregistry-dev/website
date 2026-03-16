@@ -11,17 +11,19 @@ Displays the version of `arctl`.
 arctl version [flags]
 ```
 
-Example: 
+Examples:
 ```sh
 arctl version
+arctl version --json
 ```
 
 ## Command-specific flags
 
-No command-specific flags.
+```sh
+--json   Output version information in JSON format
+```
 
 ## Global flags
 ```sh
--v, --verbose: Enable verbose output.
 -h, --help: Display help information for the command.
 ```

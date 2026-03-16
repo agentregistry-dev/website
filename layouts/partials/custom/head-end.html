@@ -35,9 +35,7 @@ header nav {
 }
 </style>
 
-{{ if .IsHome }}
-  {{ with (templates.Defer (dict "key" "global")) }}
-    {{ partial "css.html" . }}
-  {{ end }}
+{{ with (templates.Defer (dict "key" "global")) }}
+  {{ partial "css.html" . }}
 {{ end }}
 
