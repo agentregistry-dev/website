@@ -63,7 +63,12 @@ Add a published prompt to an agent so that it is used as the agent's instruction
        registryPromptVersion: latest
    ```
 
-4. Run the agent. When you run the agent with `arctl agent run`, the following steps are execute:
+4. Re-build the agent image. 
+   ```sh
+   arctl agent build myagent
+   ```
+
+5. Run the agent. When you run the agent with `arctl agent run`, the following steps are execute:
 
    1. The CLI reads the `prompts` section from the `agent.yaml` file.
    2. For each prompt reference, the CLI fetches the prompt content from the registry's REST API.
@@ -79,7 +84,7 @@ Add a published prompt to an agent so that it is used as the agent's instruction
    If no prompts are resolved (for example, the registry is unreachable or no prompts are configured), the agent falls back to the default instruction defined in the `agent.py` file.
    {{< /callout >}}
 
-5. Ask the agent what it checks during a code review. Verify that you get back the steps that you defined in your prompt. 
+6. Ask the agent what it checks during a code review. Verify that you get back the steps that you defined in your prompt. 
    
    {{< reuse-image src="img/ar-agent-prompt-verify.png" >}}
    {{< reuse-image-dark srcDark="img/ar-agent-prompt-verify.png" >}}

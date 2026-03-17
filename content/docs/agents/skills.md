@@ -34,7 +34,9 @@ Add a skill that was previously published to agentregistry by referencing the sk
    ```sh
    arctl agent add-skill my-skill \
      --project-dir myagent \
-     --registry-skill-name hello-world-template
+     --registry-skill-name hello-world-template \
+     --registry-skill-version 1.0.0 \
+     --image 
    ```
 
    {{< callout type="tip">}}
@@ -43,7 +45,8 @@ Add a skill that was previously published to agentregistry by referencing the sk
    ```sh
    arctl agent add-skill my-skill \
      --project-dir myagent \
-     --image docker.io/org/my-skill:1.0.0
+     --image docker.io/user/hello-world-template:v1.0.0
+
    ```
    {{< /callout >}}
 
@@ -80,7 +83,12 @@ Add a skill that was previously published to agentregistry by referencing the sk
          registrySkillName: hello-world-template
    ```
 
-4. Run the agent. When you run an agent locally, agentregistry resolves the skills from the registry and makes them available to the agent. Wait for the agent dialog to open. 
+4. Re-build the agent image. 
+   ```sh
+   arctl agent build myagent
+   ```
+
+5. Run the agent. When you run an agent locally, agentregistry resolves the skills from the registry and makes them available to the agent. Wait for the agent dialog to open. 
 
    ```sh
    arctl agent run myagent
@@ -93,7 +101,7 @@ Add a skill that was previously published to agentregistry by referencing the sk
    3. Places all skill files in a temporary directory and sets the `KAGENT_SKILLS_FOLDER` environment variable to point to it.
    4. Mounts the skills directory into the agent container at `/skills` (read-only). The agent can then load and use the skills from the `/skills` folder at runtime.
 
-5. Ask the agent to describe what skills it has access to. Verify that you see the `hello-world-template` tool. 
+6. Ask the agent to describe what skills it has access to. Verify that you see the `hello-world-template` tool. 
    {{< reuse-image src="img/ar-agent-skill-verify.png" >}}
    {{< reuse-image-dark srcDark="img/ar-agent-skill-verify.png" >}}
    

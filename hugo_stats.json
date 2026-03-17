@@ -676,6 +676,7 @@
       "deploy",
       "deploy-the-agent",
       "deploy-the-agent-with-skills-to-kubernetes",
+      "deploy-the-mcp-server",
       "deployed-view",
       "deployment-commands",
       "discovery",

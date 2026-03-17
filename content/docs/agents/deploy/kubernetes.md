@@ -9,7 +9,7 @@ Deploy your agent to a Kubernetes cluster.
 ## Before you begin
 
 1. Follow the [Get started](/docs/quickstart/) guide to set up agentregistry and start the agentregistry daemon. 
-2. [Publish an agent](/docs/agents/publish/).
+2. [Publish an agent](/docs/agents/publish/). 
 3. Create a Kubernetes cluster. For example, you can use the following command to create a `kind` cluster. 
    ```sh
    kind create cluster --name agentregistry
@@ -20,39 +20,21 @@ Deploy your agent to a Kubernetes cluster.
    ```
 5. Follow the [Quickstart](https://kagent.dev/docs/kagent/getting-started/quickstart) in the kagent OSS documentation. Agentregistry uses kagent for bootstrapping during an agent deployment. 
 
-
-## Local kind and minikube setups
-
-If you want to test this capability in a local Kubernetes environment, such as `kind` or `minikube`, you must update the server address in your kubeconfig file to point to the Docker host `host.docker.internal` instead of `127.0.0.1` or `localhost`. Because agentregistry runs by using Docker compose, this change is necessary so that agentregistry can reach the kind service on your host machine.  
-
-{{< callout type="info" >}}
-If you plan to deploy your agent to a Kubernetes cluster in a cloud provider environment, such as Google Cloud Platform, you can skip this step and continue with [Deploy the agent](#deploy). 
-{{< /callout >}}
-
-1. Load the `myagent` image to your kind or minikube cluster. The following command assumes that you. use kind and that your cluster is named `agentregistry`. 
+6. **Local setups only**: If you built the docker images locally without pushing them to a registry, load the agent and MCP server images to your kind or minikube cluster. The following command assumes that you use kind and that your cluster is named agentregistry. 
    ```sh
    kind load docker-image ghcr.io/myagent:latest --name agentregistry
+   kind load docker-image my-mcp-server:latest --name agentregistry 
    ```
 
-2. Edit the kubeconfig file on your local machine. Typically, this file is stored in the `~/.kube` folder and named `config`. However, your kubeconfig file might be named `config.docker` or similar. Adjust the command to point to your kubeconfig file location.
-   ```sh
-   nano ~/.kube/config
-   ```
-
-3. Find the kubeconfig entry for the cluster that you are interested in. For example, if you used `kind` and named your cluster `agentregistry`, look for a `kind-agentregistry` entry. Then update the server address from `127.0.0.1` to `host.docker.internal` and replace the `certificate-authority-data` section with `insecure-skip-tls-verify: true` as shown in the following snippet. Make sure to keep the port that your kubeconfig pointed to before. 
-   ```yaml
-   - cluster:
-       insecure-skip-tls-verify: true
-       server: https://host.docker.internal:51595
-    name: kind-agentregistry
-   ```
 
 ## Deploy the agent {#deploy}
 
-
 1. Deploy the agent to your cluster. 
    ```sh
-   arctl deployments create myagent --type agent --provider-id kubernetes-default --namespace default
+   arctl deployments create myagent \
+    --type agent \
+    --provider-id kubernetes-default \
+    --namespace default
    ```
 
    Example output: 
@@ -61,11 +43,13 @@ If you plan to deploy your agent to a Kubernetes cluster in a cloud provider env
    Agent 'myagent' version 'latest' deployed to providerId=kubernetes-default in namespace 'default'
    ```
 
-2. **Local test setups only**: Revert the changes that you previously made to your kubeconfig file. 
+   {{< callout type="info" >}}
+   If the deployment fails, a deployment entry is still created in the database and set to failed. You can view failed deployments by using the `arctl deployments list` command. Note that you cannot re-deploy a failed deployment to fix it. Instead, remove the failed deployment with `arctl deployments delete <deployment-ID>` and then re-run the `arctl deployments create` command. 
+   {{< /callout >}}
 
-3. Verify that the agent is up and running. 
+2. Verify that the agent is up and running. 
    ```sh
-   kubectl get pod -l "app.kubernetes.io/name=myagent-latest"
+   kubectl get pods | grep myagent
    ```
 
    Example output: 
@@ -73,6 +57,12 @@ If you plan to deploy your agent to a Kubernetes cluster in a cloud provider env
    NAME                              READY   STATUS    RESTARTS   AGE
    myagent-latest-687c4c88b9-xwjzx   1/1     Running   0          10s
    ``` 
+
+3. Optional: Verify the Agent and, if applicable, the MCPServer resources that were deployed to your cluster. 
+   ```sh
+   kubectl get agent -o yaml
+   kubectl get mcpserver -o yaml
+   ```
 
 <!-- UI INSTRUCTIONS
 
@@ -98,50 +88,29 @@ If you plan to deploy your agent to a Kubernetes cluster in a cloud provider env
    
 -->
 
-## Chat with the agent
-
-## Deploy the agent with skills to Kubernetes
-
-When you deploy an agent that references skills to Kubernetes, agentregistry resolves the skills and adds them to the Agent custom resource (CR). The kagent operator then handles pulling the skills into the agent pod.
-
-```sh
-arctl deployments create myagent --type agent --provider-id kubernetes-default
-```
-
-During deployment, arctl:
-
-1. Resolves each skill from the registry to determine its source (Docker image or GitHub repository).
-2. Populates the `spec.skills` field on the Agent CR:
-   - Docker/OCI images are added to `spec.skills.refs`.
-   - GitHub repositories are added to `spec.skills.gitRefs` with the repository URL, branch, and subdirectory path.
-3. The kagent operator pulls the skill contents into the agent pod and makes them available under `/skills`.
-
-Example Agent CR with skills:
-```yaml
-apiVersion: kagent.dev/v1alpha2
-kind: Agent
-metadata:
-  name: myagent
-spec:
-  type: BYO
-  byo:
-    deployment:
-      image: ghcr.io/myagent:latest
-  skills:
-    refs:
-      - docker.io/org/my-docker-skill:1.0.0
-    gitRefs:
-      - url: https://github.com/org/skills.git
-        ref: main
-        path: skills/my-skill
-        name: my-skill
-```
-
-
 ## Cleanup
 
-1. Open the agentregistry UI and navigate to the **Deployed** view. 
-2. Find the agent deployment that you want to remove. Then, click **Remove**. 
-   {{< reuse-image src="img/ar-agent-deploy-verify.png" >}}
-   {{< reuse-image-dark srcDark="img/ar-agent-deploy-verify-dark.png" >}}
+You can remove a deployment from the UI or CLI. 
+
+{{< tabs items="UI,CLI" >}}
+{{% tab %}}
+
+1. [Open the agentregistry UI](http://localhost:12121) and go to the **Deployed** view. 
+2. Find the MCP server deployment that you want to remove and click the trash icon. 
+
+{{% /tab %}}
+{{% tab %}}
+
+1. List the deployments in your environment and find the one that you want to delete.
+   ```sh
+   arctl deployments list
+   ```
+
+2. Remove the deployment. 
+   ```sh
+   arctl deployments delete <deployment-ID> 
+   ```
+
+{{% /tab %}}
+{{< /tabs >}}
 
