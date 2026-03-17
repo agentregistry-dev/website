@@ -18,25 +18,37 @@ Follow the [Get started](/docs/quickstart/) guide to set up agentregistry and st
 
 ## Create a prompt
 
-1. Write your prompt content to a text file.
+Write your prompt content to a text file.
 
-   ```sh
-   cat > code-review-prompt.txt << 'EOF'
-   You are an expert code reviewer. When reviewing code:
-   1. Check for bugs and logic errors
-   2. Identify security vulnerabilities
-   3. Suggest performance improvements
-   4. Ensure code follows best practices and is readable
-   5. Be constructive and specific in your feedback
-   EOF
-   ```
+```sh
+cat > code-review-prompt.txt << 'EOF'
+You are an expert code reviewer. When reviewing code:
+1. Check for bugs and logic errors
+2. Identify security vulnerabilities
+3. Suggest performance improvements
+4. Ensure code follows best practices and is readable
+5. Be constructive and specific in your feedback
+EOF
+```
 
 ## Publish the prompt
 
-1. Publish the prompt to agentregistry. The `--name` and `--version` flags are required when publishing from a text file.
+You have several options to publish a prompt. 
 
+### Publish via CLI flags
+
+1. Publish the prompt in agentregistry. 
+   {{< tabs items="CLI flags,Prompt template" >}}
+   {{% tab %}}
+
+   Use the `arctl` CLI to define the details of your prompt, such as the name and version. 
+
+   Publish the prompt to agentregistry. The `--name` and `--version` flags are required when publishing from a text file.
    ```sh
-   arctl prompt publish code-review-prompt.txt --name code-review --version 1.0.0 --description "System prompt for code review agent"
+   arctl prompt publish code-review-prompt.txt \
+     --name code-review \
+     --version 1.0.0 \
+     --description "System prompt for code review agent"
    ```
 
    Example output:
@@ -45,9 +57,35 @@ Follow the [Get started](/docs/quickstart/) guide to set up agentregistry and st
    ✓ Prompt 'code-review' version 1.0.0 published successfully!
    ```
 
-   {{< callout type="tip" >}}
-   Use `--dry-run` to preview the prompt payload without publishing. For more information, see the [arctl prompt publish](/docs/reference/cli/arctl-prompt-publish/) command.
-   {{< /callout >}}
+   > [!NOTE]
+   > Use `--dry-run` to preview the prompt payload without publishing. For more information, see the [arctl prompt publish](/docs/reference/cli/arctl-prompt-publish/) command.
+
+   {{% /tab %}}
+   {{% tab %}}
+
+   For structured prompt definitions, you can use a YAML file. This lets you set all fields in one place instead of using CLI flags.
+
+   1. Create a YAML file with your prompt definition.
+
+      ```sh
+      cat > my-prompt.yaml << 'EOF'
+      name: code-review
+      description: System prompt for code review agent
+      version: 2.0.0
+      content: |
+        You are a senior code reviewer specializing in production systems.
+        Focus on: correctness, security, performance, and maintainability.
+        Always provide specific line references and actionable suggestions.
+      EOF
+      ```
+
+   2. Publish the YAML file directly. Name and version are read from the file.
+      ```sh
+      arctl prompt publish my-prompt.yaml
+      ```
+
+   {{% /tab %}}
+   {{< /tabs >}}
 
 2. Verify the prompt was published.
 
@@ -56,7 +94,7 @@ Follow the [Get started](/docs/quickstart/) guide to set up agentregistry and st
    ```
 
    Example output:
-   ```
+   ```console
    NAME          VERSION   DESCRIPTION
    code-review   1.0.0     System prompt for code review agent
    ```
@@ -68,7 +106,7 @@ Follow the [Get started](/docs/quickstart/) guide to set up agentregistry and st
    ```
 
    Example output:
-   ```
+   ```console
    PROPERTY      VALUE
    Name          code-review
    Description   System prompt for code review agent
@@ -82,37 +120,11 @@ Follow the [Get started](/docs/quickstart/) guide to set up agentregistry and st
    ...
    ```
 
-## Publish from a YAML file
 
-For structured prompt definitions, you can use a YAML file. This lets you set all fields in one place instead of using CLI flags.
+## Next
 
-1. Create a YAML file with your prompt definition.
+[Add your prompt to an agent](/docs/agents/prompt). 
 
-   ```sh
-   cat > my-prompt.yaml << 'EOF'
-   name: code-review
-   description: System prompt for code review agent
-   version: 2.0.0
-   content: |
-     You are a senior code reviewer specializing in production systems.
-     Focus on: correctness, security, performance, and maintainability.
-     Always provide specific line references and actionable suggestions.
-   EOF
-   ```
-
-2. Publish the YAML file directly. Name and version are read from the file.
-
-   ```sh
-   arctl prompt publish my-prompt.yaml
-   ```
-
-## Publish a new version
-
-To update a prompt, publish a new version. The previous versions are preserved.
-
-```sh
-arctl prompt publish updated-prompt.txt --name code-review --version 2.0.0 --description "Updated code review prompt"
-```
 
 ## Cleanup
 

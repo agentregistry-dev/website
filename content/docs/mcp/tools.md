@@ -54,7 +54,7 @@ Add tools to your MCP server.
 
 5. Re-build the MCP server image. 
    ```sh
-   arctl mcp build my-mcp-server
+   arctl mcp build my-mcp-server --image my-mcp-server  
    ```
 
 6. Run the MCP server on your local machine and note the MCP server URL that the server is exposed on. 

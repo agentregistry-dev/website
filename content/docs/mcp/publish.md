@@ -30,6 +30,10 @@ For testing purposes, the instructions in this guide assume that you do not want
    arctl mcp build my-mcp-server --image my-mcp-server  
    ```
 
+   {{< callout type="tip" >}}
+   To also use agentregistry to push the image to your container registry, include the `--push` option and set the `--docker-url` to your container registry address. You can also set the platform, for which you want to build the image, such as `linux/amd64` by using the `--platform` option. For more information, see the [arctl mcp publish](/docs/reference/cli/arctl-mcp-publish/) command. Make sure that you are logged in to your container registry before you run the command.
+   {{< /callout >}}
+
    Example output: 
    ```console
    Building Docker image for python project...
@@ -49,35 +53,18 @@ For testing purposes, the instructions in this guide assume that you do not want
    ✓ Successfully built Docker image: my-mcp-server:0.1.0
    ```
 
-2. Publish the image to agentregistry. The following command builds and tags the MCP server image as `docker.io/user/my-mcp-server:0.1.0t` and creates a catalog entry for the server in agentregistry. The catalog entry assumes that the image is located in the `docker.io/user` image registry. Note that `docker.io/user` is a dummy container registry address that is used for testing purposes only. 
+2. Publish the image to agentregistry. The following command builds and tags the MCP server image as `docker.io/user/my-mcp-server:0.1.0` and creates a catalog entry for the server in agentregistry. The catalog entry assumes that the image is located in the `docker.io/user` image registry. Note that `docker.io/user` is a dummy container registry address that is used for testing purposes only. 
    ```sh
    arctl mcp publish my-mcp-server \
     --type oci \
     --package-id my-mcp-server
    ```
 
-   {{< callout type="tip" >}}
-   To also use agentregistry to push the image to your container registry, include the `--push` option and set the `--docker-url` to your container registry address. You can also set the platform, for which you want to build the image, such as `linux/amd64` by using the `--platform` option. For more information, see the [arctl mcp publish](/docs/reference/cli/arctl-mcp-publish/) command. Make sure that you are logged in to your container registry before you run the command.
-   {{< /callout >}}
-
-
    Example output: 
    ```console
-   Publishing MCP server from: /Users/user/Downloads/new-server
-   Processing mcp server: new-server
-   Building Docker image for python project...
-   #0 building with "desktop-linux" instance using docker driver
-
-   #1 [internal] load build definition from Dockerfile
-
-   ...
-   #23 exporting manifest list sha256:33f5c3220ead89daa14abfda4da60d0117cb7d71f11f6b7e3e8946908d3bab44 done
-   #23 naming to docker.io/user/new-server:0.1.0
-   #23 naming to docker.io/user/new-server:0.1.0 done
-   #23 unpacking to docker.io/user/new-server:0.1.0 0.0s done
-   #23 DONE 0.1s
-   ✓ Successfully built Docker image: docker.io/user/new-server:0.1.0
-   ✓ MCP Server publishing complete!
+   Author not specified, defaulting to 'user'
+   Publishing MCP server: user/my-mcp-server (v0.1.0)
+   ✓ Published: user/my-mcp-server (v0.1.0)
    ```
 
 2. List the MCP server image references in your registry. Verify that you see the `my-mcp-server` MCP server image that you just published. 
@@ -104,8 +91,12 @@ Now that you published the MCP server image, you can [deploy the server to your 
 
 ## Cleanup
 
-To unpublish an image from agentregistry, use the `arctl mcp delete` command. 
+To delete an MCP server from agentregistry, use the `arctl mcp delete` command. 
 
 ```sh
 arctl mcp delete user/my-mcp-server --version 0.1.0 
 ```
+
+## Next
+
+[Add your MCP server to an agent](/docs/agents/mcp/). 

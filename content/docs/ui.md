@@ -55,18 +55,9 @@ The **Agents** view shows all discovered agents in your environment.
 
 You can optionally drill into a skill to see its description, technical details, and raw data. 
 
-### Published view
-
-The **Published** view includes all AI artifacts that you published to agentregistry. Only published artifacts can be shared among teams or deployed into environments. 
-
-{{< reuse-image src="img/ar-published.png" >}}
-{{< reuse-image-dark srcDark="img/ar-published.png" >}}
-
-From this view, you can decide to unpublish AI artifacts or to deploy them into a local or Kubernetes environment. 
-
 ### Deployed view
 
 The **Deployed** view includes all AI artifacts that you deployed to an environment. You can optionally use the UI to remove the deployment from your environment. 
 
-{{< reuse-image src="img/ar-deploy-agent-verify.png" >}}
-{{< reuse-image-dark srcDark="img/ar-deploy-agent-verify.png" >}}
+{{< reuse-image src="img/ar-agent-deploy-verify.png" >}}
+{{< reuse-image-dark srcDark="img/ar-agent-deploy-verify-dark.png" >}}

@@ -705,15 +705,17 @@
       "option-4-direct-registration-with-docker-image-no-local-files-needed",
       "prompt-commands",
       "publish-a-new-version",
+      "publish-from-a-prompt-definition",
       "publish-from-a-yaml-file",
+      "publish-from-file",
       "publish-the-agent-image",
       "publish-the-prompt",
       "publish-the-server",
       "publish-the-skill",
-      "published-view",
+      "publish-via-cli-flags",
+      "publish-via-prompt-definition",
       "pull-a-skill",
       "run-the-agent",
-      "run-the-agent-with-skills",
       "run-the-mcp-server",
       "servers",
       "setup",
@@ -724,7 +726,6 @@
       "tabs-panel-1",
       "the-skillmd-file",
       "usage",
-      "verify-the-agent-definition",
       "verify-the-published-skill"
     ]
   }

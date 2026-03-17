@@ -35,8 +35,9 @@ arctl skill build ./myskill --image docker.io/user/hello-world-template:v1.0.0 -
 ```
 
 {{< callout type="tip" >}}
-You can set the target platform with `--platform` (e.g., `linux/amd64`). Make sure that you are logged in to your container registry before using `--push`.
+To also use agentregistry to push the image to your container registry, include the `--push` option. You can also set the platform, for which you want to build the image, such as `linux/amd64` by using the `--platform` option. For more information, see the [arctl mcp build](/docs/reference/cli/arctl-mcp-build/) command. Make sure that you are logged in to your container registry before you run the command.
 {{< /callout >}}
+
 
 ## Publish the skill
 
@@ -129,8 +130,8 @@ To preview the registry entry without creating it, use the `--dry-run` flag.
 
    Example output:
    ```
-   NAME                   TITLE   VERSION   CATEGORY   PUBLISHED   WEBSITE
-   hello-world-template           1.0.0     <none>     True
+   NAME                   TITLE   VERSION   TYPE     SOURCE
+   hello-world-template           1.0.0     docker   docker.io/user/hello-world-template:v1.0.0
    ```
 
 2. Optional: Open the [agentregistry UI](http://localhost:12121) and go to the **Skills** view. Verify that you can see your skill.
@@ -139,11 +140,12 @@ To preview the registry entry without creating it, use the `--dry-run` flag.
 
 ## Next steps
 
+- [Add a skill to your agent](/docs/agents/skills/).
 - [Pull a skill](/docs/skills/pull/) from the registry to use it locally.
 
 ## Cleanup
 
-To unpublish a skill from agentregistry, use the `arctl skill delete` command.
+To delete a skill from agentregistry, use the `arctl skill delete` command.
 
 ```sh
 arctl skill delete hello-world-template --version 1.0.0

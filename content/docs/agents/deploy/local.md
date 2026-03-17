@@ -22,10 +22,15 @@ Local deployments spin up Docker containers on your local machine from images th
 
 2. Deploy the agent to your local environment. The following command spins up a Docker container by using Docker compose. 
    ```sh
-   arctl agent deploy myagent
+   arctl deployments create myagent --type agent
    ```
 
-3. List the containers in your environment. Verify that you see a container with the `ghcr.io/myagent:latest` image. 
+   Example output: 
+   ```console
+   Agent 'myagent' version 'latest' deployed to local provider (providerId=local)
+   ```
+
+3. Verify that the deployment was created. 
    ```sh
    arctl deployments list
    ```
@@ -33,13 +38,13 @@ Local deployments spin up Docker containers on your local machine from images th
    Example output: 
    ```console
    ID         NAME      VERSION   TYPE    PROVIDER   STATUS     AGE
-   e817f070   myagent   0.1.0     agent   local      deployed   5s
+   be6b09e5   myagent   latest    agent   local      deployed   1m
    ```
 
-4. Optional: [Open the agentregistry UI](http://localhost:12121/deployed/) and go to the **Deployed** view. Verify that you see the deployed agent. 
+4. Optional: [Open the agentregistry UI](http://localhost:12121) and go to the **Deployed** view. Verify that you see the deployed agent. 
    
-   {{< reuse-image src="img/ar-deploy-agent-verify.png"  >}}
-   {{< reuse-image-dark srcDark="img/ar-deploy-agent-verify.png" >}}
+   {{< reuse-image src="img/ar-agent-deploy-verify.png"  >}}
+   {{< reuse-image-dark srcDark="img/ar-agent-deploy-verify-dark.png" >}}
 
 <!-- UI INSTRUCTIONS
 
@@ -73,16 +78,21 @@ You can remove a deployment from the UI or CLI.
 {{< tabs items="UI,CLI" >}}
 {{% tab %}}
 
-1. [Open the agentregistry UI](http://localhost:12121/deployed/). 
+1. [Open the agentregistry UI](http://localhost:12121) and go to the **Deployed** view. 
 2. Find the agent deployment that you want to remove and click the trash icon. 
 
 {{% /tab %}}
 {{% tab %}}
 
-Remove the deployment. 
-```sh
-arctl deployment delete myagent
-```
+1. List the deployments in your environment and find the one that you want to delete.
+   ```sh
+   arctl deployments list
+   ```
+
+2. Remove the deployment. 
+   ```sh
+   arctl deployments delete <deployment-ID> 
+   ```
 
 {{% /tab %}}
 {{< /tabs >}}

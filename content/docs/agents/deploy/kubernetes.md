@@ -78,11 +78,9 @@ If you plan to deploy your agent to a Kubernetes cluster in a cloud provider env
 
 1. [Open the agentregistry UI](http://localhost:12121). 
 2. Navigate to the **Published** view. Find the agent image that you want to deploy and click **Deploy**. 
-   {{< reuse-image src="img/ar-deploy-agent.png" >}}
-   {{< reuse-image-dark srcDark="img/ar-deploy-agent.png" >}}
+
 3. From the **Deployment destination** drop down, select **Kubernetes** and click **Deploy**. 
-   {{< reuse-image src="img/ar-deploy-agent-kube.png" width="300px" >}}
-   {{< reuse-image-dark srcDark="img/ar-deploy-agent-kube.png" width="300px" >}}
+
 
 4. Go to your cluster to check that the agent is deployed. 
    ```sh
@@ -96,8 +94,7 @@ If you plan to deploy your agent to a Kubernetes cluster in a cloud provider env
    ``` 
 
 5. In the agentregistry UI, go to the **Deployed** view and verify that you see your `myagent` deployment. 
-   {{< reuse-image src="img/ar-deploy-agent-verify.png"  >}}
-   {{< reuse-image-dark srcDark="img/ar-deploy-agent-verify.png" >}}
+
    
 -->
 
@@ -110,6 +107,6 @@ If you plan to deploy your agent to a Kubernetes cluster in a cloud provider env
 
 1. Open the agentregistry UI and navigate to the **Deployed** view. 
 2. Find the agent deployment that you want to remove. Then, click **Remove**. 
-   {{< reuse-image src="img/ar-deploy-agent-verify.png"  >}}
-   {{< reuse-image-dark srcDark="img/ar-deploy-agent-verify.png" >}}
+   {{< reuse-image src="img/ar-agent-deploy-verify.png" >}}
+   {{< reuse-image-dark srcDark="img/ar-agent-deploy-verify-dark.png" >}}
 

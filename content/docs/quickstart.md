@@ -57,4 +57,5 @@ With agentregistry up and running, you can explore how to build, publish, and de
 * [**Agents**](/docs/agents/): Explore how to build, run, and publish Docker images for agents. 
 * [**MCP servers**](/docs/mcp/): Create and run MCP tool servers, add tools, and publish them as Docker images in agentregistry. 
 * [**Skills**](/docs/skills/): Build and publish skills that you can add to your agents. 
+* [**Prompts**](/docs/prompts/): Build and publish prompts that you can add to your agents. 
   

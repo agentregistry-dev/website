@@ -1,7 +1,7 @@
 ---
-title: Create a skill
+title: Create
 weight: 10
-description:
+description: Create an agent skill using the built-in skill scaffold. 
 ---
 
 Quickly create an agent skill using the built-in skill scaffold.
