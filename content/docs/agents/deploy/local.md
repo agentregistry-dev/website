@@ -6,6 +6,10 @@ description: Deploy an agent from agentregistry to your local environment.
 
 Deploy an agent from agentregistry to your local environment. 
 
+{{< callout type="info" >}}
+To deploy an agent to a local environment, you must install agentregistry by using Docker as shown in the [Get started](/docs/quickstart/) guide. If you installed agentregistry on Kubernetes, you cannot deploy to local environments. 
+{{< /callout >}}
+
 Local deployments spin up Docker containers on your local machine from images that exist on your machine or that can be pulled from the image location reference that agentregistry points to.
 
 ## Before you begin
@@ -29,6 +33,10 @@ Local deployments spin up Docker containers on your local machine from images th
    ```console
    Agent 'myagent' version 'latest' deployed to local provider (providerId=local)
    ```
+
+   {{< callout type="info" >}}
+   If the deployment fails, a deployment entry is still created in the database and set to failed. You can view failed deployments by using the `arctl deployments list` command. Note that you cannot re-deploy a failed deployment to fix it. Instead, remove the failed deployment with `arctl deployments delete <deployment-ID>` and then re-run the `arctl deployments create` command. 
+   {{< /callout >}}
 
 3. Verify that the deployment was created. 
    ```sh

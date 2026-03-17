@@ -99,4 +99,5 @@ arctl mcp delete user/my-mcp-server --version 0.1.0
 
 ## Next
 
-[Add your MCP server to an agent](/docs/agents/mcp/). 
+- [Deploy your MCP server](/docs/mcp/deploy).
+- [Add your MCP server to an agent](/docs/agents/mcp/). 
