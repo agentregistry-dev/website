@@ -67,6 +67,7 @@ Deploy your agent to a Kubernetes cluster.
    kubectl get mcpserver -o yaml
    ```
 
+<!--
 4. Open the MCP inspector. 
    ```sh
    npx modelcontextprotocol/inspector#0.18.0
@@ -80,7 +81,7 @@ Deploy your agent to a Kubernetes cluster.
 6. Go to the **Tools** tab and verify that you see the newly added `add_number` tool. Try out the tool by entering two integer numbers, such as 5 and 3. Then, click **Run Tool**. Verify that the sum of both numbers is returned. 
    {{< reuse-image src="img/mcp-add-tool.png" >}}
    {{< reuse-image-dark srcDark="img/mcp-add-tool-dark.png" >}}
-
+-->
 
 ## Cleanup
 
