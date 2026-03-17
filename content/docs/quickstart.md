@@ -48,7 +48,7 @@ Want to learn more about agentregistry? Check out the [About](/docs/about/) sect
 3. [Open the agentregistry UI](http://localhost:12121/) in your browser. The UI is automatically exposed on port 12121 on your local machine when you start the agentregistry daemon. 
 
    {{< reuse-image src="img/ar-local.png" width="800px" >}}
-   {{< reuse-image-dark srcDark="img/ar-local.png" width="800px" >}}
+   {{< reuse-image-dark srcDark="img/ar-local-dark.png" width="800px" >}}
 
 ## Next
 
@@ -57,4 +57,5 @@ With agentregistry up and running, you can explore how to build, publish, and de
 * [**Agents**](/docs/agents/): Explore how to build, run, and publish Docker images for agents. 
 * [**MCP servers**](/docs/mcp/): Create and run MCP tool servers, add tools, and publish them as Docker images in agentregistry. 
 * [**Skills**](/docs/skills/): Build and publish skills that you can add to your agents. 
+* [**Prompts**](/docs/prompts/): Build and publish prompts that you can add to your agents. 
   

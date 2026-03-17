@@ -23,12 +23,13 @@ arctl mcp init [command]
 ## Command-specific flags
 
 ```sh
---author string: Author name for the project
---description string: Description for the project
---email string: Author email for the project
---force: Overwrite existing directory
---no-git: Skip git initialization
---non-interactive: Run in non-interactive mode
+--author string        Author name for the project
+--description string   Description for the project
+--email string         Author email for the project
+--force                Overwrite existing directory
+--no-git               Skip git initialization
+--non-interactive      Run in non-interactive mode
+--version string       Version for the project (default: 0.1.0)
 ```
 
 ## Global flags

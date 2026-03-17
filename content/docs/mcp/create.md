@@ -53,32 +53,6 @@ Agentregistry comes with built-in MCP server templates that you can use to quick
    | `src` | A directory that contains the details of the MCP server, such as supported tools and the Python script to bootstrap and run the server.  | 
    | `tests` | A directory that contains generated tests. | 
 
-## Build the image
-
-To run the MCP server in an environment, you need to build the MCP server Docker image. 
-
-```sh
-arctl mcp build my-mcp-server
-```
-
-Example output: 
-```console
-Building Docker image for python project...
-#0 building with "desktop-linux" instance using docker driver
-
-#1 [internal] load build definition from Dockerfile
-#1 transferring dockerfile: 1.84kB 0.0s done
-#1 DONE 0.1s
-
-#2 [internal] load metadata for ghcr.io/astral-sh/uv:latest
-#2 ...
-
-#3 [auth] library/python:pull token for registry-1.docker.io
-...
-#24 unpacking to docker.io/library/my-mcp-server:0.1.0 0.9s done
-#24 DONE 3.1s
-✓ Successfully built Docker image: my-mcp-server:0.1.0
-```
 
 ## Run the MCP server
 

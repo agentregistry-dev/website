@@ -11,7 +11,7 @@ Generate embeddings for existing servers and agents (backfill or refresh).
 arctl embeddings generate [flags]
 ```
 
-Example: 
+Examples:
 ```sh
 arctl embeddings generate --servers --agents --update
 arctl embeddings generate --dry-run
@@ -20,11 +20,13 @@ arctl embeddings generate --dry-run
 ## Command-specific flags
 
 ```sh
---agents: Include agents when generating embeddings (default true)
---batch-size int: Number of server versions processed per batch (default 100)
---dry-run: Print planned changes without calling the embedding provider or writing to the database
---servers: Include MCP servers when generating embeddings (default true)
---update: Regenerate embeddings even when the stored checksum matches
+--agents                   Include agents when generating embeddings (default true)
+--batch-size int           Number of server versions processed per batch (default 100)
+--dry-run                  Print planned changes without calling the embedding provider or writing to the database
+--poll-interval duration   Poll interval when not using streaming (default 2s)
+--servers                  Include MCP servers when generating embeddings (default true)
+--stream                   Use SSE streaming for progress updates (default true)
+--update                   Regenerate embeddings even when the stored checksum matches
 ```
 
 ## Global flags

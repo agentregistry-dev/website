@@ -9,7 +9,7 @@ Pull a published skill from agentregistry and extract its contents to your local
 ## Before you begin
 
 1. Follow the [Get started](/docs/quickstart/) guide to set up agentregistry and start the agentregistry daemon.
-2. Ensure that the skill you want to pull has been [published](/docs/skills/publish/) to the registry.
+2. Ensure that the skill you want to pull is [published](/docs/skills/publish/) to agentregistry.
 
 ## Pull a skill
 

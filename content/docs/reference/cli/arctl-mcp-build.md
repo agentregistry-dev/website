@@ -5,7 +5,7 @@ weight: 10
 
 Build an MCP server from the current project.
 
-This command detects the project type and build the appropriate MCP server Docker image.
+This command detects the project type and builds the appropriate MCP server Docker image.
 
 ## Usage
 
@@ -13,18 +13,19 @@ This command detects the project type and build the appropriate MCP server Docke
 arctl mcp build [flags]
 ```
 
-Example: 
+Examples:
 ```sh
-arctl mcp build                              # Build Docker image from current directory
-arctl mcp build ./my-project                  # Build Docker image from specific directory
+arctl mcp build                    # Build Docker image from current directory
+arctl mcp build ./my-project       # Build Docker image from specific directory
+arctl mcp build --image docker.io/myorg/my-mcp:v1.0.0 --push
 ```
 
 ## Command-specific flags
 
 ```sh
---platform string: Target platform (e.g., linux/amd64,linux/arm64)
---push: Push Docker image to registry
--t, --tag string: Docker image tag (alias for --output)
+-n, --image string      Full image specification (e.g., docker.io/myorg/my-mcp:v1.0.0)
+    --platform string   Target platform (e.g., linux/amd64,linux/arm64)
+    --push              Push the image to the container registry, specified by --image
 ```
 
 ## Global flags

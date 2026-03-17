@@ -29,6 +29,7 @@ description:
 {{< card link="arctl-agent-delete" title="arctl agent delete" >}}
 {{< card link="arctl-agent-add-mcp" title="arctl agent add-mcp" >}}
 {{< card link="arctl-agent-add-prompt" title="arctl agent add-prompt" >}}
+{{< card link="arctl-agent-add-skill" title="arctl agent add-skill" >}}
 
 {{< /cards >}}
 
@@ -59,19 +60,7 @@ description:
 {{< card link="arctl-skill-build" title="arctl skill build" >}}
 {{< card link="arctl-skill-publish" title="arctl skill publish" >}}
 {{< card link="arctl-skill-pull" title="arctl skill pull" >}}
-{{< card link="arctl-skill-remove" title="arctl skill remove" >}}
 {{< card link="arctl-skill-delete" title="arctl skill delete" >}}
-
-{{< /cards >}}
-
-## Deployment Commands
-
-{{< cards >}}
-
-{{< card link="arctl-deployments-create" title="arctl deployments create" >}}
-{{< card link="arctl-deployments-list" title="arctl deployments list" >}}
-{{< card link="arctl-deployments-show" title="arctl deployments show" >}}
-{{< card link="arctl-deployments-delete" title="arctl deployments delete" >}}
 
 {{< /cards >}}
 
@@ -83,5 +72,16 @@ description:
 {{< card link="arctl-prompt-show" title="arctl prompt show" >}}
 {{< card link="arctl-prompt-publish" title="arctl prompt publish" >}}
 {{< card link="arctl-prompt-delete" title="arctl prompt delete" >}}
+
+{{< /cards >}}
+
+## Deployment Commands
+
+{{< cards >}}
+
+{{< card link="arctl-deployments-list" title="arctl deployments list" >}}
+{{< card link="arctl-deployments-show" title="arctl deployments show" >}}
+{{< card link="arctl-deployments-create" title="arctl deployments create" >}}
+{{< card link="arctl-deployments-delete" title="arctl deployments delete" >}}
 
 {{< /cards >}}

@@ -91,7 +91,12 @@ Give an agent access to the tools that are exposed on an MCP server.
    {{< reuse-image src="img/ar-agent-tool-verify.png" >}}
    {{< reuse-image-dark srcDark="img/ar-agent-tool-verify.png" >}}
 
+## Next
+
+[Deploy the agent to your environment](/docs/agents/deploy/). 
 
 ## Cleanup 
 
 To remove the MCP server tool, edit the `agent.yaml` definition and remove the MCP server reference. Then, re-build the agent and run it. 
+
+

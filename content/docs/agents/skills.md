@@ -26,16 +26,26 @@ Add a skill that was previously published to agentregistry by referencing the sk
 
    Example output:
    ```
-   NAME                   VERSION   STATUS   UPDATED
-   user/argocd-cli-setup  1.0.0     active   2m
+   NAME                   TITLE   VERSION   TYPE     SOURCE
+   hello-world-template           1.0.0     docker   docker.io/user/hello-world-template:v1.0.0
    ```
 
 2. Add the skill to your agent.
    ```sh
    arctl agent add-skill my-skill \
      --project-dir myagent \
-     --registry-skill-name user/argocd-cli-setup
+     --registry-skill-name hello-world-template
    ```
+
+   {{< callout type="tip">}}
+   If the skill is packaged as a Docker image, you can reference it directly without publishing to the registry first.
+
+   ```sh
+   arctl agent add-skill my-skill \
+     --project-dir myagent \
+     --image docker.io/org/my-skill:1.0.0
+   ```
+   {{< /callout >}}
 
    Example output:
    ```
@@ -50,91 +60,48 @@ Add a skill that was previously published to agentregistry by referencing the sk
    | `--registry-skill-version` | Version to use. If omitted, the latest version is used. |
    | `--registry-url` | Registry URL. If omitted, the default registry is used. |
 
-### From a container image
+3. After adding a skill, verify that the `agent.yaml` file was updated.
+   ```sh
+   cat myagent/agent.yaml
+   ```
 
-If the skill is packaged as a Docker image, you can reference it directly without publishing to the registry first.
+   Example output:
+   ```console
+   agentName: myagent
+   image: ghcr.io/myagent:latest
+   language: python
+   framework: adk
+   modelProvider: gemini
+   modelName: gemini-2.0-flash
+   description: ""
+   skills:
+       - name: my-skill
+         registryURL: http://localhost:12121
+         registrySkillName: hello-world-template
+   ```
 
-```sh
-arctl agent add-skill my-skill \
-  --project-dir myagent \
-  --image docker.io/org/my-skill:1.0.0
-```
+4. Run the agent. When you run an agent locally, agentregistry resolves the skills from the registry and makes them available to the agent. Wait for the agent dialog to open. 
 
-### Verify the agent definition
+   ```sh
+   arctl agent run myagent
+   ```
 
-After adding a skill, verify that the `agent.yaml` file was updated.
+   During startup, `arctl`:
 
-```sh
-cat myagent/agent.yaml
-```
+   1. Resolves each skill in the agent manifest from the registry.
+   2. Downloads the skill contents. Docker-packaged skills are extracted from the container image. GitHub-hosted skills are cloned from the repository.
+   3. Places all skill files in a temporary directory and sets the `KAGENT_SKILLS_FOLDER` environment variable to point to it.
+   4. Mounts the skills directory into the agent container at `/skills` (read-only). The agent can then load and use the skills from the `/skills` folder at runtime.
 
-Example output:
-```yaml
-agentName: myagent
-image: ghcr.io/myagent:latest
-language: python
-framework: adk
-modelProvider: gemini
-modelName: gemini-2.0-flash
-description: ""
-skills:
-    - name: my-skill
-      registrySkillName: user/argocd-cli-setup
-```
+5. Ask the agent to describe what skills it has access to. Verify that you see the `hello-world-template` tool. 
+   {{< reuse-image src="img/ar-agent-skill-verify.png" >}}
+   {{< reuse-image-dark srcDark="img/ar-agent-skill-verify.png" >}}
+   
 
-## Run the agent with skills
+## Next
 
-When you run an agent locally, agentregistry resolves the skills from the registry and makes them available to the agent.
+[Deploy the agent to your environment](/docs/agents/deploy/). 
 
-```sh
-arctl agent run myagent
-```
-
-During startup, arctl:
-
-1. Resolves each skill in the agent manifest from the registry.
-2. Downloads the skill contents. Docker-packaged skills are extracted from the container image. GitHub-hosted skills are cloned from the repository.
-3. Places all skill files in a temporary directory and sets the `KAGENT_SKILLS_FOLDER` environment variable to point to it.
-4. Mounts the skills directory into the agent container at `/skills` (read-only).
-
-The agent can then load and use the skills from the `/skills` folder at runtime.
-
-## Deploy the agent with skills to Kubernetes
-
-When you deploy an agent that references skills to Kubernetes, agentregistry resolves the skills and adds them to the Agent custom resource (CR). The kagent operator then handles pulling the skills into the agent pod.
-
-```sh
-arctl deployments create myagent --type agent --provider-id kubernetes-default
-```
-
-During deployment, arctl:
-
-1. Resolves each skill from the registry to determine its source (Docker image or GitHub repository).
-2. Populates the `spec.skills` field on the Agent CR:
-   - Docker/OCI images are added to `spec.skills.refs`.
-   - GitHub repositories are added to `spec.skills.gitRefs` with the repository URL, branch, and subdirectory path.
-3. The kagent operator pulls the skill contents into the agent pod and makes them available under `/skills`.
-
-Example Agent CR with skills:
-```yaml
-apiVersion: kagent.dev/v1alpha2
-kind: Agent
-metadata:
-  name: myagent
-spec:
-  type: BYO
-  byo:
-    deployment:
-      image: ghcr.io/myagent:latest
-  skills:
-    refs:
-      - docker.io/org/my-docker-skill:1.0.0
-    gitRefs:
-      - url: https://github.com/org/skills.git
-        ref: main
-        path: skills/my-skill
-        name: my-skill
-```
 
 ## Cleanup
 

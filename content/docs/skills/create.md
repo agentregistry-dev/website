@@ -1,7 +1,7 @@
 ---
-title: Create a skill
+title: Create
 weight: 10
-description:
+description: Create an agent skill using the built-in skill scaffold. 
 ---
 
 Quickly create an agent skill using the built-in skill scaffold.
@@ -64,6 +64,5 @@ The frontmatter fields:
 
 ## Next steps
 
-- [Build the skill](/docs/reference/cli/arctl-skill-build/) as a Docker image using `arctl skill build`.
-- [Publish the skill](/docs/skills/publish/) to agentregistry so others can discover and use it.
+- [Build and publish the skill](/docs/skills/publish/).
 - [Pull a skill](/docs/skills/pull/) from the registry to use it locally.

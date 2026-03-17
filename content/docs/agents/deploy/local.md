@@ -15,10 +15,6 @@ Local deployments spin up Docker containers on your local machine from images th
 
 ## Deploy the agent
 
-{{< tabs items="CLI,UI" >}}
-
-{{% tab %}}
-
 1. Save your Gemini API key as an environment variable. To retrieve your API key, log in to the [Google AI Studio and select API Keys](https://aistudio.google.com/app/api-keys). The key is used to interact with the agent via the Gemini LLM provider. 
    ```sh
    export GOOGLE_API_KEY=<apikey>
@@ -29,7 +25,12 @@ Local deployments spin up Docker containers on your local machine from images th
    arctl deployments create myagent --type agent
    ```
 
-3. List the containers in your environment. Verify that you see a container with the `ghcr.io/myagent:latest` image. 
+   Example output: 
+   ```console
+   Agent 'myagent' version 'latest' deployed to local provider (providerId=local)
+   ```
+
+3. Verify that the deployment was created. 
    ```sh
    arctl deployments list
    ```
@@ -37,14 +38,18 @@ Local deployments spin up Docker containers on your local machine from images th
    Example output: 
    ```console
    ID         NAME      VERSION   TYPE    PROVIDER   STATUS     AGE
-   e817f070   myagent   0.1.0     agent   local      deployed   5s
+   be6b09e5   myagent   latest    agent   local      deployed   1m
    ```
 
-{{% /tab %}}
-{{% tab %}}
+4. Optional: [Open the agentregistry UI](http://localhost:12121) and go to the **Deployed** view. Verify that you see the deployed agent. 
+   
+   {{< reuse-image src="img/ar-agent-deploy-verify.png"  >}}
+   {{< reuse-image-dark srcDark="img/ar-agent-deploy-verify-dark.png" >}}
+
+<!-- UI INSTRUCTIONS
 
 1. Open the [agentregistry UI](http://localhost:12121). 
-2. Go into the **Published** view. 
+2. Go into the **Agents** view. 
 3. Select the agent image that you published and click **Deploy**. 
    {{< reuse-image src="img/ar-publish-agent.png" >}}
    {{< reuse-image-dark srcDark="img/ar-publish-agent.png" >}}
@@ -64,13 +69,31 @@ Local deployments spin up Docker containers on your local machine from images th
    CONTAINER ID   IMAGE                    COMMAND                  CREATED              STATUS                  PORTS                                                                                                                                                                                                                                                                                                                                                                                                                                 NAMES
    816ad44cba11   ghcr.io/myagent:latest   "kagent-adk run --ho…"   About a minute ago   Up About a minute       0.0.0.0:40529->40529/tcp, [::]:40529->40529/tcp                                                                                            
    ```
-{{% /tab %}}
-{{< /tabs >}}
+-->
 
 ## Cleanup
 
-1. [Open the agentregistry UI](http://localhost:12121) and navigate to the **Deployed** view. 
-2. Find the agent deployment that you want to remove. Then, click **Remove**. 
-   {{< reuse-image src="img/ar-deploy-agent-verify.png"  >}}
-   {{< reuse-image-dark srcDark="img/ar-deploy-agent-verify.png" >}}
+You can remove a deployment from the UI or CLI. 
+
+{{< tabs items="UI,CLI" >}}
+{{% tab %}}
+
+1. [Open the agentregistry UI](http://localhost:12121) and go to the **Deployed** view. 
+2. Find the agent deployment that you want to remove and click the trash icon. 
+
+{{% /tab %}}
+{{% tab %}}
+
+1. List the deployments in your environment and find the one that you want to delete.
+   ```sh
+   arctl deployments list
+   ```
+
+2. Remove the deployment. 
+   ```sh
+   arctl deployments delete <deployment-ID> 
+   ```
+
+{{% /tab %}}
+{{< /tabs >}}
 
