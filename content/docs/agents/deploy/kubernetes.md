@@ -9,7 +9,7 @@ Deploy your agent to a Kubernetes cluster.
 ## Before you begin
 
 1. Follow the [Get started](/docs/quickstart/) guide to set up agentregistry and start the agentregistry daemon. 
-2. [Publish an agent](/docs/agents/publish/)
+2. [Publish an agent](/docs/agents/publish/).
 3. Create a Kubernetes cluster. For example, you can use the following command to create a `kind` cluster. 
    ```sh
    kind create cluster --name agentregistry
@@ -18,7 +18,7 @@ Deploy your agent to a Kubernetes cluster.
    ```sh
    kubectl config get-contexts
    ```
-5. Follow the [Quickstart](https://kagent.dev/docs/kagent/getting-started/quickstart) in the kagent OSS documentation. Agentregistry uses kagent for the bootstrapping during an agent deployment. 
+5. Follow the [Quickstart](https://kagent.dev/docs/kagent/getting-started/quickstart) in the kagent OSS documentation. Agentregistry uses kagent for bootstrapping during an agent deployment. 
 
 
 ## Local kind and minikube setups
@@ -100,7 +100,42 @@ If you plan to deploy your agent to a Kubernetes cluster in a cloud provider env
 
 ## Chat with the agent
 
+## Deploy the agent with skills to Kubernetes
 
+When you deploy an agent that references skills to Kubernetes, agentregistry resolves the skills and adds them to the Agent custom resource (CR). The kagent operator then handles pulling the skills into the agent pod.
+
+```sh
+arctl deployments create myagent --type agent --provider-id kubernetes-default
+```
+
+During deployment, arctl:
+
+1. Resolves each skill from the registry to determine its source (Docker image or GitHub repository).
+2. Populates the `spec.skills` field on the Agent CR:
+   - Docker/OCI images are added to `spec.skills.refs`.
+   - GitHub repositories are added to `spec.skills.gitRefs` with the repository URL, branch, and subdirectory path.
+3. The kagent operator pulls the skill contents into the agent pod and makes them available under `/skills`.
+
+Example Agent CR with skills:
+```yaml
+apiVersion: kagent.dev/v1alpha2
+kind: Agent
+metadata:
+  name: myagent
+spec:
+  type: BYO
+  byo:
+    deployment:
+      image: ghcr.io/myagent:latest
+  skills:
+    refs:
+      - docker.io/org/my-docker-skill:1.0.0
+    gitRefs:
+      - url: https://github.com/org/skills.git
+        ref: main
+        path: skills/my-skill
+        name: my-skill
+```
 
 
 ## Cleanup

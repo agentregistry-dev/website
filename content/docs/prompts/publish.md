@@ -33,11 +33,7 @@ EOF
 
 ## Publish the prompt
 
-You have several options to publish a prompt. 
-
-### Publish via CLI flags
-
-1. Publish the prompt in agentregistry. 
+1. Publish the prompt in agentregistry. You can pass the details in CLI flags or use a prompt definition YAML file. 
    {{< tabs items="CLI flags,Prompt template" >}}
    {{% tab %}}
 
@@ -119,6 +115,10 @@ You have several options to publish a prompt.
    4. Ensure code follows best practices
    ...
    ```
+
+4. Optional: Open the [agentregistry UI](http://localhost:12121) and go to the **Prompts** view. Verify that you can see your prompt.
+   {{< reuse-image src="img/ar-publish-prompt.png" >}}
+   {{< reuse-image-dark srcDark="img/ar-publish-prompt-dark.png" >}}
 
 
 ## Next

@@ -37,7 +37,7 @@ Add a skill that was previously published to agentregistry by referencing the sk
      --registry-skill-name hello-world-template
    ```
 
-   {{< callout type="info">}}
+   {{< callout type="tip">}}
    If the skill is packaged as a Docker image, you can reference it directly without publishing to the registry first.
 
    ```sh
