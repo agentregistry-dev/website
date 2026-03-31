@@ -33,6 +33,11 @@ params:
   # Custom params
   github: https://github.com/agentregistry-dev/agentregistry
   discord: https://discord.gg/Af8bX99dbX
+  # Optional RSS <author> / managingEditor (Hugo ≥0.156 removed .Site.Author; see layouts/list.rss.xml)
+  author:
+    name: agentregistry
+  # Google Tag Manager (same pattern as ambientmesh.io: layouts/partials/custom/head-end.html + baseof noscript)
+  gtmContainerID: "GTM-M9B72GP2"
   
   # Search
   search:
