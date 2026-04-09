@@ -21,13 +21,6 @@ Make sure you have the following tools installed:
 
 Agentregistry requires an external PostgreSQL instance with the [pgvector](https://github.com/pgvector/pgvector) extension for Kubernetes deployments.
 
-For development and testing, you can deploy a single-instance PostgreSQL with pgvector into your cluster:
-
-```sh
-kubectl apply -f https://raw.githubusercontent.com/agentregistry-dev/agentregistry/main/examples/postgres-pgvector.yaml
-kubectl -n agentregistry wait --for=condition=ready pod -l app=postgres-pgvector --timeout=120s
-```
-
 {{< callout type="warning" >}}
 The bundled PostgreSQL setup is intended for development and testing only. For production, use a managed PostgreSQL service or a production-grade operator.
 {{< /callout >}}
