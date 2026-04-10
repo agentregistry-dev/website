@@ -41,6 +41,12 @@ helm install agentregistry oci://ghcr.io/agentregistry-dev/agentregistry/charts/
 
 If you are using an external PostgreSQL instance, replace `database.host`, `database.password`, and `database.sslMode` with values for your database.
 
+Verify that the pods are running.
+
+```sh
+kubectl get pods -n agentregistry
+```
+
 ### Helm chart configuration
 
 | Value | Description | Default |
