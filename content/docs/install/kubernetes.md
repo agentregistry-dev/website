@@ -21,6 +21,11 @@ Make sure you have the following tools installed:
 
 Agentregistry requires an external PostgreSQL instance with the [pgvector](https://github.com/pgvector/pgvector) extension for Kubernetes deployments.
 
+For development and testing, you can deploy a single-instance PostgreSQL with pgvector into your cluster:
+```sh
+
+```
+
 {{< callout type="warning" >}}
 The bundled PostgreSQL setup is intended for development and testing only. For production, use a managed PostgreSQL service or a production-grade operator.
 {{< /callout >}}
@@ -30,13 +35,14 @@ The bundled PostgreSQL setup is intended for development and testing only. For p
 Install agentregistry using the Helm chart from the GitHub Container Registry.
 
 ```sh
-helm install agentregistry oci://ghcr.io/agentregistry-dev/agentregistry/charts/agentregistry \
-  --namespace agentregistry \
-  --create-namespace \
-  --set database.host=postgres-pgvector.agentregistry.svc.cluster.local \
-  --set database.password=agentregistry \
-  --set database.sslMode=disable \
-  --set config.jwtPrivateKey=$(openssl rand -hex 32)
+helm upgrade -i agentregistry oci://ghcr.io/agentregistry-dev/agentregistry/charts/agentregistry \
+    --namespace agentregistry \
+    --create-namespace \
+    --set config.jwtPrivateKey=$(openssl rand -hex 32) \
+    --set image.tag=v0.3.3
+    --set database.host=postgres-pgvector.agentregistry.svc.cluster.local \
+    --set database.password=agentregistry \
+    --set database.sslMode=disable
 ```
 
 If you are using an external PostgreSQL instance, replace `database.host`, `database.password`, and `database.sslMode` with values for your database.
