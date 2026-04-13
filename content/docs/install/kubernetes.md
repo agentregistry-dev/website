@@ -35,7 +35,7 @@ The bundled PostgreSQL setup is intended for development and testing only. For p
 Install agentregistry using the Helm chart from the GitHub Container Registry.
 
 ```sh
-helm upgrade -i agentregistry oci://ghcr.io/agentregistry-dev/agentregistry/charts/agentregistry \
+helm install -i agentregistry oci://ghcr.io/agentregistry-dev/agentregistry/charts/agentregistry \
     --namespace agentregistry \
     --create-namespace \
     --set config.jwtPrivateKey=$(openssl rand -hex 32) \
