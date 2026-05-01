@@ -23,18 +23,23 @@ To install agentregistry in a Kubernetes cluster instead, see the [Install in Ku
    curl -fsSL https://raw.githubusercontent.com/agentregistry-dev/agentregistry/main/scripts/get-arctl | bash
    ```
 
-2. Start the agentregistry daemon by running any `arctl` command, such as `arctl version`.
+2. Start the agentregistry daemon. This starts the Docker containers that power agentregistry.
    ```sh
-   arctl version
+   arctl daemon start
    ```
 
-   Example output when the agentregistry daemon starts for the first time:
+   Example output:
    ```console
    Starting agentregistry daemon...
    ✓ agentregistry daemon started successfully
    ```
 
-   Example output when the agentregistry daemon is already running:
+3. Verify the installation by checking the version.
+   ```sh
+   arctl version
+   ```
+
+   Example output:
    ```console
    arctl version 0.1.13
    Git commit: f193977
@@ -44,7 +49,7 @@ To install agentregistry in a Kubernetes cluster instead, see the [Install in Ku
    Server build date: 2026-01-25
    ```
 
-3. [Open the agentregistry UI](http://localhost:12121/) in your browser. The UI is automatically exposed on port `12121` when the daemon starts.
+4. [Open the agentregistry UI](http://localhost:12121/) in your browser. The UI is automatically exposed on port `12121` when the daemon starts.
 
    {{< reuse-image src="img/ar-local.png" width="800px" >}}
    {{< reuse-image-dark srcDark="img/ar-local-dark.png" width="800px" >}}
