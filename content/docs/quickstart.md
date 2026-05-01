@@ -47,12 +47,12 @@ To install agentregistry in a Kubernetes cluster instead, see the [Install in Ku
 
    Example output:
    ```console
-   arctl version 0.1.13
-   Git commit: f193977
-   Build date: 2026-01-26
-   Server version: 0.1.13
-   Server git commit: f193977
-   Server build date: 2026-01-25
+   arctl version v0.3.3
+   Git commit: 89dc215
+   Build date: 2026-04-02
+   Server version: v0.3.3
+   Server git commit: 89dc215
+   Server build date: 2026-04-02
    ```
 
 4. [Open the agentregistry UI](http://localhost:12121/) in your browser. The UI is automatically exposed on port 12121 on your local machine when you start the agentregistry daemon. 
