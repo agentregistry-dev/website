@@ -7,6 +7,15 @@
 <meta name="description" content="One registry for MCP servers, agents, skills, and prompts. Curate trusted AI building blocks, deploy with one command, and integrate with Claude Desktop, Cursor, and VS Code.">
 <link rel="stylesheet" href="/landing/design-tokens.css">
 <link rel="stylesheet" href="/landing/styles.css">
+<script>
+  (function () {
+    try {
+      if (localStorage.getItem('ar-theme') === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    } catch (e) {}
+  })();
+</script>
 </head>
 <body>
 
@@ -25,6 +34,10 @@
       <a class="nav-link" href="https://github.com/agentregistry-dev/agentregistry">
         <span class="nav-link-kbd">⌘K</span>GitHub
       </a>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      </button>
       <a class="btn btn-primary" href="#quickstart">
         Get started
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
@@ -527,6 +540,19 @@
 <script src="/landing/catalog.js"></script>
 <script src="/landing/image-slot.js"></script>
 <script>
+  // Theme toggle — flip dark mode and persist
+  (function () {
+    const btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      const root = document.documentElement;
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      if (next === 'dark') root.setAttribute('data-theme', 'dark');
+      else root.removeAttribute('data-theme');
+      try { localStorage.setItem('ar-theme', next); } catch (e) {}
+    });
+  })();
+
   // Orbit detail panel — hover/click a node, swap the panel
   (function () {
     const BLOCKS = {
