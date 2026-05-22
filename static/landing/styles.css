@@ -1944,9 +1944,10 @@ section { position: relative; }
   overflow: hidden;
   transition: max-height .25s ease, padding .25s ease;
   font-size: 15px;
-  color: var(--ar-text-muted);
+  color: var(--ar-text);
   line-height: 1.6;
 }
+.faq-a p { color: var(--ar-text); }
 .faq-item.open .faq-a {
   max-height: 500px;
   padding: 0 0 22px;
@@ -2099,4 +2100,34 @@ section { position: relative; }
   .gateway-box { padding: 36px 28px; }
   .cta-banner { padding: 44px 28px; }
   .terminal-body { min-height: 380px; }
+}
+
+/* ---------- Mobile nav + preview appbar ---------- */
+@media (max-width: 720px) {
+  /* Nav: trim to the essentials so the pill stays one tidy row */
+  .nav { padding: 0 12px; }
+  .nav-inner {
+    padding: 8px 14px;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .nav-brand { margin-right: auto; }
+  .nav-brand img { height: 20px; }
+  .nav-links {
+    margin-left: 0;
+    gap: 2px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .nav-link { padding: 6px 8px; font-size: 13px; white-space: nowrap; }
+  .nav-links .btn,
+  .nav-links a.nav-link[href*="github.com"] { display: none; }
+  .nav-link-kbd { display: none; }
+  .theme-toggle { margin-left: 4px; }
+
+  /* Preview appbar: keep only the agentregistry logo so it doesn't overlap the tabs */
+  .preview-appbar { padding: 12px 16px; }
+  .preview-appbar-tabs { display: none; }
+  .preview-appbar-right { display: none; }
 }
