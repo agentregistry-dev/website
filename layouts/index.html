@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>agentregistry — Build. Deploy. Discover.</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="One registry for MCP servers, agents, skills, and prompts. Curate trusted AI building blocks, deploy with one command, and integrate with Claude Desktop, Cursor, and VS Code.">
+<link rel="stylesheet" href="/landing/design-tokens.css">
+<link rel="stylesheet" href="/landing/styles.css">
+</head>
+<body>
+
+<!-- ============================ NAV ============================ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">
+      <img src="/landing/assets/agentregistry-lockup.png" alt="agentregistry">
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" href="#features">Product</a>
+      <a class="nav-link" href="#quickstart">Quick start</a>
+      <a class="nav-link" href="#gateway">Architecture</a>
+      <a class="nav-link" href="#faqs">FAQs</a>
+      <a class="nav-link" href="https://aregistry.ai/docs">Docs</a>
+      <a class="nav-link" href="https://github.com/agentregistry-dev/agentregistry">
+        <span class="nav-link-kbd">⌘K</span>GitHub
+      </a>
+      <a class="btn btn-primary" href="#quickstart">
+        Get started
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============================ HERO ============================ -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-bg"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <img src="/landing/assets/agentregistry-lockup.png" alt="agentregistry" class="hero-lockup">
+      <h1 class="hero-tagline">Build. <span class="accent">Deploy.</span> Discover.</h1>
+      <p class="hero-sub">
+        One registry for MCP servers, agents, skills, and prompts. Curate the AI building blocks your team trusts, deploy them with one command, and wire them into every IDE.
+      </p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#quickstart">
+          Install arctl
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <a class="btn btn-secondary" href="https://www.youtube.com/@soloio_inc/search?query=agentregistry" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.4 31.4 0 0 0 0 12a31.4 31.4 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.4 31.4 0 0 0 24 12a31.4 31.4 0 0 0-.5-5.8z" fill="#FF0000"/>
+            <polygon points="9.75,15.6 15.75,12 9.75,8.4" fill="#FFFFFF"/>
+          </svg>
+          See in action
+        </a>
+        <a class="btn btn-secondary" href="https://github.com/agentregistry-dev/agentregistry">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2.1c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.7 1.25 3.36.96.1-.74.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.18.91-.25 1.89-.38 2.86-.38s1.95.13 2.86.38c2.19-1.49 3.15-1.18 3.15-1.18.62 1.58.23 2.75.11 3.04.73.81 1.18 1.84 1.18 3.1 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56C20.21 21.38 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5Z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+
+    <!-- ----- Interactive terminal demo ----- -->
+    <div class="terminal-stage">
+      <div class="terminal" id="terminal" tabindex="0">
+        <div class="terminal-chrome">
+          <div class="terminal-dots"><span></span><span></span><span></span></div>
+          <span class="terminal-title">~/registry — arctl</span>
+          <div class="terminal-badges">
+            <span class="badge">Open source</span>
+          </div>
+        </div>
+        <div class="terminal-body" id="terminal-body"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FEATURE GRID ============================ -->
+<section class="section section-pad-sm" id="features">
+  <div class="container">
+    <div class="section-head" style="margin-bottom:44px;">
+      <h2>One source for every AI building block.</h2>
+      <p>Agents, MCP tools, skills, and prompts — all curated in one registry your team can search, version, and deploy with a single command.</p>
+    </div>
+
+    <div class="bb-split">
+      <!-- Orbit visual: agentregistry mark with the 4 building blocks circling it -->
+      <div class="ar-orbit" id="ar-orbit">
+      <svg class="ar-orbit-ring" viewBox="0 0 560 400" preserveAspectRatio="none" aria-hidden="true">
+        <circle cx="280" cy="200" r="155" fill="none" stroke="#8A3FFC" stroke-opacity="0.28" stroke-width="1.3" stroke-dasharray="3 6"/>
+      </svg>
+      <img class="ar-orbit-center" src="/landing/assets/agentregistry-icon.png" alt="agentregistry">
+      <button class="ar-orbit-node top" data-block="agents" type="button">
+        <div class="ar-orbit-dot">
+          <!-- Agents: briefcase (matches catalog tab) -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></svg>
+        </div>
+        <span>Agents</span>
+      </button>
+      <button class="ar-orbit-node right" data-block="mcp" type="button">
+        <div class="ar-orbit-dot">
+          <!-- Official Model Context Protocol mark -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd" xmlns="http://www.w3.org/2000/svg"><title>ModelContextProtocol</title><path d="M15.688 2.343a2.588 2.588 0 00-3.61 0l-9.626 9.44a.863.863 0 01-1.203 0 .823.823 0 010-1.18l9.626-9.44a4.313 4.313 0 016.016 0 4.116 4.116 0 011.204 3.54 4.3 4.3 0 013.609 1.18l.05.05a4.115 4.115 0 010 5.9l-8.706 8.537a.274.274 0 000 .393l1.788 1.754a.823.823 0 010 1.18.863.863 0 01-1.203 0l-1.788-1.753a1.92 1.92 0 010-2.754l8.706-8.538a2.47 2.47 0 000-3.54l-.05-.049a2.588 2.588 0 00-3.607-.003l-7.172 7.034-.002.002-.098.097a.863.863 0 01-1.204 0 .823.823 0 010-1.18l7.273-7.133a2.47 2.47 0 00-.003-3.537z"/><path d="M14.485 4.703a.823.823 0 000-1.18.863.863 0 00-1.204 0l-7.119 6.982a4.115 4.115 0 000 5.9 4.314 4.314 0 006.016 0l7.12-6.982a.823.823 0 000-1.18.863.863 0 00-1.204 0l-7.119 6.982a2.588 2.588 0 01-3.61 0 2.47 2.47 0 010-3.54l7.12-6.982z"/></svg>
+        </div>
+        <span>MCP tools</span>
+      </button>
+      <button class="ar-orbit-node bottom" data-block="skills" type="button">
+        <div class="ar-orbit-dot">
+          <!-- Skills: filled lightning bolt (matches catalog tab) -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+        </div>
+        <span>Skills</span>
+      </button>
+      <button class="ar-orbit-node left" data-block="prompts" type="button">
+        <div class="ar-orbit-dot">
+          <!-- Prompts: document with lines (matches catalog tab) -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h6"/></svg>
+        </div>
+        <span>Prompts</span>
+      </button>
+    </div>
+
+    <!-- Detail panel that swaps based on active orbit node -->
+    <div class="bb-panel" id="bb-panel">
+      <h3 class="bb-panel-title" id="bb-panel-title">Agents</h3>
+      <p class="bb-panel-desc" id="bb-panel-desc">Identity, servers, skills, and prompts bundled into one deployable unit. Build, push, and version with <code>arctl</code>.</p>
+      <a class="bb-panel-link" id="bb-panel-link" href="https://aregistry.ai/docs/agents/" target="_blank" rel="noopener">
+        Read the docs
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </a>
+    </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CATALOG PREVIEW ============================ -->
+<section class="section section-pad-sm" style="padding-top:0;">
+  <div class="container">
+    <div class="section-head" style="margin-bottom:36px;">
+      <h2>A catalog your developers want to browse.</h2>
+      <p>A built-in web UI to build, deploy, and create agents, servers, skills, and prompts — search the registry, kick off deployments, and track what's running, all without leaving the browser.</p>
+    </div>
+
+    <div class="product-preview" data-screen-label="catalog-preview">
+      <div class="preview-window-chrome">
+        <div class="dots"><span></span><span></span><span></span></div>
+        <div class="url">localhost:12121 / catalog</div>
+        <div style="width:60px"></div>
+      </div>
+
+      <!-- ---- App bar: brand · Catalog / Deployed · theme ---- -->
+      <div class="preview-appbar" id="preview-appbar">
+        <div class="preview-appbar-brand">
+          <img src="/landing/assets/agentregistry-lockup.png" alt="agentregistry">
+        </div>
+        <div class="preview-appbar-tabs">
+          <button class="preview-appbar-tab active" data-view="catalog">Catalog</button>
+          <button class="preview-appbar-tab" data-view="deployed">Deployed</button>
+        </div>
+        <div class="preview-appbar-right">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </div>
+      </div>
+
+      <div class="preview-scroll" id="catalog-preview"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FOR ORGS / FOR DEVS ============================ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <h2>Curate centrally. Ship locally.</h2>
+      <p>Platform teams stay in control of what's approved; developers get one place to discover and deploy. The same registry powers both.</p>
+    </div>
+
+    <div class="split">
+      <div class="split-card">
+        <div class="split-card-eyebrow">FOR ORGANIZATIONS</div>
+        <h3>Curate &amp; deploy.</h3>
+        <p>Package, collect, and enrich AI artifacts from any source — into a single registry your whole company can trust.</p>
+        <ul>
+          <li><span class="tick">✓</span>Approve agents, servers, and skills before company-wide deployment</li>
+          <li><span class="tick">✓</span>Add metadata that helps assess trustworthiness and security</li>
+          <li><span class="tick">✓</span>Same source of truth across local dev and Kubernetes</li>
+          <li><span class="tick">✓</span>Verified-org and verified-publisher signals built in</li>
+        </ul>
+        <div class="mini-flow">
+          <div class="mf-step"><span class="mf-num">1</span><span class="mf-label">Import</span></div>
+          <div class="mf-step"><span class="mf-num">2</span><span class="mf-label">Enrich</span></div>
+          <div class="mf-step"><span class="mf-num">3</span><span class="mf-label">Curate</span></div>
+          <div class="mf-step"><span class="mf-num">4</span><span class="mf-label">Publish</span></div>
+          <div class="mf-step"><span class="mf-num">5</span><span class="mf-label">Deploy</span></div>
+        </div>
+        <a class="link-arrow" href="https://aregistry.ai/docs">Read the platform guide →</a>
+      </div>
+
+      <div class="split-card">
+        <div class="split-card-eyebrow">FOR DEVELOPERS</div>
+        <h3>Build &amp; publish.</h3>
+        <p>Scaffold, test, publish, and deploy AI artifacts with minimal dependencies and no manual IDE wiring.</p>
+        <ul>
+          <li><span class="tick">✓</span>Scaffold with <code>arctl init agent</code> or <code>arctl init skill</code></li>
+          <li><span class="tick">✓</span>Publish with a single <code>arctl apply</code></li>
+          <li><span class="tick">✓</span>Pull and run anywhere — laptop, kind cluster, or prod</li>
+          <li><span class="tick">✓</span>Auto-configure Claude Desktop, Cursor, and VS Code</li>
+        </ul>
+        <div class="mini-flow">
+          <div class="mf-step"><span class="mf-num">1</span><span class="mf-label">Build</span></div>
+          <div class="mf-step"><span class="mf-num">2</span><span class="mf-label">Push</span></div>
+          <div class="mf-step"><span class="mf-num">3</span><span class="mf-label">Pull</span></div>
+          <div class="mf-step"><span class="mf-num">4</span><span class="mf-label">Run</span></div>
+        </div>
+        <a class="link-arrow" href="https://aregistry.ai/docs">Read the developer guide →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ QUICK START ============================ -->
+<section class="section" id="quickstart" style="background:var(--ar-bg-muted);">
+  <div class="container">
+    <div class="quickstart">
+      <div class="quickstart-steps">
+        <div class="qs-step">
+          <div class="qs-step-num">1</div>
+          <div>
+            <h4>Install the CLI</h4>
+            <p>One-line install. <code>arctl</code> drops into your <code>$PATH</code> and starts the local daemon on first run.</p>
+          </div>
+        </div>
+        <div class="qs-step">
+          <div class="qs-step-num">2</div>
+          <div>
+            <h4>Start the daemon</h4>
+            <p>Any <code>arctl</code> command boots the registry. The web UI is exposed automatically.</p>
+          </div>
+        </div>
+        <div class="qs-step">
+          <div class="qs-step-num">3</div>
+          <div>
+            <h4>Open the UI &amp; deploy</h4>
+            <p>Visit <code>localhost:12121</code> and deploy any approved server or agent. Your IDE picks it up through the gateway.</p>
+          </div>
+        </div>
+        <div class="qs-step">
+          <div class="qs-step-num">→</div>
+          <div>
+            <h4>Configure your IDE</h4>
+            <p>Run <code>arctl configure cursor</code> (or <code>vscode</code>, <code>claude</code>) and you're done. New deployments are picked up automatically.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="code-block">
+          <button class="copy">copy</button>
+          <span class="comment"># 1. Install the CLI</span><br>
+          <span class="cmd">curl -fsSL</span> <span class="arg">https://raw.githubusercontent.com/agentregistry-dev/agentregistry/main/scripts/get-arctl</span> | bash<br>
+          <br>
+          <span class="comment"># 2. Start the daemon</span><br>
+          <span class="cmd">arctl daemon start</span><br>
+          <span style="color:#16A34A;">✓ daemon running · http://localhost:12121</span><br>
+          <br>
+          <span class="comment"># 3. Verify it's up</span><br>
+          <span class="cmd">arctl</span> <span class="arg">version</span><br>
+          <br>
+          <span class="comment"># 4. Open the UI</span><br>
+          <span class="cmd">open</span> <span class="arg">http://localhost:12121</span><br>
+          <br>
+          <span class="comment"># 5. Wire it into your IDE</span><br>
+          <span class="cmd">arctl configure cursor</span><br>
+          <span style="color:#16A34A;">✓ Cursor configured · 7 servers, 3 agents available</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ GATEWAY ARCHITECTURE ============================ -->
+<section class="section" id="gateway">
+  <div class="container">
+    <div class="section-head" style="margin-bottom:44px;">
+      <h2>One secure endpoint for every approved server.</h2>
+      <p>Instead of exposing each MCP server, agentregistry routes everything through agentgateway — an AI-native reverse proxy. Your clients connect to one URL, gateway enforces auth, and new deployments are picked up automatically.</p>
+    </div>
+
+    <div class="flow">
+      <!-- Row 1: clients -->
+      <div class="flow-row flow-pill">
+        <span>
+          <svg class="flow-logo" viewBox="0 0 24 24" fill="#0F0F0F" aria-hidden="true"><path d="M12 1L2 6.5v11L12 23l10-5.5v-11L12 1zm0 2.5l7.5 4.1v.1L12 12 4.5 7.7 12 3.5zM4 9.5l7 4v8.3l-7-3.9V9.5zm9 12.3v-8.3l7-4v8.4l-7 3.9z"/></svg>
+          Cursor
+        </span>
+        <span>
+          <svg class="flow-logo" viewBox="0 0 100 100" aria-hidden="true"><path d="M70.9 99.3a6.2 6.2 0 0 0 4.9-.2l19.1-9.2a6.2 6.2 0 0 0 3.5-5.6V15.7a6.2 6.2 0 0 0-3.5-5.6L75.8.9a6.2 6.2 0 0 0-7.1 1.2L32.1 35.5 16.2 23.4a4.2 4.2 0 0 0-5.3.2L5.8 28.3a4.2 4.2 0 0 0 0 6.2L19.6 50 5.8 65.5a4.2 4.2 0 0 0 0 6.2l5.1 4.7a4.2 4.2 0 0 0 5.3.2l15.9-12.1 36.6 33.4a6.2 6.2 0 0 0 2.2 1.4zM75 27.3L47.2 50 75 72.7V27.3z" fill="#007ACC"/></svg>
+          VS Code
+        </span>
+        <span>
+          <img class="flow-logo" src="/landing/assets/claude-icon.png" alt="">
+          Claude Code
+        </span>
+        <span>
+          <svg class="flow-logo" viewBox="0 0 24 24" fill="none" stroke="#14111F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><polyline points="8 9 11 12 8 15"/><line x1="13" y1="15" x2="16" y2="15"/></svg>
+          OpenCode
+        </span>
+        <span>
+          <svg class="flow-logo" viewBox="0 0 24 24" fill="#8A3FFC" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2.5"/><path d="M7 9.5l3 2.5-3 2.5M12 15h5" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          arctl CLI
+        </span>
+        <span class="flow-muted">
+          <svg class="flow-logo" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.688 2.343a2.588 2.588 0 00-3.61 0l-9.626 9.44a.863.863 0 01-1.203 0 .823.823 0 010-1.18l9.626-9.44a4.313 4.313 0 016.016 0 4.116 4.116 0 011.204 3.54 4.3 4.3 0 013.609 1.18l.05.05a4.115 4.115 0 010 5.9l-8.706 8.537a.274.274 0 000 .393l1.788 1.754a.823.823 0 010 1.18.863.863 0 01-1.203 0l-1.788-1.753a1.92 1.92 0 010-2.754l8.706-8.538a2.47 2.47 0 000-3.54l-.05-.049a2.588 2.588 0 00-3.607-.003l-7.172 7.034-.002.002-.098.097a.863.863 0 01-1.204 0 .823.823 0 010-1.18l7.273-7.133a2.47 2.47 0 00-.003-3.537z"/><path d="M14.485 4.703a.823.823 0 000-1.18.863.863 0 00-1.204 0l-7.119 6.982a4.115 4.115 0 000 5.9 4.314 4.314 0 006.016 0l7.12-6.982a.823.823 0 000-1.18.863.863 0 00-1.204 0l-7.119 6.982a2.588 2.588 0 01-3.61 0 2.47 2.47 0 010-3.54l7.12-6.982z"/></svg>
+          Any MCP client
+        </span>
+      </div>
+
+      <div class="flow-arrow"><svg viewBox="0 0 16 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="2" x2="8" y2="20"/><polyline points="3 15 8 20 13 15"/></svg></div>
+
+      <!-- Row 2: agentgateway -->
+      <div class="flow-row flow-gateway">
+        <img class="flow-gateway-logo" src="/landing/assets/agentgateway-logo-light.png" alt="agentgateway">
+        <div class="flow-gateway-title">Secure AI endpoint</div>
+        <div class="flow-gateway-sub">Single MCP endpoint · LLM Gateway · Tool routing · Auth</div>
+      </div>
+
+      <div class="flow-arrow"><svg viewBox="0 0 16 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="2" x2="8" y2="20"/><polyline points="3 15 8 20 13 15"/></svg></div>
+
+      <!-- Row 3: registry → building blocks -->
+      <div class="flow-pair">
+        <div class="flow-card flow-registry">
+          <div class="flow-card-head">
+            <img src="/landing/assets/agentregistry-icon.png" alt="">
+            <span>agentregistry</span>
+          </div>
+          <div class="flow-card-sub">Registry server · Web UI<br>Enrichment · Governance</div>
+        </div>
+        <div class="flow-link"><svg viewBox="0 0 32 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="8" x2="28" y2="8"/><polyline points="22 3 28 8 22 13"/></svg></div>
+        <div class="flow-card flow-blocks">
+          <div class="flow-block">
+            <div class="flow-block-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></svg>
+            </div>
+            <span>Agents</span>
+          </div>
+          <div class="flow-block">
+            <div class="flow-block-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+            </div>
+            <span>Skills</span>
+          </div>
+          <div class="flow-block">
+            <div class="flow-block-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd"><path d="M15.688 2.343a2.588 2.588 0 00-3.61 0l-9.626 9.44a.863.863 0 01-1.203 0 .823.823 0 010-1.18l9.626-9.44a4.313 4.313 0 016.016 0 4.116 4.116 0 011.204 3.54 4.3 4.3 0 013.609 1.18l.05.05a4.115 4.115 0 010 5.9l-8.706 8.537a.274.274 0 000 .393l1.788 1.754a.823.823 0 010 1.18.863.863 0 01-1.203 0l-1.788-1.753a1.92 1.92 0 010-2.754l8.706-8.538a2.47 2.47 0 000-3.54l-.05-.049a2.588 2.588 0 00-3.607-.003l-7.172 7.034-.002.002-.098.097a.863.863 0 01-1.204 0 .823.823 0 010-1.18l7.273-7.133a2.47 2.47 0 00-.003-3.537z"/><path d="M14.485 4.703a.823.823 0 000-1.18.863.863 0 00-1.204 0l-7.119 6.982a4.115 4.115 0 000 5.9 4.314 4.314 0 006.016 0l7.12-6.982a.823.823 0 000-1.18.863.863 0 00-1.204 0l-7.119 6.982a2.588 2.588 0 01-3.61 0 2.47 2.47 0 010-3.54l7.12-6.982z"/></svg>
+            </div>
+            <span>MCP servers</span>
+          </div>
+          <div class="flow-block">
+            <div class="flow-block-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+            </div>
+            <span>Prompts</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-arrow"><svg viewBox="0 0 16 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2 3"><line x1="8" y1="2" x2="8" y2="20"/><polyline points="3 15 8 20 13 15"/></svg></div>
+
+      <!-- Row 4: infrastructure -->
+      <div class="flow-row flow-pill flow-infra">
+        <span><svg width="20" height="20" viewBox="0 0 48 48" aria-hidden="true"><g fill="#2496ED"><path d="M22.7 12.4h4.4v4.5h-4.4zM17.5 12.4h4.4v4.5h-4.4zM12.4 12.4h4.4v4.5h-4.4zM7.2 12.4h4.4v4.5H7.2zM17.5 7.2h4.4v4.5h-4.4zM12.4 7.2h4.4v4.5h-4.4zM22.7 7.2h4.4v4.5h-4.4zM44.8 17.4c-.1-.1-1.4-1.1-4.4-1.1-.8 0-1.6.1-2.4.2-.6-4.1-3.9-6-4.1-6.1l-.8-.5-.5.8c-.7 1-1.2 2.4-1.3 3.7-.2 1.5.1 3 .9 4.2-.9.5-2.5 1.1-4.6 1.1H3.6c-.8 0-1.5.7-1.5 1.5-.1 2.7.4 5.4 1.4 7.9 1.2 2.7 2.9 4.7 5.2 5.9 2.5 1.4 6.6 2.2 11.3 2.2 2.1 0 4.2-.2 6.3-.6 2.9-.5 5.6-1.5 8.1-3 2.1-1.2 3.9-2.8 5.3-4.7 2.4-3.2 3.8-6.8 4.8-10 .1 0 .8.1 2.4-1.1 0 0 1.3-1.2.7-2.4z"/></g></svg> Docker</span>
+        <span><svg width="18" height="18" viewBox="0 0 722.832 722.832" aria-hidden="true"><g fill="#326CE5"><path d="M361.4 0L97.6 167.4l-65.7 290.7 167.5 263.7h323.6l167.4-263.7-65.7-290.7L361.4 0z"/></g><g fill="#fff" stroke="#fff" stroke-width="0"><path d="M361.4 88l-30.8 14.5v89.7l30.8 41.5 30.8-41.5v-89.7L361.4 88zM215.4 184.4l-30.8 14.5-68.5 78.4 16.8 33.6 75 27.6 47.4-9.7-39.9-144.4zM507.4 184.4l-39.9 144.4 47.4 9.7 75-27.6 16.8-33.6-68.5-78.4-30.8-14.5zM316.4 280.4l-44.5 13.5-44 65.4 8.8 39.2 75 27.6 47.4-23.8-42.7-121.9zM406.4 280.4l-42.7 121.9 47.4 23.8 75-27.6 8.8-39.2-44-65.4-44.5-13.5zM361.4 364.1l-25.3 11.9-7.6 36.7 32.9 23.8 32.9-23.8-7.6-36.7-25.3-11.9zM222.6 426.9l-29 47.8 4.4 35.7 60.1 44.6 30-39.6-12.3-67.7-53.2-20.8zM500.2 426.9l-53.2 20.8-12.3 67.7 30 39.6 60.1-44.6 4.4-35.7-29-47.8zM361.4 504.7l-37.5 31.9 7.6 39.5 29.9 13.5 29.9-13.5 7.6-39.5-37.5-31.9z"/></g></svg> Kubernetes</span>
+        <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.5 19a4.5 4.5 0 1 0-1.5-8.75A5.5 5.5 0 1 0 7 14.5"/><path d="M7 14.5h10.5"/></svg> Any cloud</span>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:36px;">
+      <a class="link-arrow" href="https://github.com/agentgateway/agentgateway">Learn about agentgateway →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FAQs ============================ -->
+<section class="section" id="faqs">
+  <div class="container-narrow">
+    <div class="section-head">
+      <h2>Frequently asked questions</h2>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q">What is agentregistry? <span class="chev">+</span></button>
+        <div class="faq-a"><p style="margin:0;">An open-source platform that gives your team one place to find, manage, and run MCP servers, AI agents, skills, and prompts. You import or publish artifacts once, and anyone on the team can discover them, deploy them with one command, and have their IDE configured automatically.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">How is this different from npm or Docker Hub? <span class="chev">+</span></button>
+        <div class="faq-a"><p style="margin:0;">agentregistry doesn't replace those — it sits on top of them. It pulls MCP servers from npm, PyPI, OCI, or remote endpoints into a single curated catalog with versioning, enrichment scores, verified publishers, and a one-command deploy path. Plus it ships with the agentgateway integration that makes those artifacts actually usable from Claude, Cursor, and VS Code.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Does this run on my laptop or in a cluster? <span class="chev">+</span></button>
+        <div class="faq-a"><p style="margin:0;">Both — the workflow is identical. Locally, <code>arctl</code> brings up the daemon, web UI, and gateway via Docker Compose. For shared environments, deploy the same components into Kubernetes with the Helm chart. The same registry data and deployment YAML work in both places.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">What is an agent "blueprint" vs. a deployment? <span class="chev">+</span></button>
+        <div class="faq-a"><p style="margin:0;">A blueprint is the versioned record of what an agent <em>is</em> — its identity, the MCP servers it needs, the skills it uses, and how it should be configured. A deployment is a running instance of that blueprint, scheduled into a specific environment with credentials and gateway routing wired up.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Can I use this with my own private MCP servers? <span class="chev">+</span></button>
+        <div class="faq-a"><p style="margin:0;">Yes. You can register servers from any internal OCI registry, npm proxy, private repo, or HTTP endpoint. The same governance and gateway flow applies — no public publishing required.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Is it open source? <span class="chev">+</span></button>
+        <div class="faq-a"><p style="margin:0;">Yes — Apache 2.0. The CLI, daemon, web UI, and Helm chart are all in the <a href="https://github.com/agentregistry-dev/agentregistry" style="color:var(--ar-purple);">agentregistry-dev/agentregistry</a> repo. Contributions, issues, and feature requests are welcome.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CTA BANNER ============================ -->
+<section style="padding: 0 0 96px;">
+  <div class="container">
+    <div class="cta-banner">
+      <div class="cta-banner-inner">
+        <div>
+          <span class="eyebrow" style="color:#B391F5;">Get started</span>
+          <h2>Ship your first agent in five minutes.</h2>
+          <p>Install the CLI, open the web UI, deploy an approved MCP server. Your IDE is wired up automatically through the gateway.</p>
+          <div class="btns">
+            <a class="btn btn-primary" href="#quickstart">
+              Install arctl
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+            <a class="btn btn-secondary" href="https://discord.gg/HTYNjF2y2t">Join Discord</a>
+          </div>
+        </div>
+        <div class="cta-snippet">
+          <span class="prompt">→</span> <span class="ar">curl</span> -fsSL aregistry.ai/install | bash<br>
+          <span class="prompt">→</span> <span class="ar">arctl</span> version<br>
+          <span style="color:#9794A8;">agentregistry v0.9.0 · daemon running</span><br>
+          <span style="color:#9794A8;">web ui:</span> <span style="color:#B391F5;">http://localhost:12121</span><br>
+          <span class="prompt">→</span> <span class="ar">arctl</span> configure cursor<br>
+          <span style="color:#16A34A;">✓ 7 servers, 3 agents available</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="nav-brand">
+          <img src="/landing/assets/agentregistry-lockup.png" alt="agentregistry">
+        </a>
+        <p>One registry for MCP servers, agents, skills, and prompts. Build, deploy, discover — all from one place.</p>
+        <div class="socials">
+          <a href="https://github.com/agentregistry-dev/agentregistry" aria-label="GitHub">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2.1c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.7 1.25 3.36.96.1-.74.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.18.91-.25 1.89-.38 2.86-.38s1.95.13 2.86.38c2.19-1.49 3.15-1.18 3.15-1.18.62 1.58.23 2.75.11 3.04.73.81 1.18 1.84 1.18 3.1 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56C20.21 21.38 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5Z"/></svg>
+          </a>
+          <a href="https://discord.gg/HTYNjF2y2t" aria-label="Discord">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.27 5.33A19 19 0 0 0 14.4 4l-.24.5a17 17 0 0 1 4.32 1.4 17 17 0 0 0-12.8 0A17 17 0 0 1 10 4.5L9.76 4a19 19 0 0 0-4.87 1.33C2.13 9.43 1.4 13.43 1.78 17.36a19.18 19.18 0 0 0 5.84 2.96l1.18-1.6a12.4 12.4 0 0 1-1.96-.94l.48-.34a13.5 13.5 0 0 0 11.4 0l.48.34a12.4 12.4 0 0 1-1.96.94l1.18 1.6a19.18 19.18 0 0 0 5.84-2.96c.45-4.5-.78-8.47-3.99-12.03zM8.52 14.5c-.95 0-1.74-.88-1.74-1.96 0-1.08.77-1.96 1.74-1.96.97 0 1.76.88 1.74 1.96 0 1.08-.77 1.96-1.74 1.96zm6.96 0c-.95 0-1.74-.88-1.74-1.96 0-1.08.77-1.96 1.74-1.96.97 0 1.76.88 1.74 1.96 0 1.08-.77 1.96-1.74 1.96z"/></svg>
+          </a>
+          <a href="https://aregistry.ai/docs" aria-label="Docs">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h5>Product</h5>
+        <a href="#features">Catalog</a>
+        <a href="#features">Skills</a>
+        <a href="#features">Agents</a>
+        <a href="#gateway">Gateway</a>
+        <a href="#quickstart">Quick start</a>
+      </div>
+
+      <div class="footer-col">
+        <h5>Resources</h5>
+        <a href="https://aregistry.ai/docs">Docs</a>
+        <a href="https://github.com/agentregistry-dev/agentregistry">GitHub</a>
+        <a href="https://github.com/agentregistry-dev/agentregistry/releases">Releases</a>
+        <a href="https://github.com/agentregistry-dev/agentregistry/blob/main/CONTRIBUTING.md">Contributing</a>
+      </div>
+
+      <div class="footer-col">
+        <h5>Community</h5>
+        <a href="https://discord.gg/HTYNjF2y2t">Discord</a>
+        <a href="https://github.com/agentregistry-dev/agentregistry/discussions">Discussions</a>
+        <a href="https://github.com/agentregistry-dev/agentregistry/issues">Report a bug</a>
+      </div>
+
+      <div class="footer-col">
+        <h5>Related</h5>
+        <a href="https://github.com/agentgateway/agentgateway">agentgateway</a>
+        <a href="https://github.com/kagent-dev/kagent">kagent</a>
+        <a href="https://github.com/kgateway-dev/kgateway">kgateway</a>
+        <a href="https://modelcontextprotocol.io/">MCP spec</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 agentregistry · Apache 2.0</span>
+      <span class="by-solo">
+        Built by
+        <img src="/landing/assets/solo-mark.svg" alt="Solo.io">
+        Solo.io
+      </span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================ SCRIPTS ============================ -->
+<script src="/landing/terminal.js"></script>
+<script src="/landing/catalog.js"></script>
+<script src="/landing/image-slot.js"></script>
+<script>
+  // Orbit detail panel — hover/click a node, swap the panel
+  (function () {
+    const BLOCKS = {
+      agents:  { title: "Agents",     desc: "Identity, servers, skills, and prompts bundled into one deployable unit. Build, push, and version with <code>arctl</code>.", href: "https://aregistry.ai/docs/agents/" },
+      mcp:     { title: "MCP tools",  desc: "Pull MCP servers from npm, PyPI, OCI, or remote endpoints — versioned, scored, and ready to deploy.",                       href: "https://aregistry.ai/docs/mcp/" },
+      skills:  { title: "Skills",     desc: "Structured knowledge packages — <code>SKILL.md</code> plus code and references — that extend what an agent knows.",        href: "https://aregistry.ai/docs/skills/" },
+      prompts: { title: "Prompts",    desc: "Reusable instruction templates — versioned, shareable, and discoverable alongside everything else.",                       href: "https://aregistry.ai/docs/prompts/" },
+    };
+    const titleEl = document.getElementById('bb-panel-title');
+    const descEl  = document.getElementById('bb-panel-desc');
+    const linkEl  = document.getElementById('bb-panel-link');
+    const orbit   = document.getElementById('ar-orbit');
+    if (!orbit || !titleEl) return;
+
+    function setBlock(key) {
+      const b = BLOCKS[key]; if (!b) return;
+      titleEl.textContent = b.title;
+      descEl.innerHTML = b.desc;
+      linkEl.href = b.href;
+      orbit.querySelectorAll('.ar-orbit-node').forEach(n => n.classList.toggle('active', n.dataset.block === key));
+    }
+    orbit.querySelectorAll('.ar-orbit-node').forEach(node => {
+      node.addEventListener('mouseenter', () => setBlock(node.dataset.block));
+      node.addEventListener('focus',      () => setBlock(node.dataset.block));
+      node.addEventListener('click',      () => setBlock(node.dataset.block));
+    });
+    setBlock('agents');
+  })();
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(o => o.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+
+  // Open first FAQ by default
+  document.querySelector('.faq-item')?.classList.add('open');
+
+  // Copy buttons
+  document.querySelectorAll('.code-block .copy').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const block = btn.closest('.code-block');
+      const text = block.innerText.replace(/^copy\s*/i, '').trim();
+      navigator.clipboard?.writeText(text);
+      btn.textContent = 'copied!';
+      setTimeout(() => btn.textContent = 'copy', 1400);
+    });
+  });
+</script>
+
+</body>
+</html>
