@@ -61,6 +61,11 @@ menu:
     - name: Get Started
       pageRef: /docs/quickstart
       weight: 2
+    - name: Enterprise
+      url: https://www.solo.io/products/agentregistry
+      weight: 3
+      params:
+        external: true
     - name: Search
       weight: 7
       params:
