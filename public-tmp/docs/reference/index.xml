@@ -1,0 +1,259 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>agentregistry – Reference</title>
+    <link>https://agentregistry.dev/docs/reference/</link>
+    <description>Recent content in Reference on agentregistry</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	  <atom:link href="https://agentregistry.dev/docs/reference/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>CLI</title>
+      <link>https://agentregistry.dev/docs/reference/cli/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://agentregistry.dev/docs/reference/cli/</guid>
+      <description>
+        
+        
+        &lt;h2&gt;General Commands&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;general-commands&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#general-commands&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class=&#34;section-cards&#34;&gt;
+  
+
+&lt;a class=&#34;section-card&#34; href=&#34;arctl-version&#34;&gt;&lt;span class=&#34;section-card-body&#34;&gt;&lt;span class=&#34;section-card-title&#34;&gt;arctl version&lt;/span&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+&lt;a class=&#34;section-card&#34; href=&#34;arctl-completion&#34;&gt;&lt;span class=&#34;section-card-body&#34;&gt;&lt;span class=&#34;section-card-title&#34;&gt;arctl completion&lt;/span&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+&lt;a class=&#34;section-card&#34; href=&#34;arctl-configure&#34;&gt;&lt;span class=&#34;section-card-body&#34;&gt;&lt;span class=&#34;section-card-title&#34;&gt;arctl configure&lt;/span&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+&lt;a class=&#34;section-card&#34; href=&#34;arctl-embeddings&#34;&gt;&lt;span class=&#34;section-card-body&#34;&gt;&lt;span class=&#34;section-card-title&#34;&gt;arctl embeddings&lt;/span&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+&lt;a class=&#34;section-card&#34; href=&#34;arctl-embeddings-generate&#34;&gt;&lt;span class=&#34;section-card-body&#34;&gt;&lt;span class=&#34;section-card-title&#34;&gt;arctl embeddings generate&lt;/span&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+
+
+&lt;/div&gt;
+
+&lt;h2&gt;Agent Commands&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;agent-commands&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#agent-commands&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class=&#34;section-cards&#34;&gt;
+  
+
+&lt;a class=&#34;section-card&#34; href=&#34;arctl-agent-init&#34;&gt;&lt;span class=&#34;section-card-body&#34;&gt;&lt;span class=&#34;section-card-title&#34;&gt;arctl agent init&lt;/span&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+&lt;a class=&#34;section-card&#34; href=&#34;arctl-agent-list&#34;&gt;&lt;span class=&#34;section-card-body&#34;&gt;&lt;span class=&#34;section-card-title&#34;&gt;arctl agent list&lt;/span&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+&lt;a class=&#34;section-card&#34; href=&#34;arctl-agent-show&#34;&gt;&lt;span class=&#34;section-card-body&#34;&gt;&lt;span class=&#34;section-card-title&#34;&gt;arctl agent show&lt;/span&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+&lt;a class=&#34;section-card&#34; href=&#34;arctl-agent-build&#34;&gt;&lt;span class=&#34;section-card-body&#34;&gt;&lt;span class=&#34;section-card-title&#34;&gt;arctl agent build&lt;/span&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+&lt;a class=&#34;section-card&#34; href=&#34;arctl-agent-run&#34;&gt;&lt;span class=&#34;section-card-body&#34;&gt;&lt;span class=&#34;section-card-title&#34;&gt;arctl agent run&lt;/span&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+&lt;a class=&#34;section-card&#34; href=&#34;arctl-agent-publish&#34;&gt;&lt;span class=&#34;section-card-body&#34;&gt;&lt;span class=&#34;section-card-title&#34;&gt;arctl agent publish&lt;/span&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+&lt;a class=&#34;section-card&#34; href=&#34;arctl-agent-delete&#34;&gt;&lt;span class=&#34;section-card-body&#34;&gt;&lt;span class=&#34;section-card-title&#34;&gt;arctl agent delete&lt;/span&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+&lt;a class=&#34;section-card&#34; href=&#34;arctl-agent-add-mcp&#34;&gt;&lt;span class=&#34;section-card-body&#34;&gt;&lt;span class=&#34;section-card-title&#34;&gt;arctl agent add-mcp&lt;/span&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+&lt;a class=&#34;section-card&#34; href=&#34;arctl-agent-add-prompt&#34;&gt;&lt;span class=&#34;section-card-body&#34;&gt;&lt;span class=&#34;section-card-title&#34;&gt;arctl agent add-prompt&lt;/span&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+&lt;a class=&#34;section-card&#34; href=&#34;arctl-agent-add-skill&#34;&gt;&lt;span class=&#34;section-card-body&#34;&gt;&lt;span class=&#34;section-card-title&#34;&gt;arctl agent add-skill&lt;/span&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+
+
+&lt;/div&gt;
+
+&lt;h2&gt;MCP Commands&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;mcp-commands&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#mcp-commands&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class=&#34;section-cards&#34;&gt;
+  
+
+&lt;a class=&#34;section-card&#34; href=&#34;arctl-mcp-list&#34;&gt;&lt;span class=&#34;section-card-body&#34;&gt;&lt;span class=&#34;section-card-title&#34;&gt;arctl mcp list&lt;/span&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+&lt;a class=&#34;section-card&#34; href=&#34;arctl-mcp-show&#34;&gt;&lt;span class=&#34;section-card-body&#34;&gt;&lt;span class=&#34;section-card-title&#34;&gt;arctl mcp show&lt;/span&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+&lt;a class=&#34;section-card&#34; href=&#34;arctl-mcp-init&#34;&gt;&lt;span class=&#34;section-card-body&#34;&gt;&lt;span class=&#34;section-card-title&#34;&gt;arctl mcp init&lt;/span&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+&lt;a class=&#34;section-card&#34; href=&#34;arctl-mcp-init-go&#34;&gt;&lt;span class=&#34;section-card-body&#34;&gt;&lt;span class=&#34;section-card-title&#34;&gt;arctl mcp init go&lt;/span&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+&lt;a class=&#34;section-card&#34; href=&#34;arctl-mcp-init-python&#34;&gt;&lt;span class=&#34;section-card-body&#34;&gt;&lt;span class=&#34;section-card-title&#34;&gt;arctl mcp init python&lt;/span&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+&lt;a class=&#34;section-card&#34; href=&#34;arctl-mcp-add-tool&#34;&gt;&lt;span class=&#34;section-card-body&#34;&gt;&lt;span class=&#34;section-card-title&#34;&gt;arctl mcp add-tool&lt;/span&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+&lt;a class=&#34;section-card&#34; href=&#34;arctl-mcp-build&#34;&gt;&lt;span class=&#34;section-card-body&#34;&gt;&lt;span class=&#34;section-card-title&#34;&gt;arctl mcp build&lt;/span&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+&lt;a class=&#34;section-card&#34; href=&#34;arctl-mcp-run&#34;&gt;&lt;span class=&#34;section-card-body&#34;&gt;&lt;span class=&#34;section-card-title&#34;&gt;arctl mcp run&lt;/span&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+&lt;a class=&#34;section-card&#34; href=&#34;arctl-mcp-publish&#34;&gt;&lt;span class=&#34;section-card-body&#34;&gt;&lt;span class=&#34;section-card-title&#34;&gt;arctl mcp publish&lt;/span&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+&lt;a class=&#34;section-card&#34; href=&#34;arctl-mcp-delete&#34;&gt;&lt;span class=&#34;section-card-body&#34;&gt;&lt;span class=&#34;section-card-title&#34;&gt;arctl mcp delete&lt;/span&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+
+
+&lt;/div&gt;
+
+&lt;h2&gt;Skill Commands&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;skill-commands&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#skill-commands&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class=&#34;section-cards&#34;&gt;
+  
+
+&lt;a class=&#34;section-card&#34; href=&#34;arctl-skill-list&#34;&gt;&lt;span class=&#34;section-card-body&#34;&gt;&lt;span class=&#34;section-card-title&#34;&gt;arctl skill list&lt;/span&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+&lt;a class=&#34;section-card&#34; href=&#34;arctl-skill-show&#34;&gt;&lt;span class=&#34;section-card-body&#34;&gt;&lt;span class=&#34;section-card-title&#34;&gt;arctl skill show&lt;/span&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+&lt;a class=&#34;section-card&#34; href=&#34;arctl-skill-init&#34;&gt;&lt;span class=&#34;section-card-body&#34;&gt;&lt;span class=&#34;section-card-title&#34;&gt;arctl skill init&lt;/span&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+&lt;a class=&#34;section-card&#34; href=&#34;arctl-skill-build&#34;&gt;&lt;span class=&#34;section-card-body&#34;&gt;&lt;span class=&#34;section-card-title&#34;&gt;arctl skill build&lt;/span&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+&lt;a class=&#34;section-card&#34; href=&#34;arctl-skill-publish&#34;&gt;&lt;span class=&#34;section-card-body&#34;&gt;&lt;span class=&#34;section-card-title&#34;&gt;arctl skill publish&lt;/span&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+&lt;a class=&#34;section-card&#34; href=&#34;arctl-skill-pull&#34;&gt;&lt;span class=&#34;section-card-body&#34;&gt;&lt;span class=&#34;section-card-title&#34;&gt;arctl skill pull&lt;/span&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+&lt;a class=&#34;section-card&#34; href=&#34;arctl-skill-delete&#34;&gt;&lt;span class=&#34;section-card-body&#34;&gt;&lt;span class=&#34;section-card-title&#34;&gt;arctl skill delete&lt;/span&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+
+
+&lt;/div&gt;
+
+&lt;h2&gt;Prompt Commands&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;prompt-commands&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#prompt-commands&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class=&#34;section-cards&#34;&gt;
+  
+
+&lt;a class=&#34;section-card&#34; href=&#34;arctl-prompt-list&#34;&gt;&lt;span class=&#34;section-card-body&#34;&gt;&lt;span class=&#34;section-card-title&#34;&gt;arctl prompt list&lt;/span&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+&lt;a class=&#34;section-card&#34; href=&#34;arctl-prompt-show&#34;&gt;&lt;span class=&#34;section-card-body&#34;&gt;&lt;span class=&#34;section-card-title&#34;&gt;arctl prompt show&lt;/span&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+&lt;a class=&#34;section-card&#34; href=&#34;arctl-prompt-publish&#34;&gt;&lt;span class=&#34;section-card-body&#34;&gt;&lt;span class=&#34;section-card-title&#34;&gt;arctl prompt publish&lt;/span&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+&lt;a class=&#34;section-card&#34; href=&#34;arctl-prompt-delete&#34;&gt;&lt;span class=&#34;section-card-body&#34;&gt;&lt;span class=&#34;section-card-title&#34;&gt;arctl prompt delete&lt;/span&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+
+
+&lt;/div&gt;
+
+&lt;h2&gt;Deployment Commands&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;deployment-commands&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#deployment-commands&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class=&#34;section-cards&#34;&gt;
+  
+
+&lt;a class=&#34;section-card&#34; href=&#34;arctl-deployments-list&#34;&gt;&lt;span class=&#34;section-card-body&#34;&gt;&lt;span class=&#34;section-card-title&#34;&gt;arctl deployments list&lt;/span&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+&lt;a class=&#34;section-card&#34; href=&#34;arctl-deployments-show&#34;&gt;&lt;span class=&#34;section-card-body&#34;&gt;&lt;span class=&#34;section-card-title&#34;&gt;arctl deployments show&lt;/span&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+&lt;a class=&#34;section-card&#34; href=&#34;arctl-deployments-create&#34;&gt;&lt;span class=&#34;section-card-body&#34;&gt;&lt;span class=&#34;section-card-title&#34;&gt;arctl deployments create&lt;/span&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+&lt;a class=&#34;section-card&#34; href=&#34;arctl-deployments-delete&#34;&gt;&lt;span class=&#34;section-card-body&#34;&gt;&lt;span class=&#34;section-card-title&#34;&gt;arctl deployments delete&lt;/span&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+
+
+&lt;/div&gt;
+
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Security Vulnerabilities</title>
+      <link>https://agentregistry.dev/docs/reference/vulnerabilities/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://agentregistry.dev/docs/reference/vulnerabilities/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Review how the agentregistry project handles the lifecycle of Common Vulnerabilities and Exposures (CVEs).&lt;/p&gt;
+&lt;h2&gt;Reports&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;reports&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#reports&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;The agentregistry project appreciates efforts in discovering and resolving security vulnerabilities. Sources include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Team scans for vulnerability detection&lt;/li&gt;
+&lt;li&gt;Participation in early disclosure and security workgroups&lt;/li&gt;
+&lt;li&gt;User submissions from security scanning tools&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Where to report:&lt;/strong&gt; Email &lt;a href=&#34;mailto:agentregistry-vulnerability-reports@googlegroups.com&#34;&gt;&lt;code&gt;agentregistry-vulnerability-reports@googlegroups.com&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;When to send a report:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Discovery of a potential security vulnerability in an agentregistry component&lt;/li&gt;
+&lt;li&gt;Uncertainty about how a vulnerability affects agentregistry&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Check before sending:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Any crash, especially in core components&lt;/li&gt;
+&lt;li&gt;Potential Denial of Service (DoS) attacks&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;When NOT to send a report:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Configuration assistance requests&lt;/li&gt;
+&lt;li&gt;Security update application help&lt;/li&gt;
+&lt;li&gt;Non-security-related issues&lt;/li&gt;
+&lt;li&gt;Base image dependency concerns&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Evaluation&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;evaluation&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#evaluation&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;The team evaluates reports for:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Severity level&lt;/li&gt;
+&lt;li&gt;Impact on agentregistry versus backend code&lt;/li&gt;
+&lt;li&gt;Third-party dependency considerations&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Information remains private during remediation on a need-to-know basis.&lt;/p&gt;
+&lt;h2&gt;Remediation&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;remediation&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#remediation&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;CVE fixes involve code updates and component releases. Fixes may occur in private repositories to maintain security until a public release is ready.&lt;/p&gt;
+&lt;h2&gt;Disclosures&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;disclosures&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#disclosures&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;Public disclosure&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;public-disclosure&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#public-disclosure&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Public disclosure involves:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Merging private repository changes&lt;/li&gt;
+&lt;li&gt;Sharing security scan results&lt;/li&gt;
+&lt;li&gt;Publishing releases with documentation&lt;/li&gt;
+&lt;li&gt;Announcing remediation through public channels&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Updates and questions&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;updates-and-questions&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#updates-and-questions&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;For questions or policy change suggestions, contact &lt;a href=&#34;mailto:agentregistry-vulnerability-reports@googlegroups.com&#34;&gt;&lt;code&gt;agentregistry-vulnerability-reports@googlegroups.com&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

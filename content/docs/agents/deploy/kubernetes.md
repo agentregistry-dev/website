@@ -92,14 +92,14 @@ Deploy your agent to a Kubernetes cluster.
 
 You can remove a deployment from the UI or CLI. 
 
-{{< tabs items="UI,CLI" >}}
-{{% tab %}}
+{{< tabs >}}
+{{% tab name="UI" %}}
 
 1. [Open the agentregistry UI](http://localhost:12121) and go to the **Deployed** view. 
 2. Find the MCP server deployment that you want to remove and click the trash icon. 
 
 {{% /tab %}}
-{{% tab %}}
+{{% tab name="CLI" %}}
 
 1. List the deployments in your environment and find the one that you want to delete.
    ```sh

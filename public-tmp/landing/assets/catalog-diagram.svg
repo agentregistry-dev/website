@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 560" width="720" height="560" role="img" aria-label="agentregistry: clients connect through a curated catalog to public and private registries">
+  <defs>
+    <radialGradient id="ar-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#EEE3FE" stop-opacity="1"></stop>
+      <stop offset="60%" stop-color="#F3EBFF" stop-opacity="0.7"></stop>
+      <stop offset="100%" stop-color="#F3EBFF" stop-opacity="0"></stop>
+    </radialGradient>
+  </defs>
+
+  
+  <circle cx="360" cy="280" r="170" fill="url(#ar-glow)"></circle>
+
+  
+  <circle cx="360" cy="280" r="170" fill="none" stroke="#8A3FFC" stroke-opacity="0.35" stroke-width="1.4" stroke-dasharray="3 6"></circle>
+
+  
+  <g transform="translate(360,280) scale(1.7)" fill="#8A3FFC">
+    <circle cx="0" cy="0" r="11"></circle>
+    <circle cx="0" cy="-24.5" r="8.6"></circle>
+    <circle cx="21.1" cy="-12.1" r="8.6"></circle>
+    <circle cx="21.1" cy="12.1" r="8.6"></circle>
+    <circle cx="0" cy="24.5" r="8.6"></circle>
+    <circle cx="-21.1" cy="12.1" r="8.6"></circle>
+    <circle cx="-21.1" cy="-12.1" r="8.6"></circle>
+  </g>
+
+  
+  
+  <g>
+    <circle cx="360" cy="110" r="34" fill="#FFFFFF" stroke="#E7E7F0" stroke-width="1.2"></circle>
+    <g transform="translate(360,110)" fill="none" stroke="#8A3FFC" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M-13 -4 q-2 -11 9 -13 q12 -2 14 10 q2 11 -10 13 q-11 2 -13 -8"></path>
+    </g>
+    <text x="360" y="62" font-family="Figtree, sans-serif" font-size="14" fill="#14111F" text-anchor="middle" font-weight="500">Semantic Search</text>
+  </g>
+  
+  <g>
+    <circle cx="530" cy="280" r="34" fill="#FFFFFF" stroke="#E7E7F0" stroke-width="1.2"></circle>
+    <g transform="translate(530,280)" fill="none" stroke="#8A3FFC" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M-12 -3 L0 -12 L12 -3 L0 6 Z" fill="#EEE3FE"></path>
+      <path d="M-12 5 L0 14 L12 5"></path>
+    </g>
+    <text x="572" y="285" font-family="Figtree, sans-serif" font-size="14" fill="#14111F" text-anchor="start" font-weight="500">Central Governance</text>
+  </g>
+  
+  <g>
+    <circle cx="480" cy="430" r="34" fill="#FFFFFF" stroke="#E7E7F0" stroke-width="1.2"></circle>
+    <g transform="translate(480,430)" fill="#8A3FFC">
+      <circle cx="-9" cy="0" r="4.2"></circle>
+      <circle cx="7" cy="-8" r="4.2"></circle>
+      <circle cx="7" cy="8" r="4.2"></circle>
+      <line x1="-6" y1="-1.5" x2="4.5" y2="-6.5" stroke="#8A3FFC" stroke-width="1.6"></line>
+      <line x1="-6" y1="1.5" x2="4.5" y2="6.5" stroke="#8A3FFC" stroke-width="1.6"></line>
+    </g>
+    <text x="480" y="490" font-family="Figtree, sans-serif" font-size="14" fill="#14111F" text-anchor="middle" font-weight="500">Evaluation</text>
+  </g>
+  
+  <g>
+    <circle cx="240" cy="430" r="34" fill="#FFFFFF" stroke="#E7E7F0" stroke-width="1.2"></circle>
+    <g transform="translate(240,430)" fill="#8A3FFC">
+      <rect x="-11" y="-2" width="9" height="13" rx="1.5"></rect>
+      <rect x="-2" y="-9" width="13" height="9" rx="1.5"></rect>
+    </g>
+    <text x="240" y="490" font-family="Figtree, sans-serif" font-size="14" fill="#14111F" text-anchor="middle" font-weight="500">Plugins</text>
+  </g>
+  
+  <g>
+    <circle cx="190" cy="280" r="34" fill="#FFFFFF" stroke="#E7E7F0" stroke-width="1.2"></circle>
+    <g transform="translate(190,280)" fill="#8A3FFC">
+      <circle cx="0" cy="-2" r="7"></circle>
+      <circle cx="-2.5" cy="-3" r="1.2" fill="#FFF"></circle>
+      <circle cx="2.5" cy="-3" r="1.2" fill="#FFF"></circle>
+      <path d="M-6 7 q6 5 12 0" fill="none" stroke="#8A3FFC" stroke-width="2"></path>
+    </g>
+    <text x="148" y="285" font-family="Figtree, sans-serif" font-size="14" fill="#14111F" text-anchor="end" font-weight="500">Agents</text>
+  </g>
+
+  
+  <g transform="translate(36,200)">
+    <text x="0" y="-12" font-family="DM Mono, monospace" font-size="11" fill="#9794A8" letter-spacing="1.2">CLIENTS</text>
+    <g>
+      <rect x="0" y="0" width="68" height="50" rx="10" fill="#FFFFFF" stroke="#E7E7F0" stroke-width="1.2"></rect>
+      <g transform="translate(34,25)" fill="none" stroke="#14111F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="-9,-5 -16,2 -9,9"></polyline>
+        <polyline points="9,-5 16,2 9,9"></polyline>
+      </g>
+    </g>
+    <g transform="translate(0,62)">
+      <rect x="0" y="0" width="68" height="50" rx="10" fill="#FFFFFF" stroke="#E7E7F0" stroke-width="1.2"></rect>
+      <g transform="translate(34,25)" fill="#14111F">
+        <rect x="-14" y="-6" width="28" height="20" rx="4"></rect>
+        <rect x="-8" y="-13" width="16" height="9" rx="2"></rect>
+        <circle cx="-5" cy="3" r="2" fill="#fff"></circle>
+        <circle cx="5" cy="3" r="2" fill="#fff"></circle>
+      </g>
+    </g>
+    <g transform="translate(0,124)">
+      <rect x="0" y="0" width="68" height="50" rx="10" fill="#FFFFFF" stroke="#E7E7F0" stroke-width="1.2"></rect>
+      <text x="34" y="32" font-family="DM Mono, monospace" font-size="14" fill="#14111F" text-anchor="middle" font-weight="500">$_</text>
+    </g>
+  </g>
+
+  
+  <g transform="translate(616,200)">
+    <text x="34" y="-12" font-family="DM Mono, monospace" font-size="11" fill="#9794A8" letter-spacing="1.2" text-anchor="middle">REGISTRIES</text>
+    <g>
+      <rect x="-32" y="0" width="100" height="40" rx="8" fill="#FFFFFF" stroke="#E7E7F0" stroke-width="1.2"></rect>
+      <text x="18" y="25" font-family="Figtree, sans-serif" font-size="13" fill="#14111F" text-anchor="middle" font-weight="500">MCP</text>
+    </g>
+    <g transform="translate(0,52)">
+      <rect x="-32" y="0" width="100" height="40" rx="8" fill="#FFFFFF" stroke="#E7E7F0" stroke-width="1.2"></rect>
+      <text x="18" y="25" font-family="Figtree, sans-serif" font-size="13" fill="#14111F" text-anchor="middle" font-weight="500">Public</text>
+    </g>
+    <g transform="translate(0,104)">
+      <rect x="-32" y="0" width="100" height="40" rx="8" fill="#FFFFFF" stroke="#E7E7F0" stroke-width="1.2"></rect>
+      <text x="18" y="25" font-family="Figtree, sans-serif" font-size="13" fill="#14111F" text-anchor="middle" font-weight="500">Private</text>
+    </g>
+  </g>
+
+  
+  <g stroke="#E7E7F0" stroke-width="1.2" fill="none" stroke-dasharray="2 4">
+    <path d="M110 230 Q 150 230 158 270"></path>
+    <path d="M110 286 L 156 280"></path>
+    <path d="M110 340 Q 150 340 158 290"></path>
+  </g>
+  
+  <g stroke="#E7E7F0" stroke-width="1.2" fill="none" stroke-dasharray="2 4">
+    <path d="M562 230 Q 610 230 615 220"></path>
+    <path d="M562 286 L 615 272"></path>
+    <path d="M562 340 Q 610 340 615 324"></path>
+  </g>
+</svg>

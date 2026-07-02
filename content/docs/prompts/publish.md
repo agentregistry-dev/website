@@ -34,8 +34,8 @@ EOF
 ## Publish the prompt
 
 1. Publish the prompt in agentregistry. You can pass the details in CLI flags or use a prompt definition YAML file. 
-   {{< tabs items="CLI flags,Prompt template" >}}
-   {{% tab %}}
+   {{< tabs >}}
+   {{% tab name="CLI flags" %}}
 
    Use the `arctl` CLI to define the details of your prompt, such as the name and version. 
 
@@ -57,7 +57,7 @@ EOF
    > Use `--dry-run` to preview the prompt payload without publishing. For more information, see the [arctl prompt publish](/docs/reference/cli/arctl-prompt-publish/) command.
 
    {{% /tab %}}
-   {{% tab %}}
+   {{% tab name="Prompt template" %}}
 
    For structured prompt definitions, you can use a YAML file. This lets you set all fields in one place instead of using CLI flags.
 

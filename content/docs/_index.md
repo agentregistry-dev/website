@@ -2,6 +2,9 @@
 title: agentregistry
 toc: false
 description: ""
+# Curated landing cards (headings + external video); the theme's
+# auto-generated child grid can't reproduce them, so suppress it.
+disableCards: true
 ---
 
 Agentregistry, an open source, secure, and centralized AI artifact catalog that helps you build, package, publish, discover, and govern Docker images for AI artifacts, including agents, skills, prompts, and MCP servers that are spread across multiple container registries and GitHub repositories. It provides a centralized view of the images you allow your teams to share and deploy into their environments. 

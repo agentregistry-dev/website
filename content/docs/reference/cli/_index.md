@@ -2,6 +2,10 @@
 title: CLI
 weight: 10
 description:
+# 40 commands grouped under 6 headings; the theme's auto grid would
+# flatten them into one ungrouped list, so suppress it and keep the
+# curated grouped cards below.
+disableCards: true
 ---
 
 ## General Commands
