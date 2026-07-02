@@ -1,3 +1,18 @@
+{{- /*
+  Module bootstrap MUST be the first call here. docs-theme-extras ships
+  its head-end content (brand CSS, fonts, sidebar-loading, hash scroll,
+  TOC scroll-spy, Copy-as-Markdown, version dropdown JS) inside
+  themeExtras/head-end.html instead of partials/custom/head-end.html
+  because Hugo's project-over-imports precedence would let this very file
+  silently win and drop the module's bootstrap. The explicit invocation
+  below is the documented contract — see the module's
+  themeExtras/head-end.html header for the why.
+
+  Everything BELOW the partial call is agentregistry-oss-specific (GTM,
+  the full-width navbar override, the local Tailwind css.html pipeline).
+*/ -}}
+{{ partial "themeExtras/head-end.html" . }}
+
 {{ with .Site.Params.gtmContainerID }}
 {{/* Google Tag Manager — matches ambientmesh.io/layouts/partials/custom/head-end.html */}}
 <script>

@@ -2,4 +2,4 @@ module github.com/agentregistry-dev/website
 
 go 1.25.1
 
-require github.com/imfing/hextra v0.12.3 // indirect
+require github.com/solo-io/docs-theme-extras v0.1.13 // indirect
