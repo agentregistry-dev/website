@@ -2,6 +2,17 @@ baseURL: https://agentregistry.dev/
 languageCode: en-us
 title: agentregistry
 
+# The `markdown` and `llms` output formats are defined by Hextra (imported
+# transitively via docs-theme-extras) and rendered by extras' templates
+# (page.markdown.md, llms.txt, docs/section.llms.txt). `markdown` emits a raw
+# `<page>.md` beside each HTML page (the source external LLM fetches use);
+# `llms` emits `/llms.txt` (a site index for AI crawlers) plus per-section
+# variants. agentregistry is pure docs, so every page is in scope.
+outputs:
+  home: [HTML, RSS, llms]
+  page: [HTML, markdown]
+  section: [HTML, RSS, markdown, llms]
+
 # Enable dark mode by default
 params:
   # Tells docs-theme-extras which brand CSS layer + font stack to load
@@ -49,6 +60,11 @@ params:
   feedback:
     enable: false
     issueRepo: agentregistry-dev/website
+
+  # Intro line placed at the top of the generated /llms.txt (see the `llms`
+  # output format above). Read by extras' llms.txt template.
+  llms:
+    docsIntro: agentregistry is an open source registry for discovering, publishing, and sharing AI agents and MCP (Model Context Protocol) servers.
 
   # External links
   editURL:
