@@ -1,5 +1,6 @@
 ---
 title: agentregistry
+linkTitle: Docs
 toc: false
 description: ""
 # Explicitly cascade the docs layout key to every descendant. Hugo defaults
