@@ -47,7 +47,7 @@ params:
   # agw/kgw). Thumbs-down opens a GitHub issue against issueRepo. Suppress
   # per-page with `hide_feedback: true` in front matter.
   feedback:
-    enable: true
+    enable: false
     issueRepo: agentregistry-dev/website
 
   # External links
