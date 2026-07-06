@@ -3,8 +3,9 @@ name: Links
 # Scheduled: full check on all files, creates an issue, posts to Slack.
 # Pull request: local links only on changed files, no issue or Slack.
 #
-# Requires org secrets (present in agentregistry-dev/website, NOT in personal
-# forks): GH_TOKEN (checkout shared scripts), SLACK_BOT_TOKEN (scheduled runs).
+# The shared link-checking scripts live in the public solo-io/docs-link-checking
+# repo, cloned with the built-in GITHUB_TOKEN (no dedicated secret needed). Only
+# the scheduled run's Slack post needs a SLACK_BOT_TOKEN secret; PR runs skip it.
 on:
   workflow_dispatch:
   schedule:
@@ -39,7 +40,11 @@ jobs:
         with:
           repository: solo-io/docs-link-checking
           path: docs-link-checking
-          token: ${{ secrets.GH_TOKEN }}
+          # solo-io/docs-link-checking is a public repo, so the auto-provided
+          # GITHUB_TOKEN can clone it — no dedicated GH_TOKEN secret needed
+          # (agentregistry-dev/website doesn't define one). Matches the token
+          # used in framework-tests.yml.
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Hugo
         uses: peaceiris/actions-hugo@v3
