@@ -1,0 +1,6 @@
+# Overrides Hextra's default i18n strings for English. Hextra ships
+# `copyright: "© 2026 Hextra Project."`; the extras footer falls back to this
+# i18n value when params.footer.copyright is unset, so override it here with the
+# product's own line (same pattern as agw-oss). Year is static, matching agw and
+# Hextra's own default — bump it at the turn of the year.
+copyright: "© 2026 Solo.io. All rights reserved."

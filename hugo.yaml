@@ -32,11 +32,24 @@ params:
     
   page:
     width: full
-  
+
+  # agentregistry is a flat docs set where /docs/ is the real entry point, so
+  # render the left nav on the docs-index landing (the theme hides it by
+  # default, which suits versioned sites' version-picker landings).
+  sidebar:
+    showOnLanding: true
+
   footer:
     displayCopyright: true
     displayPoweredBy: false
-  
+
+  # "Was this page helpful?" widget at the bottom of docs pages (same as
+  # agw/kgw). Thumbs-down opens a GitHub issue against issueRepo. Suppress
+  # per-page with `hide_feedback: true` in front matter.
+  feedback:
+    enable: true
+    issueRepo: agentregistry-dev/website
+
   # External links
   editURL:
     enable: true

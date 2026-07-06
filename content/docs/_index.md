@@ -2,6 +2,12 @@
 title: agentregistry
 toc: false
 description: ""
+# Explicitly cascade the docs layout key to every descendant. Hugo defaults
+# `type` to the section name ("docs") so pages render today, but making it
+# explicit hardens against that default changing and satisfies the framework
+# test (matches agw-oss).
+cascade:
+  type: docs
 # Curated landing cards (headings + external video); the theme's
 # auto-generated child grid can't reproduce them, so suppress it.
 disableCards: true

@@ -1,0 +1,55 @@
+# Configuration for the docs-theme-extras HTML test harness when run against
+# agentregistry-oss.
+#
+# The harness lives in github.com/solo-io/docs-theme-extras and reads this file
+# via the DOCS_TEST_CONFIG env var (set by the Makefile or CI). All relative
+# paths are resolved against this file's directory. The harness does NOT build
+# the site — `hugo` runs first and writes to builtRoot.
+#
+# First-pass config: structural HTML quality (no shortcode leaks, no markdown
+# bleed, image alt text, console errors, contrast) against the production build.
+# Tighten/expand as the suite stabilizes.
+
+version = "1"
+name    = "agentregistry-oss"
+brand   = "oss"
+
+# Where the consumer's built HTML lives. Everything operates on this tree.
+builtRoot = "./public"
+baseURL   = "/"
+
+# Source-tree roots for author-side lints (e.g. curl-quotes scans markdown
+# directly). Narrowed to docs content so lints don't trip on the marketing
+# landing page.
+scanRoots = [
+  "./content/docs",
+]
+
+# NOTE: agentregistry is a flat, unversioned docs site (/docs/<section>/<page>/)
+# with no site.Params.sections and no version segment. There is intentionally
+# no [versioning] block — version-aware specs detect the absence and skip
+# gracefully (same mechanism agw's standalone/unversioned docs rely on).
+
+[checks]
+# Smoke is for multi-product cross-runs (SMOKE_PRODUCT env); agr is a single
+# site, so skip. Cross-browser is opt-in and slow; run it manually when needed.
+smoke        = false
+crossBrowser = false
+
+# Allowlists for known-benign noise that surfaces against real content (the
+# module's bundled fixture has none of this). Tighten as content is fixed.
+[allowlists]
+consoleErrors = [
+  # Third-party analytics/chat (GA, GTM, Qualified) make backend calls on page
+  # init that fail in the offline test environment, surfacing as a bare
+  # "invalid_request" pageerror with no stack. Not fixable without a live
+  # backend — suppress until those scripts are refactored to not throw on init.
+  "invalid_request",
+  # Hextra's main.min.js null-derefs (reading 'removeAttribute' /
+  # 'addEventListener') on the /docs/ landing page, which suppresses the
+  # sidebar and so omits the toggle markup main.js expects. Same class of
+  # benign error agw fixed at source via hidden navbar stand-in elements;
+  # agr hasn't adopted that yet, so suppress here until it does.
+  "removeAttribute",
+  "addEventListener",
+]
