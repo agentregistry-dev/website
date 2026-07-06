@@ -4,7 +4,6 @@ weight: 60
 description: Add a published prompt to an agent so that it is used as the agent's instruction at runtime.
 ---
 
-Add a published prompt to an agent so that it is used as the agent's instruction at runtime.
 
 ## Before you begin
 
