@@ -32,9 +32,8 @@ Agentregistry comes with built-in agent templates that you can use to quickly sp
    agent.yaml          docker-compose.yaml Dockerfile          myagent             pyproject.toml      README.md
    ```
 
-   {{< callout type="info">}}
-   The `agent.yaml` file sets the image location that is used by agentregistry when you build the image and push it to your container registry. By default, agentregistry uses `ghcr.io` as the container registry and `latest` as the image tag, such as `ghcr.io/myagent:latest`. If you want to use agentregistry to push images to your container registry, make sure to update this file with the registry and image tag that you want to use. Note that this update is not required if you want to build images locally only without pushing them to your container registry. 
-   {{< /callout >}}
+   > [!NOTE]
+   > The `agent.yaml` file sets the image location that is used by agentregistry when you build the image and push it to your container registry. By default, agentregistry uses `ghcr.io` as the container registry and `latest` as the image tag, such as `ghcr.io/myagent:latest`. If you want to use agentregistry to push images to your container registry, make sure to update this file with the registry and image tag that you want to use. Note that this update is not required if you want to build images locally only without pushing them to your container registry. 
 
    | File | Description | 
    | -- | -- | 

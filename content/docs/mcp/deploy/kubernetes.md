@@ -47,9 +47,8 @@ Deploy your agent to a Kubernetes cluster.
    Agent Gateway endpoint: http://localhost:21212/mcp
    ```
 
-   {{< callout type="info" >}}
-   If the deployment fails, a deployment entry is still created in the database and set to failed. You can view failed deployments by using the `arctl deployments list` command. Note that you cannot re-deploy a failed deployment to fix it. Instead, remove the failed deployment with `arctl deployments delete <deployment-ID>` and then re-run the `arctl deployments create` command. 
-   {{< /callout >}}
+   > [!NOTE]
+   > If the deployment fails, a deployment entry is still created in the database and set to failed. You can view failed deployments by using the `arctl deployments list` command. Note that you cannot re-deploy a failed deployment to fix it. Instead, remove the failed deployment with `arctl deployments delete <deployment-ID>` and then re-run the `arctl deployments create` command. 
 
 2. Verify that the MCP server is up and running. 
    ```sh

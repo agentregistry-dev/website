@@ -39,16 +39,15 @@ Add a skill that was previously published to agentregistry by referencing the sk
      --image 
    ```
 
-   {{< callout type="tip">}}
-   If the skill is packaged as a Docker image, you can reference it directly without publishing to the registry first.
-
-   ```sh
-   arctl agent add-skill my-skill \
-     --project-dir myagent \
-     --image docker.io/user/hello-world-template:v1.0.0
-
-   ```
-   {{< /callout >}}
+   > [!TIP]
+   > If the skill is packaged as a Docker image, you can reference it directly without publishing to the registry first.
+   >
+   > ```sh
+   > arctl agent add-skill my-skill \
+   >   --project-dir myagent \
+   >   --image docker.io/user/hello-world-template:v1.0.0
+   >
+   > ```
 
    Example output:
    ```

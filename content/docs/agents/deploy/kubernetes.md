@@ -43,9 +43,8 @@ Deploy your agent to a Kubernetes cluster.
    Agent 'myagent' version 'latest' deployed to providerId=kubernetes-default in namespace 'default'
    ```
 
-   {{< callout type="info" >}}
-   If the deployment fails, a deployment entry is still created in the database and set to failed. You can view failed deployments by using the `arctl deployments list` command. Note that you cannot re-deploy a failed deployment to fix it. Instead, remove the failed deployment with `arctl deployments delete <deployment-ID>` and then re-run the `arctl deployments create` command. 
-   {{< /callout >}}
+   > [!NOTE]
+   > If the deployment fails, a deployment entry is still created in the database and set to failed. You can view failed deployments by using the `arctl deployments list` command. Note that you cannot re-deploy a failed deployment to fix it. Instead, remove the failed deployment with `arctl deployments delete <deployment-ID>` and then re-run the `arctl deployments create` command. 
 
 2. Verify that the agent is up and running. 
    ```sh

@@ -34,9 +34,8 @@ To also push the image to your container registry, include the `--push` option:
 arctl skill build ./myskill --image docker.io/user/hello-world-template:v1.0.0 --push
 ```
 
-{{< callout type="tip" >}}
-To also use agentregistry to push the image to your container registry, include the `--push` option. You can also set the platform, for which you want to build the image, such as `linux/amd64` by using the `--platform` option. For more information, see the [arctl mcp build](/docs/reference/cli/arctl-mcp-build/) command. Make sure that you are logged in to your container registry before you run the command.
-{{< /callout >}}
+> [!TIP]
+> To also use agentregistry to push the image to your container registry, include the `--push` option. You can also set the platform, for which you want to build the image, such as `linux/amd64` by using the `--platform` option. For more information, see the [arctl mcp build](/docs/reference/cli/arctl-mcp-build/) command. Make sure that you are logged in to your container registry before you run the command.
 
 
 ## Publish the skill
@@ -55,9 +54,8 @@ arctl skill publish ./myskill \
 
 The skill name and description are read from the local `SKILL.md` file. The `--docker-image` flag specifies the pre-built Docker image to register.
 
-{{< callout type="tip" >}}
-To preview the registry entry without creating it, use the `--dry-run` flag.
-{{< /callout >}}
+> [!TIP]
+> To preview the registry entry without creating it, use the `--dry-run` flag.
 
 ### Option 2: Publish from a GitHub repository (with local folder)
 
@@ -77,9 +75,8 @@ The `--github` flag accepts full GitHub tree URLs that include a branch and subd
 | Specific branch | `https://github.com/myorg/my-skills/tree/main` |
 | Branch and subdirectory | `https://github.com/myorg/my-skills/tree/main/skills/myskill` |
 
-{{< callout type="tip" >}}
-To preview the registry entry without creating it, use the `--dry-run` flag.
-{{< /callout >}}
+> [!TIP]
+> To preview the registry entry without creating it, use the `--dry-run` flag.
 
 ### Option 3: Direct registration with GitHub (no local files needed)
 
@@ -97,9 +94,8 @@ In direct mode:
 - `--github` and `--version` are **required** and represent the source GitHub repository and the version you want to use for your skill.
 - `--description` is optional.
 
-{{< callout type="tip" >}}
-To preview the registry entry without creating it, use the `--dry-run` flag.
-{{< /callout >}}
+> [!TIP]
+> To preview the registry entry without creating it, use the `--dry-run` flag.
 
 ### Option 4: Direct registration with Docker image (no local files needed)
 
@@ -117,9 +113,8 @@ In direct mode:
 - `--docker-image` and `--version` are **required**.
 - `--description` is optional.
 
-{{< callout type="tip" >}}
-To preview the registry entry without creating it, use the `--dry-run` flag.
-{{< /callout >}}
+> [!TIP]
+> To preview the registry entry without creating it, use the `--dry-run` flag.
 
 ## Verify the published skill
 
