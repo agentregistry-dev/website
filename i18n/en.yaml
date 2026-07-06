@@ -3,4 +3,4 @@
 # i18n value when params.footer.copyright is unset, so override it here with the
 # product's own line (same pattern as agw-oss). Year is static, matching agw and
 # Hextra's own default — bump it at the turn of the year.
-copyright: "© Copyright © agentregistry, a Series of LF Projects, LLC."
+copyright: "© 2026, agentregistry, a Series of LF Projects, LLC. All rights reserved."
