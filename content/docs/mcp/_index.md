@@ -10,5 +10,6 @@ description:
 {{< card link="tools" title="Add tools" >}}
 {{< card link="publish" title="Publish MCP server images to agentregistry" >}}
 {{< card link="deploy" title="Deploy an MCP server" >}}
+{{< card link="registry-compatibility" title="MCP Registry v0.1 compatibility" >}}
 
 {{< /cards >}}
