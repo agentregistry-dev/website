@@ -40,9 +40,8 @@ For testing purposes, the instructions in this guide assume that you do not want
    ✅ Successfully built Docker image: ghcr.io/myagent:latest
    ```
 
-   {{< callout type="tip" >}}
-   To also use agentregistry to push the image to your container registry, include the `--push` option. You can also set the platform, for which you want to build the image, such as `linux/amd64` by using the `--platform` option. For more information, see the [arctl agent build](/docs/reference/cli/arctl-agent-build/) command. Make sure that you are logged in to your container registry before you run the command.
-   {{< /callout >}}
+   > [!TIP]
+   > To also use agentregistry to push the image to your container registry, include the `--push` option. You can also set the platform, for which you want to build the image, such as `linux/amd64` by using the `--platform` option. For more information, see the [arctl agent build](/docs/reference/cli/arctl-agent-build/) command. Make sure that you are logged in to your container registry before you run the command.
 
 2. Verify that the image is built. 
    ```sh

@@ -43,9 +43,8 @@ Deploy your agent to a Kubernetes cluster.
    Agent 'myagent' version 'latest' deployed to providerId=kubernetes-default in namespace 'default'
    ```
 
-   {{< callout type="info" >}}
-   If the deployment fails, a deployment entry is still created in the database and set to failed. You can view failed deployments by using the `arctl deployments list` command. Note that you cannot re-deploy a failed deployment to fix it. Instead, remove the failed deployment with `arctl deployments delete <deployment-ID>` and then re-run the `arctl deployments create` command. 
-   {{< /callout >}}
+   > [!NOTE]
+   > If the deployment fails, a deployment entry is still created in the database and set to failed. You can view failed deployments by using the `arctl deployments list` command. Note that you cannot re-deploy a failed deployment to fix it. Instead, remove the failed deployment with `arctl deployments delete <deployment-ID>` and then re-run the `arctl deployments create` command. 
 
 2. Verify that the agent is up and running. 
    ```sh
@@ -92,14 +91,14 @@ Deploy your agent to a Kubernetes cluster.
 
 You can remove a deployment from the UI or CLI. 
 
-{{< tabs items="UI,CLI" >}}
-{{% tab %}}
+{{< tabs >}}
+{{% tab name="UI" %}}
 
 1. [Open the agentregistry UI](http://localhost:12121) and go to the **Deployed** view. 
 2. Find the MCP server deployment that you want to remove and click the trash icon. 
 
 {{% /tab %}}
-{{% tab %}}
+{{% tab name="CLI" %}}
 
 1. List the deployments in your environment and find the one that you want to delete.
    ```sh

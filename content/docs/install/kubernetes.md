@@ -6,9 +6,8 @@ description:
 
 Use this guide to install agentregistry in a Kubernetes cluster by using Helm. This approach is useful for team environments where multiple developers need shared access to a central artifact registry.
 
-{{< callout type="info" >}}
-If you install agentregistry in a Kubernetes cluster, you cannot deploy AI artifacts to a local environment. To deploy them to a local environment, you must [install agentregistry locally with Docker](/docs/install/docker). 
-{{< /callout >}}
+> [!NOTE]
+> If you install agentregistry in a Kubernetes cluster, you cannot deploy AI artifacts to a local environment. To deploy them to a local environment, you must [install agentregistry locally with Docker](/docs/install/docker). 
 
 ## Before you begin
 
@@ -21,9 +20,8 @@ Make sure you have the following tools installed:
 
 Agentregistry requires an external PostgreSQL instance with the [pgvector](https://github.com/pgvector/pgvector) extension for Kubernetes deployments.
 
-{{< callout type="warning" >}}
-The bundled PostgreSQL setup is intended for development and testing only. For production, use a managed PostgreSQL service or a production-grade operator.
-{{< /callout >}}
+> [!WARNING]
+> The bundled PostgreSQL setup is intended for development and testing only. For production, use a managed PostgreSQL service or a production-grade operator.
 
 ## Install with Helm
 

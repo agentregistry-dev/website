@@ -4,7 +4,6 @@ weight: 60
 description: Add a published prompt to an agent so that it is used as the agent's instruction at runtime.
 ---
 
-Add a published prompt to an agent so that it is used as the agent's instruction at runtime.
 
 ## Before you begin
 
@@ -34,14 +33,13 @@ Add a published prompt to an agent so that it is used as the agent's instruction
      --registry-prompt-name code-review
    ```
 
-   {{< callout type="tip" >}}
-   To use a prompt from a different registry, use the `--registry-url` flag.
-   ```sh
-   arctl agent add-prompt reviewer \
-    --registry-prompt-name code-review \
-    --registry-url https://registry.example.com 
-   ```
-   {{< /callout >}}
+   > [!TIP]
+   > To use a prompt from a different registry, use the `--registry-url` flag.
+   > ```sh
+   > arctl agent add-prompt reviewer \
+   >  --registry-prompt-name code-review \
+   >  --registry-url https://registry.example.com 
+   > ```
 
    Example output:
    ```console
@@ -80,9 +78,8 @@ Add a published prompt to an agent so that it is used as the agent's instruction
    arctl agent run myagent
    ```
    
-   {{< callout type="tip" >}}
-   If no prompts are resolved (for example, the registry is unreachable or no prompts are configured), the agent falls back to the default instruction defined in the `agent.py` file.
-   {{< /callout >}}
+   > [!TIP]
+   > If no prompts are resolved (for example, the registry is unreachable or no prompts are configured), the agent falls back to the default instruction defined in the `agent.py` file.
 
 6. Ask the agent what it checks during a code review. Verify that you get back the steps that you defined in your prompt. 
    

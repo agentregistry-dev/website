@@ -51,13 +51,11 @@ arctl skill publish ./my-skill --git https://github.com/myorg/repo --version 1.0
 --version string        Version to publish (required for --git or --docker-image)
 ```
 
-{{< callout type="info" >}}
-The `--git` and `--docker-image` flags are mutually exclusive. One of them is required.
-{{< /callout >}}
+> [!NOTE]
+> The `--git` and `--docker-image` flags are mutually exclusive. One of them is required.
 
-{{< callout type="tip" >}}
-To build a skill as a Docker image, use [`arctl skill build`](/docs/reference/cli/arctl-skill-build/) instead.
-{{< /callout >}}
+> [!TIP]
+> To build a skill as a Docker image, use [`arctl skill build`](/docs/reference/cli/arctl-skill-build/) instead.
 
 ## Global flags
 ```sh

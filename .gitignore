@@ -1,7 +1,14 @@
 # Hugo build artifacts
 public/
+public-*/
 resources/
 .hugo_build.lock
+.build.log
+
+# Test artifacts (link checker, framework tests)
+artifacts/
+playwright-report/
+test-results/
 
 # OS files
 .DS_Store

@@ -1,0 +1,188 @@
+name: Links
+
+# Scheduled: full check on all files, creates an issue, posts to Slack.
+# Pull request: local links only on changed files, no issue or Slack.
+#
+# The shared link-checking scripts live in the public solo-io/docs-link-checking
+# repo, cloned with the built-in GITHUB_TOKEN (no dedicated secret needed). Only
+# the scheduled run's Slack post needs a SLACK_BOT_TOKEN secret; PR runs skip it.
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "00 04 * * MON"
+  pull_request:
+    paths:
+      - 'content/**'
+      - 'assets/**'
+      - 'static/**'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  linkChecker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions:
+      contents: read
+      issues: write
+    env:
+      PRODUCT_NAME: agentregistry OSS
+      ISSUE_TITLE: Link Checker Report - agentregistry OSS
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 100
+
+      - name: Checkout shared link-checking scripts
+        uses: actions/checkout@v4
+        with:
+          repository: solo-io/docs-link-checking
+          path: docs-link-checking
+          # solo-io/docs-link-checking is a public repo, so the auto-provided
+          # GITHUB_TOKEN can clone it — no dedicated GH_TOKEN secret needed
+          # (agentregistry-dev/website doesn't define one). Matches the token
+          # used in framework-tests.yml.
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: '0.160.1'
+          extended: true
+
+      - name: Install Lychee
+        run: |
+          chmod +x docs-link-checking/install-lychee.sh
+          docs-link-checking/install-lychee.sh
+
+      - name: Hugo build
+        run: |
+          # Tailwind CLI (this repo's devDependencies) is invoked by Hugo's
+          # css.TailwindCSS for assets/css/main.css.
+          npm install
+          hugo --config hugo.yaml
+
+      - name: Prepare workspace
+        run: mkdir -p artifacts
+
+      - name: Check Links with Lychee
+        id: lychee
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          shopt -s globstar
+          set +e
+
+          # agentregistry is a flat, unversioned site (/docs/<section>/<page>/),
+          # so no version excludes/remaps are needed — just resolve absolute
+          # production URLs to the local build.
+          LYCHEE_COMMON=(lychee
+            --verbose
+            --config docs-link-checking/lychee.toml
+            --root-dir "${{ github.workspace }}/public"
+            --index-files index.html
+            --remap "^https://agentregistry\.dev/ file:///${{ github.workspace }}/public/"
+            --format json
+            --user-agent curl/8.4.0
+            --output "${{ github.workspace }}/artifacts/agentregistry-oss-links.json"
+            public/**/*.html
+          )
+
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            # Skip external URLs on PRs; remaps still resolve agentregistry.dev
+            # links to local files so internal links are checked.
+            "${LYCHEE_COMMON[@]}" --exclude "^https?://"
+          else
+            "${LYCHEE_COMMON[@]}" --github-token ${{ secrets.GITHUB_TOKEN }}
+          fi > "${{ github.workspace }}/artifacts/agentregistry-oss-links-json.log" 2>&1
+
+          EXIT=$?
+          set -e
+          echo "has_failures=$([ "$EXIT" != "0" ] && echo 'true' || echo 'false')" >> "$GITHUB_OUTPUT"
+
+      - name: Generate markdown report from JSON
+        id: report
+        if: hashFiles('artifacts/agentregistry-oss-links.json') != ''
+        run: |
+          chmod +x docs-link-checking/generate-link-report.sh
+          docs-link-checking/generate-link-report.sh \
+            "${{ github.workspace }}/artifacts/agentregistry-oss-links.json" \
+            "${{ github.workspace }}/artifacts/agentregistry-oss-links.md" \
+            "${{ github.workspace }}/public" \
+            "${{ github.event_name == 'pull_request' && 'pr' || '' }}"
+
+      - name: Create issue from report
+        if: steps.report.outputs.has_issues == 'true' && github.event_name != 'pull_request'
+        id: create-issue
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: peter-evans/create-issue-from-file@v6
+        with:
+          title: ${{ env.ISSUE_TITLE }}
+          content-filepath: ./artifacts/agentregistry-oss-links.md
+
+      - name: Set issue URL for Slack
+        if: steps.report.outputs.has_issues == 'true' && github.event_name != 'pull_request'
+        id: issue-url
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ steps.create-issue.outputs.issue-number }}
+          ISSUE_TITLE: ${{ env.ISSUE_TITLE }}
+          LABELS: links,bug
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          chmod +x docs-link-checking/set-issue-url.sh
+          docs-link-checking/set-issue-url.sh
+
+      - name: Remove public directory
+        run: rm -rf public
+
+      - name: Read link checker results
+        id: link-stats
+        env:
+          MD_FILE: artifacts/agentregistry-oss-links.md
+          JSON_FILE: artifacts/agentregistry-oss-links.json
+        run: |
+          chmod +x docs-link-checking/read-link-stats.sh
+          docs-link-checking/read-link-stats.sh
+
+      - name: Post results to Slack
+        if: github.event_name != 'pull_request'
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          SLACK_CHANNEL: "#doctopus-tests"
+          ERRORS: ${{ steps.link-stats.outputs.errors }}
+          WARNINGS: ${{ steps.link-stats.outputs.warnings }}
+          REDIRECTS: ${{ steps.link-stats.outputs.redirects }}
+          ICON: ${{ steps.link-stats.outputs.icon }}
+          REPOSITORY: ${{ github.repository }}
+          RUN_ID: ${{ github.run_id }}
+          ISSUE_LINE: ${{ steps.issue-url.outputs.issue_line }}
+        run: |
+          chmod +x docs-link-checking/post-slack-results.sh
+          docs-link-checking/post-slack-results.sh
+
+      - name: Upload artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: link-checker-assets
+          path: artifacts/*
+
+      - name: Write report to job summary
+        if: hashFiles('artifacts/agentregistry-oss-links.md') != ''
+        run: cat artifacts/agentregistry-oss-links.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Fail check if errors exist
+        if: github.event_name == 'pull_request'
+        env:
+          ERRORS: ${{ steps.link-stats.outputs.errors }}
+        run: |
+          if [ "${ERRORS:-0}" -gt 0 ]; then
+            echo "Link checker found ${ERRORS} error(s). See artifacts for details."
+            exit 1
+          else
+            echo "Link checker found ${ERRORS} errors."
+          fi
