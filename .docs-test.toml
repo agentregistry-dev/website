@@ -18,6 +18,11 @@ brand   = "oss"
 builtRoot = "./public"
 baseURL   = "/"
 
+# Hugo build log for hugo-warnings.spec. The Makefile targets and the CI build
+# step write the Hugo build output here; the spec scans it for ERROR / WARN
+# lines (filtered by [allowlists].hugoWarnings).
+buildLog  = "./.build.log"
+
 # Source-tree roots for author-side lints (e.g. curl-quotes scans markdown
 # directly). Narrowed to docs content so lints don't trip on the marketing
 # landing page.
@@ -30,26 +35,32 @@ scanRoots = [
 # no [versioning] block — version-aware specs detect the absence and skip
 # gracefully (same mechanism agw's standalone/unversioned docs rely on).
 
-[checks]
-# Smoke is for multi-product cross-runs (SMOKE_PRODUCT env); agr is a single
-# site, so skip. Cross-browser is opt-in and slow; run it manually when needed.
-smoke        = false
-crossBrowser = false
+# All checks default to enabled. No [checks] overrides are needed: agr runs the
+# full default set. (The former `smoke`/`crossBrowser` toggles were removed from
+# the harness — smoke folded into the `content` project scoped by CONTENT_DIR,
+# and cross-browser is now selected per Playwright project.)
 
 # Allowlists for known-benign noise that surfaces against real content (the
 # module's bundled fixture has none of this). Tighten as content is fixed.
 [allowlists]
+hugoWarnings = [
+  "\\.Site\\.Data was deprecated",
+  "'items' parameter of the 'tabs' shortcode is deprecated",
+]
 consoleErrors = [
   # Third-party analytics/chat (GA, GTM, Qualified) make backend calls on page
   # init that fail in the offline test environment, surfacing as a bare
   # "invalid_request" pageerror with no stack. Not fixable without a live
   # backend — suppress until those scripts are refactored to not throw on init.
   "invalid_request",
-  # Hextra's main.min.js null-derefs (reading 'removeAttribute' /
-  # 'addEventListener') on the /docs/ landing page, which suppresses the
-  # sidebar and so omits the toggle markup main.js expects. Same class of
-  # benign error agw fixed at source via hidden navbar stand-in elements;
-  # agr hasn't adopted that yet, so suppress here until it does.
-  "removeAttribute",
-  "addEventListener",
+  # NOTE: agr previously allowlisted two Hextra main.min.js null-dereferences
+  # (reading 'removeAttribute' / 'addEventListener') that fired on pages with no
+  # real sidebar (e.g. the /docs/ landing page), where main.js can't find the
+  # toggle markup it expects. Those are now FIXED at the source: hidden stand-in
+  # elements (.hextra-hamburger-menu wrapping an <svg>, and
+  # .hextra-sidebar-container) render on every page via _partials/custom/footer.html,
+  # so main.js no longer null-derefs. The allowlist entries were removed so this
+  # console guard is re-armed — if the stand-ins regress, the error surfaces here
+  # (and in the static "Hextra hamburger toggle target" guard in docs-theme-extras).
+  # Ported from the same fix in agw-oss.
 ]
