@@ -1,5 +1,9 @@
 ---
 toc: false
+# Single source for the home page's <meta description>, OpenGraph/Twitter card
+# description, and JSON-LD (see layouts/index.html, which is a standalone landing
+# template that does not go through the theme's head.html).
+description: "One registry for MCP servers, agents, skills, and prompts. Curate trusted AI building blocks, deploy with one command, and integrate with Claude Desktop, Cursor, and VS Code."
 ---
 
 <div class="w-screen max-w-none relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] not-prose -mt-4 -mb-8">

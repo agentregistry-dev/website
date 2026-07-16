@@ -4,7 +4,24 @@
 <meta charset="utf-8">
 <title>agentregistry — Build. Deploy. Discover.</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="One registry for MCP servers, agents, skills, and prompts. Curate trusted AI building blocks, deploy with one command, and integrate with Claude Desktop, Cursor, and VS Code.">
+{{- /* This is a standalone landing template that does NOT call the theme's
+       head.html, so the SEO metadata head.html normally emits is added here by
+       hand: description (from front matter), canonical, robots, OpenGraph,
+       schema.org JSON-LD, and the Twitter/X card. opengraph.html ships with
+       Hextra and works today; schema.html and twitter_cards.html are provided by
+       docs-theme-extras and start emitting once the extras pin is bumped (before
+       that they resolve to Hextra's empty stubs and emit nothing). Without this,
+       sharing the site root produced no social card despite the OG image. */ -}}
+<meta name="description" content="{{ .Description }}">
+<meta name="robots" content="index, follow">
+{{- with .Params.canonical }}
+<link rel="canonical" href="{{ . }}" itemprop="url">
+{{- else }}
+<link rel="canonical" href="{{ .Permalink }}" itemprop="url">
+{{- end }}
+{{- partial "opengraph.html" . -}}
+{{- partial "schema.html" . -}}
+{{- partial "twitter_cards.html" . -}}
 <link rel="stylesheet" href="/landing/design-tokens.css">
 <link rel="stylesheet" href="/landing/styles.css">
 <script>
