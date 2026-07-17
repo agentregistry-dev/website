@@ -15,6 +15,17 @@ outputs:
 
 # Enable dark mode by default
 params:
+  # Hide the visible "Last updated on <date>" footer (imported OSS content
+  # modules ship displayUpdatedDate=true; this overrides it). The git date still
+  # feeds the sitemap <lastmod> for SEO.
+  displayUpdatedDate: false
+
+  # Default social-share image for OpenGraph / Twitter cards (og:image),
+  # emitted by Hextra's opengraph.html and docs-theme-extras' twitter_cards.html.
+  # Card committed at static/ogimage.png (1200x630).
+  images:
+    - /ogimage.png
+
   # Tells docs-theme-extras which brand CSS layer + font stack to load
   # (see the module's layouts/partials/themeExtras/head-end.html). "oss"
   # loads brand-oss.css and Open Sans; "enterprise" loads brand-enterprise.css.
@@ -90,8 +101,13 @@ params:
 # Enable emoji in markdown
 enableEmoji: true
 
-# Enable GitInfo
+# Enable GitInfo — derive each page's .Lastmod from its last git commit (no
+# manually maintained front-matter dates). Feeds the sitemap <lastmod> for SEO.
+# "lastmod" before ":git" keeps an explicit front-matter date ahead of the
+# commit date where a page sets one.
 enableGitInfo: true
+frontmatter:
+  lastmod: ["lastmod", ":git", "date", "publishDate"]
 
 # Menu configuration
 menu:
