@@ -1,5 +1,6 @@
 ---
 title: arctl agent add-prompt
+description: "Add a prompt reference to an agent manifest."
 weight: 10
 ---
 

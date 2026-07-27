@@ -1,5 +1,6 @@
 ---
 title: arctl deployments show
+description: "Show detailed information about a deployment, including its status, provider, and endpoint URL."
 weight: 10
 ---
 

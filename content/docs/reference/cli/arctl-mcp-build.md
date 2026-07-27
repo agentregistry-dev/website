@@ -1,5 +1,6 @@
 ---
 title: arctl mcp build
+description: "Build an MCP server from the current project."
 weight: 10
 ---
 

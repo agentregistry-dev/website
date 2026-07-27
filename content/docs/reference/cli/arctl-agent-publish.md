@@ -1,5 +1,6 @@
 ---
 title: arctl agent publish
+description: "Publish an agent to the registry."
 weight: 10
 ---
 

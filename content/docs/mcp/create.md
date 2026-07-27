@@ -1,7 +1,7 @@
 ---
 title: Create and run
 weight: 10
-description:
+description: "Build and run MCP servers on your local machine with agentregistry."
 ---
 
 Quickly build and run MCP servers on your local machine.

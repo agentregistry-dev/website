@@ -1,7 +1,7 @@
 ---
 title: Install in Kubernetes
 weight: 20
-description:
+description: "Install agentregistry in a Kubernetes cluster with Helm for shared team access to a central artifact registry."
 ---
 
 Use this guide to install agentregistry in a Kubernetes cluster by using Helm. This approach is useful for team environments where multiple developers need shared access to a central artifact registry.

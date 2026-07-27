@@ -1,5 +1,6 @@
 ---
 title: arctl agent add-skill
+description: "Add a skill to the agent manifest."
 weight: 10
 ---
 

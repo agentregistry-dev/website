@@ -1,5 +1,6 @@
 ---
 title: arctl agent add-mcp
+description: "Add an MCP server entry to an agent's agent.yaml file."
 weight: 10
 ---
 

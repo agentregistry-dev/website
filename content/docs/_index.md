@@ -2,7 +2,7 @@
 title: agentregistry
 linkTitle: Docs
 toc: false
-description: ""
+description: "Agentregistry is an open source, secure, centralized catalog for building, publishing, discovering, and governing AI artifacts across registries and GitHub repositories."
 # Explicitly cascade the docs layout key to every descendant. Hugo defaults
 # `type` to the section name ("docs") so pages render today, but making it
 # explicit hardens against that default changing and satisfies the framework

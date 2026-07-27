@@ -1,5 +1,6 @@
 ---
 title: arctl skill init
+description: "Initialize a new agentic skill project."
 weight: 10
 ---
 

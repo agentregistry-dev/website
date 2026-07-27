@@ -1,5 +1,5 @@
 ---
 title: Reference
 weight: 100
-description:
+description: "Reference documentation for agentregistry, including the arctl CLI."
 ---

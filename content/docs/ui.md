@@ -1,7 +1,7 @@
 ---
 title: Agentregistry UI
 weight: 80
-description:
+description: "Use the agentregistry UI to view AI artifact images, share them with your teams, and deploy them to your environment."
 ---
 
 Use the agentregistry UI to view AI artifact images, share them with your teams, and deploy them to your environment. 

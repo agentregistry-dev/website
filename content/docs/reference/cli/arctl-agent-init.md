@@ -1,5 +1,6 @@
 ---
 title: arctl agent init
+description: "Bootstrap a new agent project, specifying the ADK framework, language, and target directory."
 weight: 10
 ---
 

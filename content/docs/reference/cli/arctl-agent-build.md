@@ -1,5 +1,6 @@
 ---
 title: arctl agent build
+description: "Build Docker images for an agent project created with arctl agent init."
 weight: 10
 ---
 

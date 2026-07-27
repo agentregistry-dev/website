@@ -1,7 +1,7 @@
 ---
 title: CLI
 weight: 10
-description:
+description: "Command reference for the arctl CLI."
 ---
 
 

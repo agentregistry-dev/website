@@ -1,5 +1,6 @@
 ---
 title: arctl prompt delete
+description: "Delete a prompt version from agentregistry."
 weight: 10
 ---
 

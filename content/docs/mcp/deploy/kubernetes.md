@@ -1,7 +1,7 @@
 ---
 title: Kubernetes
 weight: 20
-description:
+description: "Deploy your agentregistry MCP server to a Kubernetes cluster."
 ---
 
 Deploy your agent to a Kubernetes cluster. 

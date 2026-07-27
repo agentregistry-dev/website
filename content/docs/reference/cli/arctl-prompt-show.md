@@ -1,5 +1,6 @@
 ---
 title: arctl prompt show
+description: "Show details of a prompt published to agentregistry."
 weight: 10
 ---
 

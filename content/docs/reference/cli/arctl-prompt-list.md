@@ -1,5 +1,6 @@
 ---
 title: arctl prompt list
+description: "List prompts published to agentregistry."
 weight: 10
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: arctl deployments delete
+description: "Delete a deployment by its ID and tear down its associated resources."
 weight: 10
 ---
 

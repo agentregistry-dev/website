@@ -1,7 +1,7 @@
 ---
 title: Kubernetes
 weight: 20
-description: 
+description: "Deploy an agent in your Kubernetes cluster."
 ---
 
 Deploy your agent to a Kubernetes cluster. 

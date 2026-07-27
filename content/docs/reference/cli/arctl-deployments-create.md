@@ -1,5 +1,6 @@
 ---
 title: arctl deployments create
+description: "Create a deployment for an agent or MCP server from the registry."
 weight: 10
 ---
 

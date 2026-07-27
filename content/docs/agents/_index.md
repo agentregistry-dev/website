@@ -1,5 +1,5 @@
 ---
 title: Agents
 weight: 20
-description:
+description: "Build, run, publish, and deploy AI agents with agentregistry."
 ---

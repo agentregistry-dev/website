@@ -1,5 +1,6 @@
 ---
 title: Add MCP servers
+description: "Give an agent access to the tools exposed by an MCP server."
 weight: 50
 ---
 

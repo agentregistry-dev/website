@@ -1,5 +1,6 @@
 ---
 title: arctl mcp show
+description: "Show detailed information about an MCP server."
 weight: 10
 ---
 

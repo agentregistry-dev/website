@@ -1,5 +1,5 @@
 ---
 title: Skills
 weight: 40
-description:
+description: "Build, publish, pull, and manage agentic skills with agentregistry."
 ---

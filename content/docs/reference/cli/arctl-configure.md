@@ -1,5 +1,6 @@
 ---
 title: arctl configure
+description: "Create the JSON configuration each client needs to connect to arctl."
 weight: 10
 ---
 

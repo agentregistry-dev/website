@@ -1,5 +1,6 @@
 ---
 title: arctl mcp delete
+description: "Delete an MCP server from agentregistry."
 weight: 10
 ---
 

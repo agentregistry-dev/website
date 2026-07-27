@@ -1,5 +1,6 @@
 ---
 title: arctl mcp publish
+description: "Publish an MCP server to the registry."
 weight: 10
 ---
 

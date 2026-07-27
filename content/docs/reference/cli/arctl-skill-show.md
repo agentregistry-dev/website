@@ -1,5 +1,6 @@
 ---
 title: arctl skill show
+description: "Show detailed information about a skill."
 weight: 10
 ---
 

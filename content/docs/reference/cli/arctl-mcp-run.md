@@ -1,5 +1,6 @@
 ---
 title: arctl mcp run
+description: "Run an MCP server locally."
 weight: 10
 ---
 

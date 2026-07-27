@@ -1,7 +1,7 @@
 ---
 title: Publish
 weight: 20
-description:
+description: "Add an MCP server to the registry catalog. "
 ---
 
 Build your MCP server image and push it to agentregistry so that you can start sharing the MCP server with other teams and deploying it to any environment. 

@@ -1,5 +1,6 @@
 ---
 title: arctl deployments list
+description: "List all agent and MCP server deployments."
 weight: 10
 ---
 

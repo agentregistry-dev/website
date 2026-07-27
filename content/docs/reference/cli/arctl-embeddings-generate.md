@@ -1,5 +1,6 @@
 ---
 title: arctl embeddings generate
+description: "Generate embeddings for existing servers and agents to backfill or refresh them."
 weight: 10
 ---
 

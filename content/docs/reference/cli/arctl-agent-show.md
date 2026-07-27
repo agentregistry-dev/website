@@ -1,5 +1,6 @@
 ---
 title: arctl agent show
+description: "Show detailed information about an agent."
 weight: 10
 ---
 

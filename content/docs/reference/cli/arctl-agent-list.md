@@ -1,5 +1,6 @@
 ---
 title: arctl agent list
+description: "List agents published to the registry."
 weight: 10
 ---
 
