@@ -1,6 +1,6 @@
 ---
 title: Add skills
-description: "Give an agent access to skills published in agentregistry, loaded at runtime under the /skills folder."
+description: "Give an agent access to skills that are published in the registry catalog."
 weight: 55
 ---
 

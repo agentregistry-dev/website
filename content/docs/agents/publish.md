@@ -1,7 +1,7 @@
 ---
 title: Publish
 weight: 20
-description: "Build and publish your agent image to agentregistry with the arctl agent build and publish commands."
+description: "Add your agent to the registry catalog."
 ---
 
 Build and publish your agent image in agentregistry by using the `arctl agent build` and `arctl agent publish` commands. 
