@@ -1,7 +1,7 @@
 ---
 title: Publish
 weight: 20
-description:
+description: "Publish skills to agentregistry so others can discover and pull them."
 ---
 
 Publish skills to agentregistry so others can discover and pull them.

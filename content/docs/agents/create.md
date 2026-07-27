@@ -1,7 +1,7 @@
 ---
 title: Create and run
 weight: 10
-description:
+description: "Create an agent and run it locally using agentregistry's built-in agent templates."
 ---
 
 Quickly create an agent and run it on your local machine with built-in agent templates.

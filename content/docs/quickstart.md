@@ -1,7 +1,7 @@
 ---
 title: Get started
 weight: 5
-description:
+description: "Get started with agentregistry: install the CLI, then publish and pull your first AI artifact."
 ---
 
 Agentregistry is an open source, secure, and centralized AI artifact catalog that helps you build, package, publish, discover, and govern Docker images for AI artifacts, including agents, skills, and MCP servers that are spread across multiple container registries and GitHub repositories. It provides a centralized view of the images you allow your teams to share and deploy into their environments. 

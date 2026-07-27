@@ -1,5 +1,6 @@
 ---
 title: arctl mcp list
+description: "List all Model Context Protocol (MCP) servers published in the registry."
 weight: 10
 ---
 

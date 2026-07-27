@@ -1,5 +1,6 @@
 ---
 title: arctl agent add-prompt
+description: "Add a prompt reference to an agent's agent.yaml file, resolved from the registry when the agent runs."
 weight: 10
 ---
 

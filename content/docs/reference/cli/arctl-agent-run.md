@@ -1,5 +1,6 @@
 ---
 title: arctl agent run
+description: "Run an agent project locally with Docker Compose."
 weight: 10
 ---
 

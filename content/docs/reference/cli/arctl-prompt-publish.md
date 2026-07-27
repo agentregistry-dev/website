@@ -1,5 +1,6 @@
 ---
 title: arctl prompt publish
+description: "Publish a prompt to agentregistry from a plain text or YAML file."
 weight: 10
 ---
 

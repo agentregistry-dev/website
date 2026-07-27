@@ -1,5 +1,6 @@
 ---
 title: arctl skill pull
+description: "Pull a skill from agentregistry and extract its contents to a local directory."
 weight: 10
 ---
 

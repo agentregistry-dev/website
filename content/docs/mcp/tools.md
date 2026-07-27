@@ -1,7 +1,7 @@
 ---
 title: Add tools
 weight: 15
-description:
+description: "Add tools to your MCP server."
 ---
 
 Add tools to your MCP server.

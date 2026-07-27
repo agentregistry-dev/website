@@ -1,7 +1,7 @@
 ---
 title: Create and publish
 weight: 10
-description:
+description: "Create a prompt and publish it to agentregistry."
 ---
 
 Quickly create a prompt and publish it to agentregistry.

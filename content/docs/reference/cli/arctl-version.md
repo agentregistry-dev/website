@@ -1,5 +1,6 @@
 ---
 title: arctl version
+description: "Display the version of the arctl CLI."
 weight: 10
 ---
 

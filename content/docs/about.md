@@ -1,7 +1,7 @@
 ---
 title: About agentregistry
 weight: 10
-description:
+description: "Learn what agentregistry is: an open source, centralized catalog for building, publishing, discovering, and governing AI artifacts across registries."
 ---
 
 Agentregistry is an open source, centralized AI artifact catalog that helps you build, package, publish, discover, and govern AI artifacts—including agents, skills, MCP servers, and prompts—spread across multiple container registries and GitHub repositories. It provides a single source of truth for the AI building blocks your teams are allowed to share, deploy, and compose into applications.

@@ -1,5 +1,6 @@
 ---
 title: arctl mcp init
+description: "Initialize a new MCP server project with dynamic tool loading."
 weight: 10
 ---
 

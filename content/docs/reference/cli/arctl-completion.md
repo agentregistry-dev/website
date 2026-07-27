@@ -1,5 +1,6 @@
 ---
 title: arctl completion
+description: "Generate shell autocompletion scripts for arctl."
 weight: 10
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: arctl mcp add-tool
+description: "Generate an MCP tool scaffold."
 weight: 10
 ---
 

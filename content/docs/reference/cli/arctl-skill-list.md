@@ -1,5 +1,6 @@
 ---
 title: arctl skill list
+description: "List available skills in agentregistry."
 weight: 10
 ---
 

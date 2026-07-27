@@ -1,5 +1,5 @@
 ---
 title: Deploy
 weight: 30
-description:
+description: "Deploy MCP servers built with agentregistry to your target environment."
 ---

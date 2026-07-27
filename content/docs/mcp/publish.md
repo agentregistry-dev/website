@@ -1,7 +1,7 @@
 ---
 title: Publish
 weight: 20
-description:
+description: "Build your MCP server image and push it to agentregistry to share and deploy it anywhere."
 ---
 
 Build your MCP server image and push it to agentregistry so that you can start sharing the MCP server with other teams and deploying it to any environment. 

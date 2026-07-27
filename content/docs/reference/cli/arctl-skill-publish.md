@@ -1,5 +1,6 @@
 ---
 title: arctl skill publish
+description: "Publish a skill to the registry."
 weight: 10
 ---
 

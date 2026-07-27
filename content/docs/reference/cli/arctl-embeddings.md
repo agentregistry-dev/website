@@ -1,5 +1,6 @@
 ---
 title: arctl embeddings
+description: "Manage semantic embeddings stored in agentregistry."
 weight: 10
 ---
 

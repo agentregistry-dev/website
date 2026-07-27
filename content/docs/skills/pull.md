@@ -1,7 +1,7 @@
 ---
 title: Pull skills
 weight: 30
-description:
+description: "Pull a published skill from agentregistry and extract its contents to your local machine."
 ---
 
 Pull a published skill from agentregistry and extract its contents to your local machine.

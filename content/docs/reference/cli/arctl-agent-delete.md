@@ -1,5 +1,6 @@
 ---
 title: arctl agent delete
+description: "Delete an agent from the registry."
 weight: 10
 ---
 

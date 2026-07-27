@@ -1,5 +1,6 @@
 ---
 title: arctl skill build
+description: "Build a skill as a Docker image from a local skill folder containing a SKILL.md file."
 weight: 10
 ---
 

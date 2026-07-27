@@ -1,5 +1,6 @@
 ---
 title: arctl skill delete
+description: "Delete a skill from agentregistry."
 weight: 10
 ---
 

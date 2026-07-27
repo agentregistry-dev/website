@@ -1,5 +1,6 @@
 ---
 title: arctl mcp init go
+description: "Initialize a new MCP server project using the mcp-go framework."
 weight: 10
 ---
 

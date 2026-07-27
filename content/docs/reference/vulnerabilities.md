@@ -1,5 +1,6 @@
 ---
 title: Security Vulnerabilities
+description: "Learn how the agentregistry project handles the lifecycle of CVEs (Common Vulnerabilities and Exposures)."
 weight: 20
 ---
 

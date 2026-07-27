@@ -1,5 +1,6 @@
 ---
 title: arctl mcp init python
+description: "Initialize a new MCP server project using the fastmcp-python framework."
 weight: 10
 ---
 
