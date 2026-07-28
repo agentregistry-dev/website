@@ -1,4 +1,4 @@
-baseURL: https://agentregistry.dev/
+baseURL: https://aregistry.ai/
 languageCode: en-us
 title: agentregistry
 
@@ -36,7 +36,7 @@ params:
     # across layouts (copy-markdown, llms.txt, page-to-markdown) that emit
     # absolute URLs which need to resolve when pasted outside the build's
     # preview URL.
-    prodHost: "https://agentregistry.dev"
+    prodHost: "https://aregistry.ai"
 
   theme:
     default: dark
