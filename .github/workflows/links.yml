@@ -83,7 +83,7 @@ jobs:
             --config docs-link-checking/lychee.toml
             --root-dir "${{ github.workspace }}/public"
             --index-files index.html
-            --remap "^https://agentregistry\.dev/ file:///${{ github.workspace }}/public/"
+            --remap "^https://aregistry\.ai/ file:///${{ github.workspace }}/public/"
             --format json
             --user-agent curl/8.4.0
             --output "${{ github.workspace }}/artifacts/agentregistry-oss-links.json"
@@ -91,7 +91,7 @@ jobs:
           )
 
           if [ "${{ github.event_name }}" = "pull_request" ]; then
-            # Skip external URLs on PRs; remaps still resolve agentregistry.dev
+            # Skip external URLs on PRs; remaps still resolve aregistry.ai
             # links to local files so internal links are checked.
             "${LYCHEE_COMMON[@]}" --exclude "^https?://"
           else
