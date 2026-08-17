@@ -1,5 +1,5 @@
 ---
-title: Install in Kubernetes
+title: Install on Kubernetes
 weight: 20
 description: "Install agentregistry in a Kubernetes cluster with Helm for shared team access to a central artifact registry."
 ---
@@ -7,7 +7,7 @@ description: "Install agentregistry in a Kubernetes cluster with Helm for shared
 Use this guide to install agentregistry in a Kubernetes cluster by using Helm. This approach is useful for team environments where multiple developers need shared access to a central artifact registry.
 
 > [!NOTE]
-> If you install agentregistry in a Kubernetes cluster, you cannot deploy AI artifacts to a local environment. To deploy them to a local environment, you must [install agentregistry locally with Docker](/docs/install/docker). 
+> If you install agentregistry in a Kubernetes cluster, you cannot deploy AI artifacts to a local environment. To deploy them to a local environment, you must [install agentregistry locally with Docker](/docs/install/docker).
 
 ## Before you begin
 
@@ -16,67 +16,55 @@ Make sure you have the following tools installed:
 - [kubectl](https://kubernetes.io/docs/tasks/tools/) with access to a Kubernetes cluster
 - [Helm](https://helm.sh/docs/intro/install/) v3 or later
 
-## Set up PostgreSQL
-
-Agentregistry requires an external PostgreSQL instance with the [pgvector](https://github.com/pgvector/pgvector) extension for Kubernetes deployments.
-
-> [!WARNING]
-> The bundled PostgreSQL setup is intended for development and testing only. For production, use a managed PostgreSQL service or a production-grade operator.
-
 ## Install with Helm
 
-Install agentregistry using the Helm chart from the GitHub Container Registry.
+The Helm chart includes a bundled PostgreSQL instance for development and evaluation. For production, [bring your own PostgreSQL instance]({{< link path="/operations/database/" >}}) instead.
 
-```sh
-helm upgrade -i agentregistry oci://ghcr.io/agentregistry-dev/agentregistry/charts/agentregistry \
-    --namespace agentregistry \
-    --create-namespace \
-    --set config.jwtPrivateKey=$(openssl rand -hex 32) \
-    --set image.tag=v0.3.3 \
-    --set database.host=postgres-pgvector.agentregistry.svc.cluster.local \
-    --set database.password=agentregistry \
-    --set database.sslMode=disable
-```
+1. Install agentregistry with the bundled PostgreSQL instance. 
+   ```sh
+   helm upgrade -i agentregistry oci://ghcr.io/agentregistry-dev/agentregistry/charts/agentregistry \
+       --namespace agentregistry \
+       --create-namespace
+   ```
 
-If you are using an external PostgreSQL instance, replace `database.host`, `database.password`, and `database.sslMode` with values for your database.
+   > [!WARNING]
+   > The bundled PostgreSQL instance is for development and evaluation only. Data is lost if the PostgreSQL pod is restarted or rescheduled. For production, use an external PostgreSQL instance instead. See the [BYO PostgreSQL database]({{< link path="/operations/database/" >}}) guide.
 
-Verify that the pods are running.
+2. Verify that the agentregistry and PostgreSQL pods are up and running. 
+   ```sh
+   kubectl get pods -n agentregistry
+   ```
 
-```sh
-kubectl get pods -n agentregistry
-```
+   Example output: 
+   ```console
+   NAME                                       READY   STATUS    RESTARTS   AGE
+   agentregistry-c46b8bd98-hvnzf              1/1     Running   0          45s
+   gentregistry-postgresql-9858cbcbf-tk7p9   1/1     Running   0          45s
+   ```
 
-### Helm chart configuration
-
-| Value | Description | Default |
-|---|---|---|
-| `database.host` | PostgreSQL hostname | — |
-| `database.password` | Database password | — |
-| `database.sslMode` | SSL mode (`disable`, `require`, `verify-full`) | — |
-| `config.jwtPrivateKey` | JWT signing key (use a securely generated random value) | — |
-
-## Access the UI
-
-1. Port-forward the agentregistry service to access the UI and API from your local machine:
+3. Port-forward the agentregistry service to access the UI and API from your local machine. 
    ```sh
    kubectl port-forward -n agentregistry svc/agentregistry 12121:12121
    ```
 
-2. [Open the agentregistry UI](http://localhost:12121/) in your browser.
+4. [Open the agentregistry UI](http://localhost:12121/) in your browser.
 
-## Install arctl
+### Install the `arctl` CLI
 
-Install the `arctl` CLI to interact with agentregistry from your local machine:
+1. Install the agentregistry `arctl` binary on your local machine.
+   ```sh
+   curl -fsSL https://raw.githubusercontent.com/agentregistry-dev/agentregistry/main/scripts/get-arctl | bash
 
-```sh
-curl -fsSL https://raw.githubusercontent.com/agentregistry-dev/agentregistry/main/scripts/get-arctl | bash
-```
+   export PATH="/usr/local/bin:$PATH"
+   ```
 
-By default, `arctl` connects to `http://localhost:12121`. If your agentregistry instance is exposed at a different address, configure the connection:
+2. Verify that the CLI is installed correctly.
+   ```sh
+   arctl version
+   ```
 
-```sh
-arctl configure --url http://<your-agentregistry-host>:12121
-```
+> [!TIP]
+> By default, `arctl` connects to `http://localhost:12121`. If your agentregistry instance is exposed at a different address, set the `ARCTL_API_BASE_URL` environment variable or pass `--registry-url` on each command. For example, to set the environment variable, use `export ARCTL_API_BASE_URL=http://<your-agentregistry-host>:12121`. 
 
 ## Next steps
 

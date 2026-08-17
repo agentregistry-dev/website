@@ -1,0 +1,47 @@
+---
+title: arctl wait
+description: "Wait for a registry resource to reach a target state."
+weight: 10
+---
+
+Wait for a registry resource to reach a target state.
+
+Only `deployment` resources are currently supported.
+
+**Exit codes:**
+- `0` — the deployment reached the requested state
+- `1` — the deployment reached a different terminal state, doesn't exist, or the timeout was exceeded
+
+**Timeout regimes:**
+- `--timeout=5m` (default) — wait up to 5 minutes
+- `--timeout=0` — poll once and return the current state
+- `--timeout=-1` — wait forever
+
+## Usage
+
+```sh
+arctl wait TYPE NAME [flags]
+```
+
+Examples:
+```sh
+arctl wait deployment aws-v1
+arctl wait deployment team-a/aws-v1
+arctl wait deployment aws-v1 --for=failed
+arctl wait deployment aws-v1 --for=delete --timeout=10m
+```
+
+## Command-specific flags
+
+```sh
+    --for string         Target state to wait for: deployed, failed, undeployed, delete (default "deployed")
+    --timeout duration   Maximum time to wait. 0 polls once and exits; negative waits forever. (default 5m0s)
+```
+
+## Global flags
+
+```sh
+-h, --help                    Display help information for the command.
+    --registry-token string   Registry bearer token (defaults to value of ARCTL_API_TOKEN env var)
+    --registry-url string     Registry URL (overrides ARCTL_API_BASE_URL env var; defaults to http://localhost:12121)
+```
