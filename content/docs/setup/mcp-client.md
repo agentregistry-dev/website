@@ -1,84 +1,101 @@
 ---
-title: Connect AI development tools
+title: Connect AI clients to the registry MCP server
 weight: 30
 description: "Connect Claude Code, Cursor, VS Code, or Kiro to agentregistry so your AI development tools can discover and use catalog artifacts."
 ---
 
-Agentregistry runs its own MCP server that exposes the artifact catalog as MCP tools. By connecting your AI development tools to this server, you can query the registry from inside your IDE or coding assistant without leaving your workflow.
+Agentregistry runs its own MCP server that exposes the artifact catalog as MCP tools on port `31313`. By connecting your AI development tools to this server, you can query the registry from inside your IDE or coding assistant without leaving your workflow. The MCP server reads directly from the registry database. 
 
-Once connected, your AI development tool can call tools such as `list_agents`, `get_agent`, `list_servers`, `get_server`, `list_skills`, `get_skill`, `list_prompts`, and `get_prompt` to browse and fetch catalog artifacts.
+> [!NOTE]
+> The MCP server is read-only. It does not invoke tools on cataloged MCP servers or proxy traffic to them. To add or update registry catalog items, you must continue using the UI, REST API, or `arctl` command line tool.
+
+## Supported tools
+
+After you connect to the MCP server, your AI development client can call the following tools to browse and fetch catalog artifacts.
+
+| Tool | Description |
+| --- | --- |
+| `list_agents`, `get_agent` | List or retrieve agents from the catalog. |
+| `list_servers`, `get_server` | List or retrieve MCP servers from the catalog. |
+| `list_skills`, `get_skill` | List or retrieve skills from the catalog. |
+| `list_prompts`, `get_prompt` | List or retrieve prompts from the catalog. |
+| `list_models`, `get_model` | List or retrieve models from the catalog. |
+| `list_plugins`, `get_plugin` | List or retrieve plugins from the catalog. |
+| `list_deployments`, `get_deployment` | List or retrieve deployments. |
+| `list_runtimes`, `get_runtime` | List or retrieve connected runtimes. |
+| `registry_health` | Check the health of the registry MCP server. |
+| `registry_version` | Get build information for the registry. |
 
 ## Supported clients
 
+The following MCP clients are supported out of the box. 
+
 | Client | Command |
-|---|---|
-| [Claude Code](https://code.claude.ai) | `arctl configure claude-code` |
-| [Cursor](https://www.cursor.com) | `arctl configure cursor` |
-| [VS Code](https://code.visualstudio.com) | `arctl configure vscode` |
-| [Kiro](https://kiro.dev) | `arctl configure kiro` |
+| --- | --- |
+| [Claude Code](https://code.claude.ai) | `arctl configure claude-code --port 31313` |
+| [Cursor](https://www.cursor.com) | `arctl configure cursor --port 31313` |
+| [VS Code](https://code.visualstudio.com) | `arctl configure vscode --port 31313` |
+| [Kiro](https://kiro.dev) | `arctl configure kiro --port 31313` |
 
 ## Before you begin
 
-- Install agentregistry on [Docker]({{< link path="/setup/docker" >}}) or [Kubernetes]({{< link path="/setup/kubernetes" >}}).
-- Install the `arctl` CLI. See [Install with Docker]({{< link path="/setup/docker" >}}) or [Install on Kubernetes]({{< link path="/setup/kubernetes" >}}) for the install steps.
-- Make sure agentregistry is running and accessible at `http://localhost:12121`.
+Install agentregistry on [Docker]({{< link path="/setup/docker" >}}) or [Kubernetes]({{< link path="/setup/kubernetes" >}}).
 
-## Configure a client
+## Connect to the MCP server
 
-Run `arctl configure` with the name of your client. The command writes the MCP server configuration to the correct location for that client automatically.
+1. From your project root, run the `arctl configure` command to configure your MCP client. The command writes a `.mcp.json` file to the current directory, which scopes the MCP server to that project. The following example uses Claude Code. To use a different client, update the command accordingly. For available options, see [Supported clients](#supported-clients).
 
-```sh
-arctl configure <client-name>
-```
+   ```sh
+   arctl configure claude-code --port 31313
+   ```
 
-For example, to configure Claude Code:
+   Example output:
 
-```sh
-arctl configure claude-code
-```
+   ```console
+   Configured Claude Code
+   ```
 
-Example output:
+2. Open the Claude CLI. Verify that Claude wants to add the `arctl` MCP server.  
+   ```sh
+   claude
+   ```
 
-```console
-Configured Claude Code
-```
+   Example output: 
+   ```console
+   New MCP server found in this project: arctl
 
-By default, the registry MCP server runs on port `21212`. To use a different port or a custom URL, pass `--port` or `--url`:
+   MCP servers may execute code or access system resources. All tool calls require approval. Learn more in the MCP documentation.
 
-```sh
-arctl configure claude-code --port 21212
-arctl configure claude-code --url http://my-registry-host:21212/mcp
-```
+   ❯ 1. Use this MCP server
+     2. Use this and all future MCP servers in this project
+     3. Continue without using this MCP server
+   ```
 
-## Verify the connection
+3. List the MCP servers that you have access to and verify that the `arctl` MCP server is listed. 
+   ```sh
+   /mcp
+   ```
 
-After configuring a client, restart it and check that `agentregistry-mcp` appears in the list of connected MCP servers. You can then ask your AI tool to list available agents or MCP servers from the registry.
+   Example output: 
+   ```console
+   Manage MCP servers
+   1 server
 
-For example, in Claude Code you can type:
+   Project MCPs (/path/to/your-project/.mcp.json)
+   ❯ arctl · ✔ connected · 18 tools
+   ```
 
-```
-What agents are available in the agentregistry catalog?
-```
+4. Verify that you can access the server by prompting it. For example, you can ask it what agentregistry version you have.
+   ```sh
+   use the registry_version tool to tell me the agentregistry version  
+   ```
 
-Claude Code calls the `list_agents` tool and returns a list of published agents from your catalog.
+   Example output: 
+   ```console
+   Called arctl (ctrl+o to expand)
 
-## Available tools
+   ⏺ The registry (via agentregistry-mcp) reports v0.4.0.
+   ```
 
-The registry MCP server exposes the following tools for querying the catalog.
 
-| Tool | Description |
-|---|---|
-| `list_agents` | List published agents with optional name and tag filters. |
-| `get_agent` | Fetch a published agent by name and tag. |
-| `list_servers` | List published MCP servers with optional name and tag filters. |
-| `get_server` | Fetch a published MCP server by name and tag. |
-| `list_skills` | List published skills with optional name and tag filters. |
-| `get_skill` | Fetch a published skill by name and tag. |
-| `list_prompts` | List published prompts with optional name and tag filters. |
-| `get_prompt` | Fetch a published prompt by name and tag. |
-| `list_plugins` | List published plugins with optional name and tag filters. |
-| `get_plugin` | Fetch a published plugin by name and tag. |
-| `list_deployments` | List active deployments with optional name filter. |
-| `get_deployment` | Fetch a deployment by name. |
-| `list_runtimes` | List connected runtimes with optional name filter. |
-| `get_runtime` | Fetch a runtime by name. |
+

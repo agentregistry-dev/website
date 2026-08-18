@@ -47,7 +47,12 @@ The Helm chart includes a bundled PostgreSQL instance for development and evalua
    kubectl port-forward -n agentregistry svc/agentregistry 12121:12121
    ```
 
-4. [Open the agentregistry UI](http://localhost:12121/) in your browser.
+4. Optional: If you want to connect AI development tools to the registry MCP server, port-forward the MCP port in a separate terminal.
+   ```sh
+   kubectl port-forward -n agentregistry svc/agentregistry 31313:31313
+   ```
+
+5. [Open the agentregistry UI](http://localhost:12121/) in your browser.
 
 ### Install the `arctl` CLI
 
