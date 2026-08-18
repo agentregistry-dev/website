@@ -1,5 +1,5 @@
 ---
 title: Operations
-weight: 17
+weight: 90
 description: "Operational guides for running agentregistry in production."
 ---
