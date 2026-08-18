@@ -1,5 +1,5 @@
 ---
 title: Prompts
-weight: 45
+weight: 60
 description: "Create, publish, and manage reusable prompts with agentregistry."
 ---

@@ -11,7 +11,7 @@ For production environments, replace the bundled database with an external Postg
 ## Before you begin
 
 - Creata or use an existing external PostgreSQL instance (version 14 or later) that is reachable from your agentregistry installation. For example, you can create an [Amazon RDS instance](https://aws.amazon.com/rds/resources/)
-- Install agentregistry on [Docker]({{< link path="/install/docker" >}}) or [Kubernetes]({{< link path="/install/kubernetes" >}}) guide.
+- Install agentregistry on [Docker]({{< link path="/setup/docker" >}}) or [Kubernetes]({{< link path="/setup/kubernetes" >}}) guide.
 
 ## Step 1: Create the agentregistry database
 

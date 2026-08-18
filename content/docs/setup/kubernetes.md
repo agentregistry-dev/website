@@ -7,7 +7,7 @@ description: "Install agentregistry in a Kubernetes cluster with Helm for shared
 Use this guide to install agentregistry in a Kubernetes cluster by using Helm. This approach is useful for team environments where multiple developers need shared access to a central artifact registry.
 
 > [!NOTE]
-> If you install agentregistry in a Kubernetes cluster, you cannot deploy AI artifacts to a local environment. To deploy them to a local environment, you must [install agentregistry locally with Docker](/docs/install/docker/).
+> If you install agentregistry in a Kubernetes cluster, you cannot deploy AI artifacts to a local environment. To deploy them to a local environment, you must [install agentregistry locally with Docker](/docs/setup/docker/).
 
 ## Before you begin
 
@@ -74,3 +74,4 @@ With agentregistry up and running, you can explore how to build, publish, and de
 * [**MCP servers**](/docs/mcp/): Create and run MCP tool servers, add tools, and publish them as Docker images.
 * [**Skills**](/docs/skills/): Build and publish skills that you can add to your agents.
 * [**Prompts**](/docs/prompts/): Build and publish prompts that you can add to your agents.
+* [**Connect AI development tools**]({{< link path="/setup/mcp-client/" >}}): Connect Claude Code, Cursor, VS Code, or Kiro to the registry catalog.
