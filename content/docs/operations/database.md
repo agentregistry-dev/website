@@ -234,3 +234,20 @@ Configure agentregistry to use your external PostgreSQL instance. The setup vari
    psql "host=$PG_HOST port=$PG_PORT user=$PG_USER password='$PG_PASS' dbname=agentregistry sslmode=require" \
      -c '\dt'
    ```
+
+   Example output:
+   ```console
+                         List of relations
+    Schema |         Name         | Type  |    Owner
+   --------+----------------------+-------+-----------
+    public | agents               | table | agentuser
+    public | control_plane_events | table | agentuser
+    public | deployments          | table | agentuser
+    public | mcp_servers          | table | agentuser
+    public | models               | table | agentuser
+    public | plugins              | table | agentuser
+    public | prompts              | table | agentuser
+    public | runtimes             | table | agentuser
+    public | skills               | table | agentuser
+   (9 rows)
+   ```

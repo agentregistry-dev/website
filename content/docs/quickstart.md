@@ -12,7 +12,7 @@ Want to learn more about agentregistry? Check out the [About](/docs/about/) sect
 
 In this guide, you learn how to install agentregistry for local development with Docker. This approach is useful if you want to run agentregistry from your local machine, an on-prem environment, or a VM. Agentregistry is spun up by using Docker containers and you can use this installation to deploy AI artifacts to your local environment and Kubernetes clusters. 
 
-To install agentregistry in a Kubernetes cluster instead, see the [Install in Kubernetes](/docs/install/kubernetes) guide. 
+To install agentregistry in a Kubernetes cluster instead, see the [Install in Kubernetes](/docs/install/kubernetes/) guide. 
 
 ## Before you begin
 

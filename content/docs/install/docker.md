@@ -6,7 +6,7 @@ description: "Install agentregistry for local development with Docker to build, 
 
 Use this guide to install agentregistry for local development with Docker. This approach is useful if you want to run agentregistry from your local machine, an on-prem environment, or a VM. Agentregistry is spun up using Docker containers and you can use this installation to build, publish, and deploy AI artifacts to your local environment and Kubernetes clusters.
 
-To install agentregistry in a Kubernetes cluster instead, see the [Install in Kubernetes](/docs/install/kubernetes) guide.
+To install agentregistry in a Kubernetes cluster instead, see the [Install in Kubernetes](/docs/install/kubernetes/) guide.
 
 ## Before you begin
 
@@ -28,3 +28,4 @@ With agentregistry up and running, you can explore how to build, publish, and de
 * [**MCP servers**](/docs/mcp/): Create and run MCP tool servers, add tools, and publish them as Docker images.
 * [**Skills**](/docs/skills/): Build and publish skills that you can add to your agents.
 * [**Prompts**](/docs/prompts/): Build and publish prompts that you can add to your agents.
+* [**BYO PostgreSQL database**]({{< link path="/operations/database/" >}}): Replace the bundled PostgreSQL instance with an external database for production use.

@@ -7,7 +7,7 @@ description: "Install agentregistry in a Kubernetes cluster with Helm for shared
 Use this guide to install agentregistry in a Kubernetes cluster by using Helm. This approach is useful for team environments where multiple developers need shared access to a central artifact registry.
 
 > [!NOTE]
-> If you install agentregistry in a Kubernetes cluster, you cannot deploy AI artifacts to a local environment. To deploy them to a local environment, you must [install agentregistry locally with Docker](/docs/install/docker).
+> If you install agentregistry in a Kubernetes cluster, you cannot deploy AI artifacts to a local environment. To deploy them to a local environment, you must [install agentregistry locally with Docker](/docs/install/docker/).
 
 ## Before you begin
 
