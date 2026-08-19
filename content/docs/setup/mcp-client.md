@@ -39,7 +39,7 @@ The following MCP clients are supported out of the box.
 
 ## Before you begin
 
-Install agentregistry on [Docker]({{< link path="/setup/docker" >}}) or [Kubernetes]({{< link path="/setup/kubernetes" >}}).
+Install agentregistry on [Kubernetes]({{< link path="/setup/kubernetes" >}}).
 
 ## Connect to the MCP server
 

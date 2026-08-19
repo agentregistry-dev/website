@@ -10,7 +10,7 @@ Agentregistry is a single control plane that you install once and connect to one
 
 The following diagram shows the components that make up agentregistry and how they relate to each other.
 
-{{< reuse-image src="img/ar-oss-architecture.svg" >}}
+{{< reuse-image src="img/ar-oss-architecture.svg" srcDark="img/ar-oss-architecture-dark.svg" >}}
 
 ### Registry server
 
@@ -36,10 +36,6 @@ You interact with the registry through three interfaces, all served by the regis
 
 A **runtime** is a platform that the control plane connects to in order to deploy agents and MCP servers, or discover existing agents. One registry can connect to multiple runtimes at the same time.
 
-### Docker (local)
-
-When you install agentregistry with Docker Compose, the Docker daemon on your local machine acts as the deployment target. The registry server runs alongside the bundled PostgreSQL container in the Compose stack. Agents and MCP servers are run as containers on the same Docker host.
-
 ### Kubernetes
 
 When you install agentregistry in a Kubernetes cluster, the registry connects to [kagent](https://kagent.dev) to deploy and manage agents and MCP servers as Kubernetes workloads. The registry server runs as a Deployment in the `agentregistry` namespace and communicates with the kagent controller to materialize catalog entries as native Kubernetes resources.
@@ -48,7 +44,6 @@ When you install agentregistry in a Kubernetes cluster, the registry connects to
 ## Next steps
 
 {{< cards >}}
-{{< card link="/docs/concepts/" title="Core concepts" description="Understand the catalog, artifact types, runtimes, and management interfaces." >}}
-{{< card link="/docs/setup/docker/" title="Install with Docker" description="Install agentregistry for local development with Docker." >}}
+{{< card link="/docs/about/concepts/" title="Core concepts" description="Understand the catalog, artifact types, runtimes, and management interfaces." >}}
 {{< card link="/docs/setup/kubernetes/" title="Install on Kubernetes" description="Install agentregistry in a Kubernetes cluster with Helm." >}}
 {{< /cards >}}

@@ -33,7 +33,7 @@ An **agent** is a deployable unit that you publish, version, and deploy to a run
 
 ### MCP servers
 
-An **MCP server** exposes tools that agents can call at runtime. Agentregistry supports the full development lifecycle for MCP servers: scaffold a server, build and package it as a Docker image, publish it to the catalog, and deploy it to a local environment or a Kubernetes cluster.
+An **MCP server** exposes tools that agents can call at runtime. Agentregistry supports the full development lifecycle for MCP servers: scaffold a server, build and package it as a Docker image, publish it to the catalog, and deploy it to a Kubernetes cluster.
 
 ### Skills
 
@@ -54,11 +54,10 @@ A **plugin** is a versioned bundle of agent capabilities, including skills, MCP 
 
 ## Runtimes
 
-A **runtime** is a platform where agentregistry deploys and manages agents and MCP servers.
+A **runtime** is a platform where agentregistry deploys and manages agents and MCP servers. The following runtime types are supported. 
 
 | Runtime | Description |
 |---|---|
-| **Docker** | Run agents and MCP servers on your local machine or a VM by using Docker Compose. This is the default runtime for local development. |
 | **Kubernetes** | Deploy agents and MCP servers to a Kubernetes cluster by using the [kagent open source project](https://kagent.dev). This is the recommended runtime for shared team environments. |
 
 ## Management interfaces

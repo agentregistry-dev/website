@@ -8,23 +8,9 @@ Deploy your agent to a Kubernetes cluster.
 
 ## Before you begin
 
-1. Follow the [Get started](/docs/quickstart/) guide to set up agentregistry and start the agentregistry daemon. 
-2. [Publish an agent](/docs/agents/publish/). 
-3. Create a Kubernetes cluster. For example, you can use the following command to create a `kind` cluster. 
-   ```sh
-   kind create cluster --name agentregistry
-   ```
-4. Make sure that your current kubeconfig context points to the cluster that you want to use. 
-   ```sh
-   kubectl config get-contexts
-   ```
-5. Follow the [Quickstart](https://kagent.dev/docs/kagent/getting-started/quickstart) in the kagent OSS documentation. Agentregistry uses kagent for bootstrapping during an agent deployment. 
-
-6. **Local setups only**: If you built the docker images locally without pushing them to a registry, load the agent and MCP server images to your kind or minikube cluster. The following command assumes that you use kind and that your cluster is named agentregistry. 
-   ```sh
-   kind load docker-image ghcr.io/myagent:latest --name agentregistry
-   kind load docker-image my-mcp-server:latest --name agentregistry 
-   ```
+1. Follow the [Get started](/docs/quickstart/) guide to install agentregistry.
+2. [Connect a runtime]({{< link path="/setup/runtime/" >}}) to install kagent and verify that the `kubernetes-default` runtime is registered.
+3. [Publish an agent](/docs/agents/publish/).
 
 
 ## Deploy the agent {#deploy}

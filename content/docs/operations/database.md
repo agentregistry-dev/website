@@ -10,8 +10,8 @@ For production environments, replace the bundled database with an external Postg
 
 ## Before you begin
 
-- Creata or use an existing external PostgreSQL instance (version 14 or later) that is reachable from your agentregistry installation. For example, you can create an [Amazon RDS instance](https://aws.amazon.com/rds/resources/)
-- Install agentregistry on [Docker]({{< link path="/setup/docker" >}}) or [Kubernetes]({{< link path="/setup/kubernetes" >}}) guide.
+1. Creata or use an existing external PostgreSQL instance (version 14 or later) that is reachable from your agentregistry installation. For example, you can create an [Amazon RDS instance](https://aws.amazon.com/rds/resources/)
+2. Install agentregistry on [Kubernetes]({{< link path="/setup/kubernetes" >}}).
 
 ## Step 1: Create the agentregistry database
 
@@ -34,71 +34,6 @@ For production environments, replace the bundled database with an external Postg
    ```
 
 ## Step 2: Configure agentregistry
-
-Configure agentregistry to use your external PostgreSQL instance. The setup varies depending on how you installed agentregistry on [Docker](#docker) or [Kubernetes](#kubernetes).
-
-### Docker
-
-1. Open `agentregistry-compose.yml` file. 
-   ```sh
-   nano agentregistry-compose.yml
-   ```
-
-2. Make the following changes. 
-   1. Remove the `postgres` service block entirely.
-   2. Remove the `postgres_data` volume.
-   3. Update the `AGENT_REGISTRY_DATABASE_URL` in the `agentregistry` service to point at your external database.
-   4. Remove the `depends_on` condition that references the bundled postgres service.
-
-   The updated `agentregistry` service looks similar to the following:
-
-   ```yaml
-   services:
-     agentregistry:
-       image: ghcr.io/agentregistry-dev/agentregistry/server:${VERSION}
-       container_name: agentregistry-server
-       entrypoint:
-         - /bin/sh
-         - -c
-         - |
-           if [ -f /root/.kube/config.orig ]; then
-             mkdir -p /root/.kube
-             sed -E \
-               -e 's|https://127\.0\.0\.1|https://host.docker.internal|g' \
-               -e 's|https://localhost|https://host.docker.internal|g' \
-               -e 's|certificate-authority-data:.*|insecure-skip-tls-verify: true|g' \
-               /root/.kube/config.orig > /root/.kube/config
-           fi
-           exec /app/bin/arctl-server
-       environment:
-         AGENT_REGISTRY_DATABASE_URL: "postgres://user:password@your-pg-host:5432/agentregistry?sslmode=require"
-         AGENT_REGISTRY_SERVER_ADDRESS: ":8080"
-         AGENT_REGISTRY_ENABLE_REGISTRY_VALIDATION: "false"
-         AGENT_REGISTRY_MCP_PORT: "31313"
-         KUBECONFIG: "/root/.kube/config"
-       ports:
-         - "12121:8080"
-         - "31313:31313"
-       ...
-   ```
-
-3. Restart agentregistry. 
-   ```sh
-   docker compose -f agentregistry-compose.yml down
-   docker compose -f agentregistry-compose.yml up -d --wait
-   ```
-
-4. Check the server logs for successful migration messages.
-   ```sh
-   docker compose -f agentregistry-compose.yml logs agentregistry | grep "migration"
-   ```
-
-   Example output:
-   ```console
-   {"time":"...","level":"info","msg":"all migrations applied successfully","component":"database.migrate"}
-   ```
-
-### Kubernetes 
 
 1. Store the database connection string in a Kubernetes Secret. The registry server reads the connection string from this Secret at startup.
 

@@ -23,7 +23,7 @@ The agentregistry UI comes with different built-in views that you can use to gai
 
 ### Catalog
 
-The catalog view provides an overview of all discovered AI artifacts. This view allows you to publish artifacts to the registry so that they can be shared among teams or deployed to a local or Kubernetes environment. 
+The catalog view provides an overview of all discovered AI artifacts. This view allows you to publish artifacts to the registry so that they can be shared among teams or deployed to a Kubernetes environment. 
 
 #### Servers
 

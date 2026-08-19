@@ -52,7 +52,7 @@ Learn how agentregistry allows you to overcome the challenge of managing AI arti
 
 Agentregistry provides built-in tooling to help developers manage the entire lifecycle of AI artifacts, including agents, MCP servers, skills, prompts, and plugins.
 
-With the `arctl` CLI, you can scaffold new artifacts from templates, build and package them as Docker images, run them locally to verify they work, and publish them to agentregistry with a single command. Once published, artifacts can be pulled from the registry and deployed to a developer's local machine or a Kubernetes cluster, without any complex deployment configuration.
+With the `arctl` CLI, you can scaffold new artifacts from templates, build and package them as Docker images, run them locally to verify they work, and publish them to agentregistry with a single command. Once published, artifacts can be pulled from the registry and deployed to a Kubernetes cluster, without any complex deployment configuration.
 
 Before deploying agents to agentic platforms, developers can use agentregistry to compose agents by selecting specific MCP servers, skills, and prompts to attach. This composition approach lets developers assemble powerful, customized agents from proven, tested registry components rather than building everything from scratch.
 
