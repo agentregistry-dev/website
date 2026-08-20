@@ -1,0 +1,87 @@
+---
+title: Add skills
+description: "Give an agent access to skills that are published in the registry catalog."
+weight: 55
+---
+
+Give an agent access to skills published in agentregistry. Skills are referenced in the agent manifest and resolved from the registry at deploy time.
+
+## Before you begin
+
+1. Follow the [Get started](/docs/quickstart/) guide to set up agentregistry and start the agentregistry daemon.
+2. [Create an agent](/docs/agents/create/).
+3. [Create and publish a skill](/docs/skills/publish/) to agentregistry.
+
+## Add a skill
+
+Skills are referenced in the agent manifest under `spec.skills`. Because a prebuilt image cannot consume injected content on its own, agents that use `skills` must also declare which harnesses they are compatible with via `spec.compatibleHarnesses`.
+
+1. List the skills published in agentregistry.
+   ```sh
+   arctl get skills
+   ```
+
+   Example output:
+   ```console
+   NAME        TAG      DESCRIPTION
+   summarize   stable   Summarizes long text into concise form
+   ```
+
+2. Add a `skills` reference and a `compatibleHarnesses` entry to your agent manifest.
+
+   ```yaml
+   apiVersion: ar.dev/v1alpha1
+   kind: Agent
+   metadata:
+     name: my-agent
+   spec:
+     source:
+       image: ghcr.io/myorg/my-agent:v1.0.0
+     description: "My agent"
+     compatibleHarnesses:
+       - type: claude-code
+     skills:
+       - kind: Skill
+         name: summarize
+         tag: stable
+   ```
+
+   | Field | Description |
+   | -- | -- |
+   | `skills[].kind` | Must be `Skill`. |
+   | `skills[].name` | Name of the skill in agentregistry. |
+   | `skills[].tag` | Tag to use. If omitted, the latest tag is resolved at deploy time. |
+   | `compatibleHarnesses[].type` | Harness family this agent can run under, for example `claude-code` or `codex`. Required when `skills` is set. |
+
+3. Apply the updated agent manifest.
+   ```sh
+   arctl apply -f agent.yaml
+   ```
+
+   Example output:
+   ```console
+   agent/my-agent applied
+   ```
+
+4. Verify that the agent was updated.
+   ```sh
+   arctl get agent my-agent
+   ```
+
+## Next
+
+[Deploy the agent to your environment](/docs/agents/deploy/).
+
+## Cleanup
+
+To remove a skill from the agent, delete its entry from the `skills` list in the agent manifest and apply the updated file.
+
+```sh
+arctl apply -f agent.yaml
+```
+
+To delete the skill resource from agentregistry, run:
+
+```sh
+arctl delete skill summarize
+```

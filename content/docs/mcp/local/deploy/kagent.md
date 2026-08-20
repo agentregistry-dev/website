@@ -36,7 +36,7 @@ description: "Deploy your agentregistry MCP server to a Kubernetes cluster."
    apiVersion: ar.dev/v1alpha1
    kind: Deployment
    metadata:
-     name: my-mcp-server
+     name: mymcp-server
    spec:
      env:
        KAGENT_NAMESPACE: default
@@ -52,7 +52,7 @@ description: "Deploy your agentregistry MCP server to a Kubernetes cluster."
 
    Example output: 
    ```console
-   ✓ Deployment/my-mcp-server created
+   ✓ Deployment/mymcp-server created
    ```
 
 3. List the deployments and verify that `my-mcp-server` appears.
@@ -64,7 +64,7 @@ description: "Deploy your agentregistry MCP server to a Kubernetes cluster."
    Example output: 
    ```console
    NAME                    TARGET   VERSION   TYPE   RUNTIME              STATUS
-   default/my-mcp-server   mymcp    latest    mcp    kubernetes-default   deploying
+   default/mymcp-server   mymcp    latest    mcp    kubernetes-default   deploying
    ```
 
 ## Verify the deployment
@@ -111,7 +111,7 @@ description: "Deploy your agentregistry MCP server to a Kubernetes cluster."
 1. Port-forward the MCP server service.
 
    ```sh
-   kubectl port-forward service/mymcp-my-mcp-server 3000
+   kubectl port-forward service/mymcp-mymcp-server 3000
    ```
 
 2. In a separate terminal, list the available tools. Verify that you see the `example_echo` and `example_sum` tools. 

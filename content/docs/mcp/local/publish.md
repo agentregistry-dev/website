@@ -35,25 +35,6 @@ Before you can add an MCP server to the catalog, you must build a Docker contain
 
 3. Build the MCP server image and push it to your registry.
 
-   {{< tabs >}}
-   {{% tab name="Multi-arch (recommended)" %}}
-   1. Navigate into your MCP project directory. 
-      ```sh
-      cd mymcp
-      ```
-   2. From within the project directory, use the `docker buildx` command to build a multi-architecture image.
-
-      ```sh
-      docker buildx build --platform linux/amd64,linux/arm64 \
-        --label io.modelcontextprotocol.server.name="mymcp" \
-        --tag $REGISTRY/mymcp:latest \
-        --push .
-      ```
-
-   {{% /tab %}}
-   {{% tab name="Single-arch" %}}
-   Use the `arctl build` command for a single-architecture image. Pass the `--image` flag to set the full registry path and `--push` to push after building.
-
    ```sh
    arctl build mymcp --image $REGISTRY/mymcp:latest --push
    ```
@@ -65,8 +46,8 @@ Before you can add an MCP server to the catalog, you must build a Docker contain
    ✓ Successfully built Docker image: ghcr.io/my-org/mymcp:latest
    ```
 
-   {{% /tab %}}
-   {{< /tabs >}}
+   > [!TIP]
+   > To build a multi-architecture image (for example, to support both `amd64` and `arm64` nodes in your cluster), add `--platform linux/amd64,linux/arm64`. For more information, see the [arctl build](/docs/reference/cli/arctl-build/) command.
 
 ## Publish the server
 
