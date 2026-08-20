@@ -17,7 +17,7 @@ The following example registers the [GitHub MCP server](https://github.com/githu
 
 1. Save your GitHub Personal Access Token in an environment variable. 
    ```sh
-   export GH_PATH=<your-gh-pat>
+   export GH_PAT=<your-gh-pat>
    ```
 
 2. Create a registry catalog entry for your remote MCP server. 

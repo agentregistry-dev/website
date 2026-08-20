@@ -56,7 +56,7 @@ Agentregistry comes with a built-in skill template that you can use to quickly s
    | `scripts/` | Directory for helper scripts, such as the starter `hello_world.py` example. |
    | `LICENSE.txt` | License information for the skill. |
 
-3. Review the skill definition. This file describes that catalog entry that you want to create in the registry. Note that the scaffold does not include the reference to your git repository by default. You later update this skill definition to add your git reference.
+3. Review the skill definition. This file describes that catalog entry that you want to create in the registry. <!--Note that the scaffold does not include the reference to your git repository by default. You later update this skill definition to add your git reference.-->
    ```sh
    cat myskill/skill.yaml
    ```
@@ -69,7 +69,7 @@ Agentregistry comes with a built-in skill template that you can use to quickly s
      name: myskill
    spec:
      description: myskill skill
-    title: myskill
+     title: myskill
    ```
 
 4. Review and optionally edit the `myskill/SKILL.md` file to define your skill's instructions. Use the frontmatter to set the catalog metadata, such as the name and description for the catalog entry in the UI, and the markdown body to define your skill.
@@ -134,8 +134,8 @@ Before you publish the skill in the registry catalog, it is recommended to store
    ```console
    ✓ Skill/myskill (latest) created
    ```
-
-   The skill controller resolves the branch to a concrete commit and records it in the `status.resolvedSource.commit` of your skill, so the registry always tracks exactly which revision is live.
+   <!--
+   The skill controller resolves the branch to a concrete commit and records it in the `status.resolvedSource.commit` of your skill, so the registry always tracks exactly which revision is live.-->
 
 2. Verify that the skill was registered.
 
@@ -146,7 +146,7 @@ Before you publish the skill in the registry catalog, it is recommended to store
    Example output:
    ```console
    NAME      TAG      DESCRIPTION
-   myskill   latest   A reusable skill stored in git.
+   myskill   latest   myskill skill
    ```
 
 3. Optional: Open the [agentregistry UI](http://localhost:12121) and go to the **Skills** view. Verify that you can see your skill.

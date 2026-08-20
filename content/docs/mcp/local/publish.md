@@ -33,18 +33,22 @@ Before you can add an MCP server to the catalog, you must build a Docker contain
    docker login ghcr.io
    ```
 
-3. Build the MCP server image from within the MCP project directory and push it to your registry.
+3. Build the MCP server image and push it to your registry.
 
    {{< tabs >}}
    {{% tab name="Multi-arch (recommended)" %}}
-   Use the `docker buildx` command to build a multi-architecture image.
+   1. Navigate into your MCP project directory. 
+      ```sh
+      cd mymcp
+      ```
+   2. From within the project directory, use the `docker buildx` command to build a multi-architecture image.
 
-   ```sh
-   docker buildx build --platform linux/amd64,linux/arm64 \
-     --label io.modelcontextprotocol.server.name="mymcp" \
-     --tag $REGISTRY/mymcp:latest \
-     --push .
-   ```
+      ```sh
+      docker buildx build --platform linux/amd64,linux/arm64 \
+        --label io.modelcontextprotocol.server.name="mymcp" \
+        --tag $REGISTRY/mymcp:latest \
+        --push .
+      ```
 
    {{% /tab %}}
    {{% tab name="Single-arch" %}}

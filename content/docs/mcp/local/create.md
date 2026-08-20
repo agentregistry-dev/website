@@ -25,9 +25,9 @@ Agentregistry comes with built-in MCP server templates that you can use to quick
 
    🚀 Next steps:
      1. Run locally (optional):
-        arctl run my-mcp
+        arctl run mymcp
      2. Publish to the registry:
-        arctl apply -f my-mcp/mcp.yaml
+        arctl apply -f mymcp/mcp.yaml
    ```
 
 2. Explore the MCP server scaffold. You can make changes to the files to customize your server.
@@ -76,7 +76,7 @@ Agentregistry comes with built-in MCP server templates that you can use to quick
 
 3. Try out an MCP tool.
    1. Navigate to the **Tools** tab. Verify that you see the `example_echo` and `example_sum` tools.
-   2. Select the `example_sum` tool and enter any two integer in the **a** and **b** fields.
+   2. Select the `example_sum` tool and enter any two integers in the **a** and **b** fields.
    3. Click **Execute Tool** and verify that you see the sum of the two integers.
 
    {{< reuse-image src="img/ar-mcp-sum.svg" srcDark="img/ar-mcp-sum-dark.svg" >}}

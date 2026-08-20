@@ -14,7 +14,7 @@ The following diagram shows the components that make up agentregistry and how th
 
 ### Registry server
 
-The registry server is the core of the control plane that manages the artifact catalog, deployments, and runtime connections. It serves the registry UI and the REST API that is used by the `arctl` CLI and other integrations. The server listens on port `12121` by default and exposes the registry as an MCP server on port `13131`. 
+The registry server is the core of the control plane that manages the artifact catalog, deployments, and runtime connections. It serves the registry UI and the REST API that is used by the `arctl` CLI and other integrations. The server listens on port `12121` by default and exposes the registry as an MCP server on port `31313`. 
 
 ### PostgreSQL
 
