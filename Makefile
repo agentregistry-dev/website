@@ -41,6 +41,13 @@ FRAMEWORK_EXTRAS_DIR ?= ../docs-theme-extras
 
 # One-time install: npm packages + Playwright browser binaries in the harness
 # checkout. ~120-180 MB, ~1-3 minutes.
+# Serving the HTML report binds a port and BLOCKS until interrupted, so it must
+# never run unattended: in CI it hangs the job, and in any scripted/non-tty run
+# it hangs the caller. Gate it on an interactive terminal AND the absence of CI.
+# The report is still written to playwright-report/ either way — view it with
+# `make framework-test-report`.
+SHOW_REPORT = if [ -t 1 ] && [ -z "$$CI" ]; then npx playwright show-report; fi
+
 .PHONY: framework-test-install
 framework-test-install:
 	@if [ ! -d "$(FRAMEWORK_EXTRAS_DIR)" ]; then \
@@ -60,7 +67,7 @@ framework-test:
 	hugo160 --gc --minify > .build.log 2>&1
 	cd $(FRAMEWORK_EXTRAS_DIR) && \
 		(DOCS_TEST_CONFIG=$(abspath ./.docs-test.toml) npx playwright test; \
-		result=$$?; npx playwright show-report; exit $$result)
+		result=$$?; $(SHOW_REPORT); exit $$result)
 
 # Fastest loop — static specs only, no browser launch.
 .PHONY: framework-test-static
@@ -70,7 +77,7 @@ framework-test-static:
 	hugo160 --gc --minify > .build.log 2>&1
 	cd $(FRAMEWORK_EXTRAS_DIR) && \
 		(DOCS_TEST_CONFIG=$(abspath ./.docs-test.toml) npx playwright test --project=static; \
-		result=$$?; npx playwright show-report; exit $$result)
+		result=$$?; $(SHOW_REPORT); exit $$result)
 
 # Chromium browser specs (tabs, mermaid, theme toggle, copy-md, console errors,
 # viewport, contrast).
@@ -81,7 +88,7 @@ framework-test-browser:
 	hugo160 --gc --minify > .build.log 2>&1
 	cd $(FRAMEWORK_EXTRAS_DIR) && \
 		(DOCS_TEST_CONFIG=$(abspath ./.docs-test.toml) npx playwright test --project=browser; \
-		result=$$?; npx playwright show-report; exit $$result)
+		result=$$?; $(SHOW_REPORT); exit $$result)
 
 # Cross-browser desktop specs across chromium, firefox, and webkit.
 .PHONY: framework-test-cross-browser
@@ -94,7 +101,7 @@ framework-test-cross-browser:
 			--project=cross-browser-chromium \
 			--project=cross-browser-firefox \
 			--project=cross-browser-webkit; \
-		result=$$?; npx playwright show-report; exit $$result)
+		result=$$?; $(SHOW_REPORT); exit $$result)
 
 # Open the most recent Playwright HTML report.
 .PHONY: framework-test-report
