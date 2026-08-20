@@ -1,0 +1,84 @@
+---
+title: Use as a plugin marketplace
+weight: 20
+description: "Expose the agentregistry plugin catalog as a private Claude Code plugin marketplace."
+---
+
+Agentregistry can serve its plugin catalog as a Claude Code-compatible plugin marketplace. When enabled, Claude Code and other AI coding assistants can browse and install plugins directly from your private registry, without going through a public marketplace.
+
+The registry exposes a read-only `marketplace.json` endpoint at:
+
+```
+GET http://localhost:12121/plugin-marketplace/marketplace.json
+```
+
+Only plugins that are fully resolved (the registry controller has pinned their git source and scanned their bundle) appear in the marketplace response. Plugins that are still resolving or failed to resolve are silently omitted.
+
+## Before you begin
+
+- Publish at least one plugin to the registry. See [Publish a plugin]({{< link path="/plugins/publish" >}}).
+- Wait for the plugin controller to resolve the plugin's git source. Check the status with `arctl get plugin <name> -o yaml` and look for `Ready: "True"` under `status.conditions`.
+
+## Enable the marketplace endpoint
+
+The marketplace endpoint is off by default. Enable it by setting the `PLUGIN_MARKETPLACE_COMPAT_ENABLED` environment variable to `true` on the registry server.
+
+{{< tabs >}}
+{{% tab name="Docker" %}}
+
+Add the environment variable to the `agentregistry` service in your `docker-compose.yml`.
+
+```yaml
+services:
+  agentregistry:
+    environment:
+      PLUGIN_MARKETPLACE_COMPAT_ENABLED: "true"
+```
+
+Then restart the service.
+
+```sh
+docker compose up -d agentregistry
+```
+
+{{% /tab %}}
+{{% tab name="Kubernetes" %}}
+
+Pass the environment variable as an extra env var in your Helm upgrade command.
+
+```sh
+helm upgrade -i agentregistry oci://ghcr.io/agentregistry-dev/agentregistry/charts/agentregistry \
+  --namespace agentregistry \
+  --reuse-values \
+  --set extraEnvVars[0].name=PLUGIN_MARKETPLACE_COMPAT_ENABLED \
+  --set extraEnvVars[0].value=true
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+
+## Register the marketplace in Claude Code
+
+Once the endpoint is enabled, register the registry as a plugin marketplace source in Claude Code.
+
+```sh
+claude plugin marketplace add http://localhost:12121/plugin-marketplace/marketplace.json
+```
+
+Claude Code fetches the `marketplace.json` from the registry and adds it as a private marketplace source. You can then browse and install plugins from your catalog.
+
+## Verify the connection
+
+List the available plugins in Claude Code to confirm the marketplace is connected.
+
+```sh
+claude plugin list
+```
+
+The output includes plugins from your agentregistry catalog alongside any other marketplace sources you have configured.
+
+## Notes
+
+- Plugin names in the marketplace are namespaced as `namespace.plugin-name` (for example, `default.my-plugin`) to avoid collisions across namespaces.
+- Only git-sourced plugins appear in the marketplace. OCI-sourced plugins are not included in the `marketplace.json` format.
+- The endpoint is unauthenticated in the open source release. Enable it only on registries that are accessible to trusted users.

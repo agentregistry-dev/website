@@ -1,0 +1,98 @@
+---
+title: Publish a plugin
+weight: 10
+description: "Register a plugin bundle from a git repository in the agentregistry catalog."
+---
+
+## About plugins
+
+A plugin is a versioned bundle of agent capabilities, including skills, MCP server declarations, lifecycle hooks, and sub-agents that follows the [Claude Code plugin format](https://code.claude.com/docs/en/plugins). You publish a plugin by registering a pointer to its git repository. The registry controller resolves the pointer to a concrete commit, scans the bundle, and records the plugin's inventory and manifest in the catalog automatically.
+
+The registry does not store the bundle itself. It stores the resolved source reference and the scanned metadata. 
+
+## Before you begin
+
+1. Install agentregistry on [Kubernetes]({{< link path="/setup/kubernetes" >}}).
+
+   > [!NOTE]
+   > The plugin controller requires `git` to clone and scan the plugin bundle. The agentregistry Docker image does not include `git`, so publishing plugins is not supported with the Docker install.
+
+2. Have your plugin repository hosted on GitHub or GitLab.
+
+## Publish a plugin
+
+1. Create a plugin definition YAML file that points to your plugin's git repository. Use `subfolder` if your plugin lives in a subdirectory of a monorepo.
+
+   ```sh
+   cat > my-plugin.yaml << 'EOF'
+   apiVersion: ar.dev/v1alpha1
+   kind: Plugin
+   metadata:
+     name: my-plugin
+     tag: v1.0.0
+   spec:
+     title: My Plugin
+     description: A plugin that adds code review skills and hooks.
+     harnesses:
+       - claude-code
+     source:
+       type: git
+       git:
+         repository:
+           url: https://github.com/my-org/my-plugin
+           commit: a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2
+           subfolder: packages/my-plugin  # optional: omit if not a monorepo
+   EOF
+   ```
+
+2. Apply the plugin definition to agentregistry.
+
+   ```sh
+   arctl apply -f my-plugin.yaml
+   ```
+
+   Example output:
+   ```console
+   plugin.agentregistry.dev/my-plugin:v1.0.0 applied
+   ```
+
+3. Verify the plugin was registered and check its status. The registry controller clones the repository and scans the bundle in the background, so the `Ready` condition may show `Progressing` briefly.
+
+   ```sh
+   arctl get plugin my-plugin
+   ```
+
+   Example output:
+   ```console
+   NAME        TAG     DESCRIPTION
+   my-plugin   v1.0.0  A plugin that adds code review skills and hooks.
+   ```
+
+   To see the full resolved status, including the scanned inventory:
+
+   ```sh
+   arctl get plugin my-plugin -o yaml
+   ```
+
+4. List all plugins in the catalog.
+
+   ```sh
+   arctl get plugins
+   ```
+
+   Example output:
+   ```console
+   NAME        TAG     DESCRIPTION
+   my-plugin   v1.0.0  A plugin that adds code review skills and hooks.
+   ```
+
+> [!NOTE]
+> Plugin management is available through the REST API and `arctl` CLI. A UI for plugins is not yet available in the open source release.
+
+## Cleanup
+
+To delete a plugin version from agentregistry, use the `arctl delete` command.
+
+```sh
+arctl delete plugin my-plugin:v1.0.0
+```

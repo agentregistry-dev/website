@@ -10,7 +10,7 @@ Give an agent access to skills that are published in agentregistry. Skills are l
 
 1. Follow the [Get started](/docs/quickstart/) guide to set up agentregistry and start the agentregistry daemon.
 2. [Create an agent](/docs/agents/create/).
-3. [Create a skill](/docs/skills/create/) and [publish it](/docs/skills/publish/) to agentregistry.
+3. [Create and publish a skill](/docs/skills/publish/) to agentregistry.
 
 ## Add a skill
 

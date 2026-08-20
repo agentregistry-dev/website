@@ -4,57 +4,30 @@ weight: 30
 description: "Pull a published skill from agentregistry and extract its contents to your local machine."
 ---
 
-Pull a published skill from agentregistry and extract its contents to your local machine.
-
 ## Before you begin
 
-1. Follow the [Get started](/docs/quickstart/) guide to set up agentregistry and start the agentregistry daemon.
-2. Ensure that the skill you want to pull is [published](/docs/skills/publish/) to agentregistry.
+1. Install agentregistry on [Kubernetes]({{< link path="/setup/kubernetes" >}}).
+2. [Create and publish a skill]({{< link path="/skills/publish/" >}}) to the registry catalog.
 
-## Pull a skill
+## Pull a skill from the registry
 
-Use the `arctl skill pull` command to download a skill from the registry and extract its contents locally.
+Use the `arctl pull skill` command to download a skill from the registry and extract its contents locally.
+
+The `pull` command reads the skill's `spec.source.repository` setting from the registry and clones it locally by using a shallow clone (`--depth 1`). If a `subfolder` is set in the skill definition, only the files from that subdirectory are copied to the output directory.
+
+> [!NOTE]
+> The `pull` command uses the source reference that you set in the `spec.source.repository` block, **not the commit** that was automatically pinned by the registry controller in the `status.resolvedSource.commit` field when you published the skill. If you published the skill without a specific commit ID, such as by only defining a branch and subfolder, the `pull` command fetches the current tip of that branch. To get a reproducible pull, publish the skill with a `commit` SHA instead of a branch.
+
+> [!TIP]
+> By default the skill is pulled into the directory that you are currently in. To define a different directory, add the directory path to your command, such as `arctl pull skill myskill ./my-output-dir`. For other command options, see the [CLI reference]({{< link path="/reference/cli/arctl-pull/" >}}).
 
 ```sh
-arctl skill pull <skill-name>
+arctl pull skill myskill
 ```
 
-By default, the skill is extracted to `./skills/<skill-name>`. You can specify a custom output directory:
-
-```sh
-arctl skill pull my-skill ./my-output-dir
-```
-
-## Specify a version
-
-If the skill has multiple versions published, use `--version` to specify which one to pull:
-
-```sh
-arctl skill pull my-skill --version 1.0.0
-```
-
-If you don't specify a version:
-- If only one version exists, it is selected automatically.
-- If multiple versions exist, you are prompted to choose one.
-
-## How it works
-
-The `pull` command automatically detects the skill's source and handles extraction:
-
-- **Docker-packaged skills**: The container image is pulled, a temporary container is created, and the skill files are extracted from it.
-- **GitHub-hosted skills**: The repository is cloned (using `--depth 1` for efficiency), and the relevant files are copied to the output directory. If the skill's GitHub URL includes a branch and subdirectory path, only the files from that subdirectory are extracted.
-
-In both cases, the skill files are placed in the output directory ready for use.
-
-## Example
-
-```sh
-# Pull a skill to the default location (./skills/argocd-cli-setup)
-arctl skill pull argocd-cli-setup
-
-# Pull a specific version to a custom directory
-arctl skill pull argocd-cli-setup ./my-skills/argocd --version 1.0.0
-
-# List available skills in the registry
-arctl skill list
+Example output: 
+```console
+Cloning https://github.com/my-org/myrepo (branch main) into /my/current/path
+(subfolder hint: agentregistry/myskill)
+Pulled myskill
 ```

@@ -1,147 +1,168 @@
 ---
-title: Publish
-weight: 20
-description: "Publish skills to agentregistry so others can discover and pull them."
+title: Create and publish a skill
+weight: 10
+description: Scaffold a skill and publish it to the agentregistry catalog.
 ---
 
-Publish skills to agentregistry so others can discover and pull them.
+## About skills
 
-## About publishing skills
+A skill is a reusable instruction set or slash command for AI agents that you can store as a versioned artifact in the catalog. Instead of sharing skill files ad-hoc, developers publish skills to the registry with a version tag. When you iterate on a skill, you publish a new version so that consumers can pull the update at any time.
 
-Agentregistry serves as a catalog for your AI artifacts, including agents, skills, and MCP servers. To control which images you want to make available to your teams, you can use the publishing capability in agentregistry. If a skill is published, a reference to its source (container image or GitHub repository) is stored in agentregistry. This allows teams to quickly discover approved skills and pull them from the registry.
-
-Agentregistry supports multiple publishing modes:
-
-* **From a local skill folder**: Reads metadata from a local `SKILL.md` file and publishes the skill with either a pre-built Docker image reference or a GitHub repository reference.
-* **Direct registration**: Registers a skill by name with a GitHub repository or Docker image reference, without needing any local files.
+Skills are defined in a markdown file named `SKILL.md`. The file uses YAML frontmatter for catalog metadata such as a name and description, followed by markdown content with the skill's instructions.
 
 ## Before you begin
 
-1. Follow the [Get started](/docs/quickstart/) guide to set up agentregistry and start the agentregistry daemon.
-2. If publishing from a local folder, [create a skill](/docs/skills/create/) first.
+Install agentregistry on [Kubernetes]({{< link path="/setup/kubernetes" >}}).
 
-## Build the skill (optional)
+## Create a skill
 
-If you want to publish your skill as a Docker image, build it first using the `arctl skill build` command:
+Agentregistry comes with a built-in skill template that you can use to quickly scaffold a skill and customize it to your needs.
 
-```sh
-arctl skill build ./myskill --image docker.io/user/hello-world-template:v1.0.0
-```
+1. Create a skill scaffold.
 
-To also push the image to your container registry, include the `--push` option:
+   The following command creates a `myskill` directory that includes a starter skill definition and supporting files.
 
-```sh
-arctl skill build ./myskill --image docker.io/user/hello-world-template:v1.0.0 --push
-```
-
-> [!TIP]
-> To also use agentregistry to push the image to your container registry, include the `--push` option. You can also set the platform, for which you want to build the image, such as `linux/amd64` by using the `--platform` option. For more information, see the [arctl mcp build](/docs/reference/cli/arctl-mcp-build/) command. Make sure that you are logged in to your container registry before you run the command.
-
-
-## Publish the skill
-
-Review the different ways how you can publish a skill.
-
-### Option 1: Publish with a Docker image (from local folder)
-
-Use this option when you have a local skill folder with a `SKILL.md` file and have already built a Docker image using `arctl skill build`.
-
-```sh
-arctl skill publish ./myskill \
-  --docker-image docker.io/user/hello-world-template:v1.0.0 \
-  --version 1.0.0
-```
-
-The skill name and description are read from the local `SKILL.md` file. The `--docker-image` flag specifies the pre-built Docker image to register.
-
-> [!TIP]
-> To preview the registry entry without creating it, use the `--dry-run` flag.
-
-### Option 2: Publish from a GitHub repository (with local folder)
-
-Use this option when you have the skill files locally but want to register a GitHub repository as the source instead of a Docker image. The skill metadata, such as the name and description, is read from the local `SKILL.md` file.
-
-```sh
-arctl skill publish ./myskill \
-  --github https://github.com/myorg/my-skills/tree/main/skills/myskill \
-  --version 1.0.0
-```
-
-The `--github` flag accepts full GitHub tree URLs that include a branch and subdirectory path. This path tells the registry exactly where to find the skill within the repository:
-
-| URL format | Example |
-| -- | -- |
-| Repository root | `https://github.com/myorg/my-skills` |
-| Specific branch | `https://github.com/myorg/my-skills/tree/main` |
-| Branch and subdirectory | `https://github.com/myorg/my-skills/tree/main/skills/myskill` |
-
-> [!TIP]
-> To preview the registry entry without creating it, use the `--dry-run` flag.
-
-### Option 3: Direct registration with GitHub (no local files needed)
-
-Use this option to register a skill that exists only in a GitHub repository without needing any local files. Instead of reading from a `SKILL.md` file, you provide the skill name and metadata directly via flags.
-
-```sh
-arctl skill publish my-remote-skill \
-  --github https://github.com/myorg/my-skills/tree/main/skills/my-remote-skill \
-  --version 1.0.0 \
-  --description "A remotely hosted skill"
-```
-
-In direct mode:
-- The first argument is the **skill name** (not a folder path).
-- `--github` and `--version` are **required** and represent the source GitHub repository and the version you want to use for your skill.
-- `--description` is optional.
-
-> [!TIP]
-> To preview the registry entry without creating it, use the `--dry-run` flag.
-
-### Option 4: Direct registration with Docker image (no local files needed)
-
-Use this option to register a skill with a pre-built Docker image reference without needing any local files.
-
-```sh
-arctl skill publish my-docker-skill \
-  --docker-image docker.io/myorg/my-skill:v1.0.0 \
-  --version 1.0.0 \
-  --description "A Docker-packaged skill"
-```
-
-In direct mode:
-- The first argument is the **skill name** (not a folder path).
-- `--docker-image` and `--version` are **required**.
-- `--description` is optional.
-
-> [!TIP]
-> To preview the registry entry without creating it, use the `--dry-run` flag.
-
-## Verify the published skill
-
-1. List the skill references in agentregistry. Verify that you see an entry for the skill that you just published.
    ```sh
-   arctl skill list
+   arctl init skill myskill
    ```
 
    Example output:
-   ```
-   NAME                   TITLE   VERSION   TYPE     SOURCE
-   hello-world-template           1.0.0     docker   docker.io/user/hello-world-template:v1.0.0
+   ```console
+   ✓ Created skill: myskill
+
+   🚀 Next steps:
+     1. Edit myskill/SKILL.md and references/ (optional)
+     2. Publish to the registry:
+        arctl apply -f myskill/skill.yaml
    ```
 
-2. Optional: Open the [agentregistry UI](http://localhost:12121) and go to the **Skills** view. Verify that you can see your skill.
-   {{< reuse-image src="img/ar-publish-skill.png" >}}
-   {{< reuse-image-dark srcDark="img/ar-publish-skill-dark.png" >}}
+2. Explore the skill scaffold.
+
+   ```sh
+   ls myskill
+   ```
+
+   Example output:
+   ```console
+   assets    LICENSE.txt   references  scripts     SKILL.md    skill.yaml
+   ```
+
+   | File | Description |
+   | --- | --- |
+   | `skill.yaml` | The v1alpha1 skill definition. Contains catalog metadata such as name, description, and version. Apply this file to publish the skill to the registry. |
+   | `SKILL.md` | The skill instruction content. This is the markdown text that agents receive when the skill is invoked. Edit this file to define what the skill does. |
+   | `assets/` | Directory for static assets such as images or files used by the skill. |
+   | `references/` | Directory for supporting reference documentation, links, or additional context for the skill. |
+   | `scripts/` | Directory for helper scripts, such as the starter `hello_world.py` example. |
+   | `LICENSE.txt` | License information for the skill. |
+
+3. Review the skill definition. This file describes that catalog entry that you want to create in the registry. <!--Note that the scaffold does not include the reference to your git repository by default. You later update this skill definition to add your git reference.-->
+   ```sh
+   cat myskill/skill.yaml
+   ```
+
+   Example output: 
+   ```console
+   apiVersion: ar.dev/v1alpha1
+   kind: Skill
+   metadata:
+     name: myskill
+   spec:
+     description: myskill skill
+     title: myskill
+   ```
+
+4. Review and optionally edit the `myskill/SKILL.md` file to define your skill's instructions. Use the frontmatter to set the catalog metadata, such as the name and description for the catalog entry in the UI, and the markdown body to define your skill.
+   ```sh
+   nano myskill/skill.md
+   ```
+
+<!--
+## Push to GitHub
+
+Before you publish the skill in the registry catalog, it is recommended to store the plugin code in a git repository, such as GitHub or GitLab, and to add a reference to that repository to your skill definition. When you publish a skill to the catalog, agentregistry resolves the repository information to a commit and stores the commit alongside the skill. This way, the skill becomes reproducible, even if the repository points to the main that is constantly updated. 
+
+1. Initialize a git repository in the skill directory and push it to GitHub.
+
+   ```sh
+   cd myskill
+   git init
+   git remote add origin https://github.com/my-org/myskill
+   git add .
+   git commit -m "Initial skill scaffold"
+   git push -u origin main
+   ```
+
+2. Get the commit SHA for the branch you want to publish from.
+
+   ```sh
+   git ls-remote https://github.com/my-org/myskill.git main
+   ```
+
+3. Update the skill definition file (`skill.yaml`) to add a `source.repository` block that pins to that commit. Use `subfolder` if your skill lives in a subdirectory of a monorepo.
+
+   ```sh
+   cat > myskill/skill.yaml << 'EOF'
+   apiVersion: ar.dev/v1alpha1
+   kind: Skill
+   metadata:
+     name: myskill
+   spec:
+     title: My Skill
+     description: A reusable skill stored in git.
+     source:
+       repository:
+         url: https://github.com/my-org/myskill
+         commit: a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2
+         subfolder: skills/myskill  # optional: omit if not a monorepo
+   EOF
+   ```
+
+   > [!NOTE]
+   > Agentregistry requires a pinned commit SHA. The registry daemon does not have `git` installed, so it cannot resolve branch names to commits. Run `git ls-remote` locally to get the SHA before publishing.
+
+-->
+
+## Publish the skill
+
+1. Publish the skill to agentregistry. 
+   ```sh
+   arctl apply -f myskill/skill.yaml
+   ```
+
+   Example output:
+   ```console
+   ✓ Skill/myskill (latest) created
+   ```
+   <!--
+   The skill controller resolves the branch to a concrete commit and records it in the `status.resolvedSource.commit` of your skill, so the registry always tracks exactly which revision is live.-->
+
+2. Verify that the skill was registered.
+
+   ```sh
+   arctl get skills
+   ```
+
+   Example output:
+   ```console
+   NAME      TAG      DESCRIPTION
+   myskill   latest   myskill skill
+   ```
+
+3. Optional: Open the [agentregistry UI](http://localhost:12121) and go to the **Skills** view. Verify that you can see your skill.
+   {{< reuse-image src="img/ar-publish-skill.svg" srcDark="img/ar-publish-skill-dark.svg"  >}}
 
 ## Next steps
 
-- [Add a skill to your agent](/docs/agents/skills/).
-- [Pull a skill](/docs/skills/pull/) from the registry to use it locally.
+{{< cards >}}
+{{< card link="/docs/agents/skills/" title="Add a skill to an agent" description="Configure an agent to use a skill from the registry." >}}
+{{< card link="/docs/skills/pull/" title="Pull a skill from the registry" description="Pull a skill from the registry to use it locally." >}}
+{{< /cards >}}
 
 ## Cleanup
 
-To delete a skill from agentregistry, use the `arctl skill delete` command.
+To delete a skill from agentregistry, use the `arctl delete skill` command.
 
 ```sh
-arctl skill delete hello-world-template --version 1.0.0
+arctl delete skill myskill
 ```

@@ -10,8 +10,8 @@ Give an agent access to the tools that are exposed on an MCP server.
 
 1. Follow the [Get started](/docs/quickstart/) guide to set up agentregistry and start the agentregistry daemon. 
 2. [Create an agent](/docs/agents/create/). 
-3. [Create an MCP server](/docs/mcp/create/).
-4. [Publish an MCP server](/docs/mcp/publish/).
+3. [Create an MCP server](/docs/mcp/local/create/).
+4. [Publish an MCP server](/docs/mcp/local/publish/).
 
 ## Add MCP server
 
