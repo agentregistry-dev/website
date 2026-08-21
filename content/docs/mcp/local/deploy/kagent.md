@@ -55,7 +55,7 @@ description: "Deploy your agentregistry MCP server to a Kubernetes cluster."
    ✓ Deployment/mymcp-server created
    ```
 
-3. List the deployments and verify that `my-mcp-server` appears.
+3. List the deployments and verify that `mymcp-server` appears.
 
    ```sh
    arctl get deployments
