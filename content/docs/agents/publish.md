@@ -78,7 +78,7 @@ Build your agent image and publish it to agentregistry so your team can discover
 
 ## Publish the agent
 
-Creat a catalog entry for your agent. 
+Create a catalog entry for your agent. 
 
 1. Publish the agent manifest to agentregistry.
 
