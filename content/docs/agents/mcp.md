@@ -1,10 +1,8 @@
 ---
 title: Add MCP servers
-description: "Give an agent access to the tools exposed by an MCP server."
-weight: 50
+description: Give an agent access to the tools that are exposed by an MCP server. 
+weight: 20
 ---
-
-Give an agent access to the tools that are exposed on an MCP server. 
 
 ## Before you begin
 
@@ -13,91 +11,53 @@ Give an agent access to the tools that are exposed on an MCP server.
 3. [Create an MCP server](/docs/mcp/local/create/).
 4. [Publish an MCP server](/docs/mcp/local/publish/).
 
-## Add MCP server
+## Add an MCP server to the agent
 
-1. List the MCP servers that are published in agentregistry. 
+MCP servers are referenced in the agent manifest in the `spec.mcpServers` block. Each MCP server that you reference in that block must be published in the registry catalog. 
+
+1. List the MCP servers that are published in the registry catalog. 
    ```sh
-   arctl mcp list
+   arctl get mcps
    ```
 
    Example output:
-   ```
-   NAME                VERSION   TYPE   PUBLISHED   DEPLOYED   UPDATED
-   user/my-mcp-server  0.1.0     oci    True        False      7s
-   ```
-
-2. Add the MCP server to the `myagent` agent that you created as part of the before you begin steps. This command opens an interactive dialog in your terminal. 
-   ```sh
-   arctl agent add-mcp --project-dir myagent
-   ```
-
-3. Go through the interactive dialog. 
-   1. Use the arrow keys to go to `3. Registry (pull published MCP server from registry)`. This option allows you to select an MCP server that you previously published to the registry. Press the return key to continue. 
-   2. Enter `http://localhost:12121` as the registry URL and press the return key. 
-   3. Select the MCP server that you published to agentregistry and the version you want to use. 
-   4. Select `true` in the `Prefer remote MCP server` dialog.
-   5. Enter the following environment variables. By default, the MCP server scaffolding assumes that you want to run the MCP server with `stdio`. However, streamable HTTP is required to successfully connect to the MCP server from the agent. 
-      | Key | Value | 
-      | -- | -- | 
-      | `MCP_TRANSPORT_MODE` | `http` | 
-      | `HOST` | `0.0.0.0` | 
-   6. Enter `my-mcp-server` as the MCP server name and press the return key to exit the wizard. 
-
-   Example output: 
-   ```sh
-   ✓ Added MCP server 'my-mcp-server' (registry) to agent.yaml
-   ```
-
-4. Verify that your MCP server tool reference is added to the agent by reviewing the agent definition in the `agent.yaml` file. 
-   ```sh
-   cat myagent/agent.yaml
-   ```
-
-   Example output: 
    ```console
-   agentName: myagent
-   image: ghcr.io/myagent:latest
-   language: python
-   framework: adk
-   modelProvider: gemini
-   modelName: gemini-2.0-flash
-   description: ""
-   mcpServers:
-       - type: registry
-         name: my-mcp-server
-         env:
-           - MCP_TRANSPORT_MODE=http
-           - HOST=0.0.0.0
-         registryURL: http://localhost:12121
-         registryServerName: user/my-mcp-server
-         registryServerVersion: 0.1.0
-         registryServerPreferRemote: true
+   NAME    TAG      DESCRIPTION
+   mymcp   latest   mymcp MCP server
    ```
 
-5. Build the agent image. 
-   ```sh
-   arctl agent build myagent
+2. Add an `mcpServers` block to your agent definition (`agent.yaml`) and reference the MCP server that you want your agent to have access to.
+
+   ```yaml
+   cat > myagent/agent.yaml <<EOF
+   apiVersion: ar.dev/v1alpha1
+   kind: Agent
+   metadata:
+     name: myagent
+   spec:
+     source:
+       image: ghcr.io/myagent:latest
+     description: myagent agent
+     mcpServers:
+       - kind: MCPServer
+         name: mymcp
+         tag: latest
+   EOF
    ```
 
-6. Run the agent. Wait for the agent dialog to open. 
-   ```sh
-   arctl agent run myagent
-   ```
+   | Field | Description |
+   | -- | -- |
+   | `mcpServers[].kind` | Must be `MCPServer`. |
+   | `mcpServers[].name` | Name of the MCP server in agentregistry. |
+   | `mcpServers[].tag` | Tag to use. If omitted, the latest tag is resolved at deploy time. |
 
-7. Ask the agent what it can do for you. Verify that the agent offers the ability to roll a dice, check prime numbers, and echo back a message. 
-   {{< reuse-image src="img/ar-agent-tool.png" >}}
-   {{< reuse-image-dark srcDark="img/ar-agent-tool.png" >}}
+> [!NOTE]
+> MCP servers are referenced in the agent manifest and resolved from the registry at deploy time. You cannot locally test access to the MCP server tools by using the `arctl run agent` command. To test access to the tools, you must publish the agent in the registry catalog and deploy the agent to your runtime. 
 
-8. Try out the echo tool by entering `echo <string>`, such as `echo hello world`. Verify that you see the MCP tool call and that the agent returns `hello world`. 
-   {{< reuse-image src="img/ar-agent-tool-verify.png" >}}
-   {{< reuse-image-dark srcDark="img/ar-agent-tool-verify.png" >}}
 
 ## Next
 
-[Deploy the agent to your environment](/docs/agents/deploy/). 
-
-## Cleanup 
-
-To remove the MCP server tool, edit the `agent.yaml` definition and remove the MCP server reference. Then, re-build the agent and run it. 
-
+{{< cards >}}
+{{< card link="../publish/" title="Publish the agent" description="Build and publish your agent to the agentregistry catalog." >}}
+{{< /cards >}}
 

@@ -1,0 +1,85 @@
+---
+title: Add prompt
+weight: 60
+description: Add a published prompt to an agent so that it is used as the agent's instruction at runtime.
+---
+
+## Before you begin
+
+1. Follow the [Get started](/docs/quickstart/) guide to set up agentregistry and start the agentregistry daemon.
+2. [Create an agent](/docs/agents/create/).
+3. [Publish a prompt in agentregistry](/docs/prompts/publish/).
+
+## Add a prompt to an agent
+
+Prompts are referenced in the agent manifest under `spec.instructions`. Because a prebuilt image cannot consume injected content on its own, agents that use `instructions` must also declare which harnesses they are compatible with via `spec.compatibleHarnesses`.
+
+1. List the prompts published in agentregistry.
+   ```sh
+   arctl get prompts
+   ```
+
+   Example output:
+   ```console
+   NAME                      TAG      DESCRIPTION
+   summarizer-system-prompt  stable   Default system prompt for summarization agents
+   ```
+
+2. Add an `instructions` reference and a `compatibleHarnesses` entry to your agent manifest.
+
+   ```yaml
+   apiVersion: ar.dev/v1alpha1
+   kind: Agent
+   metadata:
+     name: my-agent
+   spec:
+     source:
+       image: ghcr.io/myorg/my-agent:v1.0.0
+     description: "My agent"
+     compatibleHarnesses:
+       - type: claude-code
+     instructions:
+       kind: Prompt
+       name: summarizer-system-prompt
+       tag: stable
+   ```
+
+   | Field | Description |
+   | -- | -- |
+   | `instructions.kind` | Must be `Prompt`. |
+   | `instructions.name` | Name of the prompt in agentregistry. |
+   | `instructions.tag` | Tag to use. If omitted, the latest tag is resolved at deploy time. |
+   | `compatibleHarnesses[].type` | Harness family this agent can run under, for example `claude-code` or `codex`. Required when `instructions` is set. |
+
+3. Apply the updated agent manifest.
+   ```sh
+   arctl apply -f agent.yaml
+   ```
+
+   Example output:
+   ```console
+   agent/my-agent applied
+   ```
+
+4. Verify that the agent was updated.
+   ```sh
+   arctl get agent my-agent
+   ```
+
+## Next
+
+[Deploy the agent to your environment](/docs/agents/deploy/).
+
+## Cleanup
+
+To remove the prompt from the agent, delete the `instructions` field from the agent manifest and apply the updated file.
+
+```sh
+arctl apply -f agent.yaml
+```
+
+To delete the prompt resource from agentregistry, run:
+
+```sh
+arctl delete prompt summarizer-system-prompt
+```

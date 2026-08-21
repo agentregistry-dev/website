@@ -155,7 +155,6 @@ Before you publish the skill in the registry catalog, it is recommended to store
 ## Next steps
 
 {{< cards >}}
-{{< card link="/docs/agents/skills/" title="Add a skill to an agent" description="Configure an agent to use a skill from the registry." >}}
 {{< card link="/docs/skills/pull/" title="Pull a skill from the registry" description="Pull a skill from the registry to use it locally." >}}
 {{< /cards >}}
 

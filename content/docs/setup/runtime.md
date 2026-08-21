@@ -43,7 +43,7 @@ The steps in this guide walk you through how to install the kagent open source p
 
 ## Step 2: Verify the runtime
 
-Agentregistry creates a `kubernetes-default` runtime during the installation. Confirm that it is listed and that the kagent pods are ready before deploying.
+Agentregistry creates a `kubernetes-default` runtime during the installation. Confirm that it is listed. 
 
 1. List the runtimes in agentregistry.
    ```sh
@@ -60,5 +60,5 @@ Agentregistry creates a `kubernetes-default` runtime during the installation. Co
 
 {{< cards >}}
 {{< card link="/docs/mcp/local/deploy/" title="Deploy an MCP server" description="Deploy a published MCP server to your kagent runtime." >}}
-{{< card link="/docs/agents/deploy/kubernetes/" title="Deploy an agent" description="Deploy a published agent to your kagent runtime." >}}
+{{< card link="/docs/agents/deploy/kagent/" title="Deploy an agent" description="Deploy a published agent to your kagent runtime." >}}
 {{< /cards >}}
