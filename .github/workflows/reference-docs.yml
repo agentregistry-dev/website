@@ -1,30 +1,112 @@
-name: Generate CLI Reference
+# Regenerates the arctl CLI reference from the agentregistry product repo and
+# opens a PR with the result.
+#
+# Everything lives on this side: scripts/generate-arctl-ref.py builds a
+# throwaway Go module that imports arctl's exported command tree through a
+# `replace` directive against a plain checkout, runs cobra's doc generator, and
+# rewrites the result into Hugo pages. agentregistry needs no changes to support
+# this, and cobra/doc's markdown dependencies stay out of its go.mod.
+#
+# agentregistry docs are unversioned — one flat content tree — so unlike the
+# equivalent agentgateway workflow there is no version matrix here.
+name: Reference docs
 
 on:
-  push:
-    branches: [ main ]
-    paths:
-      - 'internal/cli/**' # Only run if CLI code changes
+  schedule:
+    # Nightly at 06:00 UTC, so published docs don't drift from merged CLI changes.
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+    inputs:
+      agentregistry_ref:
+        description: 'agentregistry ref to generate from (branch, tag, or SHA)'
+        required: false
+        default: 'main'
+
+# Queue overlapping runs (nightly cron plus a manual dispatch) rather than
+# letting them force-push the same PR branch concurrently.
+concurrency:
+  group: reference-docs
+  cancel-in-progress: false
+
+# create-pull-request pushes a branch and opens a PR, so the token needs write
+# on both. Without this the token is read-only and the push fails with a 403.
+#
+# The PR is authored by github-actions[bot], which requires the repo setting
+# "Allow GitHub Actions to create and approve pull requests". A consequence is
+# that pull_request workflows (framework-tests, links) are queued on the
+# generated PR but held as "action_required" — click "Approve and run" on the
+# PR's checks to execute them.
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
-  docs:
+  arctl-reference:
+    name: Generate arctl CLI reference
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: Check out the website
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
-          fetch-depth: 0
+          path: website
+
+      - name: Check out agentregistry
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          repository: agentregistry-dev/agentregistry
+          ref: ${{ inputs.agentregistry_ref || 'main' }}
+          path: agentregistry
+
+      - name: Record the agentregistry revision
+        id: source
+        working-directory: agentregistry
+        run: echo "sha=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
 
       - name: Set up Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@4b73464bb391d4059bd26b0524d20df3927bd417 # v6.3.0
         with:
-          go-version: '1.22' # Match your project version
+          go-version-file: agentregistry/go.mod
+          cache: false
 
-      - name: Generate Markdown Docs
-        run: go run scripts/docgen.go
+      - name: Generate the arctl reference
+        env:
+          WEBSITE_DIR: website
+          AGENTREGISTRY_DIR: agentregistry
+        run: python3 website/scripts/generate-arctl-ref.py
 
-      - name: Commit and Push changes
-        uses: stefanzweifel/git-auto-commit-action@v5
+      - name: Open a PR
+        id: pr
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         with:
-          commit_message: "docs: auto-generate CLI reference"
-          file_pattern: 'content/docs/reference/cli/*.md'
+          path: website
+          base: main
+          branch: ref-docs-arctl
+          delete-branch: true
+          title: '[Automated] Update the arctl CLI reference'
+          commit-message: |
+            docs: regenerate the arctl CLI reference from agentregistry ${{ steps.source.outputs.sha }}
+
+            Signed-off-by: GitHub Action <action@github.com>
+          committer: GitHub Action <action@github.com>
+          body: |
+            Regenerated the arctl CLI reference from
+            [`${{ steps.source.outputs.sha }}`](https://github.com/agentregistry-dev/agentregistry/commit/${{ steps.source.outputs.sha }}).
+
+            Every page under `content/docs/reference/cli/` is generated, front matter
+            included. Edit the cobra command definitions upstream rather than these
+            files — the next run overwrites anything changed by hand.
+
+            Opened automatically by the [Reference docs workflow](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}).
+          labels: |
+            documentation
+            automated pr
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Report the result
+        run: |
+          if [ -n "${{ steps.pr.outputs.pull-request-url }}" ]; then
+            echo "PR: ${{ steps.pr.outputs.pull-request-url }}"
+          else
+            echo "The reference is already up to date; no PR opened."
+          fi

@@ -53,6 +53,18 @@ consoleErrors = [
   # "invalid_request" pageerror with no stack. Not fixable without a live
   # backend — suppress until those scripts are refactored to not throw on init.
   "invalid_request",
+  # Qualified's chat widget posts to its own sentry proxy on every page load, so
+  # a site-wide crawl fires one request per page within a few seconds and trips
+  # that endpoint's rate limit. Whichever pages land after the limit then fail
+  # with a 429, which makes the failing set shift run to run (48/16/17/0 failures
+  # across four runs of the same suite) and reads as a content regression when it
+  # is a property of the crawl's request rate. Scoped to the status AND the host
+  # so a genuine 429 from our own origin still fails the check.
+  #
+  # TEMPORARY: this suppresses the error but the request still fires. The real
+  # fix is to block third-party hosts at the network layer during the crawl —
+  # see solo-io/docs-theme-extras#39. Remove this entry once that lands.
+  "status of 429 .*app\\.qualified\\.com",
   # NOTE: agr previously allowlisted two Hextra main.min.js null-dereferences
   # (reading 'removeAttribute' / 'addEventListener') that fired on pages with no
   # real sidebar (e.g. the /docs/ landing page), where main.js can't find the
@@ -64,3 +76,28 @@ consoleErrors = [
   # (and in the static "Hextra hamburger toggle target" guard in docs-theme-extras).
   # Ported from the same fix in agw-oss.
 ]
+
+# Builds this source tree is rendered under, for the gateAxisCollision lint.
+#
+# `conditional-text` gates on two axes — the build condition and the page's
+# section segment — through one token namespace, so a token naming a section on
+# one axis and a product on the other is true twice and both sides of an
+# intended either/or render.
+#
+# THIS SITE'S OWN BUILD CANNOT FIRE A GATE AT ALL. It registers no
+# `params.sections`, and in `url` mode utils/page-context.html assigns a
+# condition only when the path carries a section AND a version — with no
+# sections registered that never happens, so the condition is always "" and
+# conditional-text emits nothing. Consistent with the corpus: it uses no gates
+# today.
+#
+# The docs hub ships an agentregistry product (buildCondition "agentregistry"),
+# but its module import of this repo is still commented out, so nothing here is
+# rendered under that condition yet. The entry below is staged for when it is:
+# once the import is enabled, a gate written here starts resolving downstream
+# while staying inert upstream, which is precisely the asymmetry this lint
+# catches.
+[[gateAxes]]
+name      = "docs-hub / agentregistry"
+condition = "agentregistry"
+sections  = []
