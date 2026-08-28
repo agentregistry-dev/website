@@ -1,11 +1,17 @@
-# Regenerates the arctl CLI reference from the agentregistry product repo and
-# opens a PR with the result.
+# Regenerates the reference docs from the agentregistry product repo and opens a
+# PR with the result. Three sources, one PR:
 #
-# Everything lives on this side: scripts/generate-arctl-ref.py builds a
-# throwaway Go module that imports arctl's exported command tree through a
-# `replace` directive against a plain checkout, runs cobra's doc generator, and
-# rewrites the result into Hugo pages. agentregistry needs no changes to support
-# this, and cobra/doc's markdown dependencies stay out of its go.mod.
+#   arctl CLI    generate-arctl-ref.py builds a throwaway Go module that imports
+#                arctl's exported command tree through a `replace` directive,
+#                runs cobra's doc generator, and rewrites the output into Hugo
+#                pages. cobra/doc's markdown dependencies stay out of the
+#                product's go.mod because they live in that throwaway module.
+#   Helm values  generate-helm-ref.py runs the helm-docs pinned in the product
+#                repo's tools module, with our own values-only template.
+#   REST API     generate-api-ref.py copies openapi.yaml into assets/ so the
+#                spec is served same-origin.
+#
+# agentregistry needs no changes to support any of this.
 #
 # agentregistry docs are unversioned — one flat content tree — so unlike the
 # equivalent agentgateway workflow there is no version matrix here.
@@ -41,8 +47,8 @@ permissions:
   pull-requests: write
 
 jobs:
-  arctl-reference:
-    name: Generate arctl CLI reference
+  reference:
+    name: Generate reference docs
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -69,11 +75,16 @@ jobs:
           go-version-file: agentregistry/go.mod
           cache: false
 
-      - name: Generate the arctl reference
+      # helm-docs is invoked through `go tool -modfile=tools/go.mod`, and
+      # `make charts-generate` needs envsubst (preinstalled on ubuntu runners).
+      - name: Generate the reference docs
         env:
           WEBSITE_DIR: website
           AGENTREGISTRY_DIR: agentregistry
-        run: python3 website/scripts/generate-arctl-ref.py
+        run: |
+          python3 website/scripts/generate-arctl-ref.py
+          python3 website/scripts/generate-helm-ref.py
+          python3 website/scripts/generate-api-ref.py
 
       - name: Open a PR
         id: pr
@@ -83,19 +94,25 @@ jobs:
           base: main
           branch: ref-docs-arctl
           delete-branch: true
-          title: '[Automated] Update the arctl CLI reference'
+          title: '[Automated] Update the reference docs'
           commit-message: |
-            docs: regenerate the arctl CLI reference from agentregistry ${{ steps.source.outputs.sha }}
+            docs: regenerate the CLI, Helm, and API reference from agentregistry ${{ steps.source.outputs.sha }}
 
             Signed-off-by: GitHub Action <action@github.com>
           committer: GitHub Action <action@github.com>
           body: |
-            Regenerated the arctl CLI reference from
+            Regenerated the reference docs from
             [`${{ steps.source.outputs.sha }}`](https://github.com/agentregistry-dev/agentregistry/commit/${{ steps.source.outputs.sha }}).
 
-            Every page under `content/docs/reference/cli/` is generated, front matter
-            included. Edit the cobra command definitions upstream rather than these
-            files — the next run overwrites anything changed by hand.
+            | Page | Generated from |
+            |---|---|
+            | `content/docs/reference/cli/` | the arctl cobra command definitions |
+            | `content/docs/reference/helm.md` | the chart's `values.yaml`, via helm-docs |
+            | `content/docs/reference/api.md` + `assets/ar-docs/openapi.yaml` | `openapi.yaml` |
+
+            All of these are generated, front matter included. Edit the sources
+            upstream rather than these files — the next run overwrites anything
+            changed by hand.
 
             Opened automatically by the [Reference docs workflow](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}).
           labels: |
