@@ -34,3 +34,4 @@ yarn.lock
 
 # Backup directory
 nextjs-backup/
+scripts/__pycache__/
