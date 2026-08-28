@@ -26,10 +26,10 @@ of server startup. Reads `AGENT_REGISTRY_DATABASE_URL` from the environment when
 
 ## See also
 
-* [arctl db](../arctl-db/)	 - Database operations for the agent registry (migrations, inspection)
-* [arctl db migrate down](../arctl-db-migrate-down/)	 - Roll back the N most-recent applied migrations for the selected source
-* [arctl db migrate force](../arctl-db-migrate-force/)	 - Mark version V as applied without running its SQL
-* [arctl db migrate goto](../arctl-db-migrate-goto/)	 - Move the selected source's schema to version V
-* [arctl db migrate status](../arctl-db-migrate-status/)	 - Show how many migrations are applied vs pending across all sources
-* [arctl db migrate up](../arctl-db-migrate-up/)	 - Apply all pending migrations across every registered source
-* [arctl db migrate version](../arctl-db-migrate-version/)	 - Print the highest applied migration version
+* [arctl db]({{< link-hextra path="/reference/cli/arctl-db/" >}})	 - Database operations (migrations, inspection)
+* [arctl db migrate down]({{< link-hextra path="/reference/cli/arctl-db-migrate-down/" >}})	 - Roll back the N most-recent applied migrations for the selected source
+* [arctl db migrate force]({{< link-hextra path="/reference/cli/arctl-db-migrate-force/" >}})	 - Mark version V as applied without running its SQL
+* [arctl db migrate goto]({{< link-hextra path="/reference/cli/arctl-db-migrate-goto/" >}})	 - Move the selected source's schema to version V
+* [arctl db migrate status]({{< link-hextra path="/reference/cli/arctl-db-migrate-status/" >}})	 - Show how many migrations are applied vs pending across all sources
+* [arctl db migrate up]({{< link-hextra path="/reference/cli/arctl-db-migrate-up/" >}})	 - Apply all pending migrations across every registered source
+* [arctl db migrate version]({{< link-hextra path="/reference/cli/arctl-db-migrate-version/" >}})	 - Print the highest applied migration version

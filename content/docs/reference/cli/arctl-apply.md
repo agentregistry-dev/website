@@ -43,4 +43,4 @@ cat stack.yaml | arctl apply -f -
 
 ## See also
 
-* [arctl](../arctl/)	 - Agent Registry CLI
+* [arctl]({{< link-hextra path="/reference/cli/arctl/" >}})	 - Agent Registry CLI

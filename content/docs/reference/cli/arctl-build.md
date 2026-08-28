@@ -46,4 +46,4 @@ arctl build ./my-agent  --image ghcr.io/acme/my-agent:v1.0.0 --platform linux/am
 
 ## See also
 
-* [arctl](../arctl/)	 - Agent Registry CLI
+* [arctl]({{< link-hextra path="/reference/cli/arctl/" >}})	 - Agent Registry CLI

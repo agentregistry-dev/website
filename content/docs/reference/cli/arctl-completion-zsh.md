@@ -57,4 +57,4 @@ arctl completion zsh [flags]
 
 ## See also
 
-* [arctl completion](../arctl-completion/)	 - Generate the autocompletion script for the specified shell
+* [arctl completion]({{< link-hextra path="/reference/cli/arctl-completion/" >}})	 - Generate the autocompletion script for the specified shell

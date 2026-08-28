@@ -31,4 +31,4 @@ arctl db migrate up [flags]
 
 ## See also
 
-* [arctl db migrate](../arctl-db-migrate/)	 - Apply, roll back, and inspect database migrations
+* [arctl db migrate]({{< link-hextra path="/reference/cli/arctl-db-migrate/" >}})	 - Apply, roll back, and inspect database migrations

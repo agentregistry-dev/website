@@ -19,8 +19,8 @@ See each sub-command's help for details on how to use the generated script.
 
 ## See also
 
-* [arctl](../arctl/)	 - Agent Registry CLI
-* [arctl completion bash](../arctl-completion-bash/)	 - Generate the autocompletion script for bash
-* [arctl completion fish](../arctl-completion-fish/)	 - Generate the autocompletion script for fish
-* [arctl completion powershell](../arctl-completion-powershell/)	 - Generate the autocompletion script for powershell
-* [arctl completion zsh](../arctl-completion-zsh/)	 - Generate the autocompletion script for zsh
+* [arctl]({{< link-hextra path="/reference/cli/arctl/" >}})	 - Agent Registry CLI
+* [arctl completion bash]({{< link-hextra path="/reference/cli/arctl-completion-bash/" >}})	 - Generate the autocompletion script for bash
+* [arctl completion fish]({{< link-hextra path="/reference/cli/arctl-completion-fish/" >}})	 - Generate the autocompletion script for fish
+* [arctl completion powershell]({{< link-hextra path="/reference/cli/arctl-completion-powershell/" >}})	 - Generate the autocompletion script for powershell
+* [arctl completion zsh]({{< link-hextra path="/reference/cli/arctl-completion-zsh/" >}})	 - Generate the autocompletion script for zsh

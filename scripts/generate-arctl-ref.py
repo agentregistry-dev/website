@@ -111,6 +111,11 @@ replace github.com/agentregistry-dev/agentregistry => {agentregistry_path}
 # Path relative to the website checkout.
 CONTENT_SUBDIR = Path("content") / "docs" / "reference" / "cli"
 
+# The same location expressed as a docs-relative path, for `link-hextra`. That
+# shortcode resolves against the docs root (content/docs), so the `content/docs`
+# prefix is dropped and a trailing slash is kept to match the published URLs.
+DOCS_LINK_PREFIX = "/" + "/".join(CONTENT_SUBDIR.parts[2:]) + "/"
+
 # Every command page shares one weight. Hextra falls back to sorting equal
 # weights by title, and every title starts with "arctl", so the root page
 # (shortest title) sorts first and the subcommands alphabetize after it.
@@ -430,11 +435,14 @@ def escape_angle_tokens(text: str) -> str:
 
 
 def rewrite_links(text: str) -> str:
-    """Point cobra's relative .md cross-links at the published page URLs.
+    """Rewrite cobra's relative .md cross-links as `link-hextra` calls.
 
-    Cobra emits [arctl db migrate](arctl_db_migrate.md). The pages are siblings
-    under /docs/reference/cli/, so ../<slug>/ resolves correctly from any of
-    them.
+    Cobra emits [arctl db migrate](arctl_db_migrate.md). A plain relative URL
+    would work for this site as it stands, but `link-hextra` is the canonical
+    resolver: it produces a version- and product-aware URL, and it is what the
+    `rebase`/`reuse` pipelines feed version and product context into when
+    content is pulled into another tree. Hard-coded relative links silently
+    resolve to the wrong tree in that situation; these do not.
 
     The character class has to allow hyphens: a command whose own name contains
     one produces a mixed filename like arctl_configure_claude-code.md, and a
@@ -443,9 +451,38 @@ def rewrite_links(text: str) -> str:
     """
 
     def sub(match: re.Match) -> str:
-        return f"[{match.group(1)}](../{slug_for(match.group(2))}/)"
+        slug = slug_for(match.group(2))
+        return (
+            f"[{match.group(1)}]"
+            f'({{{{< link-hextra path="{DOCS_LINK_PREFIX}{slug}/" >}}}})'
+        )
 
     return re.sub(r"\[([^\]]+)\]\(([A-Za-z0-9_-]+\.md)\)", sub, text)
+
+
+def drop_redundant_opener(prose: str, short: str) -> str:
+    """Drop the Long's opening paragraph when it only restates the Short.
+
+    The Short becomes the page description, so a Long that opens by repeating it
+    verbatim prints the same sentence twice — once in <meta>, once as the first
+    thing on the page. Most of those are fixed at the source, but cobra's own
+    built-in `completion powershell` help does it too, and forking cobra's
+    strings to fix one cosmetic line is the wrong trade.
+
+    Only fires when there is something after the opening paragraph, so a command
+    whose entire Long is one restating sentence keeps its body rather than
+    rendering as a bare heading.
+    """
+    paragraphs = prose.split("\n\n")
+    if len(paragraphs) < 2:
+        return prose
+
+    def norm(text: str) -> str:
+        return re.sub(r"\s+", " ", text).strip().rstrip(".").lower()
+
+    if norm(paragraphs[0]) == norm(short):
+        return "\n\n".join(paragraphs[1:]).lstrip()
+    return prose
 
 
 def build_page(raw: str) -> tuple[str, str]:
@@ -476,6 +513,8 @@ def build_page(raw: str) -> tuple[str, str]:
 
     # Fall back to the Short when the command sets no Long, so a bare parent
     # command still says what it is.
+    prose = drop_redundant_opener(prose.strip(), short)
+
     body_prose = escape_angle_tokens(add_code_spans(
             demote_prose_headings(fence_indented_runs(prose.strip() or short)),
             placeholders_from_usage(usage),
@@ -515,6 +554,9 @@ def build_page(raw: str) -> tuple[str, str]:
     if "SEE ALSO" in sections:
         out.append("## See also\n\n" + rewrite_links(sections["SEE ALSO"]).strip())
 
+    # Short is the command's one-line summary, which is what a page description
+    # is. Deriving it from the Long instead just restates the sentence the body
+    # already opens with, word for word.
     description = escape_angle_tokens(short.rstrip())
     if description and description[-1] not in ".!?":
         description += "."

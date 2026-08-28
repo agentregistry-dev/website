@@ -27,4 +27,4 @@ arctl db migrate goto V [flags]
 
 ## See also
 
-* [arctl db migrate](../arctl-db-migrate/)	 - Apply, roll back, and inspect database migrations
+* [arctl db migrate]({{< link-hextra path="/reference/cli/arctl-db-migrate/" >}})	 - Apply, roll back, and inspect database migrations

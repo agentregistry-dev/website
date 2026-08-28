@@ -19,15 +19,15 @@ arctl is a CLI tool for managing agents, MCP servers, skills, and prompts.
 
 ## See also
 
-* [arctl apply](../arctl-apply/)	 - Apply one or more registry resources from a YAML file
-* [arctl build](../arctl-build/)	 - Build a Docker image for a declarative resource project
-* [arctl completion](../arctl-completion/)	 - Generate the autocompletion script for the specified shell
-* [arctl configure](../arctl-configure/)	 - Create the JSON configuration a client needs to connect to arctl
-* [arctl db](../arctl-db/)	 - Database operations for the agent registry (migrations, inspection)
-* [arctl delete](../arctl-delete/)	 - Delete a registry resource by type and name, or from a YAML file
-* [arctl get](../arctl-get/)	 - List or retrieve registry resources by type
-* [arctl init](../arctl-init/)	 - Scaffold a new declarative resource project (agent, MCP server, skill, or prompt)
-* [arctl pull](../arctl-pull/)	 - Fetch a registry resource's source repository to a local directory
-* [arctl run](../arctl-run/)	 - Run the agent or MCP server defined in the current project directory
-* [arctl version](../arctl-version/)	 - Display the version of the arctl CLI
-* [arctl wait](../arctl-wait/)	 - Wait for a registry resource to reach a target state
+* [arctl apply]({{< link-hextra path="/reference/cli/arctl-apply/" >}})	 - Apply one or more registry resources from a YAML file
+* [arctl build]({{< link-hextra path="/reference/cli/arctl-build/" >}})	 - Build a Docker image for a declarative resource project
+* [arctl completion]({{< link-hextra path="/reference/cli/arctl-completion/" >}})	 - Generate the autocompletion script for the specified shell
+* [arctl configure]({{< link-hextra path="/reference/cli/arctl-configure/" >}})	 - Write the JSON config a client needs to connect to arctl
+* [arctl db]({{< link-hextra path="/reference/cli/arctl-db/" >}})	 - Database operations (migrations, inspection)
+* [arctl delete]({{< link-hextra path="/reference/cli/arctl-delete/" >}})	 - Delete a registry resource by type and name, or from a file
+* [arctl get]({{< link-hextra path="/reference/cli/arctl-get/" >}})	 - List or retrieve registry resources by type
+* [arctl init]({{< link-hextra path="/reference/cli/arctl-init/" >}})	 - Scaffold a declarative agent, MCP, skill, or prompt project
+* [arctl pull]({{< link-hextra path="/reference/cli/arctl-pull/" >}})	 - Fetch a registry resource's source repo to a local directory
+* [arctl run]({{< link-hextra path="/reference/cli/arctl-run/" >}})	 - Run the agent or MCP server in the current project directory
+* [arctl version]({{< link-hextra path="/reference/cli/arctl-version/" >}})	 - Display the arctl CLI and registry server versions
+* [arctl wait]({{< link-hextra path="/reference/cli/arctl-wait/" >}})	 - Wait for a registry resource to reach a target state
