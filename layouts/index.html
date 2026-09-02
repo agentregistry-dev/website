@@ -299,107 +299,177 @@
       <p class="m-0 max-w-[660px] text-pretty text-lg leading-[1.6] text-ar-fg-2">Browse and search the catalog, manage artifacts, and deploy agents and MCP servers into a connected cluster — without leaving the browser.</p>
     </div>
 
+    {{- /* Web UI demo: every view is a live capture of the registry UI (both
+           themes) with clickable regions over the UI's own controls, measured
+           from the running app. List views are full-page captures and scroll
+           inside the frame; panels and dialogs are viewport captures. */ -}}
     {{- $views := slice
-      (dict "id" "servers"  "label" "Servers"  "icon" (index $areas 0).icon)
-      (dict "id" "skills"   "label" "Skills"   "icon" (index $areas 1).icon)
-      (dict "id" "agents"   "label" "Agents"   "icon" (index $areas 2).icon)
-      (dict "id" "prompts"  "label" "Prompts"  "icon" (index $areas 3).icon)
-      (dict "id" "deployed" "label" "Deployed" "icon" `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 12l9 4 9-4"/><path d="M3 17l9 4 9-4"/></svg>`)
-      (dict "id" "details" "label" "Server details" "hidden" true)
-      (dict "id" "skills-detail" "label" "Skill details" "hidden" true)
-      (dict "id" "agents-detail" "label" "Agent details" "hidden" true)
-      (dict "id" "prompts-detail" "label" "Prompt details" "hidden" true)
-      (dict "id" "deploy-servers" "label" "Deploy a server" "hidden" true)
-      (dict "id" "deploy-servers-target" "label" "Deploy a server — choose target" "hidden" true)
-      (dict "id" "deploy-agents" "label" "Deploy an agent" "hidden" true)
-      (dict "id" "deploy-agents-target" "label" "Deploy an agent — choose target" "hidden" true)
-      (dict "id" "add-menu" "label" "Add menu" "hidden" true)
-      (dict "id" "add-server" "label" "Add a server" "hidden" true)
-      (dict "id" "add-server-package" "label" "Add a server — package" "hidden" true)
-      (dict "id" "add-skill" "label" "Add a skill" "hidden" true)
-      (dict "id" "add-agent" "label" "Add an agent" "hidden" true)
-      (dict "id" "add-prompt" "label" "Add a prompt" "hidden" true)
+      (dict "id" "servers" "label" "Servers" "h" 1473 "icon" (index $areas 0).icon)
+      (dict "id" "skills" "label" "Skills" "h" 1473 "icon" (index $areas 1).icon)
+      (dict "id" "agents" "label" "Agents" "h" 1473 "icon" (index $areas 2).icon)
+      (dict "id" "prompts" "label" "Prompts" "h" 1473 "icon" (index $areas 3).icon)
+      (dict "id" "deployed" "label" "Deployed" "h" 2236 "icon" `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 12l9 4 9-4"/><path d="M3 17l9 4 9-4"/></svg>`)
+      (dict "id" "servers-detail-overview" "label" "Server details — Overview" "h" 900 "hidden" true)
+      (dict "id" "servers-detail-package" "label" "Server details — Package" "h" 900 "hidden" true)
+      (dict "id" "servers-detail-raw" "label" "Server details — Raw" "h" 900 "hidden" true)
+      (dict "id" "deploy-servers" "label" "Deploy server" "h" 900 "hidden" true)
+      (dict "id" "deploy-servers-target" "label" "Deploy server — choose target" "h" 900 "hidden" true)
+      (dict "id" "skills-detail-overview" "label" "Skill details — Overview" "h" 900 "hidden" true)
+      (dict "id" "skills-detail-raw" "label" "Skill details — Raw" "h" 900 "hidden" true)
+      (dict "id" "agents-detail-overview" "label" "Agent details — Overview" "h" 900 "hidden" true)
+      (dict "id" "agents-detail-technical" "label" "Agent details — Technical" "h" 900 "hidden" true)
+      (dict "id" "agents-detail-raw" "label" "Agent details — Raw" "h" 900 "hidden" true)
+      (dict "id" "deploy-agents" "label" "Deploy agent" "h" 900 "hidden" true)
+      (dict "id" "deploy-agents-target" "label" "Deploy agent — choose target" "h" 900 "hidden" true)
+      (dict "id" "prompts-detail-overview" "label" "Prompt details — Overview" "h" 900 "hidden" true)
+      (dict "id" "prompts-detail-raw" "label" "Prompt details — Raw" "h" 900 "hidden" true)
+      (dict "id" "add-menu" "label" "Add menu" "h" 900 "hidden" true)
+      (dict "id" "add-server" "label" "Add server" "h" 900 "hidden" true)
+      (dict "id" "add-server-package" "label" "Add a server — package" "h" 900 "hidden" true)
+      (dict "id" "add-skill" "label" "Add skill" "h" 900 "hidden" true)
+      (dict "id" "add-agent" "label" "Add agent" "h" 900 "hidden" true)
+      (dict "id" "add-prompt" "label" "Add prompt" "h" 900 "hidden" true)
     -}}
-    {{- /* Clickable regions on each screenshot, as % of the 1440x900 capture,
-           measured from the live UI. Clicking one swaps to the target view, so
-           the frame behaves like the real app. */ -}}
     {{- $hot := dict
       "servers" (slice
-        (dict "go" "servers" "label" "Servers tab" "l" 3.06 "t" 8.11 "w" 10.12 "h" 5.28)
-        (dict "go" "skills" "label" "Skills tab" "l" 13.45 "t" 8.11 "w" 8.89 "h" 5.28)
-        (dict "go" "agents" "label" "Agents tab" "l" 22.62 "t" 8.11 "w" 9.92 "h" 5.28)
-        (dict "go" "prompts" "label" "Prompts tab" "l" 32.81 "t" 8.11 "w" 10.66 "h" 5.28)
-        (dict "go" "deployed" "label" "Deployed" "l" 25.7 "t" 1.19 "w" 6.59 "h" 3.83)
-        (dict "go" "add-menu" "label" "Add" "l" 87.93 "t" 8.53 "w" 6.24 "h" 3.56)
-        (dict "go" "details" "label" "Open Kubernetes Cluster Inspector" "l" 3.0 "t" 71.6 "w" 86 "h" 8.0)
-        (dict "go" "deploy-servers" "label" "Deploy Knowledge Search" "l" 91.29 "t" 23.28 "w" 5.66 "h" 3.11))
+        (dict "go" "servers" "label" "Servers tab" "l" 3.06 "t" 4.96 "w" 10.12 "h" 3.22)
+        (dict "go" "skills" "label" "Skills tab" "l" 13.45 "t" 4.96 "w" 8.89 "h" 3.22)
+        (dict "go" "agents" "label" "Agents tab" "l" 22.62 "t" 4.96 "w" 9.92 "h" 3.22)
+        (dict "go" "prompts" "label" "Prompts tab" "l" 32.81 "t" 4.96 "w" 10.66 "h" 3.22)
+        (dict "go" "deployed" "label" "Deployed" "l" 25.7 "t" 0.73 "w" 6.59 "h" 2.34)
+        (dict "go" "add-menu" "label" "Add" "l" 87.93 "t" 5.21 "w" 6.24 "h" 2.17)
+        (dict "go" "servers-detail-overview" "label" "Open doKnowledge SearchSemantic search across" "l" 3 "t" 17.99 "w" 86 "h" 5.77)
+        (dict "go" "deploy-servers" "label" "Deploy doKnowledge SearchSemantic search across" "l" 91.29 "t" 14.22 "w" 5.66 "h" 1.9)
+      )
       "skills" (slice
-        (dict "go" "servers" "label" "Servers tab" "l" 3.06 "t" 8.11 "w" 10.12 "h" 5.28)
-        (dict "go" "skills" "label" "Skills tab" "l" 13.45 "t" 8.11 "w" 8.89 "h" 5.28)
-        (dict "go" "agents" "label" "Agents tab" "l" 22.62 "t" 8.11 "w" 9.92 "h" 5.28)
-        (dict "go" "prompts" "label" "Prompts tab" "l" 32.81 "t" 8.11 "w" 10.66 "h" 5.28)
-        (dict "go" "deployed" "label" "Deployed" "l" 25.7 "t" 1.19 "w" 6.59 "h" 3.83)
-        (dict "go" "add-menu" "label" "Add" "l" 87.93 "t" 8.53 "w" 6.24 "h" 3.56)
-        (dict "go" "skills-detail" "label" "Open RFC Writer" "l" 3 "t" 29.5 "w" 90 "h" 9.5))
+        (dict "go" "servers" "label" "Servers tab" "l" 3.06 "t" 4.96 "w" 10.12 "h" 3.22)
+        (dict "go" "skills" "label" "Skills tab" "l" 13.45 "t" 4.96 "w" 8.89 "h" 3.22)
+        (dict "go" "agents" "label" "Agents tab" "l" 22.62 "t" 4.96 "w" 9.92 "h" 3.22)
+        (dict "go" "prompts" "label" "Prompts tab" "l" 32.81 "t" 4.96 "w" 10.66 "h" 3.22)
+        (dict "go" "deployed" "label" "Deployed" "l" 25.7 "t" 0.73 "w" 6.59 "h" 2.34)
+        (dict "go" "add-menu" "label" "Add" "l" 87.93 "t" 5.21 "w" 6.24 "h" 2.17)
+        (dict "go" "skills-detail-overview" "label" "Open RFC WriterTurn a design discussion into " "l" 3 "t" 17.99 "w" 90 "h" 5.77)
+      )
       "agents" (slice
-        (dict "go" "servers" "label" "Servers tab" "l" 3.06 "t" 8.11 "w" 10.12 "h" 5.28)
-        (dict "go" "skills" "label" "Skills tab" "l" 13.45 "t" 8.11 "w" 8.89 "h" 5.28)
-        (dict "go" "agents" "label" "Agents tab" "l" 22.62 "t" 8.11 "w" 9.92 "h" 5.28)
-        (dict "go" "prompts" "label" "Prompts tab" "l" 32.81 "t" 8.11 "w" 10.66 "h" 5.28)
-        (dict "go" "deployed" "label" "Deployed" "l" 25.7 "t" 1.19 "w" 6.59 "h" 3.83)
-        (dict "go" "add-menu" "label" "Add" "l" 87.93 "t" 8.53 "w" 6.24 "h" 3.56)
-        (dict "go" "agents-detail" "label" "Open costops" "l" 3 "t" 29.5 "w" 86 "h" 9.5)
-        (dict "go" "deploy-agents" "label" "Deploy costops" "l" 91.29 "t" 23.28 "w" 5.66 "h" 3.11))
+        (dict "go" "servers" "label" "Servers tab" "l" 3.06 "t" 4.96 "w" 10.12 "h" 3.22)
+        (dict "go" "skills" "label" "Skills tab" "l" 13.45 "t" 4.96 "w" 8.89 "h" 3.22)
+        (dict "go" "agents" "label" "Agents tab" "l" 22.62 "t" 4.96 "w" 9.92 "h" 3.22)
+        (dict "go" "prompts" "label" "Prompts tab" "l" 32.81 "t" 4.96 "w" 10.66 "h" 3.22)
+        (dict "go" "deployed" "label" "Deployed" "l" 25.7 "t" 0.73 "w" 6.59 "h" 2.34)
+        (dict "go" "add-menu" "label" "Add" "l" 87.93 "t" 5.21 "w" 6.24 "h" 2.17)
+        (dict "go" "agents-detail-overview" "label" "Open costopsShows spend by team and namespace" "l" 3 "t" 17.99 "w" 86 "h" 5.77)
+        (dict "go" "deploy-agents" "label" "Deploy costopsShows spend by team and namespace" "l" 91.29 "t" 14.22 "w" 5.66 "h" 1.9)
+      )
       "prompts" (slice
-        (dict "go" "servers" "label" "Servers tab" "l" 3.06 "t" 8.11 "w" 10.12 "h" 5.28)
-        (dict "go" "skills" "label" "Skills tab" "l" 13.45 "t" 8.11 "w" 8.89 "h" 5.28)
-        (dict "go" "agents" "label" "Agents tab" "l" 22.62 "t" 8.11 "w" 9.92 "h" 5.28)
-        (dict "go" "prompts" "label" "Prompts tab" "l" 32.81 "t" 8.11 "w" 10.66 "h" 5.28)
-        (dict "go" "deployed" "label" "Deployed" "l" 25.7 "t" 1.19 "w" 6.59 "h" 3.83)
-        (dict "go" "add-menu" "label" "Add" "l" 87.93 "t" 8.53 "w" 6.24 "h" 3.56)
-        (dict "go" "prompts-detail" "label" "Open docs-technical-writer" "l" 3 "t" 29.5 "w" 90 "h" 9.5))
+        (dict "go" "servers" "label" "Servers tab" "l" 3.06 "t" 4.96 "w" 10.12 "h" 3.22)
+        (dict "go" "skills" "label" "Skills tab" "l" 13.45 "t" 4.96 "w" 8.89 "h" 3.22)
+        (dict "go" "agents" "label" "Agents tab" "l" 22.62 "t" 4.96 "w" 9.92 "h" 3.22)
+        (dict "go" "prompts" "label" "Prompts tab" "l" 32.81 "t" 4.96 "w" 10.66 "h" 3.22)
+        (dict "go" "deployed" "label" "Deployed" "l" 25.7 "t" 0.73 "w" 6.59 "h" 2.34)
+        (dict "go" "add-menu" "label" "Add" "l" 87.93 "t" 5.21 "w" 6.24 "h" 2.17)
+        (dict "go" "prompts-detail-overview" "label" "Open docs-technical-writerSystem prompt for p" "l" 3 "t" 17.99 "w" 90 "h" 5.77)
+      )
       "deployed" (slice
-        (dict "go" "servers" "label" "Catalog" "l" 19.75 "t" 1.19 "w" 5.67 "h" 3.83))
-      "details" (slice
-        (dict "go" "servers" "label" "Close" "l" 94.2 "t" 0.8 "w" 3.4 "h" 4.6))
-      "skills-detail" (slice
-        (dict "go" "skills" "label" "Close" "l" 94.2 "t" 0.8 "w" 3.4 "h" 4.6))
-      "agents-detail" (slice
-        (dict "go" "agents" "label" "Close" "l" 94.2 "t" 0.8 "w" 3.4 "h" 4.6))
-      "prompts-detail" (slice
-        (dict "go" "prompts" "label" "Close" "l" 94.2 "t" 0.8 "w" 3.4 "h" 4.6))
+        (dict "go" "servers" "label" "Catalog" "l" 19.75 "t" 0.48 "w" 5.67 "h" 1.54)
+      )
+      "servers-detail-overview" (slice
+        (dict "go" "servers" "label" "Close" "l" 97.78 "t" 1.78 "w" 1.11 "h" 1.78)
+        (dict "go" "servers-detail-overview" "label" "Overview tab" "l" 55.35 "t" 18.06 "w" 6.12 "h" 3.56)
+        (dict "go" "servers-detail-package" "label" "Package tab" "l" 61.74 "t" 18.06 "w" 5.74 "h" 3.56)
+        (dict "go" "servers-detail-raw" "label" "Raw tab" "l" 67.76 "t" 18.06 "w" 3.66 "h" 3.56)
+      )
+      "servers-detail-package" (slice
+        (dict "go" "servers" "label" "Close" "l" 97.78 "t" 1.78 "w" 1.11 "h" 1.78)
+        (dict "go" "servers-detail-overview" "label" "Overview tab" "l" 55.35 "t" 18.06 "w" 6.12 "h" 3.56)
+        (dict "go" "servers-detail-package" "label" "Package tab" "l" 61.74 "t" 18.06 "w" 5.74 "h" 3.56)
+        (dict "go" "servers-detail-raw" "label" "Raw tab" "l" 67.76 "t" 18.06 "w" 3.66 "h" 3.56)
+      )
+      "servers-detail-raw" (slice
+        (dict "go" "servers" "label" "Close" "l" 97.78 "t" 1.78 "w" 1.11 "h" 1.78)
+        (dict "go" "servers-detail-overview" "label" "Overview tab" "l" 55.35 "t" 18.06 "w" 6.12 "h" 3.56)
+        (dict "go" "servers-detail-package" "label" "Package tab" "l" 61.74 "t" 18.06 "w" 5.74 "h" 3.56)
+        (dict "go" "servers-detail-raw" "label" "Raw tab" "l" 67.76 "t" 18.06 "w" 3.66 "h" 3.56)
+      )
       "deploy-servers" (slice
         (dict "go" "deploy-servers-target" "label" "Select target" "l" 36.81 "t" 43.56 "w" 26.38 "h" 4)
-        (dict "go" "servers" "label" "Cancel" "l" 46.98 "t" 63.33 "w" 5.51 "h" 4.44))
+        (dict "go" "servers" "label" "Cancel" "l" 46.98 "t" 63.33 "w" 5.51 "h" 4.44)
+      )
       "deploy-servers-target" (slice
         (dict "go" "deploy-servers" "label" "Kubernetes" "l" 37.15 "t" 48.56 "w" 25.83 "h" 3.56)
-        (dict "go" "servers" "label" "Cancel" "l" 46.98 "t" 63.33 "w" 5.51 "h" 4.44))
+        (dict "go" "servers" "label" "Cancel" "l" 46.98 "t" 63.33 "w" 5.51 "h" 4.44)
+      )
+      "skills-detail-overview" (slice
+        (dict "go" "skills" "label" "Close" "l" 97.78 "t" 1.78 "w" 1.11 "h" 1.78)
+        (dict "go" "skills-detail-overview" "label" "Overview tab" "l" 55.35 "t" 18.06 "w" 6.12 "h" 3.56)
+        (dict "go" "skills-detail-raw" "label" "Raw tab" "l" 61.74 "t" 18.06 "w" 3.66 "h" 3.56)
+      )
+      "skills-detail-raw" (slice
+        (dict "go" "skills" "label" "Close" "l" 97.78 "t" 1.78 "w" 1.11 "h" 1.78)
+        (dict "go" "skills-detail-overview" "label" "Overview tab" "l" 55.35 "t" 18.06 "w" 6.12 "h" 3.56)
+        (dict "go" "skills-detail-raw" "label" "Raw tab" "l" 61.74 "t" 18.06 "w" 3.66 "h" 3.56)
+      )
+      "agents-detail-overview" (slice
+        (dict "go" "agents" "label" "Close" "l" 97.78 "t" 1.78 "w" 1.11 "h" 1.78)
+        (dict "go" "agents-detail-overview" "label" "Overview tab" "l" 55.35 "t" 18.06 "w" 6.12 "h" 3.56)
+        (dict "go" "agents-detail-technical" "label" "Technical tab" "l" 61.74 "t" 18.06 "w" 6.01 "h" 3.56)
+        (dict "go" "agents-detail-raw" "label" "Raw tab" "l" 68.03 "t" 18.06 "w" 3.66 "h" 3.56)
+      )
+      "agents-detail-technical" (slice
+        (dict "go" "agents" "label" "Close" "l" 97.78 "t" 1.78 "w" 1.11 "h" 1.78)
+        (dict "go" "agents-detail-overview" "label" "Overview tab" "l" 55.35 "t" 18.06 "w" 6.12 "h" 3.56)
+        (dict "go" "agents-detail-technical" "label" "Technical tab" "l" 61.74 "t" 18.06 "w" 6.01 "h" 3.56)
+        (dict "go" "agents-detail-raw" "label" "Raw tab" "l" 68.03 "t" 18.06 "w" 3.66 "h" 3.56)
+      )
+      "agents-detail-raw" (slice
+        (dict "go" "agents" "label" "Close" "l" 97.78 "t" 1.78 "w" 1.11 "h" 1.78)
+        (dict "go" "agents-detail-overview" "label" "Overview tab" "l" 55.35 "t" 18.06 "w" 6.12 "h" 3.56)
+        (dict "go" "agents-detail-technical" "label" "Technical tab" "l" 61.74 "t" 18.06 "w" 6.01 "h" 3.56)
+        (dict "go" "agents-detail-raw" "label" "Raw tab" "l" 68.03 "t" 18.06 "w" 3.66 "h" 3.56)
+      )
       "deploy-agents" (slice
         (dict "go" "deploy-agents-target" "label" "Select target" "l" 37.78 "t" 43.56 "w" 24.44 "h" 4)
-        (dict "go" "agents" "label" "Cancel" "l" 46.2 "t" 63.33 "w" 5.51 "h" 4.44))
+        (dict "go" "agents" "label" "Cancel" "l" 46.2 "t" 63.33 "w" 5.51 "h" 4.44)
+      )
       "deploy-agents-target" (slice
         (dict "go" "deploy-agents" "label" "Kubernetes" "l" 38.13 "t" 48.56 "w" 23.89 "h" 3.56)
-        (dict "go" "agents" "label" "Cancel" "l" 46.2 "t" 63.33 "w" 5.51 "h" 4.44))
+        (dict "go" "agents" "label" "Cancel" "l" 46.2 "t" 63.33 "w" 5.51 "h" 4.44)
+      )
+      "prompts-detail-overview" (slice
+        (dict "go" "prompts" "label" "Close" "l" 97.78 "t" 1.78 "w" 1.11 "h" 1.78)
+        (dict "go" "prompts-detail-overview" "label" "Overview tab" "l" 55.35 "t" 18.06 "w" 6.12 "h" 3.56)
+        (dict "go" "prompts-detail-raw" "label" "Raw tab" "l" 61.74 "t" 18.06 "w" 3.66 "h" 3.56)
+      )
+      "prompts-detail-raw" (slice
+        (dict "go" "prompts" "label" "Close" "l" 97.78 "t" 1.78 "w" 1.11 "h" 1.78)
+        (dict "go" "prompts-detail-overview" "label" "Overview tab" "l" 55.35 "t" 18.06 "w" 6.12 "h" 3.56)
+        (dict "go" "prompts-detail-raw" "label" "Raw tab" "l" 61.74 "t" 18.06 "w" 3.66 "h" 3.56)
+      )
       "add-menu" (slice
+        (dict "go" "servers" "label" "Close menu" "l" 87.93 "t" 8.53 "w" 6.24 "h" 3.56)
         (dict "go" "add-server" "label" "Add server" "l" 85.63 "t" 13.11 "w" 8.19 "h" 3.56)
         (dict "go" "add-skill" "label" "Add skill" "l" 85.63 "t" 16.67 "w" 8.19 "h" 3.56)
         (dict "go" "add-agent" "label" "Add agent" "l" 85.63 "t" 20.22 "w" 8.19 "h" 3.56)
         (dict "go" "add-prompt" "label" "Add prompt" "l" 85.63 "t" 23.78 "w" 8.19 "h" 3.56)
-        (dict "go" "servers" "label" "Close menu" "l" 87.93 "t" 8.53 "w" 6.24 "h" 3.56))
+      )
       "add-server" (slice
+        (dict "go" "servers" "label" "Cancel" "l" 72.9 "t" 78.89 "w" 5.64 "h" 4.44)
         (dict "go" "add-server-package" "label" "Add package" "l" 77.16 "t" 65.44 "w" 9.37 "h" 4)
-        (dict "go" "servers" "label" "Cancel" "l" 72.9 "t" 78.89 "w" 5.64 "h" 4.44))
+      )
       "add-server-package" (slice
-        (dict "go" "servers" "label" "Cancel" "l" 72.9 "t" 87.28 "w" 5.64 "h" 4.44))
+        (dict "go" "servers" "label" "Cancel" "l" 72.9 "t" 87.28 "w" 5.64 "h" 4.44)
+      )
       "add-skill" (slice
-        (dict "go" "servers" "label" "Cancel" "l" 59.21 "t" 77.89 "w" 5.64 "h" 4.44))
+        (dict "go" "servers" "label" "Cancel" "l" 59.21 "t" 77.89 "w" 5.64 "h" 4.44)
+      )
       "add-agent" (slice
-        (dict "go" "servers" "label" "Cancel" "l" 48.04 "t" 74.78 "w" 5.64 "h" 4.44))
+        (dict "go" "servers" "label" "Cancel" "l" 48.04 "t" 74.78 "w" 5.64 "h" 4.44)
+      )
       "add-prompt" (slice
-        (dict "go" "servers" "label" "Cancel" "l" 57.56 "t" 83 "w" 5.64 "h" 4.44))
+        (dict "go" "servers" "label" "Cancel" "l" 57.56 "t" 83 "w" 5.64 "h" 4.44)
+      )
     -}}
 
-    <div class="flex flex-col gap-4">
+    <div class="mx-auto flex w-full max-w-[960px] flex-col gap-4">
       <div class="flex flex-wrap items-center justify-center gap-1.5" role="tablist" aria-label="Web UI views">
         {{- range $i, $v := $views }}{{ if not $v.hidden }}
         <button type="button" role="tab" data-ui-tab="{{ $v.id }}" aria-selected="{{ if eq $i 0 }}true{{ else }}false{{ end }}" class="inline-flex cursor-pointer items-center gap-2 rounded-full border px-3.5 py-1.5 text-[13px] transition-colors border-ar-line text-ar-fg-3 hover:text-ar-fg aria-selected:border-ar-purple/40 aria-selected:bg-ar-purple/10 aria-selected:text-ar-fg [&>svg]:h-[15px] [&>svg]:w-[15px] aria-selected:[&>svg]:text-ar-purple">{{ $v.icon | safeHTML }}{{ $v.label }}</button>
@@ -413,17 +483,20 @@
           <span class="inline-block h-[9px] w-[9px] rounded-full bg-[#28C840]/80"></span>
           <div id="ui-url" class="mx-auto rounded-full border border-ar-line bg-ar-fill px-[18px] py-[5px] font-ar-mono text-xs text-ar-fg-3">registry.acme.dev / catalog / servers</div>
         </div>
-        {{- range $i, $v := $views }}
-        <div data-ui-panel="{{ $v.id }}" role="tabpanel" class="relative" {{ if ne $i 0 }}hidden{{ end }}>
-          <img src="/landing/assets/ui-{{ $v.id }}-light.png" alt="The agentregistry web UI — {{ $v.label }}" class="block h-auto w-full dark:hidden" width="1440" height="900">
-          <img src="/landing/assets/ui-{{ $v.id }}-dark.png" alt="The agentregistry web UI — {{ $v.label }}" class="hidden h-auto w-full dark:block" width="1440" height="900">
-          {{- range (index $hot $v.id) }}
-          <button type="button" data-ui-go="{{ .go }}" aria-label="{{ .label }}" class="absolute cursor-pointer rounded-md transition-colors hover:bg-ar-purple/10 hover:ring-1 hover:ring-ar-purple/40 focus-visible:ring-2 focus-visible:ring-ar-purple" style="left:{{ .l }}%;top:{{ .t }}%;width:{{ .w }}%;height:{{ .h }}%"></button>
+        {{- /* The frame keeps the app's 1440x900 aspect; taller captures scroll inside it. */}}
+        <div id="ui-scroll" class="aspect-[1440/900] overflow-y-auto overflow-x-hidden [scrollbar-width:thin] [scrollbar-color:var(--ar-fg-4)_transparent]">
+          {{- range $i, $v := $views }}
+          <div data-ui-panel="{{ $v.id }}" role="tabpanel" class="relative" {{ if ne $i 0 }}hidden{{ end }}>
+            <img src="/landing/assets/ui/{{ $v.id }}-light.webp" alt="The agentregistry web UI — {{ $v.label }}" class="block h-auto w-full dark:hidden" width="1440" height="{{ $v.h }}"{{ if ne $i 0 }} loading="lazy"{{ end }}>
+            <img src="/landing/assets/ui/{{ $v.id }}-dark.webp" alt="The agentregistry web UI — {{ $v.label }}" class="hidden h-auto w-full dark:block" width="1440" height="{{ $v.h }}"{{ if ne $i 0 }} loading="lazy"{{ end }}>
+            {{- range (index $hot $v.id) }}
+            <button type="button" data-ui-go="{{ .go }}" aria-label="{{ .label }}" class="absolute cursor-pointer rounded-md transition-colors hover:bg-ar-purple/10 hover:ring-1 hover:ring-ar-purple/40 focus-visible:ring-2 focus-visible:ring-ar-purple" style="left:{{ .l }}%;top:{{ .t }}%;width:{{ .w }}%;height:{{ .h }}%"></button>
+            {{- end }}
+          </div>
           {{- end }}
         </div>
-        {{- end }}
       </div>
-      <p class="m-0 text-center text-[13px] text-ar-fg-4">Click around the window — tabs, rows, Deploy, and Add all work like the real UI.</p>
+      <p class="m-0 text-center text-[13px] text-ar-fg-4">Click around the window — tabs, rows, detail tabs, Deploy, and Add all work like the real UI, and the lists scroll.</p>
     </div>
 
     <div class="grid gap-5 md:grid-cols-3">
@@ -625,24 +698,34 @@
   var urlEl = document.getElementById('ui-url');
   var host = 'registry.acme.dev';
   var urls = {
-    deployed: host + ' / deployed',
-    details: host + ' / catalog / servers / k8s-cluster-inspector',
-    'skills-detail': host + ' / catalog / skills / docs-rfc-writer',
-    'agents-detail': host + ' / catalog / agents / costops',
-    'prompts-detail': host + ' / catalog / prompts / docs-technical-writer',
+    'deployed': host + ' / deployed',
+    'servers-detail-overview': host + ' / catalog / servers / docs-knowledge-search',
+    'servers-detail-package': host + ' / catalog / servers / docs-knowledge-search',
+    'servers-detail-raw': host + ' / catalog / servers / docs-knowledge-search',
     'deploy-servers': host + ' / catalog / servers / docs-knowledge-search / deploy',
     'deploy-servers-target': host + ' / catalog / servers / docs-knowledge-search / deploy',
+    'skills-detail-overview': host + ' / catalog / skills / docs-rfc-writer',
+    'skills-detail-raw': host + ' / catalog / skills / docs-rfc-writer',
+    'agents-detail-overview': host + ' / catalog / agents / costops',
+    'agents-detail-technical': host + ' / catalog / agents / costops',
+    'agents-detail-raw': host + ' / catalog / agents / costops',
     'deploy-agents': host + ' / catalog / agents / costops / deploy',
     'deploy-agents-target': host + ' / catalog / agents / costops / deploy',
+    'prompts-detail-overview': host + ' / catalog / prompts / docs-technical-writer',
+    'prompts-detail-raw': host + ' / catalog / prompts / docs-technical-writer',
     'add-menu': host + ' / catalog / servers',
-    'add-server': host + ' / catalog / servers / new', 'add-server-package': host + ' / catalog / servers / new',
-    'add-skill': host + ' / catalog / skills / new', 'add-agent': host + ' / catalog / agents / new', 'add-prompt': host + ' / catalog / prompts / new'
+    'add-server': host + ' / catalog / servers / new',
+    'add-server-package': host + ' / catalog / servers / new',
+    'add-skill': host + ' / catalog / skills / new',
+    'add-agent': host + ' / catalog / agents / new',
+    'add-prompt': host + ' / catalog / prompts / new'
   };
-  var pillFor = { details: 'servers', 'skills-detail': 'skills', 'agents-detail': 'agents', 'prompts-detail': 'prompts',
-    'deploy-servers': 'servers', 'deploy-servers-target': 'servers', 'deploy-agents': 'agents', 'deploy-agents-target': 'agents',
-    'add-menu': 'servers', 'add-server': 'servers', 'add-server-package': 'servers', 'add-skill': 'servers', 'add-agent': 'servers', 'add-prompt': 'servers' };
+  var pillFor = {'servers-detail-overview': 'servers', 'servers-detail-package': 'servers', 'servers-detail-raw': 'servers', 'deploy-servers': 'servers', 'deploy-servers-target': 'servers', 'skills-detail-overview': 'skills', 'skills-detail-raw': 'skills', 'agents-detail-overview': 'agents', 'agents-detail-technical': 'agents', 'agents-detail-raw': 'agents', 'deploy-agents': 'agents', 'deploy-agents-target': 'agents', 'prompts-detail-overview': 'prompts', 'prompts-detail-raw': 'prompts', 'add-menu': 'servers', 'add-server': 'servers', 'add-server-package': 'servers', 'add-skill': 'servers', 'add-agent': 'servers', 'add-prompt': 'servers'};
+  var scroller = document.getElementById('ui-scroll');
   function showView(id) {
     uiPanels.forEach(function (p) { p.hidden = p.getAttribute('data-ui-panel') !== id; });
+    // Panels and dialogs are viewport-sized captures: show them from the top.
+    if (scroller && pillFor[id]) scroller.scrollTop = 0;
     var pill = pillFor[id] || id;
     uiTabs.forEach(function (t) { t.setAttribute('aria-selected', t.getAttribute('data-ui-tab') === pill ? 'true' : 'false'); });
     if (urlEl) urlEl.textContent = urls[id] || host + ' / catalog / ' + id;
