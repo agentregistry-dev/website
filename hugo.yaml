@@ -39,7 +39,7 @@ params:
     prodHost: "https://aregistry.ai"
 
   theme:
-    default: dark
+    default: system
     displayToggle: true
   
   navbar:
