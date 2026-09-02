@@ -58,3 +58,97 @@
    no longer lined up with the nav). The reuse-image rules were also dead — the
    extras `reuse-image` shortcode toggles `.toggle-dark`/`.toggle-light`, not
    `.reuse-image-wrapper`. The theme aligns the navbar and sidebar itself. */
+
+/* ---------------------------------------------------------------------------
+   Landing page (layouts/index.html) — Solo.io design system.
+   Namespaced `ar-*` so nothing collides with Hextra / docs-theme-extras.
+
+   Theme-aware tokens are plain CSS variables flipped by the `.dark` class that
+   Hextra's theme toggle already puts on <html>, and exposed to Tailwind via
+   `@theme inline` so `bg-ar-bg`, `text-ar-fg-2`, `border-ar-line` … follow the
+   active theme at runtime. Terminal tokens (`ar-term-*`) are fixed: terminals
+   stay dark in both themes.
+   --------------------------------------------------------------------------- */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --ar-bg: #FFFFFF;
+    --ar-bg-alt: #F6F7FB;
+    --ar-footer: #EDEEF7;
+    --ar-fg: #151927;
+    --ar-fg-2: #3B4258;
+    --ar-fg-3: #6B7289;
+    --ar-fg-4: #9AA0B5;
+    --ar-line: rgba(21, 25, 39, .08);
+    --ar-line-2: rgba(21, 25, 39, .14);
+    --ar-fill: rgba(21, 25, 39, .04);
+    --ar-fill-2: rgba(21, 25, 39, .08);
+    --ar-nav: rgba(255, 255, 255, .80);
+    --ar-btn: #151927;
+    --ar-btn-fg: #FFFFFF;
+    --ar-glow: rgba(138, 63, 252, .16);
+    --ar-hero-glow: rgba(138, 63, 252, .18);
+    --ar-ui-gradient: linear-gradient(180deg, #FFFFFF, #F3EEFC 55%, #FFFFFF);
+  }
+  .dark {
+    --ar-bg: #0B0E18;
+    --ar-bg-alt: #0A0D17;
+    --ar-footer: #090C14;
+    --ar-fg: #FFFFFF;
+    --ar-fg-2: #C8CCDB;
+    --ar-fg-3: #8289A3;
+    --ar-fg-4: #5A6078;
+    --ar-line: rgba(255, 255, 255, .08);
+    --ar-line-2: rgba(255, 255, 255, .12);
+    --ar-fill: rgba(255, 255, 255, .04);
+    --ar-fill-2: rgba(255, 255, 255, .08);
+    --ar-nav: rgba(11, 14, 24, .72);
+    --ar-btn: #FFFFFF;
+    --ar-btn-fg: #0B0E18;
+    --ar-glow: rgba(138, 63, 252, .12);
+    --ar-hero-glow: rgba(138, 63, 252, .30);
+    --ar-ui-gradient: linear-gradient(180deg, #0B0E18, #110B20 55%, #0B0E18);
+  }
+}
+
+@theme inline {
+  --color-ar-bg: var(--ar-bg);
+  --color-ar-bg-alt: var(--ar-bg-alt);
+  --color-ar-footer: var(--ar-footer);
+  --color-ar-fg: var(--ar-fg);
+  --color-ar-fg-2: var(--ar-fg-2);
+  --color-ar-fg-3: var(--ar-fg-3);
+  --color-ar-fg-4: var(--ar-fg-4);
+  --color-ar-line: var(--ar-line);
+  --color-ar-line-2: var(--ar-line-2);
+  --color-ar-fill: var(--ar-fill);
+  --color-ar-fill-2: var(--ar-fill-2);
+  --color-ar-nav: var(--ar-nav);
+  --color-ar-btn: var(--ar-btn);
+  --color-ar-btn-fg: var(--ar-btn-fg);
+}
+
+@theme {
+  /* Fixed palette */
+  --color-ar-purple: #8A3FFC;
+  --color-ar-purple-hover: #9C55FF;
+  --color-ar-lilac: #C4A6FF;
+  --color-ar-success: #22C55E;
+  --color-ar-warning: #F59E0B;
+  --color-ar-danger: #EF4444;
+  /* Terminal (always dark) */
+  --color-ar-term: #0A0D17;
+  --color-ar-term-fg: #E6E8F0;
+  --color-ar-term-2: #C8CCDB;
+  --color-ar-term-3: #8289A3;
+  --color-ar-term-4: #5A6078;
+  --color-ar-dot: #2A3044;
+  --font-ar-sans: 'Figtree', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-ar-mono: 'DM Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --ease-ar: cubic-bezier(.16, 1, .3, 1);
+  --animate-ar-blink: ar-blink 1.1s steps(1) infinite;
+  --animate-ar-breathe: ar-breathe 6s cubic-bezier(.2, .6, .2, 1) infinite;
+  @keyframes ar-blink { 0%, 49% { opacity: 1 } 50%, 100% { opacity: 0 } }
+  @keyframes ar-breathe { 0%, 100% { opacity: .5 } 50% { opacity: .85 } }
+}
