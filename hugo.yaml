@@ -38,6 +38,30 @@ params:
     # preview URL.
     prodHost: "https://aregistry.ai"
 
+  # "Download all docs (PDF)" in the Copy-as-Markdown menu on docs pages, added by
+  # the module's copy-markdown.html. Setting `distribution` turns the item on and
+  # selects the solo-io/docs-pdfs release-asset URL shape, which the module
+  # supplies so it is not repeated per consumer:
+  #
+  #   .../releases/download/{product}-{distribution}-{version}/{product}-{distribution}-{version}.pdf
+  #
+  # `{version}` resolves to `latest`: this site has no versions and registers no
+  # `params.sections`, so there is no version segment to substitute and no section
+  # to prefix it with. That substitution needs docs-theme-extras v0.3.8-beta.1 or
+  # later; on the v0.3.5 this site used to pin, the item did not render on an
+  # unversioned site at all and no configuration here could make it. solo-io/docs'
+  # pdf-export.yml labels this entry `latest` for the same reason, so the link and
+  # the published asset agree by construction.
+  #
+  # `product` is set explicitly because it is otherwise read from
+  # `params.currentProduct` or `params.folder`, and this site sets neither.
+  #
+  # The item renders only under /docs/, because it asks that section for its
+  # output formats — the marketing pages carry no `book` format and show nothing.
+  pdfDownload:
+    distribution: oss
+    product: agentregistry
+
   theme:
     default: system
     displayToggle: true
