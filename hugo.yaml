@@ -45,10 +45,6 @@ params:
   #
   #   .../releases/download/{product}-{distribution}-{version}/{product}-{distribution}-{version}.pdf
   #
-  # `oss` because agentregistry also ships as an enterprise product, whose manual
-  # publishes to `agentregistry-enterprise-latest`. Telling those two apart is the
-  # whole job of this segment.
-  #
   # `{version}` resolves to `latest`: this site has no versions and registers no
   # `params.sections`, so there is no version segment to substitute and no section
   # to prefix it with. That substitution needs docs-theme-extras v0.3.8-beta.1 or
