@@ -16,6 +16,8 @@ Thumbs.db
 
 # Editor directories and files
 .vscode/
+# Hugo generates this for assets/js (see assets/js/chatbot)
+**/jsconfig.json
 .idea/
 *.swp
 *.swo

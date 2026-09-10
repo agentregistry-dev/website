@@ -1,0 +1,101 @@
+{{- /*
+  agentregistry docs assistant ("Ask AI" widget).
+
+  Ported from the Solo Enterprise for agentgateway docs assistant
+  (solo-io/docs layouts/partials/chatbot.html + assets/js/chatbot). Included
+  from layouts/_partials/custom/footer.html, the footer-content hook that
+  docs-theme-extras' partials/footer.html calls.
+
+  The widget is a precompiled Preact + htm component (assets/js/chatbot/*),
+  bundled by Hugo's js.Build (esbuild) and served from 'self'. htm parses its
+  templates with its own parser — no `new Function`, no runtime eval — so the
+  widget stays CSP-safe even behind a `script-src` that forbids 'unsafe-eval'.
+
+  CSS note: solo-io/docs has to ship the widget's Tailwind utilities as a
+  generated sheet (chatbot.tw.css), because the Hextra theme there serves a
+  PRECOMPILED Tailwind bundle that does not contain them. This site compiles
+  Tailwind itself (`css.TailwindCSS`, see _partials/css.html), and Tailwind v4's
+  automatic source detection scans the repo — assets/js/chatbot included — so
+  every utility class the widget renders at runtime is already in main.css. That
+  is why no generated sheet and no extra `@source` line are needed, even though
+  these classes never appear in Hugo's emitted HTML or in hugo_stats.json. Only
+  the component styles below are widget-specific.
+*/ -}}
+
+{{- /* The assistant answers from the docs corpus, and its page-context feature
+       only makes sense for docs pages, so render it under /docs/ only. The
+       marketing pages outside /docs/ also carry the GTM-injected Qualified
+       sales chat, whose launcher sits in the same bottom-right corner — one
+       chat bubble per page. */ -}}
+{{- if eq .Section "docs" }}
+
+<!-- Component styles, loaded through Hugo Pipes so they are fingerprinted and cached. -->
+{{- $cbcss := resources.Get "css/chatbot.css" | fingerprint -}}
+<link rel="stylesheet" href="{{ $cbcss.RelPermalink }}">
+
+<!-- Chat Bot Widget mount node. The Preact app renders the trigger button and
+     dialog into this element. data-favicon supplies the assistant avatar. -->
+<div id="chatbot-widget" data-favicon="{{ "favicon.svg" | relURL }}"></div>
+
+<!-- Token colors for highlighted code blocks in streamed answers. Only YAML is
+     highlighted (see assets/js/chatbot/markdown.js for the measurement behind
+     that); every other block renders as plain text, matching Hugo's own Chroma
+     output for the `sh` fences that make up most of these docs.
+
+     highlight.js itself is BUNDLED with the widget — core + the YAML grammar,
+     ~22 KB — so there is no separate script tag here and no third-party origin
+     on a docs page. solo-io/docs instead loads the full 36-language build from
+     cdnjs, which cost 120 KB and an extra request to color nothing extra.
+     Only these theme stylesheets stay separate, because the enabled one has to
+     follow the reader's theme. -->
+{{- $hljsLight := resources.Get "css/vendor/hljs-github.min.css" | fingerprint -}}
+{{- $hljsDark := resources.Get "css/vendor/hljs-github-dark.min.css" | fingerprint -}}
+<link rel="stylesheet" id="hljs-light" href="{{ $hljsLight.RelPermalink }}">
+<link rel="stylesheet" id="hljs-dark" href="{{ $hljsDark.RelPermalink }}" disabled>
+
+<!-- Theme-aware highlight.js stylesheet switcher. Hextra stamps `dark` on
+     <html>, so watch that class and enable exactly one of the two sheets. -->
+<script>
+  (function() {
+    const lightLink = document.getElementById('hljs-light');
+    const darkLink = document.getElementById('hljs-dark');
+
+    function updateHighlightTheme() {
+      const isDark = document.documentElement.classList.contains('dark');
+      lightLink.disabled = isDark;
+      darkLink.disabled = !isDark;
+    }
+
+    // Initial theme setup
+    updateHighlightTheme();
+
+    // Watch for theme changes
+    const observer = new MutationObserver(updateHighlightTheme);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+  })();
+</script>
+
+<!-- Page index for @ mention autocomplete (built by Hugo at compile time).
+     Scoped to the docs section: the marketing pages are not in the corpus and
+     are not eligible as context (see DOCS_PATH_RE in app.js). This site is flat
+     and unversioned, so there is no version segment to filter on. -->
+<script id="chatbot-page-index" type="application/json">
+{{- $pages := slice -}}
+{{- range where .Site.RegularPages "Section" "docs" -}}
+  {{- $parentTitle := "" -}}
+  {{- with .Parent -}}
+    {{- $parentTitle = .Title -}}
+  {{- end -}}
+  {{- $pages = $pages | append (dict "title" .Title "url" .RelPermalink "section" $parentTitle) -}}
+{{- end -}}
+{{ $pages | jsonify | safeJS }}
+</script>
+
+<!-- Bundle the Preact widget with Hugo Pipes (esbuild). Single self-hosted bundle. -->
+{{- $opts := dict "targetPath" "js/chatbot.bundle.js" "minify" hugo.IsProduction "target" "es2015" "format" "iife" -}}
+{{- $js := resources.Get "js/chatbot/index.js" | js.Build $opts | fingerprint -}}
+<script src="{{ $js.RelPermalink }}"></script>
+{{- end }}
