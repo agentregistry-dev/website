@@ -1,0 +1,13 @@
+{{- /*
+  Consumer-side footer hook.
+
+  docs-theme-extras' partials/footer.html calls `partial "custom/footer.html" .`
+  as the first thing inside its <footer>, passing the page as the context.
+  Hextra ships an empty default at this path, so without this file nothing is
+  emitted there.
+
+  The footer's own content (copyright, back-to-top) comes from the module, so
+  this hook carries only the docs assistant mount point and its assets. Add any
+  future consumer footer content BELOW the partial call.
+*/ -}}
+{{- partial "chatbot.html" . -}}
