@@ -202,8 +202,8 @@ Registry-aware clients, such as VS Code, take a base URL and append the standard
 
    | Platform | Where to set the policy |
    | -- | -- |
-   | Windows | Push a Windows Registry value through the Group Policy or Intune. Use the registry key `HKEY_LOCAL_MACHINE\SOFTWARE\Policies\GitHubCopilot` and value `McpGalleryServiceUrl`. You can alternatively Write the `McpGalleryServiceUrl` key into GitHub Copilot's `managed-settings.json` file. See the **Any platform** row for more details.  |
-   | macOS | Push a Managed Preference through an MDM profile. Use the `com.github.copilot` preference domain and `McpGalleryServiceUrl` key. You can alternatively Write the `McpGalleryServiceUrl` key into GitHub Copilot's `managed-settings.json` file. See the **Any platform** row for more details.   |
+   | Windows | Push a Windows Registry value through the Group Policy or Intune. Use the registry key `HKEY_LOCAL_MACHINE\SOFTWARE\Policies\GitHubCopilot` and value `McpGalleryServiceUrl`. You can alternatively write the `McpGalleryServiceUrl` key into GitHub Copilot's `managed-settings.json` file. See the **Any platform** row for more details.  |
+   | macOS | Push a Managed Preference through an MDM profile. Use the `com.github.copilot` preference domain and `McpGalleryServiceUrl` key. You can alternatively write the `McpGalleryServiceUrl` key into GitHub Copilot's `managed-settings.json` file. See the **Any platform** row for more details.   |
    | Any platform | Write the `McpGalleryServiceUrl` key into GitHub Copilot's `managed-settings.json` file: <ul><li>macOS: `/Library/Application Support/GitHubCopilot/managed-settings.json`</li><li>Windows: `%ProgramFiles%\GitHubCopilot\managed-settings.json`</li><li>Linux: `/etc/github-copilot/managed-settings.json`</li></ul> Use this mechanism for Linux, which has no native registry or MDM equivalent, or when you prefer a scripted file deployment over the Group Policy or MDM tooling. |
 
 2. Restart VS Code so that it picks up the policy.
