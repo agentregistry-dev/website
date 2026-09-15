@@ -32,8 +32,8 @@ The following MCP clients are supported out of the box.
 
 | Client | Command |
 | --- | --- |
-| [Claude Code](https://code.claude.ai) | `arctl configure claude-code --port 31313` |
-| [Cursor](https://www.cursor.com) | `arctl configure cursor --port 31313` |
+| [Claude Code](https://claude.com/product/claude-code) | `arctl configure claude-code --port 31313` |
+| [Cursor](https://cursor.com) | `arctl configure cursor --port 31313` |
 | [VS Code](https://code.visualstudio.com) | `arctl configure vscode --port 31313` |
 | [Kiro](https://kiro.dev) | `arctl configure kiro --port 31313` |
 

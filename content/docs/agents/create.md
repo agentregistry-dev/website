@@ -11,7 +11,7 @@ description: "Scaffold an agent and run it locally by using agentregistry."
 
 ## Create an agent
 
-In this guide, you create a Python agent by using the [Google Agent Development Kit (ADK)](https://google.github.io/adk-docs/) framework. ADK is an open-source framework for building AI agents. The agent uses Gemini as its language model, which requires a Google API key to authenticate requests to the Gemini API.
+In this guide, you create a Python agent by using the [Google Agent Development Kit (ADK)](https://adk.dev/) framework. ADK is an open-source framework for building AI agents. The agent uses Gemini as its language model, which requires a Google API key to authenticate requests to the Gemini API.
 
 1. Create an agent.
 
