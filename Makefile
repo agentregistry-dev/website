@@ -5,13 +5,24 @@
 # Production build (GC, minify). Requires node_modules for the Tailwind CLI
 # that Hugo's css.TailwindCSS invokes — run `npm install` once beforehand.
 .PHONY: build
-build:
+build: check-node-deps
 	hugo160 --gc --minify
+
+# Without node_modules, Hugo fails deep in a template with a css.TailwindCSS
+# error that does not say what to do. A fresh clone or git worktree has no
+# node_modules, so check first.
+.PHONY: check-node-deps
+check-node-deps:
+	@test -d node_modules/@tailwindcss/cli || { echo "node_modules is missing. Run 'npm install' in $(CURDIR) first."; exit 1; }
+
+# NO_SEARCH=1 builds without the search index (the search box does nothing),
+# for a faster preview.
+NO_SEARCH_ENV = $(if $(NO_SEARCH),HUGO_PARAMS_SEARCH_ENABLE=false )
 
 # Local dev server (drafts and future-dated content shown).
 .PHONY: serve
-serve:
-	hugo160 server --buildDrafts --buildFuture
+serve: check-node-deps
+	$(NO_SEARCH_ENV)hugo160 server --buildDrafts --buildFuture
 
 # Alias
 .PHONY: server

@@ -25,19 +25,23 @@ This website is built with [Hugo](https://gohugo.io/) using the [Hextra](https:/
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/agentregistry-dev/agentregistry.git
-cd agentregistry
+git clone https://github.com/agentregistry-dev/website.git
+cd website
 ```
 
-2. Install Hugo dependencies:
+2. Install the npm and Hugo dependencies:
 ```bash
+npm install
 hugo mod get
 ```
 
-3. Start the development server:
-```bash
-hugo serve
-```
+3. Start the development server with one of these commands:
+
+   | Command | Builds |
+   |---|---|
+   | `make serve` | The whole site, including drafts and future-dated pages. |
+   | `make serve NO_SEARCH=1` | Same as `make serve`, without the search index. The search box does nothing, but the build is faster. |
+   | `hugo serve` | The whole site, without drafts or future-dated pages. |
 
 4. Open your browser and navigate to `http://localhost:1313`
 
