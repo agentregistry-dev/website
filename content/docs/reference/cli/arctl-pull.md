@@ -8,7 +8,7 @@ description: "Fetch a registry resource's source repo to a local directory."
 
 Fetch a registry resource's source repository to a local directory.
 
-Supported types: `agent`, `mcp`, `skill`. Reads the resource's
+Supported type: skill. Reads the resource's
 `Spec.Source.Repository.URL` from the registry and clones it into `DIRECTORY`
 (defaults to `NAME` if omitted).
 
@@ -21,8 +21,6 @@ arctl pull TYPE NAME [DIRECTORY] [flags]
 Examples:
 
 ```sh
-arctl pull agent myagent
-arctl pull mcp myserver ./vendor/myserver
 arctl pull skill myskill --tag stable
 ```
 

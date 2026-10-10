@@ -41,9 +41,6 @@ arctl init agent myagent --local-mcp ../my-mcp
 ```sh
     --description string      Agent description
     --framework string        Framework (e.g. adk). Skips picker.
-    --git string              Git repository URL
-    --git-branch string       Git branch to record on the agent's source repository
-    --git-commit string       Git commit SHA to pin the agent's source repository to
     --image string            Image tag override
     --language string         Language (e.g. python). Skips picker.
     --local-mcp strings       Path to a sibling MCP project; wires it into .env so the local agent can reach it. Repeatable.

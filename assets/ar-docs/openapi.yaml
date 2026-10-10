@@ -28,19 +28,12 @@ components:
           enum:
           - A2A
           - HTTP
+          - OpenAIResponses
           type: string
-        repository:
-          $ref: '#/components/schemas/Repository'
       type: object
     AgentSpec:
       additionalProperties: false
       properties:
-        compatibleHarnesses:
-          items:
-            $ref: '#/components/schemas/HarnessCompatibility'
-          type:
-          - array
-          - "null"
         description:
           type: string
         iconUrl:
@@ -172,7 +165,7 @@ components:
         spec:
           $ref: '#/components/schemas/DeploymentSpec'
         status:
-          $ref: '#/components/schemas/Status'
+          $ref: '#/components/schemas/DeploymentStatus'
       required:
       - metadata
       - spec
@@ -198,6 +191,18 @@ components:
           type: string
       required:
       - name
+      type: object
+    DeploymentRuntimeStatus:
+      additionalProperties: false
+      properties:
+        endpoint:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        resourceId:
+          type: string
       type: object
     DeploymentSpec:
       additionalProperties: false
@@ -228,6 +233,18 @@ components:
       required:
       - targetRef
       - runtimeRef
+      type: object
+    DeploymentStatus:
+      additionalProperties: false
+      properties:
+        conditions:
+          items:
+            $ref: '#/components/schemas/Condition'
+          type:
+          - array
+          - "null"
+        runtime:
+          $ref: '#/components/schemas/DeploymentRuntimeStatus'
       type: object
     ErrorDetail:
       additionalProperties: false
@@ -293,14 +310,6 @@ components:
           type: string
       required:
       - name
-      type: object
-    HarnessCompatibility:
-      additionalProperties: false
-      properties:
-        type:
-          type: string
-      required:
-      - type
       type: object
     HealthBody:
       additionalProperties: false
@@ -779,8 +788,6 @@ components:
       properties:
         package:
           $ref: '#/components/schemas/MCPPackage'
-        repository:
-          $ref: '#/components/schemas/Repository'
       type: object
     MCPServerSpec:
       additionalProperties: false
@@ -1294,12 +1301,6 @@ components:
       properties:
         description:
           type: string
-        harnesses:
-          items:
-            type: string
-          type:
-          - array
-          - "null"
         iconUrl:
           type: string
         source:
@@ -1316,7 +1317,6 @@ components:
           type:
           - array
           - "null"
-        details: {}
         inventory:
           $ref: '#/components/schemas/PluginInventory'
         manifest:
@@ -1427,7 +1427,7 @@ components:
         spec:
           $ref: '#/components/schemas/RuntimeSpec'
         status:
-          $ref: '#/components/schemas/Status'
+          $ref: '#/components/schemas/RuntimeStatus'
       required:
       - metadata
       - spec
@@ -1446,6 +1446,16 @@ components:
           type: string
       required:
       - type
+      type: object
+    RuntimeStatus:
+      additionalProperties: false
+      properties:
+        conditions:
+          items:
+            $ref: '#/components/schemas/Condition'
+          type:
+          - array
+          - "null"
       type: object
     Secret:
       additionalProperties: false
@@ -1537,8 +1547,6 @@ components:
           type:
           - array
           - "null"
-        repository:
-          $ref: '#/components/schemas/ServerRepository'
         title:
           type: string
         version:
@@ -1618,20 +1626,6 @@ components:
       - version
       - transport
       type: object
-    ServerRepository:
-      additionalProperties: false
-      properties:
-        id:
-          type: string
-        source:
-          type: string
-        subfolder:
-          type: string
-        url:
-          type: string
-      required:
-      - url
-      type: object
     ServerResponse:
       additionalProperties: false
       properties:
@@ -1710,7 +1704,6 @@ components:
           type:
           - array
           - "null"
-        details: {}
         resolvedSource:
           $ref: '#/components/schemas/SkillResolvedSource'
       type: object
@@ -1723,7 +1716,6 @@ components:
           type:
           - array
           - "null"
-        details: {}
       type: object
     VersionBody:
       additionalProperties: false
