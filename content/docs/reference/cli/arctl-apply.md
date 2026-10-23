@@ -12,6 +12,11 @@ documents and applies them via `POST /v0/apply`.
 Each resource is applied atomically; the server reports per-resource status.
 Best-effort: per-resource errors are reported without aborting the batch.
 
+A namespace selected by `--namespace`/-n or `ARCTL_NAMESPACE` fills documents
+that omit metadata.namespace, and the server rejects documents whose
+metadata.namespace differs from it. Without a selection, each document keeps
+its own metadata.namespace, defaulting to "default".
+
 ## Usage
 
 ```sh
@@ -22,6 +27,7 @@ Examples:
 
 ```sh
 arctl apply -f agent.yaml
+arctl apply -f agent.yaml -n team-a
 arctl apply -f stack.yaml --dry-run
 cat stack.yaml | arctl apply -f -
 ```
@@ -37,6 +43,7 @@ cat stack.yaml | arctl apply -f -
 
 ```sh
 -h, --help                    Display help information for the command.
+-n, --namespace string        Registry namespace to operate in (defaults to value of ARCTL_NAMESPACE env var, else "default")
     --registry-token string   Registry bearer token (defaults to value of ARCTL_API_TOKEN env var)
     --registry-url string     Registry URL (overrides ARCTL_API_BASE_URL env var; defaults to http://localhost:12121)
 ```
