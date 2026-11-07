@@ -6,6 +6,8 @@ description: "Connect agentregistry to a kagent runtime to deploy agents and MCP
 
 [Kagent](https://kagent.dev) is an open source, Kubernetes-native AI runtime. It extends Kubernetes with custom resources for agents and MCP servers, letting you manage AI workloads the same way you manage any other Kubernetes application. Agentregistry uses kagent to deploy and manage agents and MCP servers as pods in your cluster via a pre-configured `kubernetes-default` runtime. 
 
+Agentregistry also supports discovery-only runtimes for Microsoft Foundry (`MicrosoftFoundry`) and Microsoft Copilot Studio (`MicrosoftCopilotStudio`). These runtime types discover agents from existing Microsoft environments; they do not deploy agents or MCP servers.
+
 The steps in this guide walk you through how to install the kagent open source project so that you can use it as a deployment runtime in agentregistry.
 
 ## Before you begin
