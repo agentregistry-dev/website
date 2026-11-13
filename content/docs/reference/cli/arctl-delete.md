@@ -8,21 +8,27 @@ description: "Delete a registry resource by type and name, or from a file."
 
 Delete a registry resource by type and name, or from a YAML file.
 
-File mode (declarative): reads resources from the YAML file and sends `DELETE /v0/apply`.
+File mode: read resources from `FILE` and delete them declaratively.
 
 ```sh
 arctl delete -f agent.yaml
 ```
 
-Explicit mode: specify type and name. For taggable artifacts, `--tag` selects an
+Explicit mode: specify type and name. For tagged kinds, `--tag` selects an
 exact tag and defaults to latest.
 
 ```sh
-arctl delete TYPE NAME [--tag TAG]
+arctl delete TYPE NAME [--tag TAG | --all-tags]
 ```
 
-`TYPE` must be one of: `agent`, `mcp`, `skill`, `prompt`, `deployment`
-(plural and uppercase forms also accepted)
+`NAME` resolves in the namespace selected by `--namespace`/-n, else
+`ARCTL_NAMESPACE`, else "default". `NAME` may also be NAMESPACE/`NAME`; a namespace
+there must match the selected one. In file mode, a selected namespace fills
+documents that omit metadata.namespace, and the server rejects documents
+whose metadata.namespace differs from it.
+
+`TYPE` must be one of: `agents`, `mcps`, `skills`, `prompts`, `plugins`, `models`, `runtimes`, `secrets`, `deployments`.
+Type names are case-insensitive; singular, plural, and registered aliases are accepted.
 
 ## Usage
 
@@ -37,22 +43,25 @@ arctl delete -f my-agent/agent.yaml
 arctl delete -f my-server/mcp.yaml
 arctl delete agent acme-summarizer --tag stable
 arctl delete agent acme-summarizer --all-tags
+arctl delete agent acme-summarizer -n team-a
 arctl delete mcp acme-fetch --tag stable
 arctl delete deployment team-a/my-agent
+arctl delete -f my-agent/agent.yaml -n team-a
 ```
 
 ## Command-specific flags
 
 ```sh
-    --all-tags          Delete every tag of NAME (taggable artifact kinds only)
+    --all-tags          Tagged kinds only: delete every tag of NAME
 -f, --filename string   YAML file to read resources from
-    --tag string        Specific tag to delete (taggable artifact kinds only; defaults to latest)
+    --tag string        Tagged kinds only: delete a specific tag (defaults to latest)
 ```
 
 ## Global flags
 
 ```sh
 -h, --help                    Display help information for the command.
+-n, --namespace string        Registry namespace to operate in (defaults to value of ARCTL_NAMESPACE env var, else "default")
     --registry-token string   Registry bearer token (defaults to value of ARCTL_API_TOKEN env var)
     --registry-url string     Registry URL (overrides ARCTL_API_BASE_URL env var; defaults to http://localhost:12121)
 ```

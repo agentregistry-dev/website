@@ -8,8 +8,13 @@ description: "List or retrieve registry resources by type."
 
 List every resource of a type, or fetch a single one by name.
 
-Supported types: `agents`, `mcps`, `skills`, `prompts`, `runtimes`, `deployments`
-(singular and uppercase forms also accepted, e.g. `Agent`, `agent`, `agents`)
+Lists and `NAME` lookups use the namespace selected by `--namespace`/-n, else
+`ARCTL_NAMESPACE`, else "default". `NAME` may also be NAMESPACE/`NAME`; a namespace
+there must match the selected one. -A/`--all-namespaces` lists every namespace
+you can view.
+
+Supported types: `agents`, `mcps`, `skills`, `prompts`, `plugins`, `models`, `runtimes`, `secrets`, `deployments`.
+Type names are case-insensitive; singular, plural, and registered aliases are accepted.
 
 ## Usage
 
@@ -25,12 +30,15 @@ arctl get agents
 arctl get agents -l team=platform,tier=production
 arctl get agents --show-labels         # list rows with a LABELS column
 arctl get agents --tag stable          # list rows with a specific tag
-arctl get agents --latest              # list rows pinned to the "latest" tag
+arctl get agents --latest              # list rows with the literal "latest" tag
 arctl get mcps
 arctl get agent acme-summarizer
 arctl get agent acme-summarizer -o yaml
 arctl get agent acme-summarizer --tag stable
 arctl get agent acme-summarizer --all-tags
+arctl get agents -n team-a             # list rows in namespace team-a
+arctl get agents -A                    # list rows in every namespace you can view
+arctl get agent acme-summarizer -n team-a
 arctl get deployment team-a/acme-summarizer
 arctl get deployments --origin discovered  # list discovered (unmanaged) deployments
 arctl get deployments --origin all         # list managed and discovered
@@ -40,19 +48,21 @@ arctl get skills -o json
 ## Command-specific flags
 
 ```sh
-    --all-tags        List every tag of NAME (tagged content kinds only)
--l, --labels string   Content kinds only: filter list rows by comma-separated key=value labels.
-    --latest          List mode only: restrict to rows pinned to the literal 'latest' tag (equivalent to --tag latest).
-    --origin string   Deployments only: filter by provenance — managed, discovered, or all (defaults to managed when unset).
--o, --output string   Output format: table, yaml, json (default "table")
-    --show-labels     Print an additional LABELS column with each resource's labels; ignored for -o yaml/json, which already include labels.
-    --tag string      Tagged kinds only. With NAME: fetch one tag (defaults to latest). Without NAME: filter the list to this tag.
+-A, --all-namespaces   List rows in every namespace you can view, with a NAMESPACE column. Lists only; overrides --namespace.
+    --all-tags         Tagged kinds only: list every tag of NAME
+-l, --labels string    Tagged kinds only: filter list rows by comma-separated key=value labels.
+    --latest           Tagged kinds only: list rows with the literal 'latest' tag (equivalent to --tag latest).
+    --origin string    Deployments only: filter provenance by managed, discovered, or all (defaults to managed when unset).
+-o, --output string    Output format: table, yaml, json (default "table")
+    --show-labels      Print an additional LABELS column with each resource's labels; ignored for -o yaml/json, which already include labels.
+    --tag string       Tagged kinds only. With NAME: fetch one tag (defaults to latest). Without NAME: filter the list to this tag.
 ```
 
 ## Global flags
 
 ```sh
 -h, --help                    Display help information for the command.
+-n, --namespace string        Registry namespace to operate in (defaults to value of ARCTL_NAMESPACE env var, else "default")
     --registry-token string   Registry bearer token (defaults to value of ARCTL_API_TOKEN env var)
     --registry-url string     Registry URL (overrides ARCTL_API_BASE_URL env var; defaults to http://localhost:12121)
 ```

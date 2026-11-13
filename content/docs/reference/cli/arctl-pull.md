@@ -8,9 +8,11 @@ description: "Fetch a registry resource's source repo to a local directory."
 
 Fetch a registry resource's source repository to a local directory.
 
-Supported types: `agent`, `mcp`, `skill`. Reads the resource's
+Supported type: skill. Reads the resource's
 `Spec.Source.Repository.URL` from the registry and clones it into `DIRECTORY`
-(defaults to `NAME` if omitted).
+(defaults to `NAME` if omitted). `NAME` resolves in the namespace selected by
+`--namespace`/-n, else `ARCTL_NAMESPACE`, else "default"; NAMESPACE/`NAME` is also
+accepted.
 
 ## Usage
 
@@ -21,9 +23,8 @@ arctl pull TYPE NAME [DIRECTORY] [flags]
 Examples:
 
 ```sh
-arctl pull agent myagent
-arctl pull mcp myserver ./vendor/myserver
 arctl pull skill myskill --tag stable
+arctl pull skill myskill -n team-a
 ```
 
 ## Command-specific flags
@@ -36,6 +37,7 @@ arctl pull skill myskill --tag stable
 
 ```sh
 -h, --help                    Display help information for the command.
+-n, --namespace string        Registry namespace to operate in (defaults to value of ARCTL_NAMESPACE env var, else "default")
     --registry-token string   Registry bearer token (defaults to value of ARCTL_API_TOKEN env var)
     --registry-url string     Registry URL (overrides ARCTL_API_BASE_URL env var; defaults to http://localhost:12121)
 ```
