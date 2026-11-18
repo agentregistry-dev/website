@@ -4,6 +4,9 @@ weight: 20
 description: "Deploy your agentregistry MCP server to a Kubernetes cluster."
 ---
 
+> [!IMPORTANT]
+> Agentregistry supports kagent v0.10.x. kagent v1.0.0 and newer are incompatible. Install the [latest v0.10.x release](https://github.com/kagent-dev/kagent/releases) before deploying an MCP server.
+
 ## Before you begin
 
 1. Follow the [Get started]({{< link path="/quickstart/" >}}) guide to install agentregistry.
