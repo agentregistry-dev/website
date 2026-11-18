@@ -8,6 +8,9 @@ description: "Connect agentregistry to a kagent runtime to deploy agents and MCP
 
 The steps in this guide walk you through how to install the kagent open source project so that you can use it as a deployment runtime in agentregistry.
 
+> [!IMPORTANT]
+> Agentregistry supports kagent v0.10.x. kagent v1.0.0 and newer are incompatible. Use the [latest v0.10.x release](https://github.com/kagent-dev/kagent/releases) of both the kagent CLI and the cluster installation. The currently documented release is {{< param "kagentVersion" >}}.
+
 ## Before you begin
 
 1. Install agentregistry on [Kubernetes]({{< link path="/quickstart/" >}}).
@@ -15,17 +18,23 @@ The steps in this guide walk you through how to install the kagent open source p
 
 ## Step 1: Install kagent
 
-1. Save your OpenAI API key in an environment variable.
+1. Install the kagent {{< param "kagentVersion" >}} CLI.
+   ```sh
+   curl -fsSL https://raw.githubusercontent.com/kagent-dev/kagent/{{< param "kagentVersion" >}}/scripts/get-kagent | bash -s -- --version {{< param "kagentVersion" >}}
+   kagent version
+   ```
+
+2. Save your OpenAI API key in an environment variable.
    ```sh
    export OPENAI_API_KEY=<your-openai-api-key>
    ```
 
-2. Install kagent with the minimal profile.
+3. Install kagent with the minimal profile. The {{< param "kagentVersion" >}} CLI installs the matching kagent release in your cluster.
    ```sh
    kagent install --profile minimal
    ```
 
-3. Verify that the kagent pods are running.
+4. Verify that the kagent pods are running.
    ```sh
    kubectl get pods -n kagent
    ```

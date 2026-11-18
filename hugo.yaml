@@ -107,6 +107,8 @@ params:
     base: https://github.com/agentregistry-dev/agentregistry
   
   # Custom params
+  # Latest kagent v0.10.x release supported by the deployment guides.
+  kagentVersion: v0.10.6
   github: https://github.com/agentregistry-dev/agentregistry
   discord: https://discord.gg/Af8bX99dbX
   # Optional RSS <author> / managingEditor (Hugo ≥0.156 removed .Site.Author; see layouts/list.rss.xml)
