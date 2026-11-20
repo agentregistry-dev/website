@@ -31,6 +31,7 @@ arctl completion powershell [flags]
 
 ```sh
 -h, --help                    Display help information for the command.
+-n, --namespace string        Registry namespace to operate in (defaults to value of ARCTL_NAMESPACE env var, else "default")
     --registry-token string   Registry bearer token (defaults to value of ARCTL_API_TOKEN env var)
     --registry-url string     Registry URL (overrides ARCTL_API_BASE_URL env var; defaults to http://localhost:12121)
 ```
